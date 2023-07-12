@@ -456,5 +456,12 @@ class HomeController extends Controller
         return view('front/page')->with($data);
     }
 
+    public function car_list(){
+        $data['page_info'] = DB::table('home_page')->where('id',1)->first();
+        $data['pages'] = DB::table('pages')->where('type','cms')->where('status','1')->get();
+        $data['car_list'] = DB::table('car_management')->where('status','1')->get();
+        return view("front/car_list")->with($data);
+    }
+
 
 }

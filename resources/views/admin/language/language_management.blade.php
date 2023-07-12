@@ -100,7 +100,7 @@
 
 <script type="text/javascript">
 
-  function deleteConfirmation(car_id) {
+  function deleteConfirmation(language_id) {
 
     toastDelete.fire({
 
@@ -116,11 +116,11 @@
 
           type: 'POST',
 
-          url: "{{url('/admin/delete_car')}}",
+          url: "{{url('/admin/delete_language')}}",
 
           data: {
 
-            car_id: car_id,
+            language_id: language_id,
 
             _token: CSRF_TOKEN
 
@@ -130,7 +130,7 @@
 
           success: function(results) {
 
-            $("#row" + car_id).remove();
+            $("#row" + language_id).remove();
 
             // console.log(results);
 
@@ -162,7 +162,7 @@
 
     var status = $(this).prop('checked') == true ? 1 : 0; 
 
-    var car_id = $(this).data('id');
+    var language_id = $(this).data('id');
 
     // alert(status);
 
@@ -174,9 +174,9 @@
 
       dataType: "json",
 
-      url: "<?php echo url('/admin/change_car_status'); ?>",
+      url: "<?php echo url('/admin/change_language_status'); ?>",
 
-      data: {'status': status, 'car_id': car_id},
+      data: {'status': status, 'language_id': language_id},
 
       success: function(data){
 
@@ -232,7 +232,7 @@
 
                     <div class="col-sm-6">
 
-                        <h1>Car Management</h1>
+                        <h1>Language Management</h1>
 
                     </div>
 
@@ -242,7 +242,7 @@
 
                             <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}">Home</a></li>
 
-                            <li class="breadcrumb-item active">Car Management</li>
+                            <li class="breadcrumb-item active">Language Management</li>
 
                         </ol>
 
@@ -274,7 +274,7 @@
 
                         <div class="col-md-11"></div>
 
-                        <div class="col-md-1" style="margin-bottom: 5px;"><a href="{{ url('/admin/add_cars') }}" class="btn btn-block btn-dark">Add</a></div>
+                        <div class="col-md-1" style="margin-bottom: 5px;"><a href="{{ url('/admin/add_language') }}" class="btn btn-block btn-dark">Add</a></div>
 
                         </div>
 
@@ -292,10 +292,8 @@
 
                                             <th>SNo.</th>
 
-                                            <th>Image</th>
-                                            <th>Title</th>
-                                            <!-- <th>Sub Title</th> -->
-                                            <th>Price</th>
+                                            <th>Language Name</th>
+                                            
                                             <th>Status</th>
                                             <th>Action</th>
 
@@ -305,26 +303,18 @@
 
                                     <tbody>
 
-                                        @if (!$car_list->isEmpty())
+                                        @if (!$language_list->isEmpty())
 
                                             <?php $i = 1; ?>
 
-                                            @foreach ($car_list as $arr)
+                                            @foreach ($language_list as $arr)
 
                                                 <tr id="row{{ $arr->id }}">
 
                                                     <td>{{ $i }}</td>
-                                                    <td><img src="{{ url('public/uploads/cars') }}/{{ $arr->image }}" style="width:100px"></td>
-                                                    <td>{{ $arr->title }}</td>
+                                                    
+                                                    <td>{{ $arr->name }}</td>
 
-                                                    <!-- <td>{{ $arr->sub_title }}</td> -->
-
-                                                    <td>
-                                                      <?php
-                                                        $price = $arr->price;
-                                                        echo "$".number_format((float)$price, 2, '.', '');
-                                                      ?>
-                                                    </td>
                                                     <td class="project-state">
 
                                                         <input  type="checkbox" class="toggle-class" data-id="{{$arr->id}}" data-toggle="toggle" data-style="slow" data-onstyle="success" data-size="small" data-on="Active" data-off="InActive" {{ $arr->status ? 'checked' : '' }}>
@@ -337,7 +327,7 @@
 
                                                           
 
-                                                            <a href="{{url('/admin/edit_cars')}}/{{$arr->id}}" class="btn btn-info" style="margin-right: 3px;"><i class="fas fa-pencil-alt"></i></a>
+                                                            <a href="{{url('/admin/edit_language')}}/{{$arr->id}}" class="btn btn-info" style="margin-right: 3px;"><i class="fas fa-pencil-alt"></i></a>
 
                                                             <a href="javascript:void(0)" onclick="deleteConfirmation('<?php echo $arr->id; ?>');" class="btn btn-danger" style="margin-right: 3px;"><i class="fas fa-trash"  alt="user" title="car"></i></a>
 

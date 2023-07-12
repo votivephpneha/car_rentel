@@ -10,13 +10,13 @@
 @section('content')
 <!-- Masthead-->
         <header class="masthead">
-            <div class="container px-4 px-lg-5 h-100 d-flex filter">
+            <div class="container px-4 px-lg-5 h-100 filter">
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 d-block mx-auto">
 <div class="item-search-tabs">
     <div class="item-search-menu">
         <ul class="nav" role="tablist">
-        <li class=""> <a class="active" data-bs-toggle="tab" href="#tab1" aria-selected="true" role="tab">AUTO</a> </li>
+        <li class=""> <a class="active" data-bs-toggle="tab" href="#tab1" aria-selected="true" role="tab">CAR</a> </li>
         </ul>
         </div>
 
@@ -66,11 +66,11 @@
 				</div> 
 			</div>      
 		</div>
-  <div class="header-txt-sml">
-<p>We collaborate with over 800 rental companies to guarantee the best prices on the market and
- at the same time defend the rights of those who rent a car
-</p>
-</div>
+	<!--<div class="header-txt-sml">
+		<p>We collaborate with over 800 rental companies to guarantee the best prices on the market and
+		at the same time defend the rights of those who rent a car
+		</p>
+	</div>-->
 </div>
 
 
@@ -434,7 +434,7 @@
                 <h2 class="text-center mt-0">Why <span class="acc-span">Choose Us</span></h2> 
                 <div class="row gx-4 gx-lg-5 row-wcu">
                     <div class="col-lg-7 col-sm-7 mb-4">
-                        <img src="{{ url('public/assets/img/video.png') }}">
+                        <img src="{{ url('public/assets/img/choose-us-img.png') }}">
                     </div>       
           <div class="col-lg-5 col-sm-5 mb-4">
                         <h4>We make sure that your every trip is comfortable</h4>

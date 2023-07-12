@@ -70,6 +70,14 @@
             </a>
           </li>
           <li class="nav-item">
+            <a href="{{ url('/admin/language_management') }}" class="nav-link">
+              <i class="nav-icon fas fa-tasks"></i>
+              <p>
+                Language Mangement
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="{{ url('/admin/home_management') }}" class="nav-link">
               <i class="nav-icon fas fa-tasks"></i>
               <p>

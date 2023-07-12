@@ -2,7 +2,7 @@
 
   <footer class="main-footer">
 
-    <strong>© 2023 <a href="http://www.votivetech.com/">Royal Car Rental</a>.</strong>
+    <strong>© 2023 <a href="#">Royal Car Rental</a>.</strong>
 
     All rights reserved.
 

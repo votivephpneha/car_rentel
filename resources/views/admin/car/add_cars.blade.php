@@ -168,7 +168,7 @@ $("#addCarsForm").validate({
 
                   </div>
 
-                  <div class="col-md-6">
+                  <!-- <div class="col-md-6">
 
                   <div class="form-group">
 
@@ -178,7 +178,7 @@ $("#addCarsForm").validate({
 
                   </div>
 
-                  </div>
+                  </div> -->
 
                   <div class="col-md-6">
 
@@ -245,7 +245,7 @@ $("#addCarsForm").validate({
 
                   </div>
 
-                  <div class="col-md-6">
+                  <!-- <div class="col-md-6">
 
                   <div class="form-group">
 
@@ -255,7 +255,7 @@ $("#addCarsForm").validate({
 
                   </div>
 
-                  </div>
+                  </div> -->
 
                   <div class="col-12">
 

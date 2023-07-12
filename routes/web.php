@@ -56,6 +56,7 @@ Route::fallback(function () {
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/car_list', [App\Http\Controllers\HomeController::class, 'car_list'])->name('car_list');
 Route::get('/baseForm', [App\Http\Controllers\HomeController::class, 'baseForm'])->name('baseForm');
 
 Route::post('/updateProfile', 'App\Http\Controllers\HomeController@updateProfile');
@@ -239,6 +240,13 @@ Route::group(['prefix' => 'admin'], function(){
         Route::get('/edit_cars/{car_id}', [AdminController::class, 'edit_cars'])->name('edit_cars');
         Route::post('/update_cars', [AdminController::class, 'update_cars'])->name('update_cars');
         Route::any('/delete_car', 'App\Http\Controllers\AdminController@delete_car');
+        Route::get('/language_management', [AdminController::class, 'language_management'])->name('language_management');
+        Route::get('/add_language', [AdminController::class, 'add_language'])->name('add_language');
+        Route::post('/submit_languages', [AdminController::class, 'submit_languages'])->name('submit_languages');
+        Route::get('/change_language_status', [AdminController::class, 'change_language_status'])->name('change_language_status');
+        Route::get('/edit_language/{language_id}', [AdminController::class, 'edit_languages'])->name('add_language');
+        Route::post('/update_languages', [AdminController::class, 'update_languages'])->name('update_languages');
+        Route::any('/delete_language', [AdminController::class, 'delete_languages'])->name('delete_language');
     });
 });
 

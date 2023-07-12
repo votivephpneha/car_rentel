@@ -1034,7 +1034,7 @@ class AdminController extends Controller
             $image->move($destinationPath,$file_name);
         }
 
-        $insert_cars = DB::table('car_management')->insert(['title'=>$title,'sub_title'=>$sub_title,'image'=>$file_name,'manual_text'=>'manual_text','no_of_day'=>$no_of_day,'no_of_seats'=>$no_of_seats,'no_of_day'=>$no_of_day,'no_of_km'=>$no_of_km,'price'=>$price,'total_price'=>$total_price,'created_at'=>date('Y-m-d H:i:s')]);
+        $insert_cars = DB::table('car_management')->insert(['title'=>$title,'image'=>$file_name,'manual_text'=>'manual_text','no_of_day'=>$no_of_day,'no_of_seats'=>$no_of_seats,'no_of_day'=>$no_of_day,'no_of_km'=>$no_of_km,'price'=>$price,'created_at'=>date('Y-m-d H:i:s')]);
         
         if ($insert_cars) {
                 
@@ -1079,9 +1079,9 @@ class AdminController extends Controller
             $destinationPath = base_path() .'/public/uploads/cars';
             $file_name = time().".".$image->extension();
             $image->move($destinationPath,$file_name);
-            $update_car = DB::table('car_management')->where("id",$request->car_id)->update(['title'=>$title,'sub_title'=>$sub_title,'image'=>$file_name,'manual_text'=>'manual_text','no_of_day'=>$no_of_day,'no_of_seats'=>$no_of_seats,'no_of_day'=>$no_of_day,'no_of_km'=>$no_of_km,'price'=>$price,'total_price'=>$total_price]);
+            $update_car = DB::table('car_management')->where("id",$request->car_id)->update(['title'=>$title,'image'=>$file_name,'manual_text'=>'manual_text','no_of_day'=>$no_of_day,'no_of_seats'=>$no_of_seats,'no_of_day'=>$no_of_day,'no_of_km'=>$no_of_km,'price'=>$price]);
         }else{
-            $update_car = DB::table('car_management')->where("id",$request->car_id)->update(['title'=>$title,'sub_title'=>$sub_title,'manual_text'=>'manual_text','no_of_day'=>$no_of_day,'no_of_seats'=>$no_of_seats,'no_of_day'=>$no_of_day,'no_of_km'=>$no_of_km,'price'=>$price,'total_price'=>$total_price]);
+            $update_car = DB::table('car_management')->where("id",$request->car_id)->update(['title'=>$title,'manual_text'=>'manual_text','no_of_day'=>$no_of_day,'no_of_seats'=>$no_of_seats,'no_of_day'=>$no_of_day,'no_of_km'=>$no_of_km,'price'=>$price]);
         }
 
         if ($update_car) {
@@ -1102,6 +1102,68 @@ class AdminController extends Controller
 
         if ($res) {
             return json_encode(array('status' => 'success','msg' => 'Car has been deleted successfully!'));
+        } else {
+            return json_encode(array('status' => 'error','msg' => 'Some internal issue occured.'));
+        }
+    }
+
+    public function add_language(){
+        return view("admin/language/add_language");
+        
+    }
+
+    public function submit_languages(Request $request){
+        
+        $title = $request->title;
+        $insert_languages = DB::table('language_management')->insert(['name'=>$title,'created_at'=>date('Y-m-d H:i:s')]);
+
+        if ($insert_languages) {
+                
+            return response()->json(['status' => 'success', 'msg' => 'Languages has been added successfully.']);
+           
+        } else {
+            return response()->json(['status' => 'error', 'msg' => 'OOPs! Some internal issue occured.']);
+            
+        }
+    }
+
+    public function language_management(){
+        $data["language_list"] = DB::table('language_management')->get();
+        return view("admin/language/language_management")->with($data);
+        
+    }
+
+    public function change_language_status(Request $request){
+        $update_car_status = DB::table('language_management')->where("id",$request->language_id)->update(['status'=>$request->status]);
+        
+        return response()->json(['success'=>'Language status has been changed successfully.']);
+    }
+
+    public function edit_languages(Request $request){
+        $data['language_list'] = DB::table('language_management')->where("id",$request->language_id)->get()->first();
+        //print_r($data['car_list']);die;
+        return view("admin/language/edit_languages")->with($data);
+    }
+
+    public function update_languages(Request $request){
+        $title = $request->title;
+        $update_languages = DB::table('language_management')->where("id",$request->language_id)->update(['name'=>$title]);
+
+        if ($update_languages) {
+                
+            return response()->json(['status' => 'success', 'msg' => 'Language has been updated successfully.']);
+           
+        } else {
+            return response()->json(['status' => 'error', 'msg' => 'OOPs! Some internal issue occured.']);
+            
+        }
+    }
+
+    public function delete_languages(Request $request){
+        $res = DB::table('language_management')->where('id', '=', $request->language_id)->delete();
+
+        if ($res) {
+            return json_encode(array('status' => 'success','msg' => 'Language has been deleted successfully!'));
         } else {
             return json_encode(array('status' => 'error','msg' => 'Some internal issue occured.'));
         }
