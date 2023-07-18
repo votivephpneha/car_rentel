@@ -11058,7 +11058,7 @@ header.masthead .filter {
 }
 .search-background .row {
     display: flex;
-    justify-content: center;
+    /*justify-content: center;*/
    /* align-items: center; */
 }
 .search_btn {
@@ -11696,6 +11696,18 @@ ul.list-menu-ftr li::marker {
     background: #ff5f00;
     color: #ffffff;
 }
+.pagination-navs a.page-link.active {
+    background: #000000;
+    border: 1px solid #dee2e6;
+    color: #ffffff;
+}
+.pagination-navs a.page-link.active:focus {
+    box-shadow: none;
+}
+.pagination-navs .page-link:focus {
+    box-shadow: none;
+    background: #ffffff;
+}
 .pagination-navs .page-item:last-child .page-link {
     background: #ff5f00;
     color: #ffffff;
@@ -11713,4 +11725,19 @@ ul.list-menu-ftr li::marker {
 }
 .search-background select.form-select:focus {
     box-shadow: none;
+}
+.form-group.location {
+    width: 17%;
+}
+.form-group.btn--book {
+    width: 20%;
+}
+
+.search_box_error {
+    color: red;
+    font-size: 12px;
+}
+
+.search_btn:active {
+    color: #ff5f00 !important;
 }

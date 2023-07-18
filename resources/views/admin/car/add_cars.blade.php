@@ -168,17 +168,22 @@ $("#addCarsForm").validate({
 
                   </div>
 
-                  <!-- <div class="col-md-6">
+                  <div class="col-md-6">
 
                   <div class="form-group">
 
-                  <label>Sub Title</label>
-            
-                 <input type="text" class="form-control" name="sub_title" id="sub_title">
+                  <label>Vehicle Type</label>
+                  <select class="form-control" name="vehicle_type" id="vehicle_type">
+                    <option value="">Select</option>
+                    <option value="Automatic">Automatic</option>
+                    <option value="Normal">Normal</option>
+                    
+                  </select>
+                 <!-- <input type="text" class="form-control" name="vehicle_type" id="vehicle_type"> -->
 
                   </div>
 
-                  </div> -->
+                  </div>
 
                   <div class="col-md-6">
 
@@ -191,22 +196,26 @@ $("#addCarsForm").validate({
                   </div>
 
                   </div>
-                  <div class="col-md-6">
+                  <!-- <div class="col-md-6">
 
                   <div class="form-group">
 
                   <label>No of day</label>
             
-                 <select class="form-control" name="no_of_day" id="no_of_day">
+                 <select class="form-control" name="no_of_day" id="no_of_day" onchange="changePrice(this.value)">
                     <option value="">Select</option>
-                    <option>1 Day</option>
-                    <option>3+ Day</option>
-                    <option>7+ Day</option>
-                    <option>30+ Day</option>
+                    <option value="1 Day">1 Day</option>
+                    <option value="3+ Day">3+ Day</option>
+                    <option value="7+ Day">7+ Day</option>
+                    <option value="30+ Day">30+ Day</option>
                   </select>
+                  <input type="hidden" class="form-control" name="days_1" id="days-1">
+                 <input type="hidden" class="form-control" name="days_3" id="days-3">
+                 <input type="hidden" class="form-control" name="days_7" id="days-7">
+                 <input type="hidden" class="form-control" name="days_30" id="days-30">
                   </div>
 
-                  </div>
+                  </div> -->
                   <div class="col-md-6">
 
                   <div class="form-group">
@@ -233,29 +242,78 @@ $("#addCarsForm").validate({
                   </div>
 
                   </div>
-                  <div class="col-md-6">
+                  <!-- <div class="col-md-6">
 
                   <div class="form-group">
 
-                  <label>Price(in $)</label>
+                  <label class="price_day">Price</label>
             
-                 <input type="text" class="form-control" name="price" id="price">
+                 <input type="text" class="form-control price_div" name="price_1" id="price_1">
+                 <input type="text" class="form-control price_div" name="price_3" id="price_3" style="display: none">
+                 <input type="text" class="form-control price_div" name="price_7" id="price_7" style="display: none">
+                 <input type="text" class="form-control price_div" name="price_30" id="price_30" style="display: none">
 
                   </div>
 
-                  </div>
+                  </div> -->
 
                   <!-- <div class="col-md-6">
 
                   <div class="form-group">
 
-                  <label>Total Price(in $)</label>
+                  <label>Total Price</label>
             
                  <input type="text" class="form-control" name="total_price" id="total_price">
 
                   </div>
 
                   </div> -->
+                  <div class="col-md-12">
+                    <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th>No of day</th>
+                          <th>Price</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>
+                            <span>1 Day</span>
+                          </td>
+                          <td>
+                            <input type="text" name="price[]" class="price form-control">
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <span>3+ Day</span>
+                          </td>
+                          <td>
+                            <input type="text" name="price[]" class="price form-control">
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <span>7+ Day</span>
+                          </td>
+                          <td>
+                            <input type="text" name="price[]" class="price form-control">
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <span>30+ Day</span>
+                          </td>
+                          <td>
+                            <input type="text" name="price[]" class="price form-control">
+                          </td>
+                        </tr>
+                      </tbody>
+                      
+                      
+                    </table>
+                  </div>
 
                   <div class="col-12">
 

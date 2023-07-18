@@ -57,6 +57,7 @@ Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/car_list', [App\Http\Controllers\HomeController::class, 'car_list'])->name('car_list');
+Route::get('/get_car_list', [App\Http\Controllers\HomeController::class, 'get_cars'])->name('get_cars');
 Route::get('/baseForm', [App\Http\Controllers\HomeController::class, 'baseForm'])->name('baseForm');
 
 Route::post('/updateProfile', 'App\Http\Controllers\HomeController@updateProfile');
@@ -247,6 +248,9 @@ Route::group(['prefix' => 'admin'], function(){
         Route::get('/edit_language/{language_id}', [AdminController::class, 'edit_languages'])->name('add_language');
         Route::post('/update_languages', [AdminController::class, 'update_languages'])->name('update_languages');
         Route::any('/delete_language', [AdminController::class, 'delete_languages'])->name('delete_language');
+        Route::get('/add_logo', [AdminController::class, 'add_logos'])->name('add_logo');
+        Route::post('/submit_logos', [AdminController::class, 'submit_logos'])->name('add_logo');
+        Route::get('/show_logos', [AdminController::class, 'show_logos'])->name('show_logos');
     });
 });
 

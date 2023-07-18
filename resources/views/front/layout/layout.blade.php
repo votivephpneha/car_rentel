@@ -38,6 +38,7 @@
     <script src="https://owlcarousel2.github.io/OwlCarousel2/assets/vendors/jquery.min.js"></script>
  <script src="https://owlcarousel2.github.io/OwlCarousel2/assets/owlcarousel/owl.carousel.js"></script>
  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+ @yield('current_page_js')
  <script>$('.owl-carousel').owlCarousel({
     loop:true,
     margin:20,
@@ -84,16 +85,18 @@ $( function() {
     });
   } );
 </script>
-<!-- <script type="text/javascript">
+<script type="text/javascript">
     $(document).ready (function () {  
     $('.car_data').after ('<div id="nav"></div>');  
     var rowsShown = 4;  
     var rowsTotal = $('.grid-list .single_list').length;  
     var numPages = rowsTotal/rowsShown;  
+    $('#nav').append ('<li class="page-item"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span></a></li>');
     for (i = 0;i < numPages;i++) {  
         var pageNum = i + 1;  
-        $('#nav').append ('<a href="#" rel="'+i+'">'+pageNum+'</a> ');  
+        $('#nav').append ('<li class="page-item"><a href="#" rel="'+i+'" class="page-link">'+pageNum+'</a></li>');  
     }  
+    $('#nav').append ('<li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span></a></li>');
     $('.grid-list .single_list').hide();  
     $('.grid-list .single_list').slice (0, rowsShown).show();  
     $('#nav a:first').addClass('active');  
@@ -107,6 +110,6 @@ $( function() {
         css('display','table-row').animate({opacity:1}, 300);  
     });  
 });  
-</script> -->
+</script>
     </body>
 </html>

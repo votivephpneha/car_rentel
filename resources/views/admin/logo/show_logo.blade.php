@@ -293,9 +293,6 @@
                                             <th>SNo.</th>
 
                                             <th>Image</th>
-                                            <th>Title</th>
-                                            <th>Vehicle Type</th>
-                                            
                                             <th>Status</th>
                                             <th>Action</th>
 
@@ -305,20 +302,17 @@
 
                                     <tbody>
 
-                                        @if (!$car_list->isEmpty())
+                                        @if (!$logo_list->isEmpty())
 
                                             <?php $i = 1; ?>
 
-                                            @foreach ($car_list as $arr)
+                                            @foreach ($logo_list as $arr)
 
                                                 <tr id="row{{ $arr->id }}">
 
                                                     <td>{{ $i }}</td>
-                                                    <td><img src="{{ url('public/uploads/cars') }}/{{ $arr->image }}" style="width:100px"></td>
-                                                    <td>{{ $arr->title }}</td>
-
-                                                    <td>{{ $arr->vehicle_type }}</td>
-
+                                                    <td><img src="{{ url('public/uploads/logos') }}/{{ $arr->image }}" style="width:100px"></td>
+                                                    
                                                     <td class="project-state">
 
                                                         <input  type="checkbox" class="toggle-class" data-id="{{$arr->id}}" data-toggle="toggle" data-style="slow" data-onstyle="success" data-size="small" data-on="Active" data-off="InActive" {{ $arr->status ? 'checked' : '' }}>

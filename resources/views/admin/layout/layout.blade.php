@@ -165,7 +165,17 @@
 
 
    @yield('current_page_js')
+   <script type="text/javascript">
+     function changePrice(days){
+      
+      var days1 = days.replace(" Day","").replace("+","");
+      //alert(days1);
+      $("#days-"+days1).val(days1+"+ Day");
+      $(".price_div").hide();
+      $("#price_"+days1).show();
 
+     }
+   </script>
    </body>
 
 </html>

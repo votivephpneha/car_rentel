@@ -5,6 +5,36 @@
 @endsection
 
 @section('current_page_js')
+<script type="text/javascript">
+  $(".search_btn").click(function(){
+    var pickup_location = $(".pickup_location").val();
+    var drop_off_location = $(".drop_off_location").val();
+    var pickup_date = $(".pickup_date").val();
+    var drop_off_date = $(".drop_off_date").val();
+
+    if(pickup_location == ""){
+      
+      $(".pickup_location_error").text("This field is required");
+    }else{
+      if(drop_off_location == ""){
+        
+        $(".dropoff_location_error").text("This field is required");
+      }else{
+        if(pickup_date == ""){
+          
+          $(".pickup_date_error").text("This field is required");
+        }else{
+          if(drop_off_date == ""){
+            $(".dropoff_date_error").text("This field is required");
+          }else{
+            window.location.href = "{{ url('car_list') }}";
+          }
+        }
+      }
+    }
+    
+  });
+</script>
 @endsection
 
 @section('content')
@@ -27,28 +57,28 @@
 						<div class="form-group col-xl-2 col-lg-2 col-md-12 mb-0 location"> 
 							<div class="form-group mb-0"> 
 								<label>Pickup Location</label>
-								<input class="form-control border" placeholder="Choose Location" type="text"> <span><i class="fa fa-crosshairs  location-gps me-1"></i></span>
+								<input class="form-control border pickup_location" placeholder="Choose Location" type="text" required=""><div class="pickup_location_error search_box_error"></div> <span><i class="fa fa-crosshairs  location-gps me-1"></i></span>
 							</div> 
 						</div> 
 						<div class="form-group col-xl-2 col-lg-2 col-md-12 mb-0 location">
 							<div class="form-group mb-0"> 
 								<label>Drop Off Location</label>
-								<input class="form-control border" placeholder="Choose Location" type="text"> <span><i class="fa fa-crosshairs  location-gps me-1"></i></span> 
+								<input class="form-control border drop_off_location" placeholder="Choose Location" type="text" required=""><div class="dropoff_location_error search_box_error"></div> <span><i class="fa fa-crosshairs  location-gps me-1"></i></span> 
 							</div> 
 						</div>
 						<div class="form-group col-xl-2 col-lg-2 col-md-12 mb-0 location">
 							<div class="form-group mb-0"> 
 								<label>Pickup Date</label>
-								<input class="form-control border" placeholder="Choose Location" type="text" id="pickup_date"> <span><i class="fa fa-crosshairs  location-gps me-1"></i></span>
+								<input class="form-control border pickup_date" placeholder="Choose Location" type="text" id="pickup_date" required=""><div class="pickup_date_error search_box_error"></div> <span><i class="fa fa-crosshairs  location-gps me-1"></i></span>
 							</div>
 						</div>
 						<div class="form-group col-xl-2 col-lg-2 col-md-12 mb-0 location">
 							<div class="form-group mb-0"> 
 								<label>Drop Off Date</label>
-								<input class="form-control border" placeholder="Choose Location" type="text" id="drop_off_date"> <span><i class="fa fa-crosshairs  location-gps me-1"></i></span>
+								<input class="form-control border drop_off_date" placeholder="Choose Location" type="text" id="drop_off_date" required=""><div class="dropoff_date_error search_box_error"></div> <span><i class="fa fa-crosshairs  location-gps me-1"></i></span>
 							</div>
 						</div>
-						<div class="form-group col-xl-2 col-lg-2 col-md-12 mb-0 location">
+						<!-- <div class="form-group col-xl-2 col-lg-2 col-md-12 mb-0 location">
 							<div class="form-group mb-0"> 
 								<label>Category</label>
 								<select class="form-select" aria-label="Default select example">
@@ -58,8 +88,8 @@
 									<option value="3">Luxury Cars</option>
 								</select> 
 							</div> 
-						</div>
-						<div class="form-group col-xl-2 col-lg-2 col-md-12 mb-0"> 
+						</div> -->
+						<div class="form-group col-xl-2 col-lg-2 col-md-12 mb-0 btn--book"> 
 							<a class="btn btn-block btn-orange search_btn fs-14" href="javascript:void(0);"> BOOK <i class="bi bi-arrow-right"></i></a> 
 						</div> 
 					</div> 

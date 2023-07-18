@@ -1019,12 +1019,21 @@ class AdminController extends Controller
 
     public function submit_cars(Request $request){
         $title = $request->title;
-        $sub_title = $request->sub_title;
+        $vehicle_type = $request->vehicle_type;
        
-        $no_of_day = $request->no_of_day;
+        $no_of_day1 = $request->days_1;
+        $no_of_day3 = $request->days_3;
+        $no_of_day7 = $request->days_7;
+        $no_of_day30 = $request->days_30;
+
         $no_of_seats = $request->no_of_seats;
         $no_of_km = $request->no_of_km;
-        $price = $request->price;
+
+        $price1 = $request->price_1;
+        $price3 = $request->price_3;
+        $price7 = $request->price_7;
+        $price30 = $request->price_30;
+        
         $total_price = $request->total_price;
         $image = $request->file('image');
 
@@ -1034,16 +1043,23 @@ class AdminController extends Controller
             $image->move($destinationPath,$file_name);
         }
 
-        $insert_cars = DB::table('car_management')->insert(['title'=>$title,'image'=>$file_name,'manual_text'=>'manual_text','no_of_day'=>$no_of_day,'no_of_seats'=>$no_of_seats,'no_of_day'=>$no_of_day,'no_of_km'=>$no_of_km,'price'=>$price,'created_at'=>date('Y-m-d H:i:s')]);
+        $insert_cars_id = DB::table('car_management')->insertGetId(['title'=>$title,'vehicle_type'=>$vehicle_type,'image'=>$file_name,'manual_text'=>'manual_text','no_of_seats'=>$no_of_seats,'no_of_km'=>$no_of_km,'created_at'=>date('Y-m-d H:i:s')]);
+        $car_price = $request->price;
         
-        if ($insert_cars) {
+        
+        $insert_cars1 = DB::table('car_price_days')->insert(['car_days_id'=>'1','car_id'=>$insert_cars_id,'no_of_day'=>'1 Day','price'=>$car_price[0],'created_at'=>date('Y-m-d H:i:s')]);
+        $insert_cars2 = DB::table('car_price_days')->insert(['car_days_id'=>'2','car_id'=>$insert_cars_id,'no_of_day'=>'3+ Day','price'=>$car_price[1],'created_at'=>date('Y-m-d H:i:s')]);
+        $insert_cars3 = DB::table('car_price_days')->insert(['car_days_id'=>'3','car_id'=>$insert_cars_id,'no_of_day'=>'7+ Day','price'=>$car_price[2],'created_at'=>date('Y-m-d H:i:s')]);
+        $insert_cars4 = DB::table('car_price_days')->insert(['car_days_id'=>'4','car_id'=>$insert_cars_id,'no_of_day'=>'30+ Day','price'=>$car_price[3],'created_at'=>date('Y-m-d H:i:s')]);
+        
+        if ($insert_cars1 && $insert_cars2 && $insert_cars3 && $insert_cars4) {
                 
-                return response()->json(['status' => 'success', 'msg' => 'Car has been added successfully.']);
-               
-            } else {
-                return response()->json(['status' => 'error', 'msg' => 'OOPs! Some internal issue occured.']);
-                
-            }
+            return response()->json(['status' => 'success', 'msg' => 'Car has been added successfully.']);
+           
+        } else {
+            return response()->json(['status' => 'error', 'msg' => 'OOPs! Some internal issue occured.']);
+            
+        }
         
     }
 
@@ -1065,7 +1081,7 @@ class AdminController extends Controller
     public function update_cars(Request $request){
 
         $title = $request->title;
-        $sub_title = $request->sub_title;
+        $vehicle_type = $request->vehicle_type;
        
         $no_of_day = $request->no_of_day;
         $no_of_seats = $request->no_of_seats;
@@ -1079,12 +1095,23 @@ class AdminController extends Controller
             $destinationPath = base_path() .'/public/uploads/cars';
             $file_name = time().".".$image->extension();
             $image->move($destinationPath,$file_name);
-            $update_car = DB::table('car_management')->where("id",$request->car_id)->update(['title'=>$title,'image'=>$file_name,'manual_text'=>'manual_text','no_of_day'=>$no_of_day,'no_of_seats'=>$no_of_seats,'no_of_day'=>$no_of_day,'no_of_km'=>$no_of_km,'price'=>$price]);
+            $update_car = DB::table('car_management')->where("id",$request->car_id)->update(['title'=>$title,'vehicle_type'=>$vehicle_type,'image'=>$file_name,'manual_text'=>'manual_text','no_of_seats'=>$no_of_seats,'no_of_km'=>$no_of_km]);
         }else{
-            $update_car = DB::table('car_management')->where("id",$request->car_id)->update(['title'=>$title,'manual_text'=>'manual_text','no_of_day'=>$no_of_day,'no_of_seats'=>$no_of_seats,'no_of_day'=>$no_of_day,'no_of_km'=>$no_of_km,'price'=>$price]);
+            
+
+            $update_car = DB::table('car_management')->where("id",$request->car_id)->update(['title'=>$title,'vehicle_type'=>$vehicle_type,'manual_text'=>'manual_text','no_of_seats'=>$no_of_seats,'no_of_km'=>$no_of_km]);
+            
         }
 
-        if ($update_car) {
+        $car_price = $request->price;
+        
+             
+        $insert_cars1 = DB::table('car_price_days')->where('car_days_id',"1")->where("car_id",$request->car_id)->update(['price'=>$car_price[0]]);
+        $insert_cars2 = DB::table('car_price_days')->where('car_days_id',"2")->where("car_id",$request->car_id)->update(['price'=>$car_price[1]]);
+        $insert_cars3 = DB::table('car_price_days')->where('car_days_id',"3")->where("car_id",$request->car_id)->update(['price'=>$car_price[2]]);
+        $insert_cars4 = DB::table('car_price_days')->where('car_days_id',"4")->where("car_id",$request->car_id)->update(['price'=>$car_price[3]]);
+
+        if ($update_car || $insert_cars1 && $insert_cars2 || $insert_cars3 || $insert_cars4) {
                 
             return response()->json(['status' => 'success', 'msg' => 'Car has been updated successfully.']);
            
@@ -1167,6 +1194,42 @@ class AdminController extends Controller
         } else {
             return json_encode(array('status' => 'error','msg' => 'Some internal issue occured.'));
         }
+    }
+
+    public function add_logos(){
+        return view("admin/logo/add_logo");
+    }
+
+    public function submit_logos(Request $request){
+
+       
+
+        $image = $request->file('image');
+
+        if($image){
+            $destinationPath = base_path() .'/public/uploads/logos';
+            $file_name = time().".".$image->extension();
+            $image->move($destinationPath,$file_name);
+        }
+
+        $insert_logos = DB::table('home_page_logos')->insert(['image'=>$file_name,'created_at'=>date('Y-m-d H:i:s')]);
+        
+        
+        
+        if ($insert_logos) {
+                
+            return response()->json(['status' => 'success', 'msg' => 'Logos has been added successfully.']);
+           
+        } else {
+            return response()->json(['status' => 'error', 'msg' => 'OOPs! Some internal issue occured.']);
+            
+        }
+        
+    }
+
+    public function show_logos(){
+        $data['logo_list'] = DB::table('home_page_logos')->get();
+        return view("admin/logo/show_logo")->with($data);
     }
 
 }

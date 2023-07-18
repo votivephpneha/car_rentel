@@ -171,17 +171,22 @@ $("#editCarsForm").validate({
 
                   </div>
 
-                  <!-- <div class="col-md-6">
+                  <div class="col-md-6">
 
                   <div class="form-group">
 
-                  <label>Sub Title</label>
-            
-                 <input type="text" class="form-control" name="sub_title" id="sub_title" value="{{ $car_list->sub_title }}">
+                  <label>Vehicle Type</label>
+                  <select class="form-control" name="vehicle_type" id="vehicle_type">
+                    <option value="">Select</option>
+                    <option @if($car_list->vehicle_type == "Automatic") selected @endif value="Automatic">Automatic</option>
+                    <option @if($car_list->vehicle_type == "Normal") selected @endif value="Normal">Normal</option>
+                    
+                  </select>
+                 <!-- <input type="text" class="form-control" name="vehicle_type" id="vehicle_type"> -->
 
                   </div>
 
-                  </div> -->
+                  </div>
 
                   <div class="col-md-6">
 
@@ -196,22 +201,7 @@ $("#editCarsForm").validate({
                   </div>
 
                   </div>
-                  <div class="col-md-6">
-
-                  <div class="form-group">
-
-                  <label>No of day</label>
-            
-                 <select class="form-control" name="no_of_day" id="no_of_day">
-                    <option>Select</option>
-                    <option <?php if($car_list->no_of_day == '1 Day'){ echo 'selected'; } ?>>1 Day</option>
-                    <option <?php if($car_list->no_of_day == '3+ Day'){ echo 'selected'; } ?>>3+ Day</option>
-                    <option <?php if($car_list->no_of_day == '7+ Day'){ echo 'selected'; } ?>>7+ Day</option>
-                    <option <?php if($car_list->no_of_day == '30+ Day'){ echo 'selected'; } ?>>30+ Day</option>
-                  </select>
-                  </div>
-
-                  </div>
+                  
                   <div class="col-md-6">
 
                   <div class="form-group">
@@ -238,30 +228,79 @@ $("#editCarsForm").validate({
                   </div>
 
                   </div>
-                  <div class="col-md-6">
+                  
 
-                  <div class="form-group">
+                  <div class="col-md-12">
+                    <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th>No of day</th>
+                          <th>Price</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>
+                            <span>1 Day</span>
+                          </td>
+                          <td>
+                            <?php
+                              $price1 = DB::table('car_price_days')->where('car_id',$car_list->id)->where('no_of_day','1 Day')->first();
 
-                  <label>Price(in $)</label>
-            
-                 <input type="text" class="form-control" name="price" id="price" value="{{ $car_list->price }}">
+                              $price = $price1->price;
+                              
+                            ?>
+                            
+                            <input type="text" name="price[]" class="price form-control" value="<?php echo number_format((float)$price, 2, '.', ''); ?>">
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <span>3+ Day</span>
+                          </td>
+                          <td>
+                            <?php
+                              $price2 = DB::table('car_price_days')->where('car_id',$car_list->id)->where('no_of_day','3+ Day')->first();
 
+                              $price = $price2->price;
+                              
+                            ?>
+                            <input type="text" name="price[]" class="price form-control" value="<?php echo number_format((float)$price, 2, '.', ''); ?>">
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <span>7+ Day</span>
+                          </td>
+                          <td>
+                            <?php
+                              $price3 = DB::table('car_price_days')->where('car_id',$car_list->id)->where('no_of_day','7+ Day')->first();
+
+                              $price = $price3->price;
+                              
+                            ?>
+                            <input type="text" name="price[]" class="price form-control" value="<?php echo number_format((float)$price, 2, '.', ''); ?>">
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <span>30+ Day</span>
+                          </td>
+                          <td>
+                            <?php
+                              $price4 = DB::table('car_price_days')->where('car_id',$car_list->id)->where('no_of_day','30+ Day')->first();
+
+                              $price = $price4->price;
+                              
+                            ?>
+                            <input type="text" name="price[]" class="price form-control" value="<?php echo number_format((float)$price, 2, '.', ''); ?>">
+                          </td>
+                        </tr>
+                      </tbody>
+                      
+                      
+                    </table>
                   </div>
-
-                  </div>
-
-                  <!-- <div class="col-md-6">
-
-                  <div class="form-group">
-
-                  <label>Total Price(in $)</label>
-            
-                 <input type="text" class="form-control" name="total_price" id="total_price" value="{{ $car_list->total_price }}">
-
-                  </div>
-
-                  </div> -->
-
                   <div class="col-12">
 
                   <button class="btn btn-primary btn-dark float-right" name="submit" type="submit">Submit</button>

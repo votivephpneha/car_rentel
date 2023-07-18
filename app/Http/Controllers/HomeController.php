@@ -463,5 +463,11 @@ class HomeController extends Controller
         return view("front/car_list")->with($data);
     }
 
+    public function get_cars(Request $request){
+
+        $data['car_list'] = DB::table('car_management')->where('vehicle_type',$request->vehicle_type)->get();
+        return view("front/get_car_list")->with($data);
+    }
+
 
 }
