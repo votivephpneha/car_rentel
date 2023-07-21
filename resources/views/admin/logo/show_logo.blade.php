@@ -100,7 +100,7 @@
 
 <script type="text/javascript">
 
-  function deleteConfirmation(car_id) {
+  function deleteConfirmation(logo_id) {
 
     toastDelete.fire({
 
@@ -116,11 +116,11 @@
 
           type: 'POST',
 
-          url: "{{url('/admin/delete_car')}}",
+          url: "{{url('/admin/delete_logo')}}",
 
           data: {
 
-            car_id: car_id,
+            logo_id: logo_id,
 
             _token: CSRF_TOKEN
 
@@ -130,7 +130,7 @@
 
           success: function(results) {
 
-            $("#row" + car_id).remove();
+            $("#row" + logo_id).remove();
 
             // console.log(results);
 
@@ -162,7 +162,7 @@
 
     var status = $(this).prop('checked') == true ? 1 : 0; 
 
-    var car_id = $(this).data('id');
+    var logo_id = $(this).data('id');
 
     // alert(status);
 
@@ -174,9 +174,9 @@
 
       dataType: "json",
 
-      url: "<?php echo url('/admin/change_car_status'); ?>",
+      url: "<?php echo url('/admin/change_logo_status'); ?>",
 
-      data: {'status': status, 'car_id': car_id},
+      data: {'status': status, 'logo_id': logo_id},
 
       success: function(data){
 
@@ -232,7 +232,7 @@
 
                     <div class="col-sm-6">
 
-                        <h1>Car Management</h1>
+                        <h1>Brand Section</h1>
 
                     </div>
 
@@ -242,7 +242,7 @@
 
                             <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}">Home</a></li>
 
-                            <li class="breadcrumb-item active">Car Management</li>
+                            <li class="breadcrumb-item active">Brand Section</li>
 
                         </ol>
 
@@ -274,7 +274,7 @@
 
                         <div class="col-md-11"></div>
 
-                        <div class="col-md-1" style="margin-bottom: 5px;"><a href="{{ url('/admin/add_cars') }}" class="btn btn-block btn-dark">Add</a></div>
+                        <div class="col-md-1" style="margin-bottom: 5px;"><a href="{{ url('/admin/add_logo') }}" class="btn btn-block btn-dark">Add</a></div>
 
                         </div>
 
@@ -325,7 +325,7 @@
 
                                                           
 
-                                                            <a href="{{url('/admin/edit_cars')}}/{{$arr->id}}" class="btn btn-info" style="margin-right: 3px;"><i class="fas fa-pencil-alt"></i></a>
+                                                            <a href="{{url('/admin/edit_logos')}}/{{$arr->id}}" class="btn btn-info" style="margin-right: 3px;"><i class="fas fa-pencil-alt"></i></a>
 
                                                             <a href="javascript:void(0)" onclick="deleteConfirmation('<?php echo $arr->id; ?>');" class="btn btn-danger" style="margin-right: 3px;"><i class="fas fa-trash"  alt="user" title="car"></i></a>
 

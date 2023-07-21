@@ -288,7 +288,7 @@
 
                                             <th>SNo.</th>
 
-                                            <th>Customer Name</th>
+                                            <th>Name</th>
                                             <th>Email</th>
                                             <th>Total Price</th>
                                             
@@ -310,9 +310,9 @@
 
                                                     <td>{{ $i }}</td>
 
-                                                    <td>{{ $arr->customer_first_name }} {{ $arr->customer_last_name }}</td>
+                                                    <td>{{ $arr->driver_first_name }} {{ $arr->driver_last_name }}</td>
 
-                                                    <td>{{ $arr->customer_email }}</td>
+                                                    <td>{{ $arr->driver_email_address }}</td>
 
                                                     <td>
                                                       <?php

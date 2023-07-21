@@ -77,14 +77,14 @@
               </p>
             </a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a href="{{ url('/admin/home_management') }}" class="nav-link">
               <i class="nav-icon fas fa-tasks"></i>
               <p>
                 Home
               </p>
             </a>
-          </li>
+          </li> -->
 
 <li class="nav-header">Home Landing</li>
           <li class="nav-item">
@@ -93,6 +93,7 @@
               <p>Landing</p>
             </a>
           </li>
+          
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-circle"></i>
@@ -101,6 +102,12 @@
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
+            <li class="nav-item">
+             <a href="{{ url('/admin/show_logos') }}" class="nav-link">
+              <i class="nav-icon fas fa-tasks"></i>
+              <p>Brand Section</p>
+            </a>
+          </li>
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="{{ url('/admin/our_mission') }}" class="nav-link">

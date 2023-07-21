@@ -179,7 +179,7 @@ $("#editCarsForm").validate({
                   <select class="form-control" name="vehicle_type" id="vehicle_type">
                     <option value="">Select</option>
                     <option @if($car_list->vehicle_type == "Automatic") selected @endif value="Automatic">Automatic</option>
-                    <option @if($car_list->vehicle_type == "Normal") selected @endif value="Normal">Normal</option>
+                    <option @if($car_list->vehicle_type == "Manual") selected @endif value="Manual">Manual</option>
                     
                   </select>
                  <!-- <input type="text" class="form-control" name="vehicle_type" id="vehicle_type"> -->

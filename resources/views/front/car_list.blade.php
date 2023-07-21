@@ -14,29 +14,31 @@
           data: {vehicle_type:vehicle_type},
           cache: false,
           success: function(data){
-             $(".car_data").html(data);
-             $('.car_data').after ('<div id="nav"></div>');  
-            var rowsShown = 4;  
-            var rowsTotal = $('.grid-list .single_list').length;  
-            var numPages = rowsTotal/rowsShown;  
-            $('#nav').append ('<li class="page-item"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span></a></li>');
-            for (i = 0;i < numPages;i++) {  
-                var pageNum = i + 1;  
-                $('#nav').append ('<li class="page-item"><a href="#" rel="'+i+'" class="page-link">'+pageNum+'</a></li>');  
-            }  
-            $('#nav').append ('<li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span></a></li>');
-            $('.grid-list .single_list').hide();  
-            $('.grid-list .single_list').slice (0, rowsShown).show();  
-            $('#nav a:first').addClass('active');  
-            $('#nav a').bind('click', function() {  
-            $('#nav a').removeClass('active');  
-           $(this).addClass('active');  
-                var currPage = $(this).attr('rel');  
-                var startItem = currPage * rowsShown;  
-                var endItem = startItem + rowsShown;  
-                $('.grid-list .single_list').css('opacity','0.0').hide().slice(startItem, endItem).  
-                css('display','table-row').animate({opacity:1}, 300);  
-            });  
+             $(".tab_con").html(data);
+             var rowsShown = 3;  
+    var rowsTotal = $('.tab_con .tab_pan').length;  
+
+    var numPages = rowsTotal/rowsShown;  
+
+    $('#nav').append ('<li class="page-item"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span></a></li>');
+    for (i = 0;i < numPages;i++) {  
+        var pageNum = i + 1;  
+        $('#nav').append ('<li class="page-item"><a href="#" rel="'+i+'" class="page-link">'+pageNum+'</a></li>');  
+    }  
+    $('#nav').append ('<li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span></a></li>');
+    $('.tab_con .tab_pan').hide();  
+
+    $('.tab_con .tab_pan').slice (0, rowsShown).show();  
+    $('#nav a:first').addClass('active');  
+    $('#nav a').bind('click', function() {  
+    $('#nav a').removeClass('active');  
+   $(this).addClass('active');  
+        var currPage = $(this).attr('rel');  
+        var startItem = currPage * rowsShown;  
+        var endItem = startItem + rowsShown;  
+        $('.tab_con .tab_pan').css('opacity','0.0').hide().slice(startItem, endItem).  
+        css('display','block').animate({opacity:1}, 300);  
+    });    
           }
         });
     }
@@ -61,6 +63,7 @@
                 <div class="row info-det gx-4 gx-lg-5">
                     <div class="col-lg-3 col-sm-3 mb-4">	
 						<div class="sidebar-cust">
+						<div class="sbar-type">
 							<div class="cat-title-sb">
 								<h4>Vehicle Type</h4>
 							</div>
@@ -69,83 +72,182 @@
 									<div class="form-inline border rounded p-sm-2 my-2">
                                         <input type="radio" name="type" id="coupe-car" value="Automatic" onclick="getCars(this.value)"> 
                                         <label for="coupe-car" class="pl-1 pt-sm-0 pt-1">Automatic</label>
-                                        <img src="{{ url('public/assets/img/coupe-car.png') }}">
+                                        <!--<img src="{{ url('public/assets/img/coupe-car.png') }}">-->
                                     </div>
                                     <div class="form-inline border rounded p-sm-2 my-2">
-                                        <input type="radio" name="type" id="sedan-car" value="Normal" onclick="getCars(this.value)">
-                                        <label for="sedan-car" class="pl-1 pt-sm-0 pt-1">Normal</label>
-                                        <img src="{{ url('public/assets/img/coupe-car.png') }}">
+                                        <input type="radio" name="type" id="sedan-car" value="Manual" onclick="getCars(this.value)">
+                                        <label for="sedan-car" class="pl-1 pt-sm-0 pt-1">Manual</label>
+                                        <!--<img src="{{ url('public/assets/img/coupe-car.png') }}">-->
                                     </div>
 									
 								</div>
 							</div>
+							</div>
+							<div class="sbar-categ">
+							<div class="cat-title-sb">
+								<h4>Vehicle Category</h4>
+							</div>
+							<div class="cat-type">
+								<div class="ml-md-2">
+									<div class="form-inline border rounded p-sm-2 my-2">
+										<input type="radio" name="type" id="coupe-car"> 
+										<label for="coupe-car" class="pl-1 pt-sm-0 pt-1">Coupe</label>
+										<img src="{{ url('public/assets/img/coupe-car.png') }}">
+									</div>
+									<div class="form-inline border rounded p-sm-2 my-2">
+										<input type="radio" name="type" id="sedan-car">
+										<label for="sedan-car" class="pl-1 pt-sm-0 pt-1">Sedan</label>
+										<img src="{{ url('public/assets/img/sedan-car.png') }}">
+									</div>
+									<div class="form-inline border rounded p-sm-2 my-2">
+										<input type="radio" name="type" id="suv-car">
+										<label for="suv-car" class="pl-1 pt-sm-0 pt-1">SUV</label>
+										<img src="{{ url('public/assets/img/suv-car.png') }}">
+									</div>
+									<div class="form-inline border rounded p-sm-2 my-2">
+										<input type="radio" name="type" id="luxury-cars">
+										<label for="luxury-cars" class="pl-1 pt-sm-0 pt-1">Luxury Cars</label>
+										<img src="{{ url('public/assets/img/luxury-car.png') }}">
+									</div>
+								</div>
+							</div>
+							</div>
 						</div>
 					</div>
-					<div class="col-lg-9 col-sm-9 mb-4">
-						<div class="row gx-4 gx-lg-5 grid-list car_data">
-                    @foreach($car_list as $c_list)  
-                    <?php
+					<div class="col-xl-9 col-lg-8 col-md-12 listing_infos">
+						<div class="mb-lg-0">
+							<div class="">
+								<div class="item2-gl carlist-style">
+									<div class="tab-content tab_con">
+										@foreach($car_list as $c_list)
+										<?php
 
-                        $car_price_data = DB::table('car_price_days')->where('car_id',$c_list->id)->get();
+					                        $car_price_data = DB::table('car_price_days')->where('car_id',$c_list->id)->get();
 
-                    ?>
-                    @foreach($car_price_data as $price_data)           
-                    <div class="col-lg-6 col-sm-6 mb-4 single_list">
-                        <div class="list-item">
-                            <a class="list-link">
-                                <img class="img-fluid" src="{{ url('public/uploads/cars') }}/{{ $c_list->image }}" alt="..." />
-                            </a>
-                            <div class="list-caption">
-                                <div class="row">
-                                    <div class="col-lg-6 col-sm-6">
-                                        <div class="list-caption-heading">{{ $c_list->title }}</div>
-                                    </div>
-                                    <div class="col-lg-6 col-sm-6">
-                                        <div class="list-subheading">{{ $price_data->price }} <span>@if($price_data->no_of_day == "1 Day") Per Day @else {{ $price_data->no_of_day }} @endif</span></div>
-                                    </div>
-                                </div>
-                                <div class="row features_list">
-                                    <div class="col-lg-3 col-sm-3">
-                                        <div class="icon-set">
-                                            <i class="bi bi-people"></i>
-                                        </div>
-                                        <div class="feat-set">{{ $c_list->no_of_seats }} Seater</div>
-                                    </div>
-                                    <div class="col-lg-3 col-sm-3">
-                                        <div class="icon-set">
-                                            <i class="bi bi-gear"></i>
-                                        </div>
-                                        <div class="feat-set">{{ $c_list->manual_text }}</div>
-                                    </div>
-                                    <div class="col-lg-3 col-sm-3">
-                                        <div class="icon-set">
-                                            <i class="bi bi-speedometer2"></i>
-                                        </div>
-                                        <div class="feat-set">{{ $c_list->no_of_km }}</div>
-                                    </div>
-                                    <div class="col-lg-3 col-sm-3">
-                                        <div class="icon-set">
-                                            <i class="bi bi-three-dots"></i>
-                                        </div>
-                                        <div class="feat-set">More</div>
-                                    </div>
-                                </div>
-								<div class="row">
-                                    <div class="col-lg-12 col-sm-12 footer-book">
-                                        <div class="book-now"><a href="#">Book Now</a></div>
-                                    </div> 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    @endforeach
-                    @endforeach
-                    
-				
-				<div class="pagination-navs">
+					                    ?>
+										<div class="carlist--tabs tab-pane tab_pan" role="tabpanel">
+											<div class="card overflow-hidden">
+												<div class="d-md-flex">
+													<div class="item-card9-img">
+														<div class="item-card9-imgs"><a href="#"></a> <img alt="img" class="cover-image" src="{{ url('public/uploads/cars') }}/{{ $c_list->image }}"></div>
+													</div>
+													<div class="card border-0 mb-0">
+														<div class="card-body">
+															<div class="item-card9">
+															<div class="title_price">
+																<div class="title_name_info">
+																<a class="text-dark" href="#"> <h4 class="font-weight-bold mt-1 mb-2">{{ $c_list->title }}</h4> 
+																<p>Or Similar | Sedan</p>
+																</a>
+																<?php
+																$price_data = DB::table('car_price_days')->where('no_of_day','1 Day')->where('car_id',$c_list->id)->first();
+																$price = $price_data->price * $date_diff;
+
+																?>
+																</div>
+																<div class="price_div">
+																	<div class="day_price">{{ $price_data->price }} <i class="fa fa-eur" aria-hidden="true"></i> /Day</div>
+																	<div class="tot_price">{{ $price }} <i class="fa fa-eur" aria-hidden="true"></i> Total</div>
+																</div>
+															</div>
+														<div class="item-card9-desc mb-2 mt-1" style="">
+															<div class="row features_list">
+																<div class="col-lg-3 col-sm-3">
+																	<div class="icon-set">
+																		<i class="bi bi-people"></i>
+																	</div>
+																	<div class="feat-set">{{ $c_list->no_of_seats }} Seater</div>
+																</div>
+																<div class="col-lg-3 col-sm-3">
+																	<div class="icon-set">
+																		<i class="bi bi-gear"></i>
+																	</div>
+																	<div class="feat-set">{{ $c_list->vehicle_type }}</div>
+																</div>
+																<div class="col-lg-3 col-sm-3">
+																	<div class="icon-set">
+																		<i class="bi bi-speedometer2"></i>
+																	</div>
+																	<div class="feat-set">{{ $c_list->no_of_km }}</div>
+																</div>
+																<div class="col-lg-3 col-sm-3">
+																	<div class="icon-set">
+																		<i class="bi bi-three-dots"></i>
+																	</div>
+																	<div class="feat-set">More</div>
+																</div>
+															</div>
+														</div>
+															</div>
+														</div>
+														<div class="card-footer p-0">
+															<div class="item-card9-footer btn-appointment">
+																<div class="btn-group w-100">
+																	<a href="{{ url('/booking')}}/{{ $c_list->id }}" class="btn btn-outline-light w-34 p-2 border-top-0 border-end-0 border-bottom-0 call-btn">
+																	<div class="book-btn-1"><i class="fe fe-phone me-1"></i>BOOK NOW</div>
+																	</a>
+																</div>
+															</div>
+														</div>
+													</div>
+														<!-- <div class="card col_02 border-0 mb-0 price_det"> 
+															<div class="card-body">
+																<div class="item-card-price">
+																	<table>
+  <tbody>
+  	@foreach($car_price_data as $car_price)
+																    <?php
+							                                            $price = $car_price->price;
+							                                            $price_cal = $date_diff*$price;
+							                                            $new_days = $car_price->no_of_day;
+							                                            $new_days1 = str_replace(" Day","",$new_days);
+							                                            $new_days2 = str_replace("+","",$new_days1);
+							                                            $new_days3 = $new_days2*$date_diff;
+
+							                                        ?>
+  <tr>
+  	<?php
+							                                            $price = $car_price->price;
+							                                            $price_cal = $date_diff*$price;
+							                                            $new_days = $car_price->no_of_day;
+							                                            $new_days1 = str_replace(" Day","",$new_days);
+							                                            $new_days2 = str_replace("+","",$new_days1);
+							                                            $new_days3 = $new_days2*$date_diff;
+
+							                                        ?>
+    <td>@if($new_days == "1 Day")	
+																	<?php
+																	echo str_replace("+","",$new_days3)." Days"
+																	?>
+																	@else
+																	 {{ $new_days3 }} + Days
+																	@endif</td>
+    <td>|</td>
+    <td>
+    	<?php
+            $price = $car_price->price;
+            $price_cal = $date_diff*$price;
+        ?>
+    ${{ $price_cal }}</td>
+  </tr>
+  @endforeach
+ 
+</tbody>
+</table>
+																	
+																	
+																</div>
+															</div>	
+														</div> -->
+												</div>
+											</div>
+											</div>
+											@endforeach
+											
+                    <div class="pagination-navs">
 						<nav aria-label="Page navigation example">
 							<ul class="pagination" id="nav">
-								<!-- <li class="page-item">
+								 <!-- <li class="page-item">
 									<a class="page-link" href="#" aria-label="Previous">
 									<span aria-hidden="true">&laquo;</span>
 									<span class="sr-only">Previous</span>
@@ -159,16 +261,19 @@
 									<span aria-hidden="true">&raquo;</span>
 									<span class="sr-only">Next</span>
 									</a>
-								</li> -->
+								</li>  -->
 							</ul>
 						</nav>
 					</div>
-					
-				
-					</div>
-					
-					
                 </div>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+					
             </div>
         </section>
         @endsection

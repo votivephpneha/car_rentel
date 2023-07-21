@@ -41,7 +41,7 @@ $("#addLogoForm").validate({
           // success_noti(response.msg);
           // setTimeout(function(){window.location.reload()},1000);
           success_noti(response.msg);
-          //setTimeout(function(){window.location.href=site_url+"/admin/submit_logos"},1000);
+          setTimeout(function(){window.location.href=site_url+"/admin/show_logos"},1000);
         } else {
           error_noti(response.msg);
         }

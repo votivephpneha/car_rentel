@@ -53,46 +53,40 @@
         <div class="tab-content index-search-select"> 
 			<div class="tab-pane active show" id="tab1" role="tabpanel"> 
 				<div class="search-background"> 
-					<div class="form row no-gutters"> 
-						<div class="form-group col-xl-2 col-lg-2 col-md-12 mb-0 location"> 
-							<div class="form-group mb-0"> 
-								<label>Pickup Location</label>
-								<input class="form-control border pickup_location" placeholder="Choose Location" type="text" required=""><div class="pickup_location_error search_box_error"></div> <span><i class="fa fa-crosshairs  location-gps me-1"></i></span>
-							</div> 
-						</div> 
-						<div class="form-group col-xl-2 col-lg-2 col-md-12 mb-0 location">
-							<div class="form-group mb-0"> 
-								<label>Drop Off Location</label>
-								<input class="form-control border drop_off_location" placeholder="Choose Location" type="text" required=""><div class="dropoff_location_error search_box_error"></div> <span><i class="fa fa-crosshairs  location-gps me-1"></i></span> 
-							</div> 
-						</div>
-						<div class="form-group col-xl-2 col-lg-2 col-md-12 mb-0 location">
-							<div class="form-group mb-0"> 
-								<label>Pickup Date</label>
-								<input class="form-control border pickup_date" placeholder="Choose Location" type="text" id="pickup_date" required=""><div class="pickup_date_error search_box_error"></div> <span><i class="fa fa-crosshairs  location-gps me-1"></i></span>
-							</div>
-						</div>
-						<div class="form-group col-xl-2 col-lg-2 col-md-12 mb-0 location">
-							<div class="form-group mb-0"> 
-								<label>Drop Off Date</label>
-								<input class="form-control border drop_off_date" placeholder="Choose Location" type="text" id="drop_off_date" required=""><div class="dropoff_date_error search_box_error"></div> <span><i class="fa fa-crosshairs  location-gps me-1"></i></span>
-							</div>
-						</div>
-						<!-- <div class="form-group col-xl-2 col-lg-2 col-md-12 mb-0 location">
-							<div class="form-group mb-0"> 
-								<label>Category</label>
-								<select class="form-select" aria-label="Default select example">
-									<option selected>Coupe</option>
-									<option value="1">Sedan</option>
-									<option value="2">SUV</option>
-									<option value="3">Luxury Cars</option>
-								</select> 
-							</div> 
-						</div> -->
-						<div class="form-group col-xl-2 col-lg-2 col-md-12 mb-0 btn--book"> 
-							<a class="btn btn-block btn-orange search_btn fs-14" href="javascript:void(0);"> BOOK <i class="bi bi-arrow-right"></i></a> 
-						</div> 
-					</div> 
+          <form method="post" action="{{ url('car_list') }}">
+            @csrf
+  					<div class="form row no-gutters"> 
+  						<div class="form-group col-xl-2 col-lg-2 col-md-12 mb-0 location"> 
+  							<div class="form-group mb-0"> 
+  								<label>Pickup Location</label>
+  								<input class="form-control border pickup_location" name="pickup_location" placeholder="Choose Location" type="text" required=""><div class="pickup_location_error search_box_error"></div> 
+  							</div> 
+  						</div> 
+  						<div class="form-group col-xl-2 col-lg-2 col-md-12 mb-0 location">
+  							<div class="form-group mb-0"> 
+  								<label>Drop Off Location</label>
+  								<input class="form-control border drop_off_location" name="drop_off_location" placeholder="Choose Location" type="text" required=""><div class="dropoff_location_error search_box_error"></div> 
+  							</div> 
+  						</div>
+  						<div class="form-group col-xl-2 col-lg-2 col-md-12 mb-0 location">
+  							<div class="form-group mb-0"> 
+  								<label>Pickup Date</label>
+  								<input class="form-control border pickup_date" name="pickup_date" placeholder="Choose Pickup Date" type="text" id="pickup_date" required="" autocomplete="off"><div class="pickup_date_error search_box_error"></div> 
+  							</div>
+  						</div>
+  						<div class="form-group col-xl-2 col-lg-2 col-md-12 mb-0 location">
+  							<div class="form-group mb-0"> 
+  								<label>Drop Off Date</label>
+  								<input class="form-control border drop_off_date" name="drop_off_date" placeholder="Choose Drop Off Date" type="text" id="drop_off_date" required="" autocomplete="off"><div class="dropoff_date_error search_box_error"></div> 
+  							</div>
+  						</div>
+  						
+  						<div class="form-group col-xl-2 col-lg-2 col-md-12 mb-0 btn--book"> 
+                <button type="submit" name="search_btn" class="search_btn">BOOK<i class="bi bi-arrow-right"></i></button>
+  							<!-- <a class="btn btn-block btn-orange search_btn fs-14" href="javascript:void(0);"> BOOK <i class="bi bi-arrow-right"></i></a> --> 
+  						</div> 
+  					</div> 
+          </form>
 				</div> 
 			</div>      
 		</div>
@@ -115,78 +109,58 @@
             <div class="container px-4 px-lg-5">
                 <div class="row head_rgt">
                     <div class="col-lg-12">
-                        <h2 class="text-white mt-0">Browse by <span class="acc-span">Make</span></h2>      
+                        <h2 class="text-white mt-0">Connecting you to the biggest brands in car rental</h2>      
                     </div>
         </div>
         <div class="row">
-          <div class="owl-carousel owl-theme">
+          <div class="owl-carousel category_slides owl-theme">
+            @foreach($brands as $brand)
+            @if($brand->status == 1)
             <div class="item">
         <div class="thumbnail-item">
-          <a href="#"><img src="{{ url('public/assets/img/cat1.png') }}"></a>
-        </div>
-        <div class="thumbnail-desc">
-          <h4>Coupe</h4>
+          <a href="#"><img src="{{ url('public/uploads/logos') }}/{{ $brand->image }}"></a>
         </div>
             </div>
-            <div class="item">
-        <div class="thumbnail-item">
-          <a href="#"><img src="{{ url('public/assets/img/cat2.png') }}"></a>
-        </div>
-        <div class="thumbnail-desc">
-          <h4>Sedan</h4>
-        </div>
-            </div>
-            <div class="item">
-        <div class="thumbnail-item">
-          <a href="#"><img src="{{ url('public/assets/img/cat3.png') }}"></a>
-        </div>
-        <div class="thumbnail-desc">
-          <h4>SUV</h4>
-        </div>
-            </div>
-            <div class="item">
-        <div class="thumbnail-item">
-          <a href="#"><img src="{{ url('public/assets/img/cat4.png') }}"></a>
-        </div>
-        <div class="thumbnail-desc">
-          <h4>Luxury Cars</h4>
-        </div>
-            </div>
-            <div class="item">
-        <div class="thumbnail-item">
-          <a href="#"><img src="{{ url('public/assets/img/cat1.png') }}"></a>
-        </div>
-        <div class="thumbnail-desc">
-          <h4>Coupe</h4>
-        </div>
-            </div>
-            <div class="item">
-        <div class="thumbnail-item">
-          <a href="#"><img src="{{ url('public/assets/img/cat2.png') }}"></a>
-        </div>
-        <div class="thumbnail-desc">
-          <h4>Sedan</h4>
-        </div>
-            </div>
-            <div class="item">
-        <div class="thumbnail-item">
-          <a href="#"><img src="{{ url('public/assets/img/cat3.png') }}"></a>
-        </div>
-        <div class="thumbnail-desc">
-          <h4>SUV</h4>
-        </div>
-            </div>
-            <div class="item">
-        <div class="thumbnail-item">
-          <a href="#"><img src="{{ url('public/assets/img/cat4.png') }}"></a>
-        </div>
-        <div class="thumbnail-desc">
-          <h4>Luxury Cars</h4>
-        </div>
-            </div>
+            @endif
+            @endforeach
+            
           </div>
         </div>
-        
+        <div class="row icon_box">
+      <div class="col-lg-4 col-sm-6 icon-left">
+        <div class="feat_icon">
+          <div class="img-feat">
+            <img src="{{ url('/public/uploads/landing') }}/{{ $landing->image_one }}">
+          </div>
+          <div class="desc--feat">
+            <h4>{{ $landing->heading_one }}</h4>
+            <p>{{ $landing->content_one }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-sm-6 icon-left">
+        <div class="feat_icon">
+          <div class="img-feat">
+            <img src="{{ url('/public/uploads/landing') }}/{{ $landing->image_two }}">
+          </div>
+          <div class="desc--feat">
+            <h4>{{ $landing->heading_two }}</h4>
+            <p>{{ $landing->content_two }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-sm-6 icon-left">
+        <div class="feat_icon">
+          <div class="img-feat">
+            <img src="{{ url('/public/uploads/landing') }}/{{ $landing->image_three }}">
+          </div>
+          <div class="desc--feat">
+            <h4>{{ $landing->heading_three }}</h4>
+            <p>{{ $landing->content_three }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
         
             </div>
         </section>
@@ -207,7 +181,7 @@
                   <div class="list-caption-heading">BMW 3 Series</div>
                 </div>
                 <div class="col-lg-6 col-sm-6">                            
-                  <div class="list-subheading">$64 <span>Per Day</span></div>
+                  <div class="list-subheading">64 <i class="fa fa-eur"></i> <span>/ Day</span></div>
                 </div>
               </div>
               <div class="row features_list">
@@ -250,7 +224,7 @@
                   <div class="list-caption-heading">BMW 3 Series</div>
                 </div>
                 <div class="col-lg-6 col-sm-6">                            
-                  <div class="list-subheading">$64 <span>Per Day</span></div>
+                  <div class="list-subheading">64 <i class="fa fa-eur"></i> <span>/ Day</span></div>
                 </div>
               </div>
               <div class="row features_list">
@@ -293,7 +267,7 @@
                   <div class="list-caption-heading">BMW 3 Series</div>
                 </div>
                 <div class="col-lg-6 col-sm-6">                            
-                  <div class="list-subheading">$64 <span>Per Day</span></div>
+                  <div class="list-subheading">64 <i class="fa fa-eur"></i> <span>/ Day</span></div>
                 </div>
               </div>
               <div class="row features_list">
@@ -336,7 +310,7 @@
                   <div class="list-caption-heading">BMW 3 Series</div>
                 </div>
                 <div class="col-lg-6 col-sm-6">                            
-                  <div class="list-subheading">$64 <span>Per Day</span></div>
+                  <div class="list-subheading">64 <i class="fa fa-eur"></i> <span>/ Day</span></div>
                 </div>
               </div>
               <div class="row features_list">
@@ -379,7 +353,7 @@
                   <div class="list-caption-heading">BMW 3 Series</div>
                 </div>
                 <div class="col-lg-6 col-sm-6">                            
-                  <div class="list-subheading">$64 <span>Per Day</span></div>
+                  <div class="list-subheading">64 <i class="fa fa-eur"></i> <span>/ Day</span></div>
                 </div>
               </div>
               <div class="row features_list">
@@ -422,7 +396,7 @@
                   <div class="list-caption-heading">BMW 3 Series</div>
                 </div>
                 <div class="col-lg-6 col-sm-6">                            
-                  <div class="list-subheading">$64 <span>Per Day</span></div>
+                  <div class="list-subheading">64<i class="fa fa-eur"></i> <span>/ Day</span></div>
                 </div>
               </div>
               <div class="row features_list">

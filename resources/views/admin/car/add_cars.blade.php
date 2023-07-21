@@ -176,7 +176,7 @@ $("#addCarsForm").validate({
                   <select class="form-control" name="vehicle_type" id="vehicle_type">
                     <option value="">Select</option>
                     <option value="Automatic">Automatic</option>
-                    <option value="Normal">Normal</option>
+                    <option value="Manual">Manual</option>
                     
                   </select>
                  <!-- <input type="text" class="form-control" name="vehicle_type" id="vehicle_type"> -->

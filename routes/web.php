@@ -56,8 +56,13 @@ Route::fallback(function () {
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/car_list', [App\Http\Controllers\HomeController::class, 'car_list'])->name('car_list');
+Route::post('/car_list', [App\Http\Controllers\HomeController::class, 'car_list'])->name('car_list');
 Route::get('/get_car_list', [App\Http\Controllers\HomeController::class, 'get_cars'])->name('get_cars');
+Route::get('/booking/{car_id}', [App\Http\Controllers\HomeController::class, 'booking'])->name('booking');
+Route::post('/submit_booking', [App\Http\Controllers\HomeController::class, 'submit_booking'])->name('submit_booking');
+Route::get('/payment/{car_id}', [App\Http\Controllers\HomeController::class, 'payment_page'])->name('payment_page');
+Route::post('/submit_payment', [App\Http\Controllers\HomeController::class, 'submit_payment'])->name('submit_payment');
+Route::get('/thankyou', [App\Http\Controllers\HomeController::class, 'thankyou'])->name('thankyou');
 Route::get('/baseForm', [App\Http\Controllers\HomeController::class, 'baseForm'])->name('baseForm');
 
 Route::post('/updateProfile', 'App\Http\Controllers\HomeController@updateProfile');
@@ -251,6 +256,10 @@ Route::group(['prefix' => 'admin'], function(){
         Route::get('/add_logo', [AdminController::class, 'add_logos'])->name('add_logo');
         Route::post('/submit_logos', [AdminController::class, 'submit_logos'])->name('add_logo');
         Route::get('/show_logos', [AdminController::class, 'show_logos'])->name('show_logos');
+        Route::get('/change_logo_status', [AdminController::class, 'change_logo_status'])->name('change_logo_status');
+        Route::get('/edit_logos/{logo_id}', [AdminController::class, 'edit_logos'])->name('edit_logos');
+        Route::post('/update_logos', [AdminController::class, 'update_logos'])->name('update_logos');
+        Route::any('/delete_logo', [AdminController::class, 'delete_logos'])->name('delete_logo');
     });
 });
 

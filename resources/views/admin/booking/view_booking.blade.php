@@ -176,12 +176,16 @@
                     <thead>
                       <tr>
                         <th>Payment Methods</th>
-                        <td>Visa</td>
+                        <td>{{ $booking_details->payment_method }}</td>
                       </tr>
                       <tr>
                         <th>Payment Status</th>
                        
-                        <td>Pending</td>
+                        <td>
+                          @if($booking_details->booking_status == 1)
+                          Pending
+                          @endif
+                        </td>
                       </tr>
                      
                     </thead>
@@ -196,23 +200,23 @@
                     <thead>
                       <tr>
                         <th>First Name</th>
-                        <td>{{ $booking_details->customer_first_name }}</td>
+                        <td>{{ $booking_details->driver_first_name }}</td>
                       </tr>
                       <tr>
                         <th>Last Name</th>
-                        <td>{{ $booking_details->customer_last_name }}</td>
+                        <td>{{ $booking_details->driver_last_name }}</td>
                       </tr>
                       <tr>
                         <th>Email</th>
-                        <td>{{ $booking_details->customer_email }}</td>
+                        <td>{{ $booking_details->driver_email_address }}</td>
                       </tr>
                       <tr>
                         <th>Phone No</th>
-                        <td>{{ $booking_details->customer_phone_no }}</td>
+                        <td>{{ $booking_details->driver_contact_no }}</td>
                       </tr>
                       <tr>
                         <th>Country</th>
-                        <td>{{ $booking_details->customer_country }}</td>
+                        <td>{{ $booking_details->driver_country }}</td>
                       </tr>
                     </thead>
                   </table>
@@ -257,7 +261,7 @@
                       <th>Sno</th>
                       <th>Image</th>
                       <th>Title</th>
-                      <th>Sub Title</th>
+                      <th>Vehicle Type</th>
                       <th>From Date</th>
                       <th>To Date</th>
                       <th>Price</th>
@@ -275,14 +279,16 @@
                       <td>{{ $i }}</td>
                       <td><img src="{{ url('public/uploads/cars') }}/{{ $car_details->image }}" style="width:100px"></td>
                       <td>{{ $car_details->title }}</td>
-                      <td>{{ $car_details->sub_title }}</td>
+                      <td>{{ $car_details->vehicle_type }}</td>
                       <td>{{ $b_data->from_date }}</td>
                       <td>{{ $b_data->to_date }}</td>
                       <td class="car_price">
+                        
                         <?php
-                          $price = $car_details->price;
-                          echo "$".number_format((float)$price, 2, '.', '');
-                        ?>
+                              $price_data = DB::table('car_price_days')->where('no_of_day','1 Day')->where('car_id',$b_data->vehicle_id)->first();
+                              $price = $price_data->price;
+                              echo "$".number_format((float)$price, 2, '.', '');
+                            ?>
                       </td>
                     </tr>
                     <?php

@@ -378,6 +378,14 @@ class AdminController extends Controller
         $news_title1 = $request->news_title1;
         $news_title2 = $request->news_title2;
 
+        $heading_one = $request->heading_one;
+        $heading_two = $request->heading_two;
+        $heading_three = $request->heading_three;
+
+        $content_one = $request->content_one;
+        $content_two = $request->content_two;
+        $content_three = $request->content_three;
+
         $request->hasFile("home_logo") ? $request->file("home_logo")->move("public/uploads/landing/", $home_logo = time().strtolower(trim($request->file('home_logo')->getClientOriginalName()))) : '';
 
         if(empty($home_logo)){ $home_logo = $request->logo_img_old; }
@@ -407,6 +415,16 @@ class AdminController extends Controller
                 $ingos_logo6 = '';
         $request->hasFile("ingos_logo6") ? $request->file("ingos_logo6")->move("public/uploads/landing/", $ingos_logo6 = time().strtolower(trim($request->file('ingos_logo6')->getClientOriginalName()))) : '';
         if(empty($ingos_logo6)){ $ingos_logo6 = $request->ingos_logo6_old; }
+
+        $request->hasFile("image_one") ? $request->file("image_one")->move("public/uploads/landing/", $image_one = time().strtolower(trim($request->file('image_one')->getClientOriginalName()))) : '';
+        if(empty($image_one)){ $image_one = $request->image_one_old; }
+
+
+        $request->hasFile("image_two") ? $request->file("image_two")->move("public/uploads/landing/", $image_two = time().strtolower(trim($request->file('image_two')->getClientOriginalName()))) : '';
+        if(empty($image_two)){ $image_two = $request->image_two_old; }
+
+        $request->hasFile("image_three") ? $request->file("image_three")->move("public/uploads/landing/", $image_three = time().strtolower(trim($request->file('image_three')->getClientOriginalName()))) : '';
+        if(empty($image_three)){ $image_three = $request->image_three_old; }
 
       /******/  
 
@@ -440,6 +458,18 @@ class AdminController extends Controller
         $homeData->ingos_logo4 = $ingos_logo4;
         $homeData->ingos_logo5 = $ingos_logo5;
         $homeData->ingos_logo6 = $ingos_logo6;
+
+        $homeData->image_one = $image_one;
+        $homeData->image_two = $image_two;
+        $homeData->image_three = $image_three;
+
+        $homeData->heading_one = $heading_one;
+        $homeData->heading_two = $heading_two;
+        $homeData->heading_three = $heading_three;
+
+        $homeData->content_one = $content_one;
+        $homeData->content_two = $content_two;
+        $homeData->content_three = $content_three;
 
         $homeData->updated_at = date('Y-m-d H:i:s');
         $res = $homeData->save();
@@ -1111,7 +1141,7 @@ class AdminController extends Controller
         $insert_cars3 = DB::table('car_price_days')->where('car_days_id',"3")->where("car_id",$request->car_id)->update(['price'=>$car_price[2]]);
         $insert_cars4 = DB::table('car_price_days')->where('car_days_id',"4")->where("car_id",$request->car_id)->update(['price'=>$car_price[3]]);
 
-        if ($update_car || $insert_cars1 && $insert_cars2 || $insert_cars3 || $insert_cars4) {
+        if ($update_car || $insert_cars1 || $insert_cars2 || $insert_cars3 || $insert_cars4) {
                 
             return response()->json(['status' => 'success', 'msg' => 'Car has been updated successfully.']);
            
@@ -1212,7 +1242,7 @@ class AdminController extends Controller
             $image->move($destinationPath,$file_name);
         }
 
-        $insert_logos = DB::table('home_page_logos')->insert(['image'=>$file_name,'created_at'=>date('Y-m-d H:i:s')]);
+        $insert_logos = DB::table('home_page_logos')->insert(['image'=>$file_name,'status'=>'1','created_at'=>date('Y-m-d H:i:s')]);
         
         
         
@@ -1230,6 +1260,54 @@ class AdminController extends Controller
     public function show_logos(){
         $data['logo_list'] = DB::table('home_page_logos')->get();
         return view("admin/logo/show_logo")->with($data);
+    }
+
+    public function change_logo_status(Request $request){
+        
+        $update_car_status = DB::table('home_page_logos')->where("id",$request->logo_id )->update(['status'=>$request->status]);
+        
+        return response()->json(['success'=>'Logo status change successfully.']);
+        
+        
+    }
+
+    public function edit_logos(Request $request){
+        $data['logo_list'] = DB::table('home_page_logos')->where("id",$request->logo_id)->get()->first();
+        return view("admin/logo/edit_logo")->with($data);
+    }
+
+    public function update_logos(Request $request){
+        $image = $request->file('image');
+
+        if($image){
+            $destinationPath = base_path() .'/public/uploads/logos';
+            $file_name = time().".".$image->extension();
+            $image->move($destinationPath,$file_name);
+        }
+
+        $update_logos = DB::table('home_page_logos')->where("id",$request->logo_id )->update(['image'=>$file_name]);
+        
+        
+        
+        if ($update_logos) {
+                
+            return response()->json(['status' => 'success', 'msg' => 'Logos has been updated successfully.']);
+           
+        } else {
+            return response()->json(['status' => 'error', 'msg' => 'OOPs! Some internal issue occured.']);
+            
+        }
+    }
+
+    public function delete_logos(Request $request){
+        
+        $res = DB::table('home_page_logos')->where('id', '=', $request->logo_id)->delete();
+
+        if ($res) {
+            return json_encode(array('status' => 'success','msg' => 'Logo has been deleted successfully!'));
+        } else {
+            return json_encode(array('status' => 'error','msg' => 'Some internal issue occured.'));
+        }
     }
 
 }

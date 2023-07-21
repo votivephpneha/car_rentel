@@ -40,7 +40,7 @@ class HomeController extends Controller
         $data['ourteams'] = DB::table('pages')->where('type','team')->get();
         $data['faqs'] = DB::table('pages')->where('type','faq')->get();
         $data['pages'] = DB::table('pages')->where('type','cms')->where('status','1')->get();
-
+        $data['brands'] = DB::table('home_page_logos')->get();
         return view('front/index')->with($data);
     }
 
@@ -456,7 +456,21 @@ class HomeController extends Controller
         return view('front/page')->with($data);
     }
 
-    public function car_list(){
+    public function car_list(Request $request){
+        $pickup_date = $request->pickup_date;
+        $drop_off_date = $request->drop_off_date;
+        $pickup_location = $request->pickup_location;
+        $drop_off_location = $request->drop_off_location;
+
+        $date1 = date_create($pickup_date);
+        $date2 = date_create($drop_off_date);
+        $diff = date_diff($date1,$date2);
+        $data['date_diff'] = $diff->format("%a");
+        session::put("pickup_date",$pickup_date);
+        session::put("drop_off_date",$drop_off_date);
+        session::put("pickup_location",$pickup_location);
+        session::put("drop_off_location",$drop_off_location);
+        session::put("date_diff",$data['date_diff']);
         $data['page_info'] = DB::table('home_page')->where('id',1)->first();
         $data['pages'] = DB::table('pages')->where('type','cms')->where('status','1')->get();
         $data['car_list'] = DB::table('car_management')->where('status','1')->get();
@@ -464,9 +478,91 @@ class HomeController extends Controller
     }
 
     public function get_cars(Request $request){
-
+        $data['date_diff'] = session::get("date_diff");
         $data['car_list'] = DB::table('car_management')->where('vehicle_type',$request->vehicle_type)->get();
+        
         return view("front/get_car_list")->with($data);
+    }
+
+    public function booking(Request $request){
+        $data['page_info'] = DB::table('home_page')->where('id',1)->first();
+        $data['pages'] = DB::table('pages')->where('type','cms')->where('status','1')->get();
+        $data['car_id'] = $request->car_id;
+        return view("front/booking")->with($data);
+    }
+
+    public function submit_booking(Request $request){
+        $email_address = $request->email_address;
+        $car_id = $request->car_id;
+        $title = $request->title;
+        $first_name = $request->first_name;
+        $last_name = $request->last_name;
+        $contact_no = $request->contact_no;
+        $country = $request->country;
+        $flight_no = $request->flight_no;
+
+        session::put("email_address",$email_address);
+        session::put("title",$title);
+        session::put("first_name",$first_name);
+        session::put("last_name",$last_name);
+        session::put("contact_no",$contact_no);
+        session::put("country",$country);
+        session::put("flight_no",$flight_no);
+
+        return redirect("payment/".$car_id);
+
+        //$insert_booking = DB::table('home_page_logos')->insert(['image'=>$file_name,'created_at'=>date('Y-m-d H:i:s')]);
+    }
+
+    public function payment_page(Request $request){
+        $data['page_info'] = DB::table('home_page')->where('id',1)->first();
+        $data['pages'] = DB::table('pages')->where('type','cms')->where('status','1')->get();
+        $email_address = session::get("email_address");
+        $title = session::get("title");
+        $first_name = session::get("first_name");
+        $last_name = session::get("last_name");
+        $contact_no = session::get("contact_no");
+        $country = session::get("country");
+        $flight_no = session::get("flight_no");
+        $pickup_date = session::get("pickup_date");
+        $drop_off_date = session::get("drop_off_date");
+        $pickup_location = session::get("pickup_location");
+        $drop_off_location = session::get("drop_off_location");
+        $date_diff = session::get("date_diff");
+
+        $data['car_data'] = DB::table('car_management')->where('id',$request->car_id)->first();
+
+        $data['get_user_data'] = array("email_address"=>$email_address,"title"=>$title,"first_name"=>$first_name,"last_name"=>$last_name,"contact_no"=>$contact_no,"country"=>$country,"flight_no"=>$flight_no,"pickup_date"=>$pickup_date,"drop_off_date"=>$drop_off_date,"pickup_location"=>$pickup_location,"drop_off_location"=>$drop_off_location,"date_diff"=>$date_diff);
+        return view("front/payment")->with($data);
+    }
+
+    public function submit_payment(Request $request){
+        $booking_id = "booking-".mt_rand(1000,9999);
+        $email_address = $request->email_address;
+        $title = $request->title;
+        $first_name = $request->first_name;
+        $last_name = $request->last_name;
+        $contact_no = $request->contact_no;
+        $country = $request->country;
+        $flight_no = $request->flight_no;
+        $total_price = $request->total_price;
+        $vehicle_id = $request->vehicle_id;
+        $pickup_date = session::get("pickup_date");
+        $drop_off_date = session::get("drop_off_date");
+
+        $insert_booking = DB::table('booking_management')->insert(["booking_id"=>$booking_id,"driver_email_address"=>$email_address,"title"=>$title,"driver_first_name"=>$first_name,"driver_last_name"=>$last_name,"driver_contact_no"=>$contact_no,"driver_country"=>$country,"flight_no"=>$flight_no,"total"=>$total_price,"booking_status"=>"1","payment_method"=>"Cash On Delivery",'created_at'=>date('Y-m-d H:i:s')]);
+        $insert_booking = DB::table('booking_details')->insert(["booking_id"=>$booking_id,"vehicle_id"=>$vehicle_id,"from_date"=>$pickup_date,"to_date"=>$drop_off_date,"price"=>$total_price,'created_at'=>date('Y-m-d H:i:s')]);
+
+        if($insert_booking){
+            session::flash("success","Your order has been submitted successfully");
+            return redirect("thankyou");
+        }
+    }
+
+    public function thankyou(){
+         $data['page_info'] = DB::table('home_page')->where('id',1)->first();
+        $data['pages'] = DB::table('pages')->where('type','cms')->where('status','1')->get();
+         return view("front/thankyou")->with($data);
     }
 
 
