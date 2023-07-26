@@ -193,6 +193,67 @@ $("#customerAdmin_form").validate({
   }
 });
 
+$("#businessAdmin_form").validate({
+  debug: false,
+  rules: {
+    fname: {
+        required: true,
+    },
+    // lname: {
+    //   required: true,
+    // },
+    email: {
+      required: true,
+      email:true,
+    },
+    contact_number: {
+      required: true,
+      number:true,
+      // minlength: 10,
+      // maxlength: 10,
+    },
+    password: {
+        required: true
+    },
+    confirm_password:{
+      required: true,
+      equalTo : "#password"
+    },
+    address: {
+      required: true,
+    },
+    city: {
+      required: true,
+    },
+    user_country: {
+      required: true,
+    },
+  },
+  submitHandler: function (form) {
+    var site_url = $("#baseUrl").val();
+    // alert(site_url);
+    var formData = $(form).serialize();
+    $(form).ajaxSubmit({
+      type: 'POST',
+      url: site_url + '/admin/add_business_action',
+      data: formData,
+      success: function (response) {
+        console.log(response);
+        if (response.status == 'success') {
+          // $("#register_form")[0].reset();
+          // success_noti(response.msg);
+          // setTimeout(function(){window.location.reload()},1000);
+          setTimeout(function(){window.location.href=site_url+"/admin/business_management"},1000);
+        } else {
+          error_noti(response.msg);
+        }
+
+      }
+    });
+    // event.preventDefault();
+  }
+});
+
 $("#customerUpdateAdmin_form").validate({
   debug: false,
   rules: {
@@ -244,6 +305,67 @@ $("#customerUpdateAdmin_form").validate({
           success_noti(response.msg);
           // setTimeout(function(){window.location.reload()},1000);
           setTimeout(function(){window.location.href=site_url+"/admin/customer_management"},1000);
+        } else {
+          error_noti(response.msg);
+        }
+
+      }
+    });
+    // event.preventDefault();
+  }
+});
+
+$("#businessUpdateAdmin_form").validate({
+  debug: false,
+  rules: {
+    fname: {
+        required: true,
+    },
+    // lname: {
+    //   required: true,
+    // },
+    email: {
+      required: true,
+      email:true,
+    },
+    contact_number: {
+      required: true,
+      number:true,
+      // minlength: 10,
+      // maxlength: 10,
+    },
+    // password: {
+    //     required: true
+    // },
+    // confirm_password:{
+    //   required: true,
+    //   equalTo : "#password"
+    // },
+    address: {
+      required: true,
+    },
+    city: {
+      required: true,
+    },
+    user_country: {
+      required: true,
+    },
+  },
+  submitHandler: function (form) {
+    var site_url = $("#baseUrl").val();
+    // alert(site_url);
+    var formData = $(form).serialize();
+    $(form).ajaxSubmit({
+      type: 'POST',
+      url: site_url + '/admin/business_update',
+      data: formData,
+      success: function (response) {
+        // console.log(response);
+        if (response.status == 'success') {
+          // $("#register_form")[0].reset();
+          success_noti(response.msg);
+          // setTimeout(function(){window.location.reload()},1000);
+          setTimeout(function(){window.location.href=site_url+"/admin/business_management"},1000);
         } else {
           error_noti(response.msg);
         }

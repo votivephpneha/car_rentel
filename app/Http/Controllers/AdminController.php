@@ -1024,6 +1024,7 @@ class AdminController extends Controller
         $booking_id = $request->id; 
         $data['booking_details'] = DB::table('booking_management')->where("id",$booking_id)->get()->first();
         $data['booking_data'] = DB::table('booking_details')->where("booking_id",$data['booking_details']->booking_id)->get();
+        $data['business_list'] = DB::table('users')->where("user_type","business_user")->get();
         //print_r($data['booking_details']);die;
         return view("admin/booking/view_booking")->with($data);
     }
@@ -1034,8 +1035,13 @@ class AdminController extends Controller
         session::flash('success', 'Booking status updated successfully');
         return redirect('admin/view_booking/'.$request->booking_id);
         
-        
-        
+    }
+
+    public function assign_ride(Request $request){
+        //echo $request->ride_val;die;
+        $update_booking_status = DB::table('booking_management')->where("id",$request->booking_id)->update(['customer_id'=>$request->ride_val,'booking_status'=>'2']);
+        session::flash('success', 'Ride assign successfully');
+        //return redirect('admin/view_booking/'.$request->booking_id);
     }
 
     public function car_management(){
@@ -1044,12 +1050,15 @@ class AdminController extends Controller
     }
 
     public function add_cars(){
-        return view("admin/car/add_cars");
+        $data['category_list'] = DB::table('categories')->get();
+        return view("admin/car/add_cars")->with($data);
     }
 
     public function submit_cars(Request $request){
         $title = $request->title;
         $vehicle_type = $request->vehicle_type;
+        $vehicle_category = $request->vehicle_category;
+        $car_description = $request->car_description;
        
         $no_of_day1 = $request->days_1;
         $no_of_day3 = $request->days_3;
@@ -1073,7 +1082,7 @@ class AdminController extends Controller
             $image->move($destinationPath,$file_name);
         }
 
-        $insert_cars_id = DB::table('car_management')->insertGetId(['title'=>$title,'vehicle_type'=>$vehicle_type,'image'=>$file_name,'manual_text'=>'manual_text','no_of_seats'=>$no_of_seats,'no_of_km'=>$no_of_km,'created_at'=>date('Y-m-d H:i:s')]);
+        $insert_cars_id = DB::table('car_management')->insertGetId(['title'=>$title,'vehicle_type'=>$vehicle_type,'vehicle_category'=>$vehicle_category,'image'=>$file_name,'manual_text'=>'manual_text','no_of_seats'=>$no_of_seats,'no_of_km'=>$no_of_km,'car_description'=>$car_description,'created_at'=>date('Y-m-d H:i:s')]);
         $car_price = $request->price;
         
         
@@ -1104,6 +1113,7 @@ class AdminController extends Controller
 
     public function edit_cars(Request $request){
         $data['car_list'] = DB::table('car_management')->where("id",$request->car_id)->get()->first();
+        $data['category_list'] = DB::table('categories')->get();
         //print_r($data['car_list']);die;
         return view("admin/car/edit_cars")->with($data);
     }
@@ -1112,6 +1122,8 @@ class AdminController extends Controller
 
         $title = $request->title;
         $vehicle_type = $request->vehicle_type;
+        $vehicle_category = $request->vehicle_category;
+        $car_description = $request->car_description;
        
         $no_of_day = $request->no_of_day;
         $no_of_seats = $request->no_of_seats;
@@ -1125,11 +1137,11 @@ class AdminController extends Controller
             $destinationPath = base_path() .'/public/uploads/cars';
             $file_name = time().".".$image->extension();
             $image->move($destinationPath,$file_name);
-            $update_car = DB::table('car_management')->where("id",$request->car_id)->update(['title'=>$title,'vehicle_type'=>$vehicle_type,'image'=>$file_name,'manual_text'=>'manual_text','no_of_seats'=>$no_of_seats,'no_of_km'=>$no_of_km]);
+            $update_car = DB::table('car_management')->where("id",$request->car_id)->update(['title'=>$title,'vehicle_type'=>$vehicle_type,'vehicle_category'=>$vehicle_category,'image'=>$file_name,'manual_text'=>'manual_text','no_of_seats'=>$no_of_seats,'no_of_km'=>$no_of_km,'car_description'=>$car_description]);
         }else{
             
 
-            $update_car = DB::table('car_management')->where("id",$request->car_id)->update(['title'=>$title,'vehicle_type'=>$vehicle_type,'manual_text'=>'manual_text','no_of_seats'=>$no_of_seats,'no_of_km'=>$no_of_km]);
+            $update_car = DB::table('car_management')->where("id",$request->car_id)->update(['title'=>$title,'vehicle_type'=>$vehicle_type,'vehicle_category'=>$vehicle_category,'manual_text'=>'manual_text','no_of_seats'=>$no_of_seats,'no_of_km'=>$no_of_km,'car_description'=>$car_description]);
             
         }
 
@@ -1305,6 +1317,77 @@ class AdminController extends Controller
 
         if ($res) {
             return json_encode(array('status' => 'success','msg' => 'Logo has been deleted successfully!'));
+        } else {
+            return json_encode(array('status' => 'error','msg' => 'Some internal issue occured.'));
+        }
+    }
+
+    public function add_categories(Request $request){
+        return view("admin/Category/add_category");
+    }
+
+    public function submit_category(Request $request){
+        $cat_name = $request->cat_name;
+        
+
+        $insert_category = DB::table('categories')->insert(['cat_name'=>$cat_name,'created_at'=>date('Y-m-d H:i:s')]);
+        
+        
+        if ($insert_category) {
+                
+            return response()->json(['status' => 'success', 'msg' => 'Category has been added successfully.']);
+           
+        } else {
+            return response()->json(['status' => 'error', 'msg' => 'OOPs! Some internal issue occured.']);
+            
+        }
+        
+    }
+
+    public function show_category(Request $request){
+        $data['category_list'] = DB::table('categories')->get();
+        return view("admin/Category/show_category")->with($data);
+    }
+
+    public function change_category_status(Request $request){
+        
+        $update_category_status = DB::table('categories')->where("cat_id",$request->cat_id )->update(['status'=>$request->status]);
+        
+        return response()->json(['success'=>'Category status change successfully.']);
+        
+        
+    }
+
+    public function edit_category(Request $request){
+        $data['category_list'] = DB::table('categories')->where("cat_id",$request->cat_id )->get()->first();
+        return view("admin/Category/edit_category")->with($data);
+    }
+
+    
+
+    public function update_category(Request $request){
+        $cat_name = $request->cat_name;
+        
+
+        $insert_category = DB::table('categories')->where("cat_id",$request->cat_id)->update(['cat_name'=>$cat_name,'created_at'=>date('Y-m-d H:i:s')]);
+        
+        
+        if ($insert_category) {
+                
+            return response()->json(['status' => 'success', 'msg' => 'Category has been updated successfully.']);
+           
+        } else {
+            return response()->json(['status' => 'error', 'msg' => 'OOPs! Some internal issue occured.']);
+            
+        }
+    }
+
+    public function delete_category(Request $request){
+        
+        $res = DB::table('categories')->where('cat_id', '=', $request->cat_id)->delete();
+
+        if ($res) {
+            return json_encode(array('status' => 'success','msg' => 'Category has been deleted successfully!'));
         } else {
             return json_encode(array('status' => 'error','msg' => 'Some internal issue occured.'));
         }

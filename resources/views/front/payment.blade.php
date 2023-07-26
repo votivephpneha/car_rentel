@@ -53,14 +53,16 @@
                             <input type="hidden" name="title" class="form-control" value="<?php echo $get_user_data['title'] ?>" />
                             <input type="hidden" name="first_name" class="form-control" value="<?php echo $get_user_data['first_name'] ?>" />
                             <input type="hidden" name="last_name" class="form-control" value="<?php echo $get_user_data['last_name'] ?>" />
-                            <input type="hidden" name="contact_no" class="form-control" value="<?php echo $get_user_data['contact_no'] ?>" />
+                            <input type="hidden" id="contact_no" name="contact_no" class="form-control" value="<?php echo $get_user_data['contact_no'] ?>" />
                             <input type="hidden" name="country" class="form-control" value="<?php echo $get_user_data['country'] ?>" />
                             <input type="hidden" name="flight_no" class="form-control" value="<?php echo $get_user_data['flight_no'] ?>" />
                             <input type="hidden" name="vehicle_id" class="form-control" value="{{ $car_data->id }}" />
                             <?php
                               $price_data = DB::table('car_price_days')->where('no_of_day','1 Day')->where('car_id',$car_data->id)->first();
+                              $date_diff = $get_user_data['date_diff'];
+                              $price = $date_diff * $price_data->price;
                             ?>
-                            <input type="hidden" name="total_price" class="form-control" value="{{ $price_data->price }}" />
+                            <input type="hidden" name="total_price" class="form-control" value="{{ $price }}" />
 
                             <div class="d-flex align-items-center justify-content-between">
                               <div class="form-check">

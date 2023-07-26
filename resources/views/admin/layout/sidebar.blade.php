@@ -46,18 +46,49 @@
           </li>
 
           <li class="nav-item">
-            <a href="{{ url('/admin/customer_management') }}" class="nav-link">
-              <i class="nav-icon fas fa-tasks"></i>
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-circle"></i>
               <p>
-                Customer List
+                User List
+                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
+            
+           
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                 <a href="{{ url('/admin/customer_management') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>
+                    Customer List
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                 <a href="{{ url('/admin/business_management') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>
+                    Business List
+                  </p>
+                </a>
+              </li>
+            </ul>
           </li>
+          
           <li class="nav-item">
             <a href="{{ url('/admin/booking_management') }}" class="nav-link">
               <i class="nav-icon fas fa-tasks"></i>
               <p>
                 Booking Management
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="{{ url('/admin/show_category') }}" class="nav-link">
+              <i class="nav-icon fas fa-tasks"></i>
+              <p>
+                Category
               </p>
             </a>
           </li>
@@ -102,13 +133,14 @@
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-            <li class="nav-item">
+            
+            <ul class="nav nav-treeview">
+             <li class="nav-item">
              <a href="{{ url('/admin/show_logos') }}" class="nav-link">
-              <i class="nav-icon fas fa-tasks"></i>
+              <i class="far fa-circle nav-icon"></i>
               <p>Brand Section</p>
             </a>
           </li>
-            <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="{{ url('/admin/our_mission') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>

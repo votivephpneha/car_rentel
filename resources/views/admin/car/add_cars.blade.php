@@ -184,6 +184,22 @@ $("#addCarsForm").validate({
                   </div>
 
                   </div>
+                  <div class="col-md-6">
+
+                  <div class="form-group">
+
+                  <label>Vehicle Category</label>
+                  <select class="form-control" name="vehicle_category" id="vehicle_category">
+                    <option value="">Select</option>
+                    @foreach($category_list as $cat_list)
+                    <option value="{{ $cat_list->cat_name }}">{{ $cat_list->cat_name }}</option>
+                    @endforeach
+                  </select>
+                 
+
+                  </div>
+
+                  </div>
 
                   <div class="col-md-6">
 
@@ -237,6 +253,17 @@ $("#addCarsForm").validate({
                     <option value="">Select</option>
                     <option>Unlimited</option>
                   </select>
+                 
+
+                  </div>
+
+                  </div>
+                  <div class="col-md-6">
+
+                  <div class="form-group">
+
+                  <label>Car Description</label>
+                  <textarea class="form-control" name="car_description" id="car_description"></textarea>
                  
 
                   </div>

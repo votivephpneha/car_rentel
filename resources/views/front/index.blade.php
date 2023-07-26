@@ -44,11 +44,11 @@
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 d-block mx-auto">
 <div class="item-search-tabs">
-    <div class="item-search-menu">
+    <!--<div class="item-search-menu">
         <ul class="nav" role="tablist">
         <li class=""> <a class="active" data-bs-toggle="tab" href="#tab1" aria-selected="true" role="tab">CAR</a> </li>
         </ul>
-        </div>
+        </div>-->
 
         <div class="tab-content index-search-select"> 
 			<div class="tab-pane active show" id="tab1" role="tabpanel"> 
@@ -56,32 +56,46 @@
           <form method="post" action="{{ url('car_list') }}">
             @csrf
   					<div class="form row no-gutters"> 
-  						<div class="form-group col-xl-2 col-lg-2 col-md-12 mb-0 location"> 
+  						<div class="form-group col-xl-4 col-lg-4 col-md-12 mb-2 location"> 
   							<div class="form-group mb-0"> 
   								<label>Pickup Location</label>
   								<input class="form-control border pickup_location" name="pickup_location" placeholder="Choose Location" type="text" required=""><div class="pickup_location_error search_box_error"></div> 
   							</div> 
   						</div> 
-  						<div class="form-group col-xl-2 col-lg-2 col-md-12 mb-0 location">
-  							<div class="form-group mb-0"> 
-  								<label>Drop Off Location</label>
-  								<input class="form-control border drop_off_location" name="drop_off_location" placeholder="Choose Location" type="text" required=""><div class="dropoff_location_error search_box_error"></div> 
-  							</div> 
-  						</div>
-  						<div class="form-group col-xl-2 col-lg-2 col-md-12 mb-0 location">
+  						
+  						<div class="form-group col-xl-4 col-lg-4 col-md-12 mb-2 location">
   							<div class="form-group mb-0"> 
   								<label>Pickup Date</label>
   								<input class="form-control border pickup_date" name="pickup_date" placeholder="Choose Pickup Date" type="text" id="pickup_date" required="" autocomplete="off"><div class="pickup_date_error search_box_error"></div> 
   							</div>
   						</div>
-  						<div class="form-group col-xl-2 col-lg-2 col-md-12 mb-0 location">
+						
+						<div class="form-group col-xl-4 col-lg-4 col-md-12 mb-2 location">
+							<div class="form-group mb-0"> 
+								<label>Pickup Time</label>
+									<input class="form-control border pickup_time" name="pickup_time" placeholder="Choose Pickup Time" type="text" id="pickup_time" required="" autocomplete="off"><div class="pickup_time_error search_box_error"></div> 
+							</div>
+						</div>
+						<div class="form-group col-xl-4 col-lg-4 col-md-12 mb-2 location">
+  							<div class="form-group mb-0"> 
+  								<label>Drop Off Location</label>
+  								<input class="form-control border drop_off_location" name="drop_off_location" placeholder="Choose Location" type="text" required=""><div class="dropoff_location_error search_box_error"></div> 
+  							</div> 
+  						</div>
+  						<div class="form-group col-xl-4 col-lg-4 col-md-12 mb-2 location">
   							<div class="form-group mb-0"> 
   								<label>Drop Off Date</label>
   								<input class="form-control border drop_off_date" name="drop_off_date" placeholder="Choose Drop Off Date" type="text" id="drop_off_date" required="" autocomplete="off"><div class="dropoff_date_error search_box_error"></div> 
   							</div>
   						</div>
+              <div class="form-group col-xl-4 col-lg-4 col-md-12 mb-0 location">
+                <div class="form-group mb-0"> 
+                  <label>Drop Off Time</label>
+                  <input class="form-control border drop_off_time" name="drop_off_time" placeholder="Choose Drop Off Time" type="text" id="drop_off_time" required="" autocomplete="off"><div class="dropoff_date_error search_box_error"></div> 
+                </div>
+              </div>
   						
-  						<div class="form-group col-xl-2 col-lg-2 col-md-12 mb-0 btn--book"> 
+  						<div class="form-group col-xl-4 col-lg-4 col-md-12 mb-0 btn--book"> 
                 <button type="submit" name="search_btn" class="search_btn">BOOK<i class="bi bi-arrow-right"></i></button>
   							<!-- <a class="btn btn-block btn-orange search_btn fs-14" href="javascript:void(0);"> BOOK <i class="bi bi-arrow-right"></i></a> --> 
   						</div> 

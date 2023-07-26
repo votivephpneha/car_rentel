@@ -23,7 +23,28 @@
     
   });
   console.log("car_price",sum.toFixed(2));
-  $(".total_price").html("$"+sum.toFixed(2))
+  $(".total_price").html("$"+sum.toFixed(2));
+
+  $(".assign_ride_btn").click(function(){
+    $(".assign_ride_dropdown").show();
+    $(this).hide();
+  });
+  $(".business_dropdown").change(function(){
+    var site_url = $("#baseUrl").val();
+    var ride_val = $(".business_dropdown").val();
+    var booking_id = "{{ $booking_details->id }}";
+    //alert(ride_val);
+    $.ajax({
+      type: 'POST',
+      url: site_url + '/admin/assign_ride',
+      data: {ride_val:ride_val,booking_id:booking_id,"_token":"{{ csrf_token() }}"},
+      success: function (response) {
+        console.log(response);
+        window.location.href=site_url+"/admin/view_booking/"+booking_id;
+
+      }
+    });
+  });
 </script>
 @endsection
 
@@ -106,9 +127,9 @@
                         <input type="hidden" name="booking_id" value="{{ $booking_details->id }}">
                         <select name="booking_status" class="form-control">
                           <option>Change Status</option>
-                          <option value="1">Pending</option>
-                          <option value="2">Approved</option>
-                          <option value="3">Completed</option>
+                          <option value="1" @if($booking_details->booking_status == '1') Selected @endif>Pending</option>
+                          <option value="2" @if($booking_details->booking_status == '2') Selected @endif>Assigned</option>
+                          <option value="3" @if($booking_details->booking_status == '3') Selected @endif>Accepted</option>
                         </select>
                       </div>
                     </div>
@@ -147,10 +168,10 @@
                           Pending
                           @endif
                           @if($booking_details->booking_status == "2")
-                          Approved
+                          Assigned
                           @endif
                           @if($booking_details->booking_status == "3")
-                          Completed
+                          Accepted
                           @endif
                         </td>
                       </tr>
@@ -182,14 +203,24 @@
                         <th>Payment Status</th>
                        
                         <td>
-                          @if($booking_details->booking_status == 1)
-                          Pending
-                          @endif
+                         Pending
                         </td>
                       </tr>
                      
                     </thead>
                   </table>
+                </div>
+                <div class="assign_ride">
+                  <button class="btn btn-primary assign_ride_btn">Assign Ride</button>
+                  <div class="assign_ride_dropdown" style="display: none;">
+                    <label for="business_list">Business List</label>
+                    <select class="form-control business_dropdown">
+                      <option>Select Business</option>
+                      @foreach($business_list as $business)
+                      <option value="{{ $business->id  }}"  @if($business->id == $booking_details->customer_id) Selected @endif>{{ $business->first_name }} {{ $business->last_name }}</option>
+                      @endforeach
+                    </select>
+                  </div>
                 </div>
               </div>
               <div class="col-md-6">

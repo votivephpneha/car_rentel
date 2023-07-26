@@ -474,13 +474,44 @@ class HomeController extends Controller
         $data['page_info'] = DB::table('home_page')->where('id',1)->first();
         $data['pages'] = DB::table('pages')->where('type','cms')->where('status','1')->get();
         $data['car_list'] = DB::table('car_management')->where('status','1')->get();
+        $data['category_list'] = DB::table('categories')->get();
         return view("front/car_list")->with($data);
     }
 
     public function get_cars(Request $request){
         $data['date_diff'] = session::get("date_diff");
-        $data['car_list'] = DB::table('car_management')->where('vehicle_type',$request->vehicle_type)->get();
+
+        $cat_json = json_decode($request->vehicle_type);
         
+        $cat_array = (array)$cat_json;
+        //print_r($cat_array);die;
+        $vehicle_category = $cat_array['vehicle_category'];
+        $vehicle_type = $cat_array['vehicle_type'];
+        //print_r($request->category);die;
+        if(!empty($vehicle_category)){
+            $data['car_list'] = DB::table('car_management')->where('vehicle_type',$vehicle_type)->where('vehicle_category',$vehicle_category)->get();
+            
+        }else{
+            $data['car_list'] = DB::table('car_management')->where('vehicle_type',$vehicle_type)->get();
+        }
+        
+        return view("front/get_car_list")->with($data);
+    }
+
+    public function car_list_category(Request $request){
+        $data['date_diff'] = session::get("date_diff");
+        $cat_json = json_decode($request->vehicle_category);
+        
+        $cat_array = (array)$cat_json;
+        //print_r($cat_array);die;
+        $vehicle_category = $cat_array['vehicle_category'];
+        $vehicle_type = $cat_array['vehicle_type'];
+        if(!empty($vehicle_type)){
+            
+            $data['car_list'] = DB::table('car_management')->where('vehicle_category',$vehicle_category)->where('vehicle_type',$vehicle_type)->get();
+        }else{
+            $data['car_list'] = DB::table('car_management')->where('vehicle_category',$vehicle_category)->get();
+        }
         return view("front/get_car_list")->with($data);
     }
 
@@ -488,6 +519,7 @@ class HomeController extends Controller
         $data['page_info'] = DB::table('home_page')->where('id',1)->first();
         $data['pages'] = DB::table('pages')->where('type','cms')->where('status','1')->get();
         $data['car_id'] = $request->car_id;
+        $data['countries_list'] = DB::table('country')->get();
         return view("front/booking")->with($data);
     }
 
@@ -497,7 +529,7 @@ class HomeController extends Controller
         $title = $request->title;
         $first_name = $request->first_name;
         $last_name = $request->last_name;
-        $contact_no = $request->contact_no;
+        $contact_no = $request->phone;
         $country = $request->country;
         $flight_no = $request->flight_no;
 
@@ -505,7 +537,7 @@ class HomeController extends Controller
         session::put("title",$title);
         session::put("first_name",$first_name);
         session::put("last_name",$last_name);
-        session::put("contact_no",$contact_no);
+        session::put("phone",$contact_no);
         session::put("country",$country);
         session::put("flight_no",$flight_no);
 
@@ -521,7 +553,7 @@ class HomeController extends Controller
         $title = session::get("title");
         $first_name = session::get("first_name");
         $last_name = session::get("last_name");
-        $contact_no = session::get("contact_no");
+        $contact_no = session::get("phone");
         $country = session::get("country");
         $flight_no = session::get("flight_no");
         $pickup_date = session::get("pickup_date");
@@ -552,6 +584,17 @@ class HomeController extends Controller
 
         $insert_booking = DB::table('booking_management')->insert(["booking_id"=>$booking_id,"driver_email_address"=>$email_address,"title"=>$title,"driver_first_name"=>$first_name,"driver_last_name"=>$last_name,"driver_contact_no"=>$contact_no,"driver_country"=>$country,"flight_no"=>$flight_no,"total"=>$total_price,"booking_status"=>"1","payment_method"=>"Cash On Delivery",'created_at'=>date('Y-m-d H:i:s')]);
         $insert_booking = DB::table('booking_details')->insert(["booking_id"=>$booking_id,"vehicle_id"=>$vehicle_id,"from_date"=>$pickup_date,"to_date"=>$drop_off_date,"price"=>$total_price,'created_at'=>date('Y-m-d H:i:s')]);
+
+        //return view("front/booking_invoice", ['email'=>$email_address,'booking_id'=>$booking_id]);
+
+        $token = Str::random(64);
+         
+         Mail::send('front.booking_invoice', ['token' => $token,'email'=>$email_address,'booking_id'=>$booking_id], function($message) use($request){
+                    $message->to($request->email_address);
+                    $message->from('votivephp.neha@gmail.com','Royal Car Rentel');
+                    $message->subject('Booking Invoice');
+
+        });
 
         if($insert_booking){
             session::flash("success","Your order has been submitted successfully");

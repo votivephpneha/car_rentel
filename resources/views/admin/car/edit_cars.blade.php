@@ -187,7 +187,23 @@ $("#editCarsForm").validate({
                   </div>
 
                   </div>
+                  <div class="col-md-6">
 
+                  <div class="form-group">
+
+                  <label>Vehicle Category</label>
+                  
+                  <select class="form-control" name="vehicle_category" id="vehicle_category">
+                    <option value="">Select</option>
+                    @foreach($category_list as $cat_list)
+                    <option value="{{ $cat_list->cat_name }}" @if($cat_list->cat_name == $car_list->vehicle_category) selected @endif>{{ $cat_list->cat_name }}</option>
+                    @endforeach
+                  </select>
+                 
+
+                  </div>
+
+                  </div>
                   <div class="col-md-6">
 
                   <div class="form-group">
@@ -223,6 +239,18 @@ $("#editCarsForm").validate({
                     <option>Select</option>
                     <option <?php if($car_list->no_of_km == 'Unlimited'){ echo 'selected'; } ?>>Unlimited</option>
                   </select>
+                 
+
+                  </div>
+
+                  </div>
+
+                  <div class="col-md-6">
+
+                  <div class="form-group">
+
+                  <label>Car Description</label>
+                  <textarea class="form-control" name="car_description" id="car_description">{{ $car_list->car_description }}</textarea>
                  
 
                   </div>

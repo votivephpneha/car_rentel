@@ -1,3 +1,4 @@
+@if(count($car_list)>0)
 @foreach($car_list as $c_list)
 <?php
 
@@ -16,7 +17,8 @@ $car_price_data = DB::table('car_price_days')->where('car_id',$c_list->id)->get(
 					<div class="title_price">
 						<div class="title_name_info">
                     <a class="text-dark" href="#"> <h4 class="font-weight-bold mt-1 mb-2">{{ $c_list->title }}</h4> 
-					<p>Or Similar | Sedan</p>
+                    <h6 class="car_cat">{{ $c_list->vehicle_category }}</h6>    
+					<p>{{ $c_list->car_description }}</p>
 					</a>
                     <?php
                                                                 $price_data = DB::table('car_price_days')->where('no_of_day','1 Day')->where('car_id',$c_list->id)->first();
@@ -141,3 +143,11 @@ $car_price_data = DB::table('car_price_days')->where('car_id',$c_list->id)->get(
                             </ul>
                         </nav>
                     </div>
+                    <div class="change_date_btn">
+                        <a href="#" id="myBtn">Change Date</a>
+                    </div>
+                    @else
+<div class="no-product"><h4>No Cars Found</h4></div>
+
+@endif   
+                    

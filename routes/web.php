@@ -58,6 +58,7 @@ Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('/car_list', [App\Http\Controllers\HomeController::class, 'car_list'])->name('car_list');
 Route::get('/get_car_list', [App\Http\Controllers\HomeController::class, 'get_cars'])->name('get_cars');
+Route::get('/car_list_category', [App\Http\Controllers\HomeController::class, 'car_list_category'])->name('get_cars');
 Route::get('/booking/{car_id}', [App\Http\Controllers\HomeController::class, 'booking'])->name('booking');
 Route::post('/submit_booking', [App\Http\Controllers\HomeController::class, 'submit_booking'])->name('submit_booking');
 Route::get('/payment/{car_id}', [App\Http\Controllers\HomeController::class, 'payment_page'])->name('payment_page');
@@ -118,6 +119,14 @@ Route::group(['prefix' => 'admin'], function(){
         Route::any('/customer_update', 'App\Http\Controllers\CustomerController@customer_update');
         Route::get('/change_user_status', 'App\Http\Controllers\CustomerController@change_user_status');
         Route::any('/deletecustomer', 'App\Http\Controllers\CustomerController@deletecustomer');
+
+        Route::get('/business_management', 'App\Http\Controllers\CustomerController@business_management');
+        Route::get('/add_business_user', 'App\Http\Controllers\CustomerController@add_business_user');
+        Route::any('/add_business_action', 'App\Http\Controllers\CustomerController@add_business_action');
+        Route::get('/edit_business/{id}', 'App\Http\Controllers\CustomerController@edit_business');
+        Route::any('/business_update', 'App\Http\Controllers\CustomerController@business_update');
+        Route::get('/change_business_status', 'App\Http\Controllers\CustomerController@change_business_status');
+        Route::any('/deletebusiness', 'App\Http\Controllers\CustomerController@deletebusiness');
 
 
         Route::get('/content_management', 'App\Http\Controllers\AdminController@cms_page');
@@ -237,6 +246,7 @@ Route::group(['prefix' => 'admin'], function(){
         Route::get('/changeHotelSpacetypeStatus', 'App\Http\Controllers\Admin\HotelSpacetypeController@changeHotelSpacetypeStatus');
         Route::any('/deleteHotelSpacetype', 'App\Http\Controllers\Admin\HotelSpacetypeController@deleteHotelSpacetype');
         Route::get('/booking_management', [AdminController::class, 'booking_management'])->name('booking_management');
+        Route::post('/assign_ride', [AdminController::class, 'assign_ride'])->name('assign_ride');
         Route::post('/change_booking_status', [AdminController::class, 'change_booking_status'])->name('change_booking_status');
         Route::get('/view_booking/{id}', [AdminController::class, 'view_booking'])->name('view_booking');
         Route::get('/add_cars', [AdminController::class, 'add_cars'])->name('add_cars');
@@ -260,6 +270,13 @@ Route::group(['prefix' => 'admin'], function(){
         Route::get('/edit_logos/{logo_id}', [AdminController::class, 'edit_logos'])->name('edit_logos');
         Route::post('/update_logos', [AdminController::class, 'update_logos'])->name('update_logos');
         Route::any('/delete_logo', [AdminController::class, 'delete_logos'])->name('delete_logo');
+        Route::get('/add_categories', [AdminController::class, 'add_categories'])->name('add_categories');
+        Route::post('/submit_category', [AdminController::class, 'submit_category'])->name('submit_category');
+        Route::get('/show_category', [AdminController::class, 'show_category'])->name('show_category');
+        Route::get('/change_category_status', [AdminController::class, 'change_category_status'])->name('change_category_status');
+        Route::get('/edit_category/{cat_id}', [AdminController::class, 'edit_category'])->name('edit_category');
+        Route::post('/update_category', [AdminController::class, 'update_category'])->name('update_category');
+        Route::any('/delete_category', [AdminController::class, 'delete_category'])->name('delete_category');
     });
 });
 
