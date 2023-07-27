@@ -34,6 +34,74 @@
     }
     
   });
+  $(".pickup_location").keyup(function(){
+    var address_value = $(".pickup_location").val();
+    $(".address_div").show();
+    $.ajax({
+      type: "GET",
+      url: "{{ url('/get_address') }}",
+      data: {address_value:address_value},
+      cache: false,
+      success: function(data){
+        console.log("data",data);
+        if(data){
+         $(".address_div").html(data);
+        }else{
+          $(".address_div").text("No address found");
+        }
+      }
+    });
+  });
+
+  $(".drop_off_location").keyup(function(){
+    var address_value = $(".drop_off_location").val();
+    $(".address_div_dropoff").show();
+    $.ajax({
+      type: "GET",
+      url: "{{ url('/get_dropoff_address') }}",
+      data: {address_value:address_value},
+      cache: false,
+      success: function(data){
+        console.log("data",data);
+        if(data){
+          $(".address_div_dropoff").html(data);
+        }else{
+          $(".address_div_dropoff").text("No address found");
+        }
+        
+      }
+    });
+  });
+
+  function getAddress(address_id){
+    var address_value = $(".address-"+address_id).text();
+
+    $(".pickup_location").val(address_value);
+    $(".address_div").hide();
+  }
+
+  function getDropoffAddress(address_id){
+    var address_value = $(".address-"+address_id).text();
+
+    $(".drop_off_location").val(address_value);
+    $(".address_div_dropoff").hide();
+  }
+  $(document).mouseup(function(e){
+    var address_div = $(".address_div");
+
+    // If the target of the click isn't the container
+    if(!address_div.is(e.target) && address_div.has(e.target).length === 0){
+        address_div.hide();
+    }
+
+    var address_div_dropoff = $(".address_div_dropoff");
+
+    // If the target of the click isn't the container
+    if(!address_div_dropoff.is(e.target) && address_div_dropoff.has(e.target).length === 0){
+        address_div_dropoff.hide();
+    }
+  });
+  
 </script>
 @endsection
 
@@ -57,21 +125,25 @@
             @csrf
   					<div class="form row no-gutters"> 
   						<div class="form-group col-xl-4 col-lg-4 col-md-12 mb-2 location"> 
-  							<div class="form-group mb-0"> 
+  							<div class="form-group mb-2"> 
   								<label>Pickup Location</label>
-  								<input class="form-control border pickup_location" name="pickup_location" placeholder="Choose Location" type="text" required=""><div class="pickup_location_error search_box_error"></div> 
+  								<input class="form-control border pickup_location" name="pickup_location" placeholder="Choose Location" type="text" required="" autocomplete="off">
+                  <div class="address_div" style="display: none">
+                    
+                  </div>
+                  <div class="pickup_location_error search_box_error"></div> 
   							</div> 
   						</div> 
   						
   						<div class="form-group col-xl-4 col-lg-4 col-md-12 mb-2 location">
-  							<div class="form-group mb-0"> 
+  							<div class="form-group mb-2"> 
   								<label>Pickup Date</label>
   								<input class="form-control border pickup_date" name="pickup_date" placeholder="Choose Pickup Date" type="text" id="pickup_date" required="" autocomplete="off"><div class="pickup_date_error search_box_error"></div> 
   							</div>
   						</div>
 						
 						<div class="form-group col-xl-4 col-lg-4 col-md-12 mb-2 location">
-							<div class="form-group mb-0"> 
+							<div class="form-group mb-2"> 
 								<label>Pickup Time</label>
 									<input class="form-control border pickup_time" name="pickup_time" placeholder="Choose Pickup Time" type="text" id="pickup_time" required="" autocomplete="off"><div class="pickup_time_error search_box_error"></div> 
 							</div>
@@ -79,7 +151,11 @@
 						<div class="form-group col-xl-4 col-lg-4 col-md-12 mb-2 location">
   							<div class="form-group mb-0"> 
   								<label>Drop Off Location</label>
-  								<input class="form-control border drop_off_location" name="drop_off_location" placeholder="Choose Location" type="text" required=""><div class="dropoff_location_error search_box_error"></div> 
+  								<input class="form-control border drop_off_location" name="drop_off_location" autocomplete="off" placeholder="Choose Location" type="text" required="">
+                  <div class="address_div_dropoff" style="display: none">
+                    
+                  </div>  
+                  <div class="dropoff_location_error search_box_error"></div> 
   							</div> 
   						</div>
   						<div class="form-group col-xl-4 col-lg-4 col-md-12 mb-2 location">
@@ -482,7 +558,7 @@
     <!-- Locations-->
         <section class="location-block" id="map">
             <div class="container-fluid">
-                <div class="row g-3">
+                <div class="row g-2">
                     <div class="col-xs-12 col-md-6 img-box-loc">
                         <img src="{{ url('public/assets/img/milano.png') }}">
             <div class="overlay">Milano</div>
@@ -527,7 +603,7 @@
             <div class="container px-4 px-lg-5 text-center">
                 <h2 class="mb-4">Do You Have Something To Sell?</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                <a class="btn btn-light btn-xl cta-btn" href="#">Contact Us <i class="bi bi-arrow-right"></i></a>
+                <a class="cta-btn" href="#">Contact Us <i class="bi bi-arrow-right"></i></a>
             </div>
         </section>
         @endsection

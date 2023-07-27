@@ -7,6 +7,16 @@ SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 
 SET NAMES utf8mb4;
 
+DROP TABLE IF EXISTS `address_table`;
+CREATE TABLE `address_table` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `address` text NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
 DROP TABLE IF EXISTS `admins`;
 CREATE TABLE `admins` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -21,8 +31,6 @@ CREATE TABLE `admins` (
   UNIQUE KEY `admin_email_unique` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO `admins` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Admin',  'admin@gmail.com',  NULL, '$2y$10$veRpHDfzuM4HyCp7iPqI8OnvJX4Nzm47KSHJDZo.JlgIPSHdMiLui', NULL, '2022-05-19 01:44:25',  '2022-05-19 01:44:25');
 
 DROP TABLE IF EXISTS `booking_details`;
 CREATE TABLE `booking_details` (
@@ -37,45 +45,6 @@ CREATE TABLE `booking_details` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO `booking_details` (`id`, `booking_id`, `vehicle_id`, `from_date`, `to_date`, `price`, `created_at`, `updated_at`) VALUES
-(1, 'booking-01', 34, '2023-07-12', '2023-07-13', 0.00, '2023-07-10 11:39:44',  '2023-07-20 09:48:00'),
-(2, 'booking-1844', 35, '21-Jul-2023',  '22-Jul-2023',  2000.00,  '2023-07-20 13:08:39',  '2023-07-20 13:08:39'),
-(3, 'booking-5854', 34, '21-Jul-2023',  '24-Jul-2023',  26.00,  '2023-07-20 13:13:45',  '2023-07-20 13:13:45'),
-(4, 'booking-2021', 34, '21-Jul-2023',  '23-Jul-2023',  26.00,  '2023-07-20 13:24:05',  '2023-07-20 13:24:05'),
-(5, 'booking-1537', 34, '25-Jul-2023',  '29-Jul-2023',  26.00,  '2023-07-20 13:26:59',  '2023-07-20 13:26:59'),
-(6, 'booking-6959', 34, '21-Jul-2023',  '22-Jul-2023',  26.00,  '2023-07-20 13:35:57',  '2023-07-20 13:35:57'),
-(7, 'booking-9114', 34, '21-Jul-2023',  '24-Jul-2023',  26.00,  '2023-07-20 13:42:03',  '2023-07-20 13:42:03'),
-(8, 'booking-4248', 34, '20-Jul-2023',  '25-Jul-2023',  26.00,  '2023-07-20 13:47:07',  '2023-07-20 13:47:07'),
-(9, 'booking-5085', 34, '2023/07/25 18:00', '2023/07/27 19:00', 26.00,  '2023-07-22 10:52:14',  '2023-07-22 10:52:14'),
-(10,  'booking-9495', 35, '2023/07/24 22:00', '2023/07/28 23:00', 2000.00,  '2023-07-22 13:14:13',  '2023-07-22 13:14:13'),
-(11,  'booking-4592', 34, '2023/07/25 10:38', '2023/07/26 10:38', 26.00,  '2023-07-24 08:29:45',  '2023-07-24 08:29:45'),
-(12,  'booking-9012', 34, '2023/07/26 16:00', '2023/07/28 16:00', 26.00,  '2023-07-24 08:31:12',  '2023-07-24 08:31:12'),
-(13,  'booking-8914', 34, '2023/07/25 10:38', '2023/07/26 10:38', 26.00,  '2023-07-24 10:45:24',  '2023-07-24 10:45:24'),
-(14,  'booking-5953', 34, '2023/07/25 10:38', '2023/07/26 10:38', 26.00,  '2023-07-24 10:45:56',  '2023-07-24 10:45:56'),
-(15,  'booking-5204', 34, '2023/07/25 10:38', '2023/07/26 10:38', 26.00,  '2023-07-24 10:47:20',  '2023-07-24 10:47:20'),
-(16,  'booking-2767', 34, '2023/07/25 10:38', '2023/07/26 10:38', 26.00,  '2023-07-24 10:48:16',  '2023-07-24 10:48:16'),
-(17,  'booking-1343', 34, '2023/07/25 10:38', '2023/07/26 10:38', 26.00,  '2023-07-24 10:49:23',  '2023-07-24 10:49:23'),
-(18,  'booking-9582', 34, '2023/07/25 10:38', '2023/07/26 10:38', 26.00,  '2023-07-24 11:47:04',  '2023-07-24 11:47:04'),
-(19,  'booking-6827', 34, '2023/07/25 10:38', '2023/07/26 10:38', 26.00,  '2023-07-24 11:47:24',  '2023-07-24 11:47:24'),
-(20,  'booking-1673', 34, '2023/07/25 17:17', '2023/07/28 17:18', 26.00,  '2023-07-24 11:48:27',  '2023-07-24 11:48:27'),
-(21,  'booking-2847', 34, '2023/07/25 17:17', '2023/07/28 17:18', 26.00,  '2023-07-24 11:54:49',  '2023-07-24 11:54:49'),
-(22,  'booking-7738', 34, '2023/07/25 17:17', '2023/07/28 17:18', 26.00,  '2023-07-24 11:55:36',  '2023-07-24 11:55:36'),
-(23,  'booking-5331', 34, '2023/07/25 10:38', '2023/07/26 10:38', 26.00,  '2023-07-24 11:57:08',  '2023-07-24 11:57:08'),
-(24,  'booking-8268', 34, '2023/07/25 17:17', '2023/07/28 17:18', 26.00,  '2023-07-24 11:57:10',  '2023-07-24 11:57:10'),
-(25,  'booking-2870', 34, '2023/07/25 17:17', '2023/07/28 17:18', 26.00,  '2023-07-24 11:57:47',  '2023-07-24 11:57:47'),
-(26,  'booking-1192', 34, '2023/07/25 17:17', '2023/07/28 17:18', 26.00,  '2023-07-24 11:58:58',  '2023-07-24 11:58:58'),
-(27,  'booking-4413', 34, '2023/07/25 17:17', '2023/07/28 17:18', 26.00,  '2023-07-24 12:02:33',  '2023-07-24 12:02:33'),
-(28,  'booking-5216', 34, '2023/07/25 17:17', '2023/07/28 17:18', 26.00,  '2023-07-24 12:03:19',  '2023-07-24 12:03:19'),
-(29,  'booking-6066', 34, '2023/07/25 17:17', '2023/07/28 17:18', 26.00,  '2023-07-24 12:03:46',  '2023-07-24 12:03:46'),
-(30,  'booking-6241', 35, '2023/07/27 17:34', '2023/07/31 17:34', 8000.00,  '2023-07-24 12:05:40',  '2023-07-24 12:05:40'),
-(31,  'booking-8598', 34, '2023/07/27 17:34', '2023/07/31 17:34', 26.00,  '2023-07-24 12:10:40',  '2023-07-24 12:10:40'),
-(32,  'booking-2932', 34, '2023/07/27 17:34', '2023/07/31 17:34', 26.00,  '2023-07-24 12:17:42',  '2023-07-24 12:17:42'),
-(33,  'booking-6367', 35, '2023/07/27 17:29', '2023/07/29 17:29', 4000.00,  '2023-07-24 12:45:20',  '2023-07-24 12:45:20'),
-(34,  'booking-1845', 35, '2023/07/25 21:00', '2023/07/28 23:00', 6000.00,  '2023-07-24 13:21:40',  '2023-07-24 13:21:40'),
-(35,  'booking-6195', 35, '2023/07/26 14:02', '2023/07/28 14:02', 4000.00,  '2023-07-25 08:54:56',  '2023-07-25 08:54:56'),
-(36,  'booking-5748', 35, '2023/07/26 14:02', '2023/07/28 14:02', 4000.00,  '2023-07-25 10:17:45',  '2023-07-25 10:17:45'),
-(37,  'booking-9887', 35, '2023/07/26 20:00', '2023/07/28 23:00', 4000.00,  '2023-07-25 13:25:12',  '2023-07-25 13:25:12'),
-(38,  'booking-8614', 34, '27-Jul-2023',  '29-Jul-2023',  52.00,  '2023-07-26 09:37:51',  '2023-07-26 09:37:51');
 
 DROP TABLE IF EXISTS `booking_management`;
 CREATE TABLE `booking_management` (
@@ -103,44 +72,6 @@ CREATE TABLE `booking_management` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO `booking_management` (`id`, `booking_id`, `title`, `customer_id`, `customer_first_name`, `customer_last_name`, `customer_phone_no`, `customer_email`, `customer_country`, `driver_first_name`, `driver_last_name`, `driver_email_address`, `driver_contact_no`, `driver_country`, `flight_no`, `sub_total`, `total`, `booking_status`, `payment_method`, `created_at`, `updated_at`) VALUES
-(1, 'booking-01', NULL, '359',  'John', 'Dov',  '1234567890', 'John@gmail.com', 'India',  'test', 'test1',  'test@gmail.com', '1234576890', 'India',  '4',  100.00, 100.00, 2,  '', '2023-07-08 12:50:48',  '2023-07-24 13:22:51'),
-(5, 'booking-5854', '1',  NULL, NULL, NULL, NULL, NULL, NULL, 'dfdsf',  '3e4rer', 'votivephp.neha@gmail.com', '01234567890',  'AR', NULL, NULL, 26.00,  1,  'Cash On Delivery', '2023-07-20 13:13:45',  '2023-07-20 13:13:45'),
-(6, 'booking-2021', '1',  NULL, NULL, NULL, NULL, NULL, NULL, 'hgfhgf', 'fgsfg',  't@gmail.com',  '9898787878', 'AD', NULL, NULL, 26.00,  1,  'Cash On Delivery', '2023-07-20 13:24:05',  '2023-07-20 13:24:05'),
-(7, 'booking-1537', '2',  NULL, NULL, NULL, NULL, NULL, NULL, 'yashica',  'skjfhisd', 't@gmail.com',  '1236547896', 'BY', NULL, NULL, 26.00,  1,  'Cash On Delivery', '2023-07-20 13:26:59',  '2023-07-20 13:26:59'),
-(8, 'booking-6959', '1',  NULL, NULL, NULL, NULL, NULL, NULL, 'ravi', 'jadhav', 'votivewpravi@gmail.com', '6526611524', 'IN', '123456789',  NULL, 26.00,  1,  'Cash On Delivery', '2023-07-20 13:35:57',  '2023-07-20 13:35:57'),
-(9, 'booking-9114', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'dfdsf',  '3e4rer', 'votivephp.neha@gmail.com', '01234567890',  'AR', NULL, NULL, 26.00,  1,  'Cash On Delivery', '2023-07-20 13:42:03',  '2023-07-20 13:42:03'),
-(10,  'booking-4248', '1',  NULL, NULL, NULL, NULL, NULL, NULL, 'albi', 'sir',  'test@albi.com',  '78787878', 'AL', '876326', NULL, 26.00,  1,  'Cash On Delivery', '2023-07-20 13:47:07',  '2023-07-20 13:47:07'),
-(11,  'booking-5085', '2',  NULL, NULL, NULL, NULL, NULL, NULL, 'dfdsf',  '3e4rer', 'votivephp.neha@gmail.com', '+9101234567890', 'AR', '44', NULL, 26.00,  1,  'Cash On Delivery', '2023-07-22 10:52:14',  '2023-07-22 10:52:14'),
-(12,  'booking-9495', '1',  NULL, NULL, NULL, NULL, NULL, NULL, 'yashica',  'skjfhisd', 't@gmail.com',  '+911234567894',  'MR', NULL, NULL, 2000.00,  1,  'Cash On Delivery', '2023-07-22 13:14:13',  '2023-07-22 13:14:13'),
-(13,  'booking-4592', '2',  NULL, NULL, NULL, NULL, NULL, NULL, 'dfdsf',  '3e4rer', 'votivephp.neha@gmail.com', '+1123456789',  'AR', '34', NULL, 26.00,  1,  'Cash On Delivery', '2023-07-24 08:29:45',  '2023-07-24 08:29:45'),
-(14,  'booking-9012', '1',  NULL, NULL, NULL, NULL, NULL, NULL, 'Ravi', 'Jadhav', 'votivewpravi@gmail.com', '+16261166271', 'IN', '123456899',  NULL, 26.00,  1,  'Cash On Delivery', '2023-07-24 08:31:12',  '2023-07-24 08:31:12'),
-(15,  'booking-8914', '2',  NULL, NULL, NULL, NULL, NULL, NULL, 'dfdsf',  '3e4rer', 'votivephp.neha@gmail.com', '+1123456789',  'AR', '455',  NULL, 26.00,  1,  'Cash On Delivery', '2023-07-24 10:45:24',  '2023-07-24 10:45:24'),
-(16,  'booking-5953', '2',  NULL, NULL, NULL, NULL, NULL, NULL, 'dfdsf',  '3e4rer', 'votivephp.neha@gmail.com', '+1123456789',  'AR', '455',  NULL, 26.00,  1,  'Cash On Delivery', '2023-07-24 10:45:56',  '2023-07-24 10:45:56'),
-(17,  'booking-5204', '2',  NULL, NULL, NULL, NULL, NULL, NULL, 'dfdsf',  '3e4rer', 'votivephp.neha@gmail.com', '+1123456789',  'AR', '455',  NULL, 26.00,  1,  'Cash On Delivery', '2023-07-24 10:47:20',  '2023-07-24 10:47:20'),
-(18,  'booking-2767', '2',  NULL, NULL, NULL, NULL, NULL, NULL, 'dfdsf',  '3e4rer', 'votivephp.neha@gmail.com', '+1123456789',  'AR', '455',  NULL, 26.00,  1,  'Cash On Delivery', '2023-07-24 10:48:16',  '2023-07-24 10:48:16'),
-(19,  'booking-1343', '2',  NULL, NULL, NULL, NULL, NULL, NULL, 'dfdsf',  '3e4rer', 'votivephp.neha@gmail.com', '+1123456789',  'AR', '455',  NULL, 26.00,  1,  'Cash On Delivery', '2023-07-24 10:49:23',  '2023-07-24 10:49:23'),
-(20,  'booking-9582', '2',  NULL, NULL, NULL, NULL, NULL, NULL, 'dfdsf',  '3e4rer', 'votivephp.neha@gmail.com', '+1123456789',  'AR', '455',  NULL, 26.00,  1,  'Cash On Delivery', '2023-07-24 11:47:04',  '2023-07-24 11:47:04'),
-(21,  'booking-6827', '2',  NULL, NULL, NULL, NULL, NULL, NULL, 'dfdsf',  '3e4rer', 'votivephp.neha@gmail.com', '+1123456789',  'AR', '455',  NULL, 26.00,  1,  'Cash On Delivery', '2023-07-24 11:47:24',  '2023-07-24 11:47:24'),
-(22,  'booking-1673', '1',  NULL, NULL, NULL, NULL, NULL, NULL, 'Ravi', 'Jadhav', 'votivewpravi@gmail.com', '+16261166258', 'IN', '123456789',  NULL, 26.00,  1,  'Cash On Delivery', '2023-07-24 11:48:27',  '2023-07-24 11:48:27'),
-(23,  'booking-2847', '1',  NULL, NULL, NULL, NULL, NULL, NULL, 'Ravi', 'Jadhav', 'votivewpravi@gmail.com', '+16261166258', 'IN', '123456789',  NULL, 26.00,  1,  'Cash On Delivery', '2023-07-24 11:54:49',  '2023-07-24 11:54:49'),
-(24,  'booking-7738', '1',  NULL, NULL, NULL, NULL, NULL, NULL, 'Ravi', 'Jadhav', 'votivewpravi@gmail.com', '+16261166258', 'IN', '123456789',  NULL, 26.00,  1,  'Cash On Delivery', '2023-07-24 11:55:36',  '2023-07-24 11:55:36'),
-(25,  'booking-5331', '2',  NULL, NULL, NULL, NULL, NULL, NULL, 'dfdsf',  '3e4rer', 'votivephp.neha@gmail.com', '+1123456789',  'AR', '455',  NULL, 26.00,  1,  'Cash On Delivery', '2023-07-24 11:57:08',  '2023-07-24 11:57:08'),
-(26,  'booking-8268', '1',  NULL, NULL, NULL, NULL, NULL, NULL, 'Ravi', 'Jadhav', 'votivewpravi@gmail.com', '+16261166258', 'IN', '123456789',  NULL, 26.00,  1,  'Cash On Delivery', '2023-07-24 11:57:10',  '2023-07-24 11:57:10'),
-(27,  'booking-2870', '1',  NULL, NULL, NULL, NULL, NULL, NULL, 'Ravi', 'Jadhav', 'votivewpravi@gmail.com', '+16261166258', 'IN', '123456789',  NULL, 26.00,  1,  'Cash On Delivery', '2023-07-24 11:57:47',  '2023-07-24 11:57:47'),
-(28,  'booking-1192', '1',  NULL, NULL, NULL, NULL, NULL, NULL, 'Ravi', 'Jadhav', 'votivewpravi@gmail.com', '+16261166258', 'IN', '123456789',  NULL, 26.00,  1,  'Cash On Delivery', '2023-07-24 11:58:58',  '2023-07-24 11:58:58'),
-(29,  'booking-4413', '1',  NULL, NULL, NULL, NULL, NULL, NULL, 'Ravi', 'Jadhav', 'votivewpravi@gmail.com', '+16261166258', 'IN', '123456789',  NULL, 26.00,  1,  'Cash On Delivery', '2023-07-24 12:02:33',  '2023-07-24 12:02:33'),
-(30,  'booking-5216', '1',  NULL, NULL, NULL, NULL, NULL, NULL, 'Ravi', 'Jadhav', 'votivewpravi@gmail.com', '+16261166258', 'IN', '123456789',  NULL, 26.00,  1,  'Cash On Delivery', '2023-07-24 12:03:19',  '2023-07-24 12:03:19'),
-(31,  'booking-6066', '1',  NULL, NULL, NULL, NULL, NULL, NULL, 'Ravi', 'Jadhav', 'votivewpravi@gmail.com', '+16261166258', 'IN', '123456789',  NULL, 26.00,  1,  'Cash On Delivery', '2023-07-24 12:03:46',  '2023-07-24 12:03:46'),
-(32,  'booking-6241', '1',  NULL, NULL, NULL, NULL, NULL, NULL, 'Ravi', 'Jadhav', 'votivewpravi@gmail.com', '+15588558847', 'IN', '1235688985', NULL, 8000.00,  1,  'Cash On Delivery', '2023-07-24 12:05:40',  '2023-07-24 12:05:40'),
-(33,  'booking-8598', '1',  NULL, NULL, NULL, NULL, NULL, NULL, 'Ravi', 'Jadhav', 'votivewpravi@gmail.com', '+16261166258', 'IN', '123456789',  NULL, 26.00,  1,  'Cash On Delivery', '2023-07-24 12:10:40',  '2023-07-24 12:10:40'),
-(34,  'booking-2932', '1',  NULL, NULL, NULL, NULL, NULL, NULL, 'Ravi', 'Jadhav', 'votivewpravi@gmail.com', '+16261166258', 'IN', '123456789',  NULL, 26.00,  1,  'Cash On Delivery', '2023-07-24 12:17:42',  '2023-07-24 12:17:42'),
-(35,  'booking-6367', '2',  NULL, NULL, NULL, NULL, NULL, NULL, 'dfdsf',  '3e4rer', 'votivephp.neha@gmail.com', '+1123456789',  'AR', '45', NULL, 4000.00,  1,  'Cash On Delivery', '2023-07-24 12:45:20',  '2023-07-24 12:45:20'),
-(36,  'booking-1845', '2',  NULL, NULL, NULL, NULL, NULL, NULL, 'hgfhgf', 'skjfhisd', 't@gmail.com',  '+2134565456767', 'AF', NULL, NULL, 6000.00,  1,  'Cash On Delivery', '2023-07-24 13:21:40',  '2023-07-24 13:21:40'),
-(37,  'booking-6195', '2',  NULL, NULL, NULL, NULL, NULL, NULL, 'dfdsf',  '3e4rer', 'votivephp.neha@gmail.com', '+1123456789',  'AR', '56', NULL, 4000.00,  1,  'Cash On Delivery', '2023-07-25 08:54:56',  '2023-07-25 08:54:56'),
-(38,  'booking-5748', '2',  NULL, NULL, NULL, NULL, NULL, NULL, 'dfdsf',  '3e4rer', 'votivephp.neha@gmail.com', '+1123456789',  'AFGHANISTAN',  '45', NULL, 4000.00,  1,  'Cash On Delivery', '2023-07-25 10:17:45',  '2023-07-25 10:17:45'),
-(39,  'booking-9887', '2',  NULL, NULL, NULL, NULL, NULL, NULL, 'yashica',  'fgsfg',  'votivesales.yashica@gmail.com',  '+15656545678', 'INDIA',  '1',  NULL, 4000.00,  1,  'Cash On Delivery', '2023-07-25 13:25:12',  '2023-07-25 13:25:12'),
-(40,  'booking-8614', '1',  NULL, NULL, NULL, NULL, NULL, NULL, 'Ravi', 'Jadhav', 'votivewpravi@gmail.com', '+916261166271',  'INDIA',  '1025689567', NULL, 52.00,  1,  'Cash On Delivery', '2023-07-26 09:37:51',  '2023-07-26 09:37:51');
 
 DROP TABLE IF EXISTS `car_management`;
 CREATE TABLE `car_management` (
@@ -162,15 +93,6 @@ CREATE TABLE `car_management` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO `car_management` (`id`, `title`, `vehicle_type`, `vehicle_category`, `image`, `no_of_seats`, `manual_text`, `no_of_km`, `no_of_day`, `price`, `total_price`, `status`, `car_description`, `created_at`, `updated_at`) VALUES
-(34,  'BMW 3 Series', 'Manual', 'Luxury vehicle', '1689673970.png', 5,  'manual_text',  'Unlimited',  NULL, NULL, NULL, 1,  'or similar | Luxury vehicle',  '2023-07-18 09:52:50',  '2023-07-26 11:48:16'),
-(35,  'BMW 3 Series', 'Automatic',  'SUV',  '1689675654.png', 3,  'manual_text',  'Unlimited',  NULL, NULL, NULL, 1,  'or similar | SUV', '2023-07-18 10:20:54',  '2023-07-26 11:48:45'),
-(36,  'BMW 3 Series1',  'Manual', 'Sedan',  '1689686699.png', 5,  'manual_text',  'Unlimited',  NULL, NULL, NULL, 1,  'or similar | Sedan', '2023-07-18 13:24:59',  '2023-07-26 11:49:51'),
-(37,  'Mercedes benz',  'Automatic',  'Coupe',  '1689687969.png', 5,  'manual_text',  'Unlimited',  NULL, NULL, NULL, 1,  'or similar | Coupe', '2023-07-18 13:46:09',  '2023-07-26 11:50:45'),
-(38,  'audi', 'Automatic',  'Audi', '1689773184.png', 4,  'manual_text',  'Unlimited',  NULL, NULL, NULL, 1,  'or similar | Audi',  '2023-07-19 13:26:24',  '2023-07-26 11:51:35'),
-(40,  'dfdf', 'Automatic',  'SUV',  '1690007563.png', 3,  'manual_text',  'Unlimited',  NULL, NULL, NULL, 1,  'or similar | SUV', '2023-07-22 06:32:43',  '2023-07-26 11:52:07'),
-(41,  'dfd',  'Automatic',  'Coupe',  '1690007993.png', 5,  'manual_text',  'Unlimited',  NULL, NULL, NULL, 1,  'or similar | Coupe', '2023-07-22 06:39:53',  '2023-07-26 11:52:36'),
-(42,  'dds',  'Automatic',  'Coupe',  '1690177337.png', 5,  'manual_text',  'Unlimited',  NULL, NULL, NULL, 1,  'or similar | Coupe', '2023-07-24 05:42:17',  '2023-07-26 11:52:56');
 
 DROP TABLE IF EXISTS `car_price_days`;
 CREATE TABLE `car_price_days` (
@@ -184,40 +106,6 @@ CREATE TABLE `car_price_days` (
   PRIMARY KEY (`days_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO `car_price_days` (`days_id`, `car_id`, `car_days_id`, `no_of_day`, `price`, `created_at`, `updated_at`) VALUES
-(21,  34, 1,  '1 Day',  26.00,  '2023-07-18 09:52:50',  '2023-07-19 10:38:11'),
-(22,  34, 2,  '3+ Day', 25.00,  '2023-07-18 09:52:50',  '2023-07-18 13:45:11'),
-(23,  34, 3,  '7+ Day', 5600.00,  '2023-07-18 09:52:50',  '2023-07-19 07:28:11'),
-(24,  34, 4,  '30+ Day',  6000.00,  '2023-07-18 09:52:50',  '2023-07-18 09:52:50'),
-(25,  35, 1,  '1 Day',  2000.00,  '2023-07-18 10:20:54',  '2023-07-18 10:20:54'),
-(26,  35, 2,  '3+ Day', 3500.00,  '2023-07-18 10:20:54',  '2023-07-18 10:20:54'),
-(27,  35, 3,  '7+ Day', 5000.00,  '2023-07-18 10:20:54',  '2023-07-18 10:20:54'),
-(28,  35, 4,  '30+ Day',  5500.00,  '2023-07-18 10:20:54',  '2023-07-18 10:20:54'),
-(29,  36, 1,  '1 Day',  2500.00,  '2023-07-18 13:24:59',  '2023-07-18 13:25:13'),
-(30,  36, 2,  '3+ Day', 5500.00,  '2023-07-18 13:24:59',  '2023-07-18 13:24:59'),
-(31,  36, 3,  '7+ Day', 445456.00,  '2023-07-18 13:24:59',  '2023-07-18 13:24:59'),
-(32,  36, 4,  '30+ Day',  43354568.00,  '2023-07-18 13:24:59',  '2023-07-18 13:24:59'),
-(33,  37, 1,  '1 Day',  55.00,  '2023-07-18 13:46:09',  '2023-07-18 13:46:09'),
-(34,  37, 2,  '3+ Day', 35.00,  '2023-07-18 13:46:09',  '2023-07-18 13:46:09'),
-(35,  37, 3,  '7+ Day', 25.00,  '2023-07-18 13:46:09',  '2023-07-18 13:46:09'),
-(36,  37, 4,  '30+ Day',  20.00,  '2023-07-18 13:46:09',  '2023-07-18 13:46:09'),
-(37,  38, 1,  '1 Day',  46.00,  '2023-07-19 13:26:24',  '2023-07-19 13:26:24'),
-(38,  38, 2,  '3+ Day', 687.00, '2023-07-19 13:26:24',  '2023-07-19 13:26:24'),
-(39,  38, 3,  '7+ Day', 86786.00, '2023-07-19 13:26:24',  '2023-07-19 13:26:24'),
-(40,  38, 4,  '30+ Day',  8768.00,  '2023-07-19 13:26:24',  '2023-07-19 13:26:24'),
-(41,  39, 1,  '1 Day',  2000.00,  '2023-07-22 06:32:37',  '2023-07-22 06:32:37'),
-(42,  40, 1,  '1 Day',  2000.00,  '2023-07-22 06:32:43',  '2023-07-22 06:32:43'),
-(43,  40, 2,  '3+ Day', 5500.00,  '2023-07-22 06:32:43',  '2023-07-22 06:32:43'),
-(44,  40, 3,  '7+ Day', 5500.00,  '2023-07-22 06:32:43',  '2023-07-22 06:32:43'),
-(45,  40, 4,  '30+ Day',  5500.00,  '2023-07-22 06:32:43',  '2023-07-22 06:32:43'),
-(46,  41, 1,  '1 Day',  2000.00,  '2023-07-22 06:39:53',  '2023-07-22 06:39:53'),
-(47,  41, 2,  '3+ Day', 5500.00,  '2023-07-22 06:39:53',  '2023-07-22 06:39:53'),
-(48,  41, 3,  '7+ Day', 5500.00,  '2023-07-22 06:39:53',  '2023-07-22 06:39:53'),
-(49,  41, 4,  '30+ Day',  2000.00,  '2023-07-22 06:39:53',  '2023-07-22 06:39:53'),
-(50,  42, 1,  '1 Day',  2000.00,  '2023-07-24 05:42:17',  '2023-07-24 05:42:17'),
-(51,  42, 2,  '3+ Day', 5500.00,  '2023-07-24 05:42:17',  '2023-07-24 05:42:17'),
-(52,  42, 3,  '7+ Day', 3500.00,  '2023-07-24 05:42:17',  '2023-07-24 05:42:17'),
-(53,  42, 4,  '30+ Day',  5000.00,  '2023-07-24 05:42:17',  '2023-07-24 05:42:17');
 
 DROP TABLE IF EXISTS `categories`;
 CREATE TABLE `categories` (
@@ -229,12 +117,6 @@ CREATE TABLE `categories` (
   PRIMARY KEY (`cat_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO `categories` (`cat_id`, `cat_name`, `status`, `created_at`, `updated_at`) VALUES
-(2, 'SUV',  1,  '2023-07-22 05:54:07',  '2023-07-22 05:54:07'),
-(3, 'Coupe',  1,  '2023-07-22 05:31:30',  '2023-07-22 05:31:30'),
-(4, 'Luxury vehicle', 1,  '2023-07-22 05:32:06',  '2023-07-22 05:32:06'),
-(5, 'Sedan',  1,  '2023-07-22 05:53:30',  '2023-07-22 05:53:30'),
-(8, 'Audi', 1,  '2023-07-22 13:20:40',  '2023-07-22 13:20:49');
 
 DROP TABLE IF EXISTS `country`;
 CREATE TABLE `country` (
@@ -248,246 +130,6 @@ CREATE TABLE `country` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-INSERT INTO `country` (`id`, `iso`, `name`, `nicename`, `iso3`, `numcode`, `phonecode`) VALUES
-(1, 'AF', 'AFGHANISTAN',  'Afghanistan',  'AFG',  4,  93),
-(2, 'AL', 'ALBANIA',  'Albania',  'ALB',  8,  355),
-(3, 'DZ', 'ALGERIA',  'Algeria',  'DZA',  12, 213),
-(4, 'AS', 'AMERICAN SAMOA', 'American Samoa', 'ASM',  16, 1684),
-(5, 'AD', 'ANDORRA',  'Andorra',  'AND',  20, 376),
-(6, 'AO', 'ANGOLA', 'Angola', 'AGO',  24, 244),
-(7, 'AI', 'ANGUILLA', 'Anguilla', 'AIA',  660,  1264),
-(8, 'AQ', 'ANTARCTICA', 'Antarctica', NULL, NULL, 0),
-(9, 'AG', 'ANTIGUA AND BARBUDA',  'Antigua and Barbuda',  'ATG',  28, 1268),
-(10,  'AR', 'ARGENTINA',  'Argentina',  'ARG',  32, 54),
-(11,  'AM', 'ARMENIA',  'Armenia',  'ARM',  51, 374),
-(12,  'AW', 'ARUBA',  'Aruba',  'ABW',  533,  297),
-(13,  'AU', 'AUSTRALIA',  'Australia',  'AUS',  36, 61),
-(14,  'AT', 'AUSTRIA',  'Austria',  'AUT',  40, 43),
-(15,  'AZ', 'AZERBAIJAN', 'Azerbaijan', 'AZE',  31, 994),
-(16,  'BS', 'BAHAMAS',  'Bahamas',  'BHS',  44, 1242),
-(17,  'BH', 'BAHRAIN',  'Bahrain',  'BHR',  48, 973),
-(18,  'BD', 'BANGLADESH', 'Bangladesh', 'BGD',  50, 880),
-(19,  'BB', 'BARBADOS', 'Barbados', 'BRB',  52, 1246),
-(20,  'BY', 'BELARUS',  'Belarus',  'BLR',  112,  375),
-(21,  'BE', 'BELGIUM',  'Belgium',  'BEL',  56, 32),
-(22,  'BZ', 'BELIZE', 'Belize', 'BLZ',  84, 501),
-(23,  'BJ', 'BENIN',  'Benin',  'BEN',  204,  229),
-(24,  'BM', 'BERMUDA',  'Bermuda',  'BMU',  60, 1441),
-(25,  'BT', 'BHUTAN', 'Bhutan', 'BTN',  64, 975),
-(26,  'BO', 'BOLIVIA',  'Bolivia',  'BOL',  68, 591),
-(27,  'BA', 'BOSNIA AND HERZEGOVINA', 'Bosnia and Herzegovina', 'BIH',  70, 387),
-(28,  'BW', 'BOTSWANA', 'Botswana', 'BWA',  72, 267),
-(29,  'BV', 'BOUVET ISLAND',  'Bouvet Island',  NULL, NULL, 0),
-(30,  'BR', 'BRAZIL', 'Brazil', 'BRA',  76, 55),
-(31,  'IO', 'BRITISH INDIAN OCEAN TERRITORY', 'British Indian Ocean Territory', NULL, NULL, 246),
-(32,  'BN', 'BRUNEI DARUSSALAM',  'Brunei Darussalam',  'BRN',  96, 673),
-(33,  'BG', 'BULGARIA', 'Bulgaria', 'BGR',  100,  359),
-(34,  'BF', 'BURKINA FASO', 'Burkina Faso', 'BFA',  854,  226),
-(35,  'BI', 'BURUNDI',  'Burundi',  'BDI',  108,  257),
-(36,  'KH', 'CAMBODIA', 'Cambodia', 'KHM',  116,  855),
-(37,  'CM', 'CAMEROON', 'Cameroon', 'CMR',  120,  237),
-(38,  'CA', 'CANADA', 'Canada', 'CAN',  124,  1),
-(39,  'CV', 'CAPE VERDE', 'Cape Verde', 'CPV',  132,  238),
-(40,  'KY', 'CAYMAN ISLANDS', 'Cayman Islands', 'CYM',  136,  1345),
-(41,  'CF', 'CENTRAL AFRICAN REPUBLIC', 'Central African Republic', 'CAF',  140,  236),
-(42,  'TD', 'CHAD', 'Chad', 'TCD',  148,  235),
-(43,  'CL', 'CHILE',  'Chile',  'CHL',  152,  56),
-(44,  'CN', 'CHINA',  'China',  'CHN',  156,  86),
-(45,  'CX', 'CHRISTMAS ISLAND', 'Christmas Island', NULL, NULL, 61),
-(46,  'CC', 'COCOS (KEELING) ISLANDS',  'Cocos (Keeling) Islands',  NULL, NULL, 672),
-(47,  'CO', 'COLOMBIA', 'Colombia', 'COL',  170,  57),
-(48,  'KM', 'COMOROS',  'Comoros',  'COM',  174,  269),
-(49,  'CG', 'CONGO',  'Congo',  'COG',  178,  242),
-(50,  'CD', 'CONGO, THE DEMOCRATIC REPUBLIC OF THE',  'Congo, the Democratic Republic of the',  'COD',  180,  242),
-(51,  'CK', 'COOK ISLANDS', 'Cook Islands', 'COK',  184,  682),
-(52,  'CR', 'COSTA RICA', 'Costa Rica', 'CRI',  188,  506),
-(53,  'CI', 'COTE D\'IVOIRE', 'Cote D\'Ivoire', 'CIV',  384,  225),
-(54,  'HR', 'CROATIA',  'Croatia',  'HRV',  191,  385),
-(55,  'CU', 'CUBA', 'Cuba', 'CUB',  192,  53),
-(56,  'CY', 'CYPRUS', 'Cyprus', 'CYP',  196,  357),
-(57,  'CZ', 'CZECH REPUBLIC', 'Czech Republic', 'CZE',  203,  420),
-(58,  'DK', 'DENMARK',  'Denmark',  'DNK',  208,  45),
-(59,  'DJ', 'DJIBOUTI', 'Djibouti', 'DJI',  262,  253),
-(60,  'DM', 'DOMINICA', 'Dominica', 'DMA',  212,  1767),
-(61,  'DO', 'DOMINICAN REPUBLIC', 'Dominican Republic', 'DOM',  214,  1809),
-(62,  'EC', 'ECUADOR',  'Ecuador',  'ECU',  218,  593),
-(63,  'EG', 'EGYPT',  'Egypt',  'EGY',  818,  20),
-(64,  'SV', 'EL SALVADOR',  'El Salvador',  'SLV',  222,  503),
-(65,  'GQ', 'EQUATORIAL GUINEA',  'Equatorial Guinea',  'GNQ',  226,  240),
-(66,  'ER', 'ERITREA',  'Eritrea',  'ERI',  232,  291),
-(67,  'EE', 'ESTONIA',  'Estonia',  'EST',  233,  372),
-(68,  'ET', 'ETHIOPIA', 'Ethiopia', 'ETH',  231,  251),
-(69,  'FK', 'FALKLAND ISLANDS (MALVINAS)',  'Falkland Islands (Malvinas)',  'FLK',  238,  500),
-(70,  'FO', 'FAROE ISLANDS',  'Faroe Islands',  'FRO',  234,  298),
-(71,  'FJ', 'FIJI', 'Fiji', 'FJI',  242,  679),
-(72,  'FI', 'FINLAND',  'Finland',  'FIN',  246,  358),
-(73,  'FR', 'FRANCE', 'France', 'FRA',  250,  33),
-(74,  'GF', 'FRENCH GUIANA',  'French Guiana',  'GUF',  254,  594),
-(75,  'PF', 'FRENCH POLYNESIA', 'French Polynesia', 'PYF',  258,  689),
-(76,  'TF', 'FRENCH SOUTHERN TERRITORIES',  'French Southern Territories',  NULL, NULL, 0),
-(77,  'GA', 'GABON',  'Gabon',  'GAB',  266,  241),
-(78,  'GM', 'GAMBIA', 'Gambia', 'GMB',  270,  220),
-(79,  'GE', 'GEORGIA',  'Georgia',  'GEO',  268,  995),
-(80,  'DE', 'GERMANY',  'Germany',  'DEU',  276,  49),
-(81,  'GH', 'GHANA',  'Ghana',  'GHA',  288,  233),
-(82,  'GI', 'GIBRALTAR',  'Gibraltar',  'GIB',  292,  350),
-(83,  'GR', 'GREECE', 'Greece', 'GRC',  300,  30),
-(84,  'GL', 'GREENLAND',  'Greenland',  'GRL',  304,  299),
-(85,  'GD', 'GRENADA',  'Grenada',  'GRD',  308,  1473),
-(86,  'GP', 'GUADELOUPE', 'Guadeloupe', 'GLP',  312,  590),
-(87,  'GU', 'GUAM', 'Guam', 'GUM',  316,  1671),
-(88,  'GT', 'GUATEMALA',  'Guatemala',  'GTM',  320,  502),
-(89,  'GN', 'GUINEA', 'Guinea', 'GIN',  324,  224),
-(90,  'GW', 'GUINEA-BISSAU',  'Guinea-Bissau',  'GNB',  624,  245),
-(91,  'GY', 'GUYANA', 'Guyana', 'GUY',  328,  592),
-(92,  'HT', 'HAITI',  'Haiti',  'HTI',  332,  509),
-(93,  'HM', 'HEARD ISLAND AND MCDONALD ISLANDS',  'Heard Island and Mcdonald Islands',  NULL, NULL, 0),
-(94,  'VA', 'HOLY SEE (VATICAN CITY STATE)',  'Holy See (Vatican City State)',  'VAT',  336,  39),
-(95,  'HN', 'HONDURAS', 'Honduras', 'HND',  340,  504),
-(96,  'HK', 'HONG KONG',  'Hong Kong',  'HKG',  344,  852),
-(97,  'HU', 'HUNGARY',  'Hungary',  'HUN',  348,  36),
-(98,  'IS', 'ICELAND',  'Iceland',  'ISL',  352,  354),
-(99,  'IN', 'INDIA',  'India',  'IND',  356,  91),
-(100, 'ID', 'INDONESIA',  'Indonesia',  'IDN',  360,  62),
-(101, 'IR', 'IRAN, ISLAMIC REPUBLIC OF',  'Iran, Islamic Republic of',  'IRN',  364,  98),
-(102, 'IQ', 'IRAQ', 'Iraq', 'IRQ',  368,  964),
-(103, 'IE', 'IRELAND',  'Ireland',  'IRL',  372,  353),
-(104, 'IL', 'ISRAEL', 'Israel', 'ISR',  376,  972),
-(105, 'IT', 'ITALY',  'Italy',  'ITA',  380,  39),
-(106, 'JM', 'JAMAICA',  'Jamaica',  'JAM',  388,  1876),
-(107, 'JP', 'JAPAN',  'Japan',  'JPN',  392,  81),
-(108, 'JO', 'JORDAN', 'Jordan', 'JOR',  400,  962),
-(109, 'KZ', 'KAZAKHSTAN', 'Kazakhstan', 'KAZ',  398,  7),
-(110, 'KE', 'KENYA',  'Kenya',  'KEN',  404,  254),
-(111, 'KI', 'KIRIBATI', 'Kiribati', 'KIR',  296,  686),
-(112, 'KP', 'KOREA, DEMOCRATIC PEOPLE\'S REPUBLIC OF',  'Korea, Democratic People\'s Republic of',  'PRK',  408,  850),
-(113, 'KR', 'KOREA, REPUBLIC OF', 'Korea, Republic of', 'KOR',  410,  82),
-(114, 'KW', 'KUWAIT', 'Kuwait', 'KWT',  414,  965),
-(115, 'KG', 'KYRGYZSTAN', 'Kyrgyzstan', 'KGZ',  417,  996),
-(116, 'LA', 'LAO PEOPLE\'S DEMOCRATIC REPUBLIC',  'Lao People\'s Democratic Republic',  'LAO',  418,  856),
-(117, 'LV', 'LATVIA', 'Latvia', 'LVA',  428,  371),
-(118, 'LB', 'LEBANON',  'Lebanon',  'LBN',  422,  961),
-(119, 'LS', 'LESOTHO',  'Lesotho',  'LSO',  426,  266),
-(120, 'LR', 'LIBERIA',  'Liberia',  'LBR',  430,  231),
-(121, 'LY', 'LIBYAN ARAB JAMAHIRIYA', 'Libyan Arab Jamahiriya', 'LBY',  434,  218),
-(122, 'LI', 'LIECHTENSTEIN',  'Liechtenstein',  'LIE',  438,  423),
-(123, 'LT', 'LITHUANIA',  'Lithuania',  'LTU',  440,  370),
-(124, 'LU', 'LUXEMBOURG', 'Luxembourg', 'LUX',  442,  352),
-(125, 'MO', 'MACAO',  'Macao',  'MAC',  446,  853),
-(126, 'MK', 'MACEDONIA, THE FORMER YUGOSLAV REPUBLIC OF', 'Macedonia, the Former Yugoslav Republic of', 'MKD',  807,  389),
-(127, 'MG', 'MADAGASCAR', 'Madagascar', 'MDG',  450,  261),
-(128, 'MW', 'MALAWI', 'Malawi', 'MWI',  454,  265),
-(129, 'MY', 'MALAYSIA', 'Malaysia', 'MYS',  458,  60),
-(130, 'MV', 'MALDIVES', 'Maldives', 'MDV',  462,  960),
-(131, 'ML', 'MALI', 'Mali', 'MLI',  466,  223),
-(132, 'MT', 'MALTA',  'Malta',  'MLT',  470,  356),
-(133, 'MH', 'MARSHALL ISLANDS', 'Marshall Islands', 'MHL',  584,  692),
-(134, 'MQ', 'MARTINIQUE', 'Martinique', 'MTQ',  474,  596),
-(135, 'MR', 'MAURITANIA', 'Mauritania', 'MRT',  478,  222),
-(136, 'MU', 'MAURITIUS',  'Mauritius',  'MUS',  480,  230),
-(137, 'YT', 'MAYOTTE',  'Mayotte',  NULL, NULL, 269),
-(138, 'MX', 'MEXICO', 'Mexico', 'MEX',  484,  52),
-(139, 'FM', 'MICRONESIA, FEDERATED STATES OF',  'Micronesia, Federated States of',  'FSM',  583,  691),
-(140, 'MD', 'MOLDOVA, REPUBLIC OF', 'Moldova, Republic of', 'MDA',  498,  373),
-(141, 'MC', 'MONACO', 'Monaco', 'MCO',  492,  377),
-(142, 'MN', 'MONGOLIA', 'Mongolia', 'MNG',  496,  976),
-(143, 'MS', 'MONTSERRAT', 'Montserrat', 'MSR',  500,  1664),
-(144, 'MA', 'MOROCCO',  'Morocco',  'MAR',  504,  212),
-(145, 'MZ', 'MOZAMBIQUE', 'Mozambique', 'MOZ',  508,  258),
-(146, 'MM', 'MYANMAR',  'Myanmar',  'MMR',  104,  95),
-(147, 'NA', 'NAMIBIA',  'Namibia',  'NAM',  516,  264),
-(148, 'NR', 'NAURU',  'Nauru',  'NRU',  520,  674),
-(149, 'NP', 'NEPAL',  'Nepal',  'NPL',  524,  977),
-(150, 'NL', 'NETHERLANDS',  'Netherlands',  'NLD',  528,  31),
-(151, 'AN', 'NETHERLANDS ANTILLES', 'Netherlands Antilles', 'ANT',  530,  599),
-(152, 'NC', 'NEW CALEDONIA',  'New Caledonia',  'NCL',  540,  687),
-(153, 'NZ', 'NEW ZEALAND',  'New Zealand',  'NZL',  554,  64),
-(154, 'NI', 'NICARAGUA',  'Nicaragua',  'NIC',  558,  505),
-(155, 'NE', 'NIGER',  'Niger',  'NER',  562,  227),
-(156, 'NG', 'NIGERIA',  'Nigeria',  'NGA',  566,  234),
-(157, 'NU', 'NIUE', 'Niue', 'NIU',  570,  683),
-(158, 'NF', 'NORFOLK ISLAND', 'Norfolk Island', 'NFK',  574,  672),
-(159, 'MP', 'NORTHERN MARIANA ISLANDS', 'Northern Mariana Islands', 'MNP',  580,  1670),
-(160, 'NO', 'NORWAY', 'Norway', 'NOR',  578,  47),
-(161, 'OM', 'OMAN', 'Oman', 'OMN',  512,  968),
-(162, 'PK', 'PAKISTAN', 'Pakistan', 'PAK',  586,  92),
-(163, 'PW', 'PALAU',  'Palau',  'PLW',  585,  680),
-(164, 'PS', 'PALESTINIAN TERRITORY, OCCUPIED',  'Palestinian Territory, Occupied',  NULL, NULL, 970),
-(165, 'PA', 'PANAMA', 'Panama', 'PAN',  591,  507),
-(166, 'PG', 'PAPUA NEW GUINEA', 'Papua New Guinea', 'PNG',  598,  675),
-(167, 'PY', 'PARAGUAY', 'Paraguay', 'PRY',  600,  595),
-(168, 'PE', 'PERU', 'Peru', 'PER',  604,  51),
-(169, 'PH', 'PHILIPPINES',  'Philippines',  'PHL',  608,  63),
-(170, 'PN', 'PITCAIRN', 'Pitcairn', 'PCN',  612,  0),
-(171, 'PL', 'POLAND', 'Poland', 'POL',  616,  48),
-(172, 'PT', 'PORTUGAL', 'Portugal', 'PRT',  620,  351),
-(173, 'PR', 'PUERTO RICO',  'Puerto Rico',  'PRI',  630,  1787),
-(174, 'QA', 'QATAR',  'Qatar',  'QAT',  634,  974),
-(175, 'RE', 'REUNION',  'Reunion',  'REU',  638,  262),
-(176, 'RO', 'ROMANIA',  'Romania',  'ROM',  642,  40),
-(177, 'RU', 'RUSSIAN FEDERATION', 'Russian Federation', 'RUS',  643,  70),
-(178, 'RW', 'RWANDA', 'Rwanda', 'RWA',  646,  250),
-(179, 'SH', 'SAINT HELENA', 'Saint Helena', 'SHN',  654,  290),
-(180, 'KN', 'SAINT KITTS AND NEVIS',  'Saint Kitts and Nevis',  'KNA',  659,  1869),
-(181, 'LC', 'SAINT LUCIA',  'Saint Lucia',  'LCA',  662,  1758),
-(182, 'PM', 'SAINT PIERRE AND MIQUELON',  'Saint Pierre and Miquelon',  'SPM',  666,  508),
-(183, 'VC', 'SAINT VINCENT AND THE GRENADINES', 'Saint Vincent and the Grenadines', 'VCT',  670,  1784),
-(184, 'WS', 'SAMOA',  'Samoa',  'WSM',  882,  684),
-(185, 'SM', 'SAN MARINO', 'San Marino', 'SMR',  674,  378),
-(186, 'ST', 'SAO TOME AND PRINCIPE',  'Sao Tome and Principe',  'STP',  678,  239),
-(187, 'SA', 'SAUDI ARABIA', 'Saudi Arabia', 'SAU',  682,  966),
-(188, 'SN', 'SENEGAL',  'Senegal',  'SEN',  686,  221),
-(189, 'CS', 'SERBIA AND MONTENEGRO',  'Serbia and Montenegro',  NULL, NULL, 381),
-(190, 'SC', 'SEYCHELLES', 'Seychelles', 'SYC',  690,  248),
-(191, 'SL', 'SIERRA LEONE', 'Sierra Leone', 'SLE',  694,  232),
-(192, 'SG', 'SINGAPORE',  'Singapore',  'SGP',  702,  65),
-(193, 'SK', 'SLOVAKIA', 'Slovakia', 'SVK',  703,  421),
-(194, 'SI', 'SLOVENIA', 'Slovenia', 'SVN',  705,  386),
-(195, 'SB', 'SOLOMON ISLANDS',  'Solomon Islands',  'SLB',  90, 677),
-(196, 'SO', 'SOMALIA',  'Somalia',  'SOM',  706,  252),
-(197, 'ZA', 'SOUTH AFRICA', 'South Africa', 'ZAF',  710,  27),
-(198, 'GS', 'SOUTH GEORGIA AND THE SOUTH SANDWICH ISLANDS', 'South Georgia and the South Sandwich Islands', NULL, NULL, 0),
-(199, 'ES', 'SPAIN',  'Spain',  'ESP',  724,  34),
-(200, 'LK', 'SRI LANKA',  'Sri Lanka',  'LKA',  144,  94),
-(201, 'SD', 'SUDAN',  'Sudan',  'SDN',  736,  249),
-(202, 'SR', 'SURINAME', 'Suriname', 'SUR',  740,  597),
-(203, 'SJ', 'SVALBARD AND JAN MAYEN', 'Svalbard and Jan Mayen', 'SJM',  744,  47),
-(204, 'SZ', 'SWAZILAND',  'Swaziland',  'SWZ',  748,  268),
-(205, 'SE', 'SWEDEN', 'Sweden', 'SWE',  752,  46),
-(206, 'CH', 'SWITZERLAND',  'Switzerland',  'CHE',  756,  41),
-(207, 'SY', 'SYRIAN ARAB REPUBLIC', 'Syrian Arab Republic', 'SYR',  760,  963),
-(208, 'TW', 'TAIWAN, PROVINCE OF CHINA',  'Taiwan, Province of China',  'TWN',  158,  886),
-(209, 'TJ', 'TAJIKISTAN', 'Tajikistan', 'TJK',  762,  992),
-(210, 'TZ', 'TANZANIA, UNITED REPUBLIC OF', 'Tanzania, United Republic of', 'TZA',  834,  255),
-(211, 'TH', 'THAILAND', 'Thailand', 'THA',  764,  66),
-(212, 'TL', 'TIMOR-LESTE',  'Timor-Leste',  NULL, NULL, 670),
-(213, 'TG', 'TOGO', 'Togo', 'TGO',  768,  228),
-(214, 'TK', 'TOKELAU',  'Tokelau',  'TKL',  772,  690),
-(215, 'TO', 'TONGA',  'Tonga',  'TON',  776,  676),
-(216, 'TT', 'TRINIDAD AND TOBAGO',  'Trinidad and Tobago',  'TTO',  780,  1868),
-(217, 'TN', 'TUNISIA',  'Tunisia',  'TUN',  788,  216),
-(218, 'TR', 'TURKEY', 'Turkey', 'TUR',  792,  90),
-(219, 'TM', 'TURKMENISTAN', 'Turkmenistan', 'TKM',  795,  7370),
-(220, 'TC', 'TURKS AND CAICOS ISLANDS', 'Turks and Caicos Islands', 'TCA',  796,  1649),
-(221, 'TV', 'TUVALU', 'Tuvalu', 'TUV',  798,  688),
-(222, 'UG', 'UGANDA', 'Uganda', 'UGA',  800,  256),
-(223, 'UA', 'UKRAINE',  'Ukraine',  'UKR',  804,  380),
-(224, 'AE', 'UNITED ARAB EMIRATES', 'United Arab Emirates', 'ARE',  784,  971),
-(225, 'GB', 'UNITED KINGDOM', 'United Kingdom', 'GBR',  826,  44),
-(226, 'US', 'UNITED STATES',  'United States',  'USA',  840,  1),
-(227, 'UM', 'UNITED STATES MINOR OUTLYING ISLANDS', 'United States Minor Outlying Islands', NULL, NULL, 1),
-(228, 'UY', 'URUGUAY',  'Uruguay',  'URY',  858,  598),
-(229, 'UZ', 'UZBEKISTAN', 'Uzbekistan', 'UZB',  860,  998),
-(230, 'VU', 'VANUATU',  'Vanuatu',  'VUT',  548,  678),
-(231, 'VE', 'VENEZUELA',  'Venezuela',  'VEN',  862,  58),
-(232, 'VN', 'VIET NAM', 'Viet Nam', 'VNM',  704,  84),
-(233, 'VG', 'VIRGIN ISLANDS, BRITISH',  'Virgin Islands, British',  'VGB',  92, 1284),
-(234, 'VI', 'VIRGIN ISLANDS, U.S.', 'Virgin Islands, U.s.', 'VIR',  850,  1340),
-(235, 'WF', 'WALLIS AND FUTUNA',  'Wallis and Futuna',  'WLF',  876,  681),
-(236, 'EH', 'WESTERN SAHARA', 'Western Sahara', 'ESH',  732,  212),
-(237, 'YE', 'YEMEN',  'Yemen',  'YEM',  887,  967),
-(238, 'ZM', 'ZAMBIA', 'Zambia', 'ZMB',  894,  260),
-(239, 'ZW', 'ZIMBABWE', 'Zimbabwe', 'ZWE',  716,  263);
 
 DROP TABLE IF EXISTS `failed_jobs`;
 CREATE TABLE `failed_jobs` (
@@ -544,9 +186,6 @@ CREATE TABLE `home_page` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-INSERT INTO `home_page` (`id`, `home_logo`, `banner_content`, `banner_content2`, `button_name`, `button_link`, `footer_content`, `discord_link`, `twitter_link`, `logo_name`, `top_button_name`, `top_button_link`, `discord_title1`, `discord_title2`, `discord_button_name`, `discord_button_link`, `news_title1`, `news_title2`, `ingos_logo1`, `ingos_logo2`, `ingos_logo3`, `ingos_logo4`, `ingos_logo5`, `ingos_logo6`, `footer_copy`, `image_one`, `image_two`, `image_three`, `heading_one`, `heading_two`, `heading_three`, `content_one`, `content_two`, `content_three`, `created_at`, `updated_at`) VALUES
-(1, '1688968836logo-new.jpg', 'DISCOVER, AND COLLECT THE WORLD’S BEST', 'SNOW GLOBE CITIES NFT. ARE YOU READY?',  'JOIN THE DISCORD', 'https://discord.com/invite/m7BJsR6xv9',  'Test SVG BE PART OF THE CHANGE, BE PART OF OUR COMMUNITY - BE PART OF THE CHANGE, BE PART OF OUR COMMUNITY - BE PART OF THE CHANGE, BE PART OF OUR COMMUNITY - BE PART OF THE CHANGE, BE PART OF OUR COMMUNITY - BE PART OF THE CHANGE, BE PART OF OUR COMMUNITY - BE PART OF THE CHANGE, BE PART OF OUR COMMUNITY - BE PART OF THE CHANGE, BE PART OF OUR COMMUNITY - BE PART OF THE CHANGE, BE PART OF OUR COMMUNITY', 'https://discord.com/invite/m7BJsR6xv9',  'https://twitter.com/SnowGlobeCities',  NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '© 2022 Snow Globe Cities - All Rights Reserved', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-06-13', '2023-07-11'),
-(2, '1655990580logo1.png',  'COMING TO A CITY NEAR YOU',  'ARE YOU READY?', 'CONNECT WALLET', '#',  '<p>BE PART OF THE CHANGE, BE PART OF OUR COMMUNITY - BE PART OF THE CHANGE, BE PART OF OUR COMMUNITY </p>  <p> - BE PART OF THE CHANGE, BE PART OF OUR COMMUNITY - BE PART OF THE CHANGE, BE PART OF OUR COMMUNITY </p> <p> - BE PART OF THE CHANGE, BE PART OF OUR COMMUNITY - BE PART OF THE CHANGE, BE PART OF OUR COMMUNITY </p> <p> - BE PART OF THE CHANGE, BE PART OF OUR COMMUNITY - BE PART OF THE CHANGE, BE PART OF OUR COMMUNITY </p>',  'https://discord.com/invite/m7BJsR6xv9',  'https://twitter.com/SnowGlobeCities',  'SNOW GLOBE CITIES',  'WORLD MAP',  'https://labs.snowglobecities.io/#',  'BE PART OF THE CHANGE, BE PART OF OUR COMMUNITY',  'JOIN OUR DISCORD AND PARTICIPATE IN OUR NEXT COMPETITION.',  'JOIN THE DISCORD', '#',  'STAY UP TO DATE ON THE LATEST NEWS,<br/> ANNOUNCEMENTS, AND USER GUIDES.', 'SUBSCRIBE TO OUR WEEKLY EMAIL NEWSLETTER!',  '1656049193cropped-sw-logo-02-1 copy.png',  '1656049193wfp-logo-standard-blue-en.png',  '1656049193unicef_logo_png3-1.png', '16560492552560px-usaid-identity.svg.png',  '16560492552560px-unhabitat.svg.png', '1656049255livelove_white_logo-vertical.png', '', '1689935068image_one.png',  '1689935068image_two.png',  '1689935068image_three.png',  'Flexible Rentals', 'No Hidden Fees', 'Price Match Guarantee',  'Cancel or change most bookings for free up to 48 hours before pick-up',  'Know exactly what you\'re paying', 'Found the same deal for less? We\'ll match the price', '2022-06-13', '2023-07-22');
 
 DROP TABLE IF EXISTS `home_page_logos`;
 CREATE TABLE `home_page_logos` (
@@ -558,15 +197,6 @@ CREATE TABLE `home_page_logos` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO `home_page_logos` (`id`, `image`, `status`, `created_at`, `updated_at`) VALUES
-(4, '1689930069.png', 1,  '2023-07-21 09:01:09',  '2023-07-21 09:01:09'),
-(5, '1689930086.png', 1,  '2023-07-21 09:01:26',  '2023-07-21 09:01:26'),
-(6, '1689930097.png', 1,  '2023-07-21 09:01:37',  '2023-07-21 09:01:37'),
-(7, '1689930107.png', 1,  '2023-07-21 09:01:47',  '2023-07-21 13:23:03'),
-(8, '1689930122.png', 1,  '2023-07-21 09:02:02',  '2023-07-21 13:23:04'),
-(9, '1689937643.png', 1,  '2023-07-21 11:07:23',  '2023-07-21 13:23:05'),
-(10,  '1689942701.png', 1,  '2023-07-21 12:31:41',  '2023-07-21 12:31:41'),
-(11,  '1690300912.png', 1,  '2023-07-25 15:57:27',  '2023-07-25 16:01:52');
 
 DROP TABLE IF EXISTS `language_management`;
 CREATE TABLE `language_management` (
@@ -578,9 +208,6 @@ CREATE TABLE `language_management` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO `language_management` (`id`, `name`, `status`, `created_at`, `updated_at`) VALUES
-(2, 'Italian',  1,  '2023-07-12 06:30:48',  '2023-07-17 05:07:38'),
-(3, 'English',  1,  '2023-07-12 06:31:00',  '2023-07-12 06:31:00');
 
 DROP TABLE IF EXISTS `migrations`;
 CREATE TABLE `migrations` (
@@ -590,11 +217,6 @@ CREATE TABLE `migrations` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '2014_10_12_000000_create_users_table', 1),
-(2, '2014_10_12_100000_create_password_resets_table', 1),
-(3, '2019_08_19_000000_create_failed_jobs_table', 1),
-(4, '2022_05_19_070355_create_admin_table', 2);
 
 DROP TABLE IF EXISTS `newsletter`;
 CREATE TABLE `newsletter` (
@@ -608,14 +230,6 @@ CREATE TABLE `newsletter` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO `newsletter` (`id`, `email`, `message`, `status`, `type`, `created_at`, `updated_at`) VALUES
-(1, 'votivedeepak.php@gmail.com', 'Hello ', 1,  'news', NULL, '2022-06-27 09:31:18'),
-(3, 'votivedeepak789.php@gmail.com',  'Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown', 1,  'help', NULL, '2022-06-27 13:02:48'),
-(7, 'votivedeepak789.php@gmail.com',  'Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown', 1,  'help', NULL, '2022-06-27 10:16:51'),
-(8, 'testemail@gmail.com',  NULL, 1,  'news', '2022-06-27 12:18:54',  '2022-06-27 12:18:54'),
-(9, 'votivedeepak.php@gmail.com', 'Hello how are you',  0,  'help', '2022-06-27 12:40:27',  '2022-06-27 12:41:04'),
-(10,  'votivedeepak.php@gmail.com', 'Hello how are you',  1,  'help', '2022-06-27 12:41:18',  '2022-06-27 12:41:18'),
-(15,  'test@gmail.com', NULL, 1,  'news', '2022-06-27 12:55:44',  '2022-06-27 12:55:44');
 
 DROP TABLE IF EXISTS `pages`;
 CREATE TABLE `pages` (
@@ -631,22 +245,6 @@ CREATE TABLE `pages` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO `pages` (`id`, `page_url`, `page_title`, `page_content`, `status`, `sub_title`, `type`, `created_at`, `updated_at`) VALUES
-(1, 'about-us', 'ABOUT US', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. bbbb ccc xxxxx nnn dddddeeee ggggg bbtttt</p>', 1,  'About Snow Globe Cities',  'cms',  '2022-06-21 19:36:37',  '2023-07-10 06:34:10'),
-(2, 'contact-us', 'CONTACT US', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>', 1,  'CONTACT US', 'cms',  '2022-06-21 19:36:37',  '2023-07-10 06:34:25'),
-(3, 'HOW CAN WE HELP?', 'HOW CAN WE HELP?', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>', 0,  'HOW CAN WE HELP?', 'cms',  '2022-06-21 19:36:37',  '2023-07-10 06:27:15'),
-(4, 'terms-&-conditions', 'TERMS & CONDITIONS', '<p>We are the best</p>', 1,  'TERMS & CONDITIOINS',  'cms',  '2022-06-21 19:36:37',  '2023-07-12 16:21:33'),
-(5, 'PRIVACY POLICY', 'PRIVACY POLICY', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>', 1,  'PRIVACY POLICY', 'cms',  '2022-06-21 19:36:37',  '2023-07-12 16:22:05'),
-(6, 'FAQ',  'FAQ',  '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. FAQ</p>', 0,  'FAQ',  'cms',  '2022-06-21 19:36:37',  '2023-07-10 06:27:19'),
-(10,  'OUR MISSION',  'OUR MISSION',  '<p><em>More</em> than half of us live in cities. By 2050, two-thirds of all humanity&mdash;6.5 billion people&mdash;will be urban. Sustainable development cannot be achieved without significantly transforming the way we build and manage our urban spaces.</p>\r\n\r\n<p>The rapid growth of cities&mdash;a result of rising populations and increasing migration&mdash;has led to a boom in mega-cities, especially in the developing world, and slums are becoming a more significant feature of urban life. Making cities sustainable means creating career and business opportunities, safe and affordable housing, and building resilient societies and economies. It involves INVESTING in public transport, creating green public spaces, and improving urban planning and management in participatory and inclusive ways.</p>\r\n\r\n<p>Snow Globe Cities (SGC) will be supporting the Sustainable Development Goals (SDGs), also known as the Global Goals adopted by the United Nations as a universal call to action to end poverty, protect the planet, and ensure that by 2030 all people enjoy peace and prosperity.</p>\r\n\r\n<p>Holders will be donors and supporting a certain cause around the world such as: Clean Water and Sanitation, Shelter, Affordable and Clean Energy, Sustainable Cities and Communities&hellip;</p>\r\n\r\n<p>The creativity, knowhow, technology and financial resources from all of the community is necessary to achieve our goal. Reports Will BE uploaded on our WEBsite to show the progress of our interventions ALL AROUND THE WORLD.</p>',  1,  'YOU CAN HELP US MAKE OUR WORLD A BETTER PLACE',  'mission',  '2022-06-21 19:36:37',  '2023-01-16 10:15:28'),
-(11,  'OUR PLAN', 'OUR PLAN', '<h3>  MERCHANDISE</h3>\r\n  <p>HOODIES, CAPS, AND STICKERS – EVERYTHING SNOW GLOBE CITIES. OUR HOLDERS \r\nWILL GET THE CHANCE TO COPP EXCLUSIVE DROPS AT A DISCOUNTED RATE. </p>\r\n\r\n<h3> SNOW GLOBES COLLECTIBLES</h3>\r\n  <p>OUR COMMUNITY WILL GET THE CHANCE TO HAVE THEIR NFTS TURNED INTO 3D \r\nCOLLECTIBLES. THESE LIMITED EDITION SNOW GLOBES WILL BE HANDPICKED, AND \r\nGIFTED TO THEIR REPRESENTATIVE HOLDERS. </p>\r\n\r\n<h3>  DONATIONS</h3>\r\n  <p>A PERCENTAGE OF 4% FROM ALL OUR REVENUE WILL BE DONATED AND DISTRIBUTED TO \r\nMULTIPLE NGOS THAT WILL HELP SHINE LIGHT, AND HELP THE W.A.S.H. GLOBAL ISSUE \r\n(WATER, SANITATION, AND HYGIENE) WORLDWIDE. WE PARTNERED WITH LIVELOVE AND \r\nMULTIPLE DONATORS TO THE UNITED NATIONS UN TO HELP US WITH OUR MISSION. </p>\r\n\r\n<h3>  METAVERSE  INTEGRATION</h3>\r\n  <p>SOON TO BE REVEALED.<br>\r\nJOIN OUR DISCORD TO BE THE FIRST TO FIND OUT! </p>', 1,  'HERE IS THE ROADMAP FOR OUR HOLDERS',  'plan', '2022-06-21 19:36:37',  '2022-06-24 13:02:03'),
-(12,  'OUR TEAM', 'OUR TEAM', NULL, 1,  'THE PEOPLE BEHIND THIS AWESOME PROJECT', 'teamts', '2022-06-21 19:36:37',  '2022-06-22 12:20:58'),
-(13,  'HOW CAN I JOIN THE SNOW GLOBE CITIES NFT?',  'HOW CAN I JOIN THE SNOW GLOBE CITIES NFT?',  '<p>You will be able to mint a Snow Globe on our website. Join our Discord to be the first to find out!</p>', 1,  '1',  'faq',  '2022-06-21 19:36:37',  '2022-06-22 13:02:24'),
-(14,  'WHEN WILL I BE ABLE TO MINT MY SNOW GLOBE CITY?',  'WHEN WILL I BE ABLE TO MINT MY SNOW GLOBE CITY?',  '<p>Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven&#39;t heard of them accusamus labore sustainable VHS.</p>', 1,  '1',  'faq',  '2022-06-21 19:36:37',  NULL),
-(17,  'https://twitter.com/SnowGlobeCities',  'Fabio Russo',  '1688969131team3.jpg',  1,  'Owner',  'team', '2022-06-22 11:02:57',  '2023-07-10 06:05:31'),
-(18,  'https://twitter.com/SnowGlobeCities',  'Anna Romano',  '1688969186team2.jpg',  1,  'Marketing Manager',  'team', '2022-06-22 12:00:23',  '2023-07-10 06:06:26'),
-(19,  'https://twitter.com/SnowGlobeCities',  'Luigi Costa',  '1688969223team5.jpg',  1,  'Operations & Projects',  'team', '2022-06-22 12:00:23',  '2023-07-10 06:07:03'),
-(27,  NULL, 'Gioia Leone',  '1688969344team6.png',  1,  'Inbound Strategist', 'team', '2023-07-10 06:09:04',  '2023-07-10 06:09:04');
 
 DROP TABLE IF EXISTS `password_resets`;
 CREATE TABLE `password_resets` (
@@ -745,7 +343,12 @@ INSERT INTO `users` (`id`, `user_type`, `first_name`, `last_name`, `email`, `con
 (356, 'normal_user',  'dfdsf 3e4rer', NULL, 'dfdf@gmail.com', '01234567890',  '$2y$10$2eIX/TjqjXPGX5gyjWDl..Uh53rYLFOMvaqLPMrW5gCS2B1/y5im2', 2,  1,  0,  'bFRYcHNGY2h2Q1hNaDBubUxkZWFwUT09', NULL, 0,  NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '10', NULL, 'Resistencia',  NULL, NULL, NULL, 'dsd',  NULL, NULL, NULL, NULL, NULL, 'web',  NULL, NULL, NULL, NULL, NULL, 'UIWsVg', NULL, 1,  NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-07-22 12:03:08',  '2023-07-22 06:33:08',  NULL, NULL, NULL, NULL, NULL),
 (357, 'normal_user',  'dfdsf 3e4rer', NULL, 'fdfdf@gmail.com',  '01234567890',  '$2y$10$s/jvbiX3fWWaKnhZv7S5FeDE8GHbezR7kcFkEWk76ejFYUItT8vKG', 2,  1,  0,  'ZWQySXhybk5rZDJ5TXQ1Q0tZandjdz09', NULL, 0,  NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '10', NULL, 'Resistencia',  NULL, NULL, NULL, 'dsd',  NULL, NULL, NULL, NULL, NULL, 'web',  NULL, NULL, NULL, NULL, NULL, 'I41H12', NULL, 1,  NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-07-22 12:49:54',  '2023-07-22 07:19:54',  NULL, NULL, NULL, NULL, NULL),
 (359, 'business_user',  'dfdsf 3e4rer', NULL, 'sdsd@gmail.com', '01234567890',  '$2y$10$2F/KGWGOA1zNKpzKkLC3EeHAleVtoYHV/QBWbeAyCdZEojXTfTILu', 2,  1,  0,  'Rk5uUnlPeElRdFRUVTBGL3VOR0FuUT09', NULL, 0,  NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '10', NULL, 'Resistencia',  NULL, NULL, NULL, 'dsd',  NULL, NULL, NULL, NULL, NULL, 'web',  NULL, NULL, NULL, NULL, NULL, 'Uyxbo6', NULL, 1,  NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-07-22 12:57:15',  '2023-07-22 07:27:15',  NULL, NULL, NULL, NULL, NULL),
-(360, 'business_user',  'hjh',  NULL, 't@gmail.com',  '1',  '$2y$10$5GQCYBVs4KeqJVeuFDRaPe7axDxuWMR5T98WHbMF8hf.x6psABD3K', 2,  1,  0,  'TVBsdzA0UFpBbGJNL0w4dEJZdnFMZz09', NULL, 0,  NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '99', NULL, 'indore', NULL, NULL, NULL, 'yuyityioio', NULL, NULL, NULL, NULL, NULL, 'web',  NULL, NULL, NULL, NULL, NULL, 'U7AUY0', NULL, 1,  NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-07-22 13:18:22',  '2023-07-22 07:48:22',  NULL, NULL, NULL, NULL, NULL);
+(360, 'business_user',  'hjh',  NULL, 't@gmail.com',  '1',  '$2y$10$5GQCYBVs4KeqJVeuFDRaPe7axDxuWMR5T98WHbMF8hf.x6psABD3K', 2,  1,  0,  'TVBsdzA0UFpBbGJNL0w4dEJZdnFMZz09', NULL, 0,  NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '99', NULL, 'indore', NULL, NULL, NULL, 'yuyityioio', NULL, NULL, NULL, NULL, NULL, 'web',  NULL, NULL, NULL, NULL, NULL, 'U7AUY0', NULL, 1,  NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-07-22 13:18:22',  '2023-07-22 07:48:22',  NULL, NULL, NULL, NULL, NULL),
+(361, 'business_user',  'ritu', NULL, 'y@gmail.com',  '2',  '$2y$10$pS7PUWdLCtYatzZlkdgDh.W1Nr3u07ODXnngJR9pOhb7GW4e3HiXW', 2,  1,  0,  'VHllQVpQWmM4dDkyRWRjenplamI1QT09', NULL, 0,  NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '99', NULL, 'indore', NULL, NULL, NULL, 'srghrtht;hiopyi',  NULL, NULL, NULL, NULL, NULL, 'web',  NULL, NULL, NULL, NULL, NULL, 'YnmrD4', NULL, 1,  NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-07-27 11:02:24',  '2023-07-27 05:32:24',  NULL, NULL, NULL, NULL, NULL),
+(362, 'business_user',  'rrgghjj',  NULL, 'u@gmail.com',  '2',  '$2y$10$ZKfBxFWg1jTA7eIIAXyCvODjUD1RnK/5M4g6mF5iy.gj3dz1QMj.G', 2,  1,  0,  'cDhQOXFFczVjalZnSUdZYjdsQzQ4UT09', NULL, 0,  NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '99', NULL, 'indore', NULL, NULL, NULL, 'yuyityioio', NULL, NULL, NULL, NULL, NULL, 'web',  NULL, NULL, NULL, NULL, NULL, 'qdeWJN', NULL, 1,  NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-07-27 11:06:10',  '2023-07-27 05:36:10',  NULL, NULL, NULL, NULL, NULL),
+(363, 'business_user',  'test gupta', NULL, 'test@gmail.com', '01234567894',  '$2y$10$U4SO08PglPno.eQW9j5bP.A5c8SvhfpmgjalSiM/XiP3OYmmf36lK', 2,  1,  0,  'N2s2QkFoa1lCOWFMR3RrYk1jUDgrQT09', NULL, 0,  NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '99', NULL, 'indore', NULL, NULL, NULL, 'Indore', NULL, NULL, NULL, NULL, NULL, 'web',  NULL, NULL, NULL, NULL, NULL, 'QWRwvV', NULL, 1,  NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-07-27 11:07:26',  '2023-07-27 05:37:26',  NULL, NULL, NULL, NULL, NULL),
+(364, 'normal_user',  'dfdsf 3e4rer', NULL, 'dsd@gmail.com',  '1234567890', '$2y$10$Fl9z4Az8ULGgy/ID5KhH5.01uQvSJWWgsO2c9USUZ9BM2p09A.FCq', 2,  1,  0,  'Mm5lS3hEV0RaV3RpQ2I2U3IrclhaUT09', NULL, 0,  NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '10', NULL, 'Resistencia',  NULL, NULL, NULL, 'dsd',  NULL, NULL, NULL, NULL, NULL, 'web',  NULL, NULL, NULL, NULL, NULL, 'dPgoK1', NULL, 1,  NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-07-27 13:12:49',  '2023-07-27 07:42:49',  NULL, NULL, NULL, NULL, NULL),
+(365, 'business_user',  'dfdsf 3e4rer', NULL, 'xcvc@gmail.com', '01234567890',  '$2y$10$cJrEi7VK.DHS2nEU9UHQkudgt4DLQkSEUBvh7MTj4hak1g.c4Hs1y', 2,  1,  0,  'M1puZVgrMXJHYWJNSUdMS3NhdUl3QT09', NULL, 0,  NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '10', NULL, 'Resistencia',  NULL, NULL, NULL, 'dsd',  NULL, NULL, NULL, NULL, NULL, 'web',  NULL, NULL, NULL, NULL, NULL, 'NUY4YZ', NULL, 1,  NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-07-27 13:13:24',  '2023-07-27 07:43:24',  NULL, NULL, NULL, NULL, NULL);
 
 DROP TABLE IF EXISTS `users1`;
 CREATE TABLE `users1` (
@@ -761,9 +364,6 @@ CREATE TABLE `users1` (
   UNIQUE KEY `users_email_unique` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO `users1` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Admin',  'admin1@gmail.com', NULL, '$2y$10$Rm5FC2i6utcbScNomUg2mO0PzaoOYZ.ni5z4Zd1/9T5.Qs3I/1eiO', NULL, '2022-05-19 05:56:14',  '2022-05-19 05:56:14'),
-(2, 'Admin',  'admin@gmail.com',  NULL, '$2y$10$2m7C0Bp9Usm9up6wZU.ee.jU9lsLFHJvzAcNQ2d7iWHZuwe/buZ1K', NULL, '2022-05-19 01:13:31',  '2022-05-19 01:13:31');
 
 DROP TABLE IF EXISTS `vendors`;
 CREATE TABLE `vendors` (
@@ -779,7 +379,5 @@ CREATE TABLE `vendors` (
   UNIQUE KEY `admin_email_unique` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO `vendors` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Rahul Vendor', 'vendor@gmail.com', NULL, '$2y$10$Fx3agFuck9jKNbH9FQyMTet9bMhW60ta18O.J0E1/hed.g79mA0jC', NULL, '2022-05-19 01:44:25',  '2022-05-19 01:44:25');
 
--- 2023-07-26 13:38:08
+-- 2023-07-27 13:38:56

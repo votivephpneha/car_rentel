@@ -66,7 +66,7 @@ class AdminController extends Controller
     public function dashboard()
     {
 
-        $totaluser = DB::table('users')->get();
+        $totaluser = DB::table('users')->where("user_type","normal_user")->orWhere("user_type","business_user")->get();
 
         $data['total_user'] = count($totaluser);
 

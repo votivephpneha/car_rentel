@@ -58,6 +58,8 @@ Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('/car_list', [App\Http\Controllers\HomeController::class, 'car_list'])->name('car_list');
 Route::get('/get_car_list', [App\Http\Controllers\HomeController::class, 'get_cars'])->name('get_cars');
+Route::get('/get_address', [App\Http\Controllers\HomeController::class, 'get_address'])->name('get_address');
+Route::get('/get_dropoff_address', [App\Http\Controllers\HomeController::class, 'get_dropoff_address'])->name('get_dropoff_address');
 Route::get('/car_list_category', [App\Http\Controllers\HomeController::class, 'car_list_category'])->name('get_cars');
 Route::get('/booking/{car_id}', [App\Http\Controllers\HomeController::class, 'booking'])->name('booking');
 Route::post('/submit_booking', [App\Http\Controllers\HomeController::class, 'submit_booking'])->name('submit_booking');

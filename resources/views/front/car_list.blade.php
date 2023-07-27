@@ -226,10 +226,10 @@ window.onclick = function(event) {
 						<div class="sidebar-cust">
 						<div class="sbar-type">
 							<div class="cat-title-sb">
-								<h4>Vehicle Type</h4>
+								<h4>Transmission</h4>
 							</div>
 							<div class="cat-type">
-								<div class="ml-md-2">
+								<div class="">
 									<div class="form-inline border rounded p-sm-2 my-2">
                                         <input type="radio" name="type" id="coupe-car" value="Automatic" onclick="getCars(this.value)"> 
                                         <label for="coupe-car" class="pl-1 pt-sm-0 pt-1">Automatic</label>
@@ -249,13 +249,19 @@ window.onclick = function(event) {
 								<h4>Vehicle Category</h4>
 							</div>
 							<div class="cat-type">
-								<div class="ml-md-2">
+								<div class="">
 									@foreach($category_list as $cat_list)
+									@if($cat_list->status == "1")
 									<div class="form-inline border rounded p-sm-2 my-2">
-										<input type="radio" name="category" id="coupe-car" value="{{ $cat_list->cat_name }}" onclick="getCarsCategory(this.value)"> 
-										<label for="coupe-car" class="pl-1 pt-sm-0 pt-1">{{ $cat_list->cat_name }}</label>
+									   <div class="cate_inp">	
+										<input type="radio" name="category" id="cat-{{ $cat_list->cat_name }}" value="{{ $cat_list->cat_name }}" onclick="getCarsCategory(this.value)"> 
+										<label for="cat-{{ $cat_list->cat_name }}" class="pl-1 pt-sm-0 pt-1">{{ $cat_list->cat_name }}</label>
+									   </div>
+									  <div class="cate_image-des">									   
 										<img src="{{ url('public/assets/img/coupe-car.png') }}">
+									  </div>
 									</div>
+									@endif
 									@endforeach
 									
 									
@@ -442,8 +448,8 @@ window.onclick = function(event) {
 			    <div class="row">
 			    	<form method="post" action="{{ url('car_list') }}">
             @csrf
-            <div class="form cd-form row no-gutters"> 
-              <div class="form-group col-md-6 mb-0 cd-group"> 
+            <div class="form cd-form row g-2"> 
+              <div class="form-group col-md-6 mb-0 cd-group wd-adj"> 
                 <div class="form-group mb-0"> 
                   <label>Pickup Location</label>
                   <input class="form-control border pickup_location" name="pickup_location" placeholder="Choose Location" type="text" required="" autocomplete="off"><div class="pickup_location_error search_box_error"></div> 
@@ -455,7 +461,7 @@ window.onclick = function(event) {
                   <input class="form-control border drop_off_location" name="drop_off_location" placeholder="Choose Location" type="text" required="" autocomplete="off"><div class="dropoff_location_error search_box_error"></div> 
                 </div> 
               </div>
-              <div class="form-group col-md-6 mb-0 cd-group">
+              <div class="form-group col-md-6 mb-0 cd-group wd-adj">
                 <div class="form-group mb-0"> 
                   <label>Pickup Date</label>
                   <input class="form-control border pickup_date" name="pickup_date" placeholder="Choose Pickup Date" type="text" id="pickup_date" required="" autocomplete="off"><div class="pickup_date_error search_box_error"></div> 
@@ -467,7 +473,7 @@ window.onclick = function(event) {
                   <input class="form-control border drop_off_date" name="drop_off_date" placeholder="Choose Drop Off Date" type="text" id="drop_off_date" required="" autocomplete="off"><div class="dropoff_date_error search_box_error"></div> 
                 </div>
               </div>
-              <div class="form-group col-md-6 mb-0 cd-group">
+              <div class="form-group col-md-6 mb-0 cd-group wd-adj">
                 <div class="form-group mb-0"> 
                   <label>Pickup Time</label>
                   <input class="form-control border pickup_time" name="pickup_time" placeholder="Choose Pickup Time" type="text" id="pickup_time" required="" autocomplete="off"><div class="pickup_time_error search_box_error"></div> 

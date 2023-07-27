@@ -225,7 +225,7 @@
     <div class="container px-4 px-lg-5 text-center">
         <h2 class="mb-4">Do You Have Something To Sell?</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        <a class="btn btn-light btn-xl cta-btn" href="#">Contact Us <i class="bi bi-arrow-right"></i></a>
+        <a class="cta-btn" href="#">Contact Us <i class="bi bi-arrow-right"></i></a>
     </div>
 </section>
 @endsection

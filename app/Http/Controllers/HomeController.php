@@ -585,12 +585,14 @@ class HomeController extends Controller
         $insert_booking = DB::table('booking_management')->insert(["booking_id"=>$booking_id,"driver_email_address"=>$email_address,"title"=>$title,"driver_first_name"=>$first_name,"driver_last_name"=>$last_name,"driver_contact_no"=>$contact_no,"driver_country"=>$country,"flight_no"=>$flight_no,"total"=>$total_price,"booking_status"=>"1","payment_method"=>"Cash On Delivery",'created_at'=>date('Y-m-d H:i:s')]);
         $insert_booking = DB::table('booking_details')->insert(["booking_id"=>$booking_id,"vehicle_id"=>$vehicle_id,"from_date"=>$pickup_date,"to_date"=>$drop_off_date,"price"=>$total_price,'created_at'=>date('Y-m-d H:i:s')]);
 
-        //return view("front/booking_invoice", ['email'=>$email_address,'booking_id'=>$booking_id]);
+       
 
         $token = Str::random(64);
+        $users = DB::table('users')->where('id',1)->first();
          
-         Mail::send('front.booking_invoice', ['token' => $token,'email'=>$email_address,'booking_id'=>$booking_id], function($message) use($request){
+         Mail::send('front.booking_invoice', ['token' => $token,'email'=>$email_address,'booking_id'=>$booking_id], function($message) use($request,$users){
                     $message->to($request->email_address);
+                    $message->cc($users->email,'Royal Car Rentel');
                     $message->from('votivephp.neha@gmail.com','Royal Car Rentel');
                     $message->subject('Booking Invoice');
 
@@ -606,6 +608,24 @@ class HomeController extends Controller
          $data['page_info'] = DB::table('home_page')->where('id',1)->first();
         $data['pages'] = DB::table('pages')->where('type','cms')->where('status','1')->get();
          return view("front/thankyou")->with($data);
+    }
+
+    public function get_address(Request $request){
+
+        $address_data = DB::table('address_table')->orWhere('address', 'like', '%' . $request->address_value . '%')->get();
+        foreach ($address_data as $address) {
+            echo "<div style='cursor:pointer' class='address_dropdown address-".$address->id."' onclick='getAddress(".$address->id.")'>".$address->address."</div>";
+        }
+        
+    }
+
+    public function get_dropoff_address(Request $request){
+
+        $address_data = DB::table('address_table')->orWhere('address', 'like', '%' . $request->address_value . '%')->get();
+        foreach ($address_data as $address) {
+            echo "<div style='cursor:pointer' class='address_dropdown address-".$address->id."' onclick='getDropoffAddress(".$address->id.")'>".$address->address."</div>";
+        }
+        
     }
 
 

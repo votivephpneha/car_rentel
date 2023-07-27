@@ -8,7 +8,7 @@
 
 @section('content')
 <!-- Category-->
-<section class="page-section title-banner">
+<section class="page-section thankyou-title-banner">
     <div class="container px-4 px-lg-5">
         <div class="row head_rgt">
             <div class="col-lg-12">

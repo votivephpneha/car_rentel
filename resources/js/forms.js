@@ -168,6 +168,36 @@ $("#customerAdmin_form").validate({
       required: true,
     },
   },
+  // Specify validation error messages
+  messages: {
+    fname: "Please enter the Name",
+    email: {
+      required:"Please enter the email",
+      email:"Please enter the valid email address",
+    },
+    contact_number: {
+      required: "Please enter the contact number",
+      number:"Please enter the digits",
+      // minlength: 10,
+      // maxlength: 10,
+    },
+    password: "Please enter the password",
+    confirm_password:{
+      required:"Please enter the confirm password",
+      equalTo:"Please enter the same password again"
+    },
+    address: {
+      required: "Please enter the Address",
+    },
+    city: {
+      required: "Please enter the City",
+    },
+    user_country: {
+      required: "Please enter the User Country",
+    },
+    
+    
+  },
   submitHandler: function (form) {
     var site_url = $("#baseUrl").val();
     // alert(site_url);
@@ -228,6 +258,36 @@ $("#businessAdmin_form").validate({
     user_country: {
       required: true,
     },
+  },
+  // Specify validation error messages
+  messages: {
+    fname: "Please enter the Name",
+    email: {
+      required:"Please enter the email",
+      email:"Please enter the valid email address",
+    },
+    contact_number: {
+      required: "Please enter the contact number",
+      number:"Please enter the digits",
+      // minlength: 10,
+      // maxlength: 10,
+    },
+    password: "Please enter the password",
+    confirm_password:{
+      required:"Please enter the confirm password",
+      equalTo:"Please enter the same password again"
+    },
+    address: {
+      required: "Please enter the Address",
+    },
+    city: {
+      required: "Please enter the City",
+    },
+    user_country: {
+      required: "Please enter the User Country",
+    },
+    
+    
   },
   submitHandler: function (form) {
     var site_url = $("#baseUrl").val();

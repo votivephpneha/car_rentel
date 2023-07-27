@@ -12,15 +12,18 @@
                         <li class="nav-item"><a class="nav-link" href="#">Ride</a></li>
                     </ul>
           <div class="header-info">
-            <div class="lang">
-              <a href="#"><i class="bi bi-translate"></i></a>
-            </div>
+            <div class="lang_picker">
+			<select class="selectpicker" data-width="fit">
+				<option data-content='<span class="flag-icon flag-icon-us"></span> English'>English</option>
+				<option  data-content='<span class="flag-icon flag-icon-it"></span> Italian'>Italian</option>
+			</select>
+			</div>
             <div class="login">
               <a href="#"><i class="bi bi-person-circle"></i></a>
             </div>
             <div class="cart">
               <a href="#"><i class="bi bi-cart3"></i></a>
-            </div>
+            </div>	
           </div>
                 </div>
             </div>

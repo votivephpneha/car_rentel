@@ -321,7 +321,13 @@ caption {
   color: #6c757d;
   text-align: left;
 }
-
+a:hover {
+    text-decoration: none !important;
+}
+a.text-dark:focus, a.text-dark:hover {
+    color: #121416!important;
+    text-decoration: none;
+}
 th {
   text-align: inherit;
   text-align: -webkit-match-parent;
@@ -11039,6 +11045,7 @@ header.masthead .filter {
     color: #ffffff;
     font-size: 14px;
     font-weight: 600;
+	margin-bottom: 0px !important;
 }
 .search-background input {
     background: transparent;
@@ -11089,10 +11096,10 @@ header.masthead .filter {
 }
 .item-search-tabs {
     background: rgb(255 255 255 / 25%);
-  padding-bottom: 20px;
-      /*margin-top: 50px;*/
-	  max-width: 750px;
-    margin: 50px auto 0px;
+	padding-bottom: 20px;
+    /*margin-top: 50px;*/
+	max-width: 750px;
+    margin: 15px auto 0px;
 }
 .header-txt-sml {
     padding-left: 15px;
@@ -11327,8 +11334,8 @@ span.acc-span {
     color: white;
 }
 .location-block {
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 .team-desc {
     background: #ffffff;
@@ -11365,6 +11372,7 @@ span.acc-span {
     max-width: 650px;
     margin: 0 auto;
     color: #B9B2B2;
+	margin-bottom: 50px;
 }
 .cta-btn {
     font-size: 14px;
@@ -11455,6 +11463,7 @@ ul.list-menu-ftr li::marker {
 }
 .social-info a {
     margin-right: 15px;
+	color: #ff5f00;
 }
 .social-info a:last-child {
     margin-right: 0px;
@@ -11718,7 +11727,7 @@ ul.list-menu-ftr li::marker {
         width: 13px;
         height: 13px;
         border-radius: 13px;
-        top: -4px;
+        top: -5px;
         left: 0px;
         position: relative;
         background-color: #ff5f00;
@@ -11797,9 +11806,12 @@ ul.list-menu-ftr li::marker {
 }
 .form-group.location {
     width: 30%;
+	margin-right: 15px;
+    max-width: 30% !important;
 }
 .form-group.btn--book {
     width: 20%;
+	max-width: 20%;
 }
 
 .search_box_error {
@@ -12285,8 +12297,7 @@ ul.summary-feat {
     font-size: 14px;
 }
 .pay_btn {
-    text-align: center;
-    margin-top: 15px;
+    text-align: center;;
 }
 .pay_btn .paynow-btn {
     font-size: 14px;
@@ -12515,6 +12526,7 @@ section#list-grid {
 }
 .change_date_btn a:hover {
     background: #212121;
+	    color: #ffffff;
 }
 .form.cd-form {
     padding: 15px;
@@ -12578,6 +12590,10 @@ section#list-grid {
     height: 40px;
     font-size: 14px;
 }
+.wd-adj {
+    padding-left: 15px !important;
+    padding-right: 0px !important;
+}
 .modal-close h4 {
     margin-bottom: 0px;
     font-size: 20px;
@@ -12630,6 +12646,9 @@ section#list-grid {
     font-size: 14px;
     padding: 10px 30px;
     border-radius: 50px;
+}
+.continue_btn a:hover {
+    color: #ffffff;
 }
 .continue_btn a:hover {
     background: #ff5f00;
@@ -12694,6 +12713,9 @@ section#list-grid {
 	    border-bottom: 1px solid #eeeeee;
     border-radius: 0px;
 }
+.ui-widget-header .ui-icon {
+    filter: brightness(0) invert(1);
+}
 
 .title_name_info {
     width: 300px;
@@ -12701,4 +12723,71 @@ section#list-grid {
 
 .dc_popup {
     padding-top: 0px !important;
+}
+.thankyou-title-banner {
+    background: url(../assets/img/banner-bg.jpg);
+    background-size: cover;
+    background-position: center;
+    padding: 5rem 0;
+    margin-top: 0px;
+    text-align: center;
+}
+
+.location-block .img-box-loc {
+    padding-right: calc(var(--bs-gutter-x) * .5);
+    padding-left: calc(var(--bs-gutter-x) * .5);
+	margin-top: 10px;
+}
+.lang_picker {
+    margin-right: 10px;
+}
+.lang_picker .selectpicker {
+    background: transparent;
+    color: #ffffff;
+    border: 2px solid #ff5f00;
+    border-radius: 4px;
+    padding: 4px;
+	font-size: 14px;
+    font-family: "Merriweather Sans";
+    font-weight: 400;
+	cursor: pointer;
+}
+.lang_picker .selectpicker:focus-visible {
+    outline: none;
+}
+.lang_picker .selectpicker option {
+    color: #000000;
+}
+.address_div {
+    background: #ffffff;
+    padding: 10px;
+    position: absolute;
+    z-index: 9999;
+    width: 100%;
+	font-size: 14px;
+}
+.address_div_dropoff {
+    background: #ffffff;
+    padding: 10px;
+    position: absolute;
+    z-index: 9999;
+    width: 100%;
+}
+.address_div .address_dropdown:hover {
+    background: #FF5F00;
+    color: #ffffff;
+}
+.address_div .address_dropdown {
+    padding: 5px;
+    font-size: 14px;
+}
+.cate_inp {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.sbar-categ .cat-type .form-inline {
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
 }

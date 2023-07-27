@@ -12,7 +12,7 @@ class CustomerController extends Controller
 {
     public function index() 
     {
-      $data['customerList'] = DB::table('users')->where('role_id','2')->orderby('created_at', 'DESC')->get();
+      $data['customerList'] = DB::table('users')->where("user_type","normal_user")->orderby('created_at', 'DESC')->get();
       return view('admin/customer/customer_list')->with($data);
     }
 
