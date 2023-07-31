@@ -59,14 +59,14 @@
 						</div>
 						<div class="form-outline mb-3">
 							<label class="form-label">Contact Number</label>							
-							<input id="phone" name="phone" type="tel" placeholder="Phone Number" class="form-control" maxlength="10"/>
+							<input id="phone" name="phone" type="tel" placeholder="Phone Number" class="form-control" maxlength="10" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"/>
 							<span>So we can call if any problems come up</span>
 						</div>
 						<div class="form-outline mb-3">
 							<label class="form-label">Country of Residence</label>		
 							
 							<select id='country_select' name='country'> 
-								<option>Select</option>
+								<option value="">Select</option>
 								<?php
 									foreach ($countries_list as $country) {
 										?>
@@ -80,8 +80,13 @@
 						</div>
 						<div class="form-outline mb-3">
 							<label class="form-label">Flight Number (Optional)</label>							
-							<input type="number" class="form-control" name="flight_no">
+							<input type="text" class="form-control" name="flight_no">
 							<span>Just in case the flight is delayed</span>
+						</div>
+						<div class="form-outline mb-3">
+							<label class="form-label">Notes</label>					
+							<textarea class="form-control" name="customer_notes"></textarea>
+							
 						</div>
 						<div class="form-outline btn-submit">
 						<button type="submit" class="btn btn-primary">Submit</button>
@@ -94,10 +99,10 @@
 					<div class="drive_details_cont">
 						<h3>Class of its own</h3>
 						<h2>Rent Verified Luxury Cars Directly From <span>Royal Car Rental</span></h2>
-						<div class="auth-btn-links">
+						<!-- <div class="auth-btn-links">
 							<a class="btn btn-one" href="{{ url('page/contact-us') }}">Contact Us Now</a>
 							<a class="btn btn-two" href="{{ url('/') }}">Search Cars</a>
-						</div>
+						</div> -->
 					</div>
 				</div>
 				</div>
@@ -109,9 +114,9 @@
         <!-- Call to action-->
         <section class="page-section cta">
             <div class="container px-4 px-lg-5 text-center">
-                <h2 class="mb-4">Do You Have Something To Sell?</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                <a class="cta-btn" href="#">Contact Us <i class="bi bi-arrow-right"></i></a>
+                <h2 class="mb-4">Work With Us</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <a class="cta-btn" href="https://wa.me/+355672002573">Contact Us <i class="bi bi-arrow-right"></i></a>
             </div>
         </section>
 @endsection

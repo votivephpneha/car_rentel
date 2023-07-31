@@ -36,6 +36,26 @@
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <style type="text/css">
+      .whats-app {
+        position: fixed;
+        width: 50px;
+        height: 50px;
+        bottom: 30px;
+        background-color: #25d366;
+        color: #FFF;
+        border-radius: 50px;
+        text-align: center;
+        font-size: 30px;
+        /*box-shadow: 3px 4px 3px #999;*/
+        right: 15px;
+        z-index: 100;
+      }
+
+      .my-float {
+          margin-top: 10px;
+      }
+    </style>
     @yield('current_page_css')
     </head>
     <?php
@@ -47,6 +67,9 @@
        @include('front.layout.header')
         @yield('content')
         @include('front.layout.footer')
+        <a href="https://wa.me/+355672002573" class="whats-app" target="_blank">
+          <i class='fa fa-whatsapp my-float'></i>
+        </a>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- SimpleLightbox plugin JS-->
@@ -87,13 +110,11 @@
         },
         phone: {
             required: true,
+            number:true
         },
         country: {
             required: true,
-        },
-        flight_no: {
-            required: true,
-        },
+        }
 
       },
       submitHandler: function (form) {
@@ -118,63 +139,79 @@
         }
     }
 })
-$( function() {
-    $( "#pickup_date" ).datepicker({
-        dateFormat: "dd-M-yy",
-        minDate: 0,
-        onSelect: function () {
-            var dt2 = $('#drop_off_date');
-            var startDate = $(this).datepicker('getDate');
-            var minDate = $(this).datepicker('getDate');
-            var dt2Date = dt2.datepicker('getDate');
-            //difference in days. 86400 seconds in day, 1000 ms in second
-            var dateDiff = (dt2Date - minDate)/(86400 * 1000);
+// $( function() {
+//     $( "#pickup_date" ).datepicker({
+//         dateFormat: "dd-M-yy",
+//         minDate: 0,
+//         onSelect: function () {
+//             var dt2 = $('#drop_off_date');
+//             var startDate = $(this).datepicker('getDate');
+//             var minDate = $(this).datepicker('getDate');
+//             var dt2Date = dt2.datepicker('getDate');
+//             //difference in days. 86400 seconds in day, 1000 ms in second
+//             var dateDiff = (dt2Date - minDate)/(86400 * 1000);
             
-            startDate.setDate(startDate.getDate() + 30);
-            if (dt2Date == null || dateDiff < 0) {
-                    dt2.datepicker('setDate', minDate);
-            }
-            else if (dateDiff > 30){
-                    dt2.datepicker('setDate', startDate);
-            }
-            //sets dt2 maxDate to the last day of 30 days window
-            dt2.datepicker('option', 'maxDate', startDate);
-            dt2.datepicker('option', 'minDate', minDate);
-        }
-    });
-    $( "#drop_off_date" ).datepicker({
-        dateFormat: "dd-M-yy",
-        minDate: 0
-    });
-  } );
- $('.pickup_time').timepicker({
-    timeFormat: 'h:mm p',
-    interval: 60,
+//             startDate.setDate(startDate.getDate() + 30);
+//             if (dt2Date == null || dateDiff < 0) {
+//                     dt2.datepicker('setDate', minDate);
+//             }
+//             else if (dateDiff > 30){
+//                     dt2.datepicker('setDate', startDate);
+//             }
+//             //sets dt2 maxDate to the last day of 30 days window
+//             dt2.datepicker('option', 'maxDate', startDate);
+//             dt2.datepicker('option', 'minDate', minDate);
+//         }
+//     });
+//     $( "#drop_off_date" ).datepicker({
+//         dateFormat: "dd-M-yy",
+//         minDate: 0
+//     });
+//   } );
+//  $('.pickup_time').timepicker({
+//     timeFormat: 'h:mm p',
+//     interval: 60,
     
     
-    dynamic: false,
-    dropdown: true,
-    scrollbar: true
-});
-  $('.drop_off_time').timepicker({
-    timeFormat: 'h:mm p',
-    interval: 60,
+//     dynamic: false,
+//     dropdown: true,
+//     scrollbar: true
+// });
+//   $('.drop_off_time').timepicker({
+//     timeFormat: 'h:mm p',
+//     interval: 60,
     
-    dynamic: false,
-    dropdown: true,
-    scrollbar: true
-});
+//     dynamic: false,
+//     dropdown: true,
+//     scrollbar: true
+// });
 </script>
-<!-- <script type="text/javascript">
+<script type="text/javascript">
     $( "#pickup_date" ).datetimepicker({
         dateFormat: "dd-M-yy",
-        minDate: 0
+        minDate: 0,
+        onSelectDate:function (date) {
+          var startDate = new Date(date);
+          //var date1 = startDate.getDate()+1;
+          //var date1 = new Date();
+
+          // add a day
+          //date.setDate(date.getDate() + 1);
+          //alert(date1);
+          $( "#drop_off_date" ).datetimepicker({
+              dateFormat: "dd-M-yy",
+              minDate: startDate.setDate(date.getDate() + 1),
+
+
+          });
+          
+        },
     });
     $( "#drop_off_date" ).datetimepicker({
         dateFormat: "dd-M-yy",
         minDate: 0
     });
-</script> -->
+</script>
 <script>
       $(function () {
             

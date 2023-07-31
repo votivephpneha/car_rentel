@@ -74,16 +74,16 @@
   });
 
   function getAddress(address_id){
-    var address_value = $(".address-"+address_id).text();
+    var address_value1 = $(".address-"+address_id).text();
 
-    $(".pickup_location").val(address_value);
+    $(".pickup_location").val(address_value1);
     $(".address_div").hide();
   }
 
   function getDropoffAddress(address_id){
-    var address_value = $(".address-"+address_id).text();
+    var address_value2 = $(".address_text-"+address_id).text();
 
-    $(".drop_off_location").val(address_value);
+    $(".drop_off_location").val(address_value2);
     $(".address_div_dropoff").hide();
   }
   $(document).mouseup(function(e){
@@ -124,7 +124,7 @@
           <form method="post" action="{{ url('car_list') }}">
             @csrf
   					<div class="form row no-gutters"> 
-  						<div class="form-group col-xl-4 col-lg-4 col-md-12 mb-2 location"> 
+  						<div class="form-group col-xl-3 col-lg-3 col-md-12 mb-2 location"> 
   							<div class="form-group mb-2"> 
   								<label>Pickup Location</label>
   								<input class="form-control border pickup_location" name="pickup_location" placeholder="Choose Location" type="text" required="" autocomplete="off">
@@ -134,21 +134,8 @@
                   <div class="pickup_location_error search_box_error"></div> 
   							</div> 
   						</div> 
-  						
-  						<div class="form-group col-xl-4 col-lg-4 col-md-12 mb-2 location">
-  							<div class="form-group mb-2"> 
-  								<label>Pickup Date</label>
-  								<input class="form-control border pickup_date" name="pickup_date" placeholder="Choose Pickup Date" type="text" id="pickup_date" required="" autocomplete="off"><div class="pickup_date_error search_box_error"></div> 
-  							</div>
-  						</div>
 						
-						<div class="form-group col-xl-4 col-lg-4 col-md-12 mb-2 location">
-							<div class="form-group mb-2"> 
-								<label>Pickup Time</label>
-									<input class="form-control border pickup_time" name="pickup_time" placeholder="Choose Pickup Time" type="text" id="pickup_time" required="" autocomplete="off"><div class="pickup_time_error search_box_error"></div> 
-							</div>
-						</div>
-						<div class="form-group col-xl-4 col-lg-4 col-md-12 mb-2 location">
+						<div class="form-group col-xl-3 col-lg-3 col-md-12 mb-2 location">
   							<div class="form-group mb-0"> 
   								<label>Drop Off Location</label>
   								<input class="form-control border drop_off_location" name="drop_off_location" autocomplete="off" placeholder="Choose Location" type="text" required="">
@@ -158,18 +145,33 @@
                   <div class="dropoff_location_error search_box_error"></div> 
   							</div> 
   						</div>
-  						<div class="form-group col-xl-4 col-lg-4 col-md-12 mb-2 location">
+  						
+  						<div class="form-group col-xl-3 col-lg-3 col-md-12 mb-2 location">
+  							<div class="form-group mb-2"> 
+  								<label>Pickup Date</label>
+  								<input class="form-control border pickup_date" name="pickup_date" placeholder="Choose Pickup Date" type="text" id="pickup_date" required="" autocomplete="off"><div class="pickup_date_error search_box_error"></div> 
+  							</div>
+  						</div>
+						
+						<!-- <div class="form-group col-xl-4 col-lg-4 col-md-12 mb-2 location">
+							<div class="form-group mb-2"> 
+								<label>Pickup Time</label>
+									<input class="form-control border pickup_time" name="pickup_time" placeholder="Choose Pickup Time" type="text" id="pickup_time" required="" autocomplete="off"><div class="pickup_time_error search_box_error"></div> 
+							</div>
+						</div> -->
+						
+  						<div class="form-group col-xl-3 col-lg-3 col-md-12 mb-2 location">
   							<div class="form-group mb-0"> 
   								<label>Drop Off Date</label>
   								<input class="form-control border drop_off_date" name="drop_off_date" placeholder="Choose Drop Off Date" type="text" id="drop_off_date" required="" autocomplete="off"><div class="dropoff_date_error search_box_error"></div> 
   							</div>
   						</div>
-              <div class="form-group col-xl-4 col-lg-4 col-md-12 mb-0 location">
+              <!-- <div class="form-group col-xl-4 col-lg-4 col-md-12 mb-0 location">
                 <div class="form-group mb-0"> 
                   <label>Drop Off Time</label>
                   <input class="form-control border drop_off_time" name="drop_off_time" placeholder="Choose Drop Off Time" type="text" id="drop_off_time" required="" autocomplete="off"><div class="dropoff_date_error search_box_error"></div> 
                 </div>
-              </div>
+              </div> -->
   						
   						<div class="form-group col-xl-4 col-lg-4 col-md-12 mb-0 btn--book"> 
                 <button type="submit" name="search_btn" class="search_btn">BOOK<i class="bi bi-arrow-right"></i></button>
@@ -601,9 +603,9 @@
         <!-- Call to action-->
         <section class="page-section cta">
             <div class="container px-4 px-lg-5 text-center">
-                <h2 class="mb-4">Do You Have Something To Sell?</h2>
+                <h2 class="mb-4">Work With Us</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                <a class="cta-btn" href="#">Contact Us <i class="bi bi-arrow-right"></i></a>
+                <a class="cta-btn" href="https://wa.me/+355672002573">Contact Us <i class="bi bi-arrow-right"></i></a>
             </div>
         </section>
         @endsection

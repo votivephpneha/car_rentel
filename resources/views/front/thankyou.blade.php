@@ -27,6 +27,7 @@
         <p>- Details of your rental.</p>
         <p>- Photos of the car you will rent.</p>
         <p>- Invoice of the rental booking.</p>
+        <p>- If you do not see the email in a few minutes, check your "junk mail" folder or "spam" folder.</p>
         <h6>Thank you for choosing Royal Car Rental.</h6>
         <div class="continue_btn">
             <a href="{{ url('/') }}">Ok</a>

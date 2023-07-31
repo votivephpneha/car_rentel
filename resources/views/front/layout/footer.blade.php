@@ -8,7 +8,8 @@
               <p>Cu qui probo malorum saperet. Ne admodum apeirian iracundia usu.</p>
             </div>
             <div class="social-info">
-              <a href="#"><i class="bi bi-instagram"></i></a> <a href="#"><i class="bi bi-whatsapp"></i></a>
+              <a href="#"><i class="bi bi-instagram"></i></a> <a href="https://wa.me/+355672002573"><i class="bi bi-whatsapp"></i></a>
+			  
             </div>
                     </div>
           <div class="col-lg-3 col-sm-3 mb-4">

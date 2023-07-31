@@ -83,6 +83,14 @@
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="{{ url('/admin/payment_transaction') }}" class="nav-link">
+              <i class="nav-icon fas fa-tasks"></i>
+              <p>
+                Payment Transaction
+              </p>
+            </a>
+          </li>
 
           <li class="nav-item">
             <a href="{{ url('/admin/show_category') }}" class="nav-link">

@@ -1015,7 +1015,7 @@ class AdminController extends Controller
 
     /* End help notification */
     public function booking_management(){
-        $data['booking_details'] = DB::table('booking_management')->get();
+        $data['booking_details'] = DB::table('booking_management')->orderBy('created_at', 'DESC')->get();
         //print_r($data['booking_details']);
         return view("admin/booking/booking")->with($data);
     }
@@ -1045,7 +1045,7 @@ class AdminController extends Controller
     }
 
     public function car_management(){
-        $data['car_list'] = DB::table('car_management')->get();
+        $data['car_list'] = DB::table('car_management')->orderBy('created_at', 'DESC')->get();
         return view("admin/car/carmgmt")->with($data);
     }
 
@@ -1197,7 +1197,7 @@ class AdminController extends Controller
     }
 
     public function language_management(){
-        $data["language_list"] = DB::table('language_management')->get();
+        $data["language_list"] = DB::table('language_management')->orderBy('created_at', 'DESC')->get();
         return view("admin/language/language_management")->with($data);
         
     }
@@ -1345,7 +1345,7 @@ class AdminController extends Controller
     }
 
     public function show_category(Request $request){
-        $data['category_list'] = DB::table('categories')->get();
+        $data['category_list'] = DB::table('categories')->orderBy('cat_id', 'DESC')->get();
         return view("admin/Category/show_category")->with($data);
     }
 
@@ -1391,6 +1391,33 @@ class AdminController extends Controller
         } else {
             return json_encode(array('status' => 'error','msg' => 'Some internal issue occured.'));
         }
+    }
+
+    public function translation_management(){
+        $data['translations_en'] = DB::table('translation_mgmt')->where("id","1")->get()->first();
+        $data['translations_it'] = DB::table('translation_mgmt')->where("id","2")->get()->first();
+        return view("admin/Translations/translation_management")->with($data);
+    }
+
+    public function update_translations(Request $request){
+        $update_translations_en = DB::table('translation_mgmt')->where("id","1")->update(['Menu1'=>$request->Menu1_en,'Menu2'=>$request->Menu2_en,'pickup_location_text'=>$request->pickup_location_en,'drop_off_location'=>$request->dropoff_location_en,'pickup_date'=>$request->pickup_date_en,'dropoff_date'=>$request->dropoff_date_en,'book_btn'=>$request->book_btn_en,'brand_section_heading'=>$request->brand_section_heading_en,'created_at'=>date('Y-m-d H:i:s')]);
+        $update_translations_en = DB::table('translation_mgmt')->where("id","2")->update(['Menu1'=>$request->Menu1_it,'Menu2'=>$request->Menu2_it,'pickup_location_text'=>$request->pickup_location_it,'drop_off_location'=>$request->dropoff_location_it,'pickup_date'=>$request->pickup_date_it,'book_btn'=>$request->dropoff_date_it,'brand_section_heading'=>$request->brand_section_heading_it,'created_at'=>date('Y-m-d H:i:s')]);
+
+       return response()->json(['status' => 'success', 'msg' => 'Content updated successfully']);
+    }
+
+    public function payment_transaction(Request $request){
+        $data['payment_transaction'] = DB::table('payment_transaction')->orderby('created_at', 'DESC')->get();
+        return view("admin/payment/payment")->with($data);
+    }
+
+     public function change_payment_status(Request $request){
+        
+        $update_payment_status = DB::table('payment_transaction')->where("payment_id",$request->payment_id )->update(['payment_status'=>$request->payment_status]);
+        
+        return response()->json(['success'=>'Payment status completed successfully.']);
+        
+        
     }
 
 }

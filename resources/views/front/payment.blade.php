@@ -56,6 +56,7 @@
                             <input type="hidden" id="contact_no" name="contact_no" class="form-control" value="<?php echo $get_user_data['contact_no'] ?>" />
                             <input type="hidden" name="country" class="form-control" value="<?php echo $get_user_data['country'] ?>" />
                             <input type="hidden" name="flight_no" class="form-control" value="<?php echo $get_user_data['flight_no'] ?>" />
+                            <input type="hidden" name="customer_notes" class="form-control" value="<?php echo $get_user_data['customer_notes'] ?>" />
                             <input type="hidden" name="vehicle_id" class="form-control" value="{{ $car_data->id }}" />
                             <?php
                               $price_data = DB::table('car_price_days')->where('no_of_day','1 Day')->where('car_id',$car_data->id)->first();
@@ -65,13 +66,13 @@
                             <input type="hidden" name="total_price" class="form-control" value="{{ $price }}" />
 
                             <div class="d-flex align-items-center justify-content-between">
-                              <div class="form-check">
+                              <!-- <div class="form-check">
                               <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
                               <label class="form-check-label" for="flexRadioDefault1">Cash On Delivery</label>
-                            </div>
+                            </div> -->
                             <div class="pay_btn">
                               <div class="input">
-                                <button type="submit" class="btn btn-primary btn-block paynow-btn">Pay Now</button>    
+                                <button type="submit" class="btn btn-primary btn-block paynow-btn">Cash On Delivery</button>    
                               </div> 
                             </div>
                             </div>
@@ -187,7 +188,7 @@
                     </div>
                     <ul class="summary-feat">
                       <li><i class="bi bi-check2"></i> Unlimited Kilometers</li>
-                      <li><i class="bi bi-check2"></i> Included loss damage waiver up to $500 financial responsibility</li>
+                      <li><i class="bi bi-check2"></i> Included loss damage waiver up to <i class="fa fa-eur" style="color:black"></i>500 financial responsibility</li>
                       <li><i class="bi bi-check2"></i> Included third party insurance</li>
                       <li><i class="bi bi-check2"></i> Driver must have held their driver's license for at least 2year(s)</li>
                     </ul>
@@ -206,7 +207,7 @@
                       $date_diff = $get_user_data['date_diff'];
                       $price = $date_diff * $price_data->price;
                     ?>
-                    <h4>${{ $price }}</h4>
+                    <h4><i class="fa fa-eur"></i>{{ $price }}</h4>
                   </div>
                 </div>  
               </div>
@@ -223,9 +224,9 @@
 <!-- Call to action-->
 <section class="page-section cta">
     <div class="container px-4 px-lg-5 text-center">
-        <h2 class="mb-4">Do You Have Something To Sell?</h2>
+        <h2 class="mb-4">Work With Us</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        <a class="cta-btn" href="#">Contact Us <i class="bi bi-arrow-right"></i></a>
+        <a class="cta-btn" href="https://wa.me/+355672002573">Contact Us <i class="bi bi-arrow-right"></i></a>
     </div>
 </section>
 @endsection

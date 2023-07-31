@@ -23,7 +23,7 @@
     
   });
   console.log("car_price",sum.toFixed(2));
-  $(".total_price").html("$"+sum.toFixed(2));
+  $(".total_price").html("<i class='fa fa-eur'></i>"+sum.toFixed(2));
 
   $(".assign_ride_btn").click(function(){
     $(".assign_ride_dropdown").show();
@@ -130,6 +130,7 @@
                           <option value="1" @if($booking_details->booking_status == '1') Selected @endif>Pending</option>
                           <option value="2" @if($booking_details->booking_status == '2') Selected @endif>Assigned</option>
                           <option value="3" @if($booking_details->booking_status == '3') Selected @endif>Accepted</option>
+                          <option value="4" @if($booking_details->booking_status == '4') Selected @endif>Rejected</option>
                         </select>
                       </div>
                     </div>
@@ -173,6 +174,9 @@
                           @if($booking_details->booking_status == "3")
                           Accepted
                           @endif
+                          @if($booking_details->booking_status == "4")
+                          Rejected
+                          @endif
                         </td>
                       </tr>
                       <tr>
@@ -181,7 +185,7 @@
                         <td>
                           <?php
                             $price = $booking_details->total;
-                            echo "$".number_format((float)$price, 2, '.', '');
+                            echo "<i class='fa fa-eur'></i>".number_format((float)$price, 2, '.', '');
                           ?>
                         </td>
                       </tr>
@@ -203,7 +207,16 @@
                         <th>Payment Status</th>
                        
                         <td>
-                         Pending
+                         <?php
+
+                            $payment_data = DB::table("payment_transaction")->where("booking_id",$booking_details->booking_id)->get()->first();
+                            if($payment_data->payment_status == 0){
+                              echo "Pending";
+                            }else{
+                              echo "Completed";
+                            }
+                            
+                          ?>
                         </td>
                       </tr>
                      
@@ -318,7 +331,7 @@
                         <?php
                               $price_data = DB::table('car_price_days')->where('no_of_day','1 Day')->where('car_id',$b_data->vehicle_id)->first();
                               $price = $price_data->price;
-                              echo "$".number_format((float)$price, 2, '.', '');
+                              echo "<i class='fa fa-eur'></i>".number_format((float)$price, 2, '.', '');
                             ?>
                       </td>
                     </tr>

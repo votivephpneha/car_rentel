@@ -67,6 +67,7 @@ Route::get('/payment/{car_id}', [App\Http\Controllers\HomeController::class, 'pa
 Route::post('/submit_payment', [App\Http\Controllers\HomeController::class, 'submit_payment'])->name('submit_payment');
 Route::get('/thankyou', [App\Http\Controllers\HomeController::class, 'thankyou'])->name('thankyou');
 Route::get('/baseForm', [App\Http\Controllers\HomeController::class, 'baseForm'])->name('baseForm');
+Route::post('/manage_booking', [App\Http\Controllers\HomeController::class, 'manage_booking'])->name('manage_booking');
 
 Route::post('/updateProfile', 'App\Http\Controllers\HomeController@updateProfile');
 Route::post('/updateProfileImage', 'App\Http\Controllers\HomeController@updateProImg'); 
@@ -279,6 +280,11 @@ Route::group(['prefix' => 'admin'], function(){
         Route::get('/edit_category/{cat_id}', [AdminController::class, 'edit_category'])->name('edit_category');
         Route::post('/update_category', [AdminController::class, 'update_category'])->name('update_category');
         Route::any('/delete_category', [AdminController::class, 'delete_category'])->name('delete_category');
+        Route::get('/translation_management', [AdminController::class, 'translation_management'])->name('translation_management');
+        Route::post('/update_translations', [AdminController::class, 'update_translations'])->name('update_translations');
+        Route::get('/payment_transaction', [AdminController::class, 'payment_transaction'])->name('payment_transaction');
+        Route::get('/change_payment_status', [AdminController::class, 'change_payment_status'])->name('change_payment_status');
+
     });
 });
 

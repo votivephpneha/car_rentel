@@ -7,6 +7,13 @@
 
 
 @section('current_page_css')
+<style>
+label#user_country-error {
+    position: absolute;
+    bottom: 13px;
+    left: 15px;
+}
+</style>
 
 @endsection
 

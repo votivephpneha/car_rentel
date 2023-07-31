@@ -12,6 +12,12 @@
 		<p style="display: grid;font-size: 12px;margin-right: 2em;text-transform: uppercase;line-height: 1.4;border-right: 1px dashed #d3ced2;    padding-right: 2em;margin-left: 0;padding-left: 0;margin-bottom: 0px;margin-top: 0px;">Country of Residence: <b>{{ $booking_mgmt->driver_country }}</b></p>
 		<p style="display: grid;font-size: 12px;margin-right: 2em;text-transform: uppercase;line-height: 1.4;padding-right: 2em;margin-left: 0;padding-left: 0;margin-bottom: 0px;margin-top: 0px;">Phone No: <b>{{ $booking_mgmt->driver_contact_no }}</b></p >
 		</div>	
+		<div class="info-invoice" style="display: flex;background: rgb(248, 248, 249);padding: 25px;border-radius: 12px;">
+		<p style="display: grid;font-size: 12px;margin-right: 2em;text-transform: uppercase;line-height: 1.4;border-right: 1px dashed #d3ced2;    padding-right: 2em;margin-left: 0;padding-left: 0;margin-bottom: 0px;margin-top: 0px;">Pickup Location: <b>{{ $pickup_location }}</b></p>
+		<p style="display: grid;font-size: 12px;margin-right: 2em;text-transform: uppercase;line-height: 1.4;border-right: 1px dashed #d3ced2;    padding-right: 2em;margin-left: 0;padding-left: 0;margin-bottom: 0px;margin-top: 0px;">Drop Off Location: <b>{{ $drop_off_location }}</b></p>
+		<p style="display: grid;font-size: 12px;margin-right: 2em;text-transform: uppercase;line-height: 1.4;border-right: 1px dashed #d3ced2;    padding-right: 2em;margin-left: 0;padding-left: 0;margin-bottom: 0px;margin-top: 0px;">Pickup Date: <b>{{ $pickup_date }}</b></p>
+		<p style="display: grid;font-size: 12px;margin-right: 2em;text-transform: uppercase;line-height: 1.4;padding-right: 2em;margin-left: 0;padding-left: 0;margin-bottom: 0px;margin-top: 0px;">Drop Off Date: <b>{{ $drop_off_date }}</b></p >
+		</div>	
 	</div>
 	<h2 style="font-size: 18px;color: #FF5F00;margin-bottom: 5px;">Booking Details</h2>
 	<table style="width:100%;">
@@ -47,11 +53,11 @@
 						
 					<td style="padding: 10px 20px; font-size: 16px; border: 0px !important; text-align: left !important; background: transparent !important; border-bottom: 1px solid #ececec !important; vertical-align: middle;text-align: center !important;">{{ $vehicle_detail->vehicle_type }}</td>	
 					<td style="padding: 10px 20px; font-size: 16px; border: 0px !important; text-align: left !important; background: transparent !important; border-bottom: 1px solid #ececec !important; vertical-align: middle;text-align: center !important;">
-						${{ $b_det->price }}
+						€{{ $b_det->price }}
 						
 					</td>	
 					<td style="padding: 10px 20px; font-size: 16px; border: 0px !important; text-align: left !important; background: transparent !important; border-bottom: 1px solid #ececec !important; vertical-align: middle;text-align: center !important;">
-						${{ $b_det->price }}
+						€{{ $b_det->price }}
 					</td>	
 					
 				</tr>
@@ -66,7 +72,7 @@
 					<b>
 					<?php
 						$booking_total = $booking_mgmt->total;	
-						echo "$".number_format((float)$booking_total, 2, '.', '');
+						echo "€".number_format((float)$booking_total, 2, '.', '');
 					?>
 					</b>
 				</td>

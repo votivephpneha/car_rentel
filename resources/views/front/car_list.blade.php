@@ -285,7 +285,7 @@ window.onclick = function(event) {
 											<div class="card overflow-hidden">
 												<div class="d-md-flex">
 													<div class="item-card9-img">
-														<div class="item-card9-imgs"><a href="#"></a> <img alt="img" class="cover-image" src="{{ url('public/uploads/cars') }}/{{ $c_list->image }}"></div>
+														<div class="item-card9-imgs"> <img alt="img" class="cover-image" src="{{ url('public/uploads/cars') }}/{{ $c_list->image }}"></div>
 													</div>
 													<div class="card border-0 mb-0">
 														<div class="card-body">
@@ -303,10 +303,12 @@ window.onclick = function(event) {
 
 																?>
 																</div>
+																
 																<div class="price_div">
 																	<div class="day_price">{{ $price_data->price }} <i class="fa fa-eur" aria-hidden="true"></i> /Day</div>
 																	<div class="tot_price">{{ $price }} <i class="fa fa-eur" aria-hidden="true"></i> Total</div>
 																</div>
+																
 															</div>
 														<div class="item-card9-desc mb-2 mt-1" style="">
 															<div class="row features_list">

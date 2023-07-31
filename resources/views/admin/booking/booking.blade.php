@@ -326,7 +326,7 @@
                                                     <td>
                                                       <?php
                                                         $price = $arr->total;
-                                                        echo "$".number_format((float)$price, 2, '.', '');
+                                                        echo "<i class='fa fa-eur'></i>".number_format((float)$price, 2, '.', '');
                                                       ?>
                                                       </td>
 
