@@ -128,7 +128,7 @@
                         <select name="booking_status" class="form-control">
                           <option>Change Status</option>
                           <option value="1" @if($booking_details->booking_status == '1') Selected @endif>Pending</option>
-                          <option value="2" @if($booking_details->booking_status == '2') Selected @endif>Assigned</option>
+                          <!-- <option value="2" @if($booking_details->booking_status == '2') Selected @endif>Assigned</option> -->
                           <option value="3" @if($booking_details->booking_status == '3') Selected @endif>Accepted</option>
                           <option value="4" @if($booking_details->booking_status == '4') Selected @endif>Rejected</option>
                         </select>
@@ -210,11 +210,14 @@
                          <?php
 
                             $payment_data = DB::table("payment_transaction")->where("booking_id",$booking_details->booking_id)->get()->first();
-                            if($payment_data->payment_status == 0){
-                              echo "Pending";
-                            }else{
-                              echo "Completed";
+                            if(!empty($payment_data)){
+                              if($payment_data->payment_status == 0){
+                                echo "Pending";
+                              }else{
+                                echo "Completed";
+                              }
                             }
+                            
                             
                           ?>
                         </td>

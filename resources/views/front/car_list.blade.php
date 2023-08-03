@@ -209,13 +209,13 @@ window.onclick = function(event) {
 
 @section('content')
 <!-- Category-->
-        <section class="page-section title-banner">
+        <section class="page-section title-banner" style="padding:8rem 0;">
             <div class="container px-4 px-lg-5">
-                <div class="row head_rgt">
+               <!-- <div class="row head_rgt">
                     <div class="col-lg-12">
-                        <!-- <h2 class="text-white mt-0 mb-0">Browse by <span class="acc-span">Make</span></h2> -->
+                         <h2 class="text-white mt-0 mb-0">Browse by <span class="acc-span">Make</span></h2>
                     </div>
-                </div>         
+                </div> -->        
             </div>
         </section>
 <!-- Vehicle Overview-->
@@ -226,18 +226,18 @@ window.onclick = function(event) {
 						<div class="sidebar-cust">
 						<div class="sbar-type">
 							<div class="cat-title-sb">
-								<h4>Transmission</h4>
+								<h4>{{ __('messages.vehicle_type_head') }}</h4>
 							</div>
 							<div class="cat-type">
 								<div class="">
 									<div class="form-inline border rounded p-sm-2 my-2">
                                         <input type="radio" name="type" id="coupe-car" value="Automatic" onclick="getCars(this.value)"> 
-                                        <label for="coupe-car" class="pl-1 pt-sm-0 pt-1">Automatic</label>
+                                        <label for="coupe-car" class="pl-1 pt-sm-0 pt-1">{{ __('messages.automatic') }}</label>
                                         <!--<img src="{{ url('public/assets/img/coupe-car.png') }}">-->
                                     </div>
                                     <div class="form-inline border rounded p-sm-2 my-2">
                                         <input type="radio" name="type" id="sedan-car" value="Manual" onclick="getCars(this.value)">
-                                        <label for="sedan-car" class="pl-1 pt-sm-0 pt-1">Manual</label>
+                                        <label for="sedan-car" class="pl-1 pt-sm-0 pt-1">{{ __('messages.manual') }}</label>
                                         <!--<img src="{{ url('public/assets/img/coupe-car.png') }}">-->
                                     </div>
 									
@@ -246,7 +246,7 @@ window.onclick = function(event) {
 							</div>
 							<div class="sbar-categ">
 							<div class="cat-title-sb">
-								<h4>Vehicle Category</h4>
+								<h4>{{ __('messages.vehicle_category_head') }}</h4>
 							</div>
 							<div class="cat-type">
 								<div class="">
@@ -305,8 +305,8 @@ window.onclick = function(event) {
 																</div>
 																
 																<div class="price_div">
-																	<div class="day_price">{{ $price_data->price }} <i class="fa fa-eur" aria-hidden="true"></i> /Day</div>
-																	<div class="tot_price">{{ $price }} <i class="fa fa-eur" aria-hidden="true"></i> Total</div>
+																	<div class="day_price">{{ $price_data->price }} <i class="fa fa-eur" aria-hidden="true"></i> /{{ __('messages.Day') }}</div>
+																	<div class="tot_price">{{ $price }} <i class="fa fa-eur" aria-hidden="true"></i> {{ __('messages.total') }}</div>
 																</div>
 																
 															</div>
@@ -316,25 +316,29 @@ window.onclick = function(event) {
 																	<div class="icon-set">
 																		<i class="bi bi-people"></i>
 																	</div>
-																	<div class="feat-set">{{ $c_list->no_of_seats }} Seater</div>
+																	<div class="feat-set">{{ $c_list->no_of_seats }} {{ __('messages.Seater') }}</div>
 																</div>
 																<div class="col-lg-3 col-sm-3">
 																	<div class="icon-set">
 																		<i class="bi bi-gear"></i>
 																	</div>
-																	<div class="feat-set">{{ $c_list->vehicle_type }}</div>
+																	<div class="feat-set">@if($c_list->vehicle_type == "Manual")
+																		{{ __('messages.manual') }}
+																		@else
+																		{{ __('messages.automatic') }}
+																		@endif</div>
 																</div>
 																<div class="col-lg-3 col-sm-3">
 																	<div class="icon-set">
 																		<i class="bi bi-speedometer2"></i>
 																	</div>
-																	<div class="feat-set">{{ $c_list->no_of_km }}</div>
+																	<div class="feat-set">{{ __('messages.KM') }}</div>
 																</div>
 																<div class="col-lg-3 col-sm-3">
 																	<div class="icon-set">
 																		<i class="bi bi-three-dots"></i>
 																	</div>
-																	<div class="feat-set">More</div>
+																	<div class="feat-set">{{ __('messages.More') }}</div>
 																</div>
 															</div>
 														</div>
@@ -344,7 +348,7 @@ window.onclick = function(event) {
 															<div class="item-card9-footer btn-appointment">
 																<div class="btn-group w-100">
 																	<a href="{{ url('/booking')}}/{{ $c_list->id }}" class="btn btn-outline-light w-34 p-2 border-top-0 border-end-0 border-bottom-0 call-btn">
-																	<div class="book-btn-1"><i class="fe fe-phone me-1"></i>BOOK NOW</div>
+																	<div class="book-btn-1"><i class="fe fe-phone me-1"></i>{{ __('messages.book_now') }}</div>
 																	</a>
 																</div>
 															</div>
@@ -426,7 +430,7 @@ window.onclick = function(event) {
 						</nav>
 					</div>
 					<div class="change_date_btn">
-						<a href="#" id="myBtn">Change Date</a>
+						<a href="#" id="myBtn">{{ __('messages.change_date') }}</a>
 					</div>
                 </div>
             </div>
@@ -444,7 +448,7 @@ window.onclick = function(event) {
 			  <!-- Modal content -->
 			  <div class="modal-content">
 			    <div class="modal-close">
-					<h4>Search Your Car</h4>
+					<h4>{{ __('messages.search_popup') }}</h4>
 					<span class="close">&times;</span>
 				</div>
 			    <div class="row">
@@ -453,42 +457,31 @@ window.onclick = function(event) {
             <div class="form cd-form row g-2"> 
               <div class="form-group col-md-6 mb-0 cd-group wd-adj"> 
                 <div class="form-group mb-0"> 
-                  <label>Pickup Location</label>
-                  <input class="form-control border pickup_location" name="pickup_location" placeholder="Choose Location" type="text" required="" autocomplete="off"><div class="pickup_location_error search_box_error"></div> 
+                  <label>{{ __('messages.pickup_location_text') }}</label>
+                  <input class="form-control border pickup_location" name="pickup_location" placeholder="Choose {{ __('messages.pickup_location_text') }}" type="text" required="" autocomplete="off"><div class="pickup_location_error search_box_error"></div> 
                 </div> 
               </div> 
               <div class="form-group col-md-6 mb-0 cd-group">
                 <div class="form-group mb-0"> 
-                  <label>Drop Off Location</label>
-                  <input class="form-control border drop_off_location" name="drop_off_location" placeholder="Choose Location" type="text" required="" autocomplete="off"><div class="dropoff_location_error search_box_error"></div> 
+                  <label>{{ __('messages.drop_off_location') }}</label>
+                  <input class="form-control border drop_off_location" name="drop_off_location" placeholder="Choose {{ __('messages.drop_off_location') }}" type="text" required="" autocomplete="off"><div class="dropoff_location_error search_box_error"></div> 
                 </div> 
               </div>
               <div class="form-group col-md-6 mb-0 cd-group wd-adj">
                 <div class="form-group mb-0"> 
-                  <label>Pickup Date</label>
-                  <input class="form-control border pickup_date" name="pickup_date" placeholder="Choose Pickup Date" type="text" id="pickup_date" required="" autocomplete="off"><div class="pickup_date_error search_box_error"></div> 
+                  <label>{{ __('messages.pickup_date') }}</label>
+                  <input class="form-control border pickup_date" name="pickup_date" placeholder="Choose {{ __('messages.pickup_date') }}" type="text" id="pickup_date" required="" autocomplete="off"><div class="pickup_date_error search_box_error"></div> 
                 </div>
               </div>
 			  <div class="form-group col-md-6 mb-0 cd-group">
                 <div class="form-group mb-0"> 
-                  <label>Drop Off Date</label>
-                  <input class="form-control border drop_off_date" name="drop_off_date" placeholder="Choose Drop Off Date" type="text" id="drop_off_date" required="" autocomplete="off"><div class="dropoff_date_error search_box_error"></div> 
+                  <label>{{ __('messages.dropoff_date') }}</label>
+                  <input class="form-control border drop_off_date" name="drop_off_date" placeholder="Choose {{ __('messages.dropoff_date') }}" type="text" id="drop_off_date" required="" autocomplete="off"><div class="dropoff_date_error search_box_error"></div> 
                 </div>
               </div>
-              <div class="form-group col-md-6 mb-0 cd-group wd-adj">
-                <div class="form-group mb-0"> 
-                  <label>Pickup Time</label>
-                  <input class="form-control border pickup_time" name="pickup_time" placeholder="Choose Pickup Time" type="text" id="pickup_time" required="" autocomplete="off"><div class="pickup_time_error search_box_error"></div> 
-                </div>
-              </div>             
-              <div class="form-group col-md-6 mb-0 cd-group">
-                <div class="form-group mb-0"> 
-                  <label>Drop Off Time</label>
-                  <input class="form-control border drop_off_time" name="drop_off_time" placeholder="Choose Drop Off Time" type="text" id="drop_off_time" required="" autocomplete="off"><div class="dropoff_date_error search_box_error"></div> 
-                </div>
-              </div>
+              
               <div class="form-group col-md-12 mb-0 btn--book"> 
-                <button type="submit" name="search_btn" class="search_btn">BOOK<i class="bi bi-arrow-right"></i></button>
+                <button type="submit" name="search_btn" class="search_btn">{{ __('messages.book_btn') }}<i class="bi bi-arrow-right"></i></button>
                 <!-- <a class="btn btn-block btn-orange search_btn fs-14" href="javascript:void(0);"> BOOK <i class="bi bi-arrow-right"></i></a> --> 
               </div> 
             </div> 

@@ -14,13 +14,13 @@
 
 @section('content')
 <!-- Form Overview-->
-		<section class="page-section title-banner">
+		<section class="page-section title-banner" style="padding:8rem 0;">
             <div class="container px-4 px-lg-5">
-                <div class="row head_rgt">
+               <!-- <div class="row head_rgt">
                     <div class="col-lg-12">
                         <h2 class="text-white mt-0 mb-0"></h2>
                     </div>
-                </div>         
+                </div>  -->       
             </div>
  		</section>
         <section class="page-section book-form">
@@ -111,12 +111,12 @@
 
         
 
-        <!-- Call to action-->
+        <!-- Call to action
         <section class="page-section cta">
             <div class="container px-4 px-lg-5 text-center">
                 <h2 class="mb-4">Work With Us</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                 <a class="cta-btn" href="https://wa.me/+355672002573">Contact Us <i class="bi bi-arrow-right"></i></a>
             </div>
-        </section>
+        </section>-->
 @endsection

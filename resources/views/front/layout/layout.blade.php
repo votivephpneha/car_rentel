@@ -325,6 +325,26 @@
         $('.tab_con .tab_pan').css('opacity','0.0').hide().slice(startItem, endItem).  
         css('display','block').animate({opacity:1}, 300);  
     });  
+
+    $(".change_content").on("change",function(){
+      var lang_val = $(this).val();
+
+      if(lang_val == "en"){
+        window.location.href = "{{ url('/') }}";
+      }else{
+        window.location.href = "{{ url('/') }}?lang="+lang_val;
+      }
+
+      
+    });
+    var url_string = window.location.href; 
+    var url = new URL(url_string);
+    var c = url.searchParams.get("lang");
+    if(c == "it"){
+      $("#it").attr("selected","selected");
+    }else{
+      $("#en").attr("selected","selected");
+    }
 });  
 </script>
     </body>

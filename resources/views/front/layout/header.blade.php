@@ -12,29 +12,29 @@
 							<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 								<li class="nav-item dropdown">
 									<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-									Manage Bookings
+									{{ __('messages.Menu3') }}
 									</a>
 								<ul class="dropdown-menu">
 									<li>
 										<div class="my-form">
 											<div class="form-title">
-												<h4>Manage your booking</h4>
-												<p>View or change your booking easily.</p>
+												<h4>{{ __('messages.popup_heading') }}</h4>
+												<p>{{ __('messages.popup_content') }}</p>
 											</div>
 										<!-- main form -->
 									<form method="post" action="{{ url('/manage_booking') }}">
 										@csrf
 										<div class="single-input">
 											<span><i class="bi bi-person"></i></span>
-											<input type="text" name="booking_id" placeholder="Booking Number">
+											<input type="text" name="booking_id" placeholder="{{ __('messages.booking_no') }}">
 										</div>
 										<div class="single-input">
 											<span><i class="bi bi-envelope"></i></span>
-											<input type="email" name="email" placeholder="Email Address">
+											<input type="email" name="email" placeholder="{{ __('messages.email') }}">
 										</div>
 										<div class="single-input submit-btn">
 											<!-- <h6>No data found</h6> -->
-											<input type="submit" value="Submit">
+											<input type="submit" value="{{ __('messages.submit_btn') }}">
 										</div>
 									</form>
 										</div>
@@ -45,13 +45,13 @@
 						</div>
                        <!-- <li class="nav-item"><a class="nav-link" href="#">Share</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">Ride</a></li> -->
-						<li class="nav-item call-now"><a class="nav-link" href="tel:+355672002573">Call Now</a></li>
+						<li class="nav-item call-now"><a class="nav-link" href="tel:+355672002573">{{ __('messages.call_now') }}</a></li>
                     </ul>
           <div class="header-info">
             <div class="lang_picker">
-			<select class="selectpicker" data-width="fit">
-				<option data-content='<span class="flag-icon flag-icon-us"></span> English'>English</option>
-				<option  data-content='<span class="flag-icon flag-icon-it"></span> Italian'>Italian</option>
+			<select class="selectpicker change_content" data-width="fit">
+				<option value="en" id="en" data-content='<span class="flag-icon flag-icon-us"></span> English'>English</option>
+				<option  value="it" id="it" data-content='<span class="flag-icon flag-icon-it"></span> Italian'>Italian</option>
 			</select>
 			</div>
             <div class="login">

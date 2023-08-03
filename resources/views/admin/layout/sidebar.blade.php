@@ -116,6 +116,14 @@
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="{{ url('/admin/translation_management') }}" class="nav-link">
+              <i class="nav-icon fas fa-tasks"></i>
+              <p>
+                Translation Mangement
+              </p>
+            </a>
+          </li>
           <!-- <li class="nav-item">
             <a href="{{ url('/admin/home_management') }}" class="nav-link">
               <i class="nav-icon fas fa-tasks"></i>
@@ -125,8 +133,8 @@
             </a>
           </li> -->
 
-<li class="nav-header">Home Landing</li>
-          <li class="nav-item">
+<!-- <li class="nav-header">Home Landing</li> -->
+         <!--  <li class="nav-item">
              <a href="{{ url('/admin/landing_management') }}" class="nav-link">
               <i class="nav-icon fas fa-tasks"></i>
               <p>Landing</p>
@@ -140,7 +148,7 @@
                 Landing Section
                 <i class="right fas fa-angle-left"></i>
               </p>
-            </a>
+            </a> -->
             
             <ul class="nav nav-treeview">
              <li class="nav-item">

@@ -1,10 +1,73 @@
 <?php
 
-$trans_data = DB::table("translation_mgmt")->where('id','2')->get()->first();
-  
+//$trans_data = DB::table("translation_mgmt")->where('id','1')->get()->first();
+$trans_data1 = DB::table("translation")->where('id','1')->get()->first();
+$brand_data = DB::table("home_page")->where('id','2')->get()->first();
+$trans_data = json_decode($trans_data1->translation_text);  
+//$trans_data = (array)$trans_array_data;
+//print_r($trans_data);die;
 return [
   
-    'Home' => $trans_data->Menu1,
-    'Rent' => $trans_data->Menu2
-  
+    'Home' => $trans_data->Menu1_it,
+    'Rent' => $trans_data->Menu2_it,
+    'Menu3' => $trans_data->Menu3_it,
+    'call_now' => $trans_data->call_now_it,
+    'pickup_location_text' => $trans_data->pickup_location_it,
+    'drop_off_location' => $trans_data->dropoff_location_it,
+    'pickup_date' => $trans_data->pickup_date_it,
+    'dropoff_date' => $trans_data->dropoff_date_it,
+    'book_btn' => $trans_data->book_btn_it,
+    'brand_heading' => $trans_data->brand_section_heading_it,
+    'heading_one' => $trans_data->brand_heading_one_it,
+    'heading_two' => $trans_data->brand_heading_two_it,
+    'heading_three' => $trans_data->brand_heading_three_it,
+    'content_one' => $trans_data->brand_content_one_it,
+    'content_two' => $trans_data->brand_content_two_it,
+    'content_three' => $trans_data->brand_content_three_it,
+    'best_deal_heading' => $trans_data->best_deal_heading_it,
+    'best_deal_content' => $trans_data->best_deal_content_it,
+    'Day' => $trans_data->Day_it,
+    'Seater' => $trans_data->Seater_it,
+    'Manual' => $trans_data->Manual_it,
+    'KM' => $trans_data->KM_it,
+    'More' => $trans_data->More_it,
+    'location_one' => $trans_data->location_one_it,
+    'location_two' => $trans_data->location_two_it,
+    'location_three' => $trans_data->location_three_it,
+    'location_four' => $trans_data->location_four_it,
+    'work_heading' => $trans_data->work_heading_it,
+    'work_content' => $trans_data->work_content_it,
+    'contact' => $trans_data->contact_it,
+    'cat_one' => $trans_data->cat_one_it,
+    'cat_two' => $trans_data->cat_two_it,
+    'cat_three' => $trans_data->cat_three_it,
+    'cat_four' => $trans_data->cat_four_it,
+    'footer_heading_one' => $trans_data->footer_heading_one_it,
+    'footer_content' => $trans_data->footer_content_it,
+    'footer_heading_two' => $trans_data->footer_heading_two_it,
+    'footer_heading_three' => $trans_data->footer_heading_three_it,
+    'footer_heading_four' => $trans_data->footer_heading_four_it,
+    'copyright' => $trans_data->copyright_it,
+    'choose_us_content' => $trans_data->choose_us_content_it,
+    'choose_us_heading' => $trans_data->choose_us_heading_it,
+    'meet_team' => $trans_data->meet_team_it,
+    'popup_heading' => $trans_data->popup_heading_it,
+    'popup_content' => $trans_data->popup_content_it,
+    'booking_no' => $trans_data->booking_no_it,
+    'email' => $trans_data->email_it,
+    'submit_btn' => $trans_data->submit_btn_it,
+    'book_now' => $trans_data->book_now_it,
+    'vehicle_type_head' => $trans_data->vehicle_type_head_it,
+    'vehicle_category_head' => $trans_data->vehicle_category_head_it,
+    'total' => $trans_data->total_it,
+    'automatic' => $trans_data->automatic_it,
+    'manual' => $trans_data->manual_it,
+    'book_now' => $trans_data->book_now_it,
+    'vehicle_type_head' => $trans_data->vehicle_type_head_it,
+    'vehicle_category_head' => $trans_data->vehicle_category_head_it,
+    'total' => $trans_data->total_it,
+    'automatic' => $trans_data->automatic_it,
+    'manual' => $trans_data->manual_it,
+    'change_date' => $trans_data->change_date_it,
+    'search_popup' => $trans_data->search_popup_it,
 ];

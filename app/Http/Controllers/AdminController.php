@@ -386,6 +386,14 @@ class AdminController extends Controller
         $content_two = $request->content_two;
         $content_three = $request->content_three;
 
+        $heading_one_it = $request->heading_one_it;
+        $heading_two_it = $request->heading_two_it;
+        $heading_three_it = $request->heading_three_it;
+
+        $content_one_it = $request->content_one_it;
+        $content_two_it = $request->content_two_it;
+        $content_three_it = $request->content_three_it;
+
         $request->hasFile("home_logo") ? $request->file("home_logo")->move("public/uploads/landing/", $home_logo = time().strtolower(trim($request->file('home_logo')->getClientOriginalName()))) : '';
 
         if(empty($home_logo)){ $home_logo = $request->logo_img_old; }
@@ -470,6 +478,14 @@ class AdminController extends Controller
         $homeData->content_one = $content_one;
         $homeData->content_two = $content_two;
         $homeData->content_three = $content_three;
+
+        $homeData->heading_one_it = $heading_one_it;
+        $homeData->heading_two_it = $heading_two_it;
+        $homeData->heading_three_it = $heading_three_it;
+
+        $homeData->content_one_it = $content_one_it;
+        $homeData->content_two_it = $content_two_it;
+        $homeData->content_three_it = $content_three_it;
 
         $homeData->updated_at = date('Y-m-d H:i:s');
         $res = $homeData->save();
@@ -1014,8 +1030,44 @@ class AdminController extends Controller
     }
 
     /* End help notification */
-    public function booking_management(){
-        $data['booking_details'] = DB::table('booking_management')->orderBy('created_at', 'DESC')->get();
+    public function booking_management(Request $request){
+        $status = $request->status;
+        $from_date = $request->from_date;
+        $to_date = $request->to_date;
+        if($from_date && $to_date){
+            if($status == "Accepted"){
+                $data['booking_details'] = DB::table('booking_management')->whereBetween('created_at',[$from_date.'%', $to_date.'%'])->where("booking_status","3")->orderBy('created_at', 'DESC')->get();
+            }else{
+                if($status == "Rejected"){
+                    $data['booking_details'] = DB::table('booking_management')->whereBetween('created_at',[$from_date.'%', $to_date.'%'])->where("booking_status","4")->orderBy('created_at', 'DESC')->get();
+                }else{
+                    if($status == "Pending"){
+
+                        $data['booking_details'] = DB::table('booking_management')->whereBetween('created_at',[$from_date.'%', $to_date.'%'])->where("booking_status","1")->orderBy('created_at', 'DESC')->get();
+                    }else{
+                        $data['booking_details'] = DB::table('booking_management')->whereBetween('created_at',[$from_date.'%', $to_date.'%'])->orderBy('created_at', 'DESC')->get();
+                        
+                    }
+                }
+                
+            }
+        }else{
+            if($status == "Accepted"){
+                $data['booking_details'] = DB::table('booking_management')->where("booking_status","3")->orderBy('created_at', 'DESC')->get();
+            }else{
+                if($status == "Rejected"){
+                    $data['booking_details'] = DB::table('booking_management')->where("booking_status","4")->orderBy('created_at', 'DESC')->get();
+                }else{
+                    if($status == "Pending"){
+                        $data['booking_details'] = DB::table('booking_management')->where("booking_status","1")->orderBy('created_at', 'DESC')->get();
+                    }else{
+                        $data['booking_details'] = DB::table('booking_management')->orderBy('created_at', 'DESC')->get();
+                    }
+                }
+                
+            }
+        }
+        
         //print_r($data['booking_details']);
         return view("admin/booking/booking")->with($data);
     }
@@ -1039,7 +1091,7 @@ class AdminController extends Controller
 
     public function assign_ride(Request $request){
         //echo $request->ride_val;die;
-        $update_booking_status = DB::table('booking_management')->where("id",$request->booking_id)->update(['customer_id'=>$request->ride_val,'booking_status'=>'2']);
+        $update_booking_status = DB::table('booking_management')->where("id",$request->booking_id)->update(['customer_id'=>$request->ride_val,"booking_status"=>"3"]);
         session::flash('success', 'Ride assign successfully');
         //return redirect('admin/view_booking/'.$request->booking_id);
     }
@@ -1394,20 +1446,58 @@ class AdminController extends Controller
     }
 
     public function translation_management(){
-        $data['translations_en'] = DB::table('translation_mgmt')->where("id","1")->get()->first();
-        $data['translations_it'] = DB::table('translation_mgmt')->where("id","2")->get()->first();
+        // $data['translations_en'] = DB::table('translation_mgmt')->where("id","1")->get()->first();
+        // $data['translations_it'] = DB::table('translation_mgmt')->where("id","2")->get()->first();
+        $data['translations_en'] = DB::table('translation')->where("id","1")->get()->first();
+        $data['texts'] = json_decode($data['translations_en']->translation_text);
         return view("admin/Translations/translation_management")->with($data);
     }
 
     public function update_translations(Request $request){
-        $update_translations_en = DB::table('translation_mgmt')->where("id","1")->update(['Menu1'=>$request->Menu1_en,'Menu2'=>$request->Menu2_en,'pickup_location_text'=>$request->pickup_location_en,'drop_off_location'=>$request->dropoff_location_en,'pickup_date'=>$request->pickup_date_en,'dropoff_date'=>$request->dropoff_date_en,'book_btn'=>$request->book_btn_en,'brand_section_heading'=>$request->brand_section_heading_en,'created_at'=>date('Y-m-d H:i:s')]);
-        $update_translations_en = DB::table('translation_mgmt')->where("id","2")->update(['Menu1'=>$request->Menu1_it,'Menu2'=>$request->Menu2_it,'pickup_location_text'=>$request->pickup_location_it,'drop_off_location'=>$request->dropoff_location_it,'pickup_date'=>$request->pickup_date_it,'book_btn'=>$request->dropoff_date_it,'brand_section_heading'=>$request->brand_section_heading_it,'created_at'=>date('Y-m-d H:i:s')]);
+        $data = $request->all();
+        //print_r($request->data);die;
+        //var_dump($request->all());die;
+        //echo json_encode($request->input());die;
+        $update_translations_en = DB::table('translation')->where("id","1")->update(['translation_text'=>$data]);
+        // $update_translations_en = DB::table('translation_mgmt')->where("id","1")->update(['Menu1'=>$request->Menu1_en,'Menu2'=>$request->Menu2_en,'pickup_location_text'=>$request->pickup_location_en,'drop_off_location'=>$request->dropoff_location_en,'pickup_date'=>$request->pickup_date_en,'dropoff_date'=>$request->dropoff_date_en,'book_btn'=>$request->book_btn_en,'brand_section_heading'=>$request->brand_section_heading_en,'best_deal_heading'=>$request->best_deal_heading_en,'best_deal_content'=>$request->best_deal_content_en,'Day'=>$request->Day_en,'Seater'=>$request->Seater_en,'Manual'=>$request->Manual_en,'KM'=>$request->KM_en,'More'=>$request->More_en,'created_at'=>date('Y-m-d H:i:s')]);
+
+        // $update_translations_it = DB::table('translation_mgmt')->where("id","2")->update(['Menu1'=>$request->Menu1_it,'Menu2'=>$request->Menu2_it,'pickup_location_text'=>$request->pickup_location_it,'drop_off_location'=>$request->dropoff_location_it,'pickup_date'=>$request->pickup_date_it,'book_btn'=>$request->dropoff_date_it,'brand_section_heading'=>$request->brand_section_heading_it,'best_deal_heading'=>$request->best_deal_heading_it,'best_deal_content'=>$request->best_deal_content_it,'Day'=>$request->Day_it,'Seater'=>$request->Seater_it,'Manual'=>$request->Manual_it,'KM'=>$request->KM_it,'More'=>$request->More_it,'created_at'=>date('Y-m-d H:i:s')]);
 
        return response()->json(['status' => 'success', 'msg' => 'Content updated successfully']);
     }
 
     public function payment_transaction(Request $request){
-        $data['payment_transaction'] = DB::table('payment_transaction')->orderby('created_at', 'DESC')->get();
+        $from_date = $request->from_date;
+        $to_date = $request->to_date;
+        
+        if($from_date && $to_date){
+            if($request->status == 'Completed'){
+
+                $data['payment_transaction'] = DB::table('payment_transaction')->whereBetween('created_at',[$from_date.'%', $to_date.'%'])->where('payment_status','1')->orderby('created_at', 'DESC')->get();
+            }else{
+                if($request->status == 'Pending'){
+                    $data['payment_transaction'] = DB::table('payment_transaction')->where('payment_status','0')->whereBetween('created_at',[$from_date.'%', $to_date.'%'])->orderby('created_at', 'DESC')->get();
+                }else{
+                    
+                      $data['payment_transaction'] = DB::table('payment_transaction')->whereBetween('created_at',[$from_date.'%', $to_date.'%'])->orderby('created_at', 'DESC')->get();
+                        
+                }
+            }
+        }else{
+            if($request->status == 'Completed'){
+
+                $data['payment_transaction'] = DB::table('payment_transaction')->where('payment_status','1')->orderby('created_at', 'DESC')->get();
+            }else{
+                if($request->status == 'Pending'){
+                    $data['payment_transaction'] = DB::table('payment_transaction')->where('payment_status','0')->orderby('created_at', 'DESC')->get();
+                }else{
+                    
+                      $data['payment_transaction'] = DB::table('payment_transaction')->orderby('created_at', 'DESC')->get();
+                        
+                }
+            }
+            
+        }
         return view("admin/payment/payment")->with($data);
     }
 
@@ -1418,6 +1508,18 @@ class AdminController extends Controller
         return response()->json(['success'=>'Payment status completed successfully.']);
         
         
+    }
+
+     public function search_date_filter(Request $request){
+        $from_date = date("Y-m-d",strtotime($request->from_date));
+        $to_date = date("Y-m-d",strtotime($request->to_date));
+
+        $data['from_date'] = $from_date;
+        $data['to_date'] = $to_date;
+        Session::put("from_date",$from_date);
+        Session::put("to_date",$to_date);
+        return view("admin/dashboard_search")->with($data);
+
     }
 
 }

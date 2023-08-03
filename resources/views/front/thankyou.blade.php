@@ -8,13 +8,13 @@
 
 @section('content')
 <!-- Category-->
-<section class="page-section thankyou-title-banner">
+<section class="page-section thankyou-title-banner" style="padding:8rem 0;">
     <div class="container px-4 px-lg-5">
-        <div class="row head_rgt">
+       <!-- <div class="row head_rgt">
             <div class="col-lg-12">
                 <h2 class="text-white mt-0 mb-0">Thank You</h2>
             </div>
-        </div>         
+        </div>  -->       
     </div>
 </section>
         

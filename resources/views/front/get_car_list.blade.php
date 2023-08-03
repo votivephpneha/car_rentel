@@ -27,7 +27,7 @@ $car_price_data = DB::table('car_price_days')->where('car_id',$c_list->id)->get(
                                                                 ?></div>
                                                                 <div class="price_div">
                                                                     <div class="day_price">{{ $price_data->price }} <i class="fa fa-eur" aria-hidden="true"></i> /Day</div>
-                                                                    <div class="tot_price">{{ $price }} <i class="fa fa-eur" aria-hidden="true"></i> Total</div>
+                                                                    <div class="tot_price">{{ $price }} <i class="fa fa-eur" aria-hidden="true"></i> {{ __('messages.total') }}</div>
                                                                 </div>
 																</div>
             <div class="item-card9-desc mb-2 mt-1" style="">
@@ -36,25 +36,31 @@ $car_price_data = DB::table('car_price_days')->where('car_id',$c_list->id)->get(
                         <div class="icon-set">
                             <i class="bi bi-people"></i>
                         </div>
-                        <div class="feat-set">{{ $c_list->no_of_seats }} Seater</div>
+                        <div class="feat-set">{{ $c_list->no_of_seats }} {{ __('messages.Seater') }}</div>
                     </div>
                     <div class="col-lg-3 col-sm-3">
                         <div class="icon-set">
                             <i class="bi bi-gear"></i>
                         </div>
-                        <div class="feat-set">{{ $c_list->vehicle_type }}</div>
+                        <div class="feat-set">
+                            @if($c_list->vehicle_type == "Manual")
+                            {{ __('messages.manual') }}
+                            @else
+                            {{ __('messages.automatic') }}
+                            @endif
+                        </div>
                     </div>
                     <div class="col-lg-3 col-sm-3">
                         <div class="icon-set">
                             <i class="bi bi-speedometer2"></i>
                         </div>
-                        <div class="feat-set">{{ $c_list->no_of_km }}</div>
+                        <div class="feat-set">{{ __('messages.KM') }}</div>
                     </div>
                     <div class="col-lg-3 col-sm-3">
                         <div class="icon-set">
                             <i class="bi bi-three-dots"></i>
                         </div>
-                        <div class="feat-set">More</div>
+                        <div class="feat-set">{{ __('messages.More') }}</div>
                     </div>
                 </div>
             </div>
@@ -64,7 +70,7 @@ $car_price_data = DB::table('car_price_days')->where('car_id',$c_list->id)->get(
                 <div class="item-card9-footer btn-appointment">
                     <div class="btn-group w-100">
                         <a href="{{ url('/booking')}}/{{ $c_list->id }}" class="btn btn-outline-light w-34 p-2 border-top-0 border-end-0 border-bottom-0 call-btn">
-                        <div class="book-btn-1"><i class="fe fe-phone me-1"></i>BOOK NOW</div>
+                        <div class="book-btn-1"><i class="fe fe-phone me-1"></i>{{ __('messages.book_now') }}</div>
                         </a>
                     </div>
                 </div>

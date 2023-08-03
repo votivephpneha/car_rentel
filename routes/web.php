@@ -124,6 +124,10 @@ Route::group(['prefix' => 'admin'], function(){
         Route::any('/deletecustomer', 'App\Http\Controllers\CustomerController@deletecustomer');
 
         Route::get('/business_management', 'App\Http\Controllers\CustomerController@business_management');
+        Route::get('/business_management/{status}', 'App\Http\Controllers\CustomerController@business_management');
+        Route::get('/business_management/{status}', 'App\Http\Controllers\CustomerController@business_management');
+        Route::get('/business_management/{status}/{from_date}/{to_date}', 'App\Http\Controllers\CustomerController@business_management');
+        Route::get('/business_management/{from_date}/{to_date}', 'App\Http\Controllers\CustomerController@business_management');
         Route::get('/add_business_user', 'App\Http\Controllers\CustomerController@add_business_user');
         Route::any('/add_business_action', 'App\Http\Controllers\CustomerController@add_business_action');
         Route::get('/edit_business/{id}', 'App\Http\Controllers\CustomerController@edit_business');
@@ -249,6 +253,9 @@ Route::group(['prefix' => 'admin'], function(){
         Route::get('/changeHotelSpacetypeStatus', 'App\Http\Controllers\Admin\HotelSpacetypeController@changeHotelSpacetypeStatus');
         Route::any('/deleteHotelSpacetype', 'App\Http\Controllers\Admin\HotelSpacetypeController@deleteHotelSpacetype');
         Route::get('/booking_management', [AdminController::class, 'booking_management'])->name('booking_management');
+        Route::get('/booking_management/{from_date}/{to_date}', [AdminController::class, 'booking_management'])->name('booking_management');
+        Route::get('/booking_management/{status}/{from_date}/{to_date}', [AdminController::class, 'booking_management'])->name('booking_management');
+        Route::get('/booking_management/{status}', [AdminController::class, 'booking_management'])->name('booking_management');
         Route::post('/assign_ride', [AdminController::class, 'assign_ride'])->name('assign_ride');
         Route::post('/change_booking_status', [AdminController::class, 'change_booking_status'])->name('change_booking_status');
         Route::get('/view_booking/{id}', [AdminController::class, 'view_booking'])->name('view_booking');
@@ -283,7 +290,11 @@ Route::group(['prefix' => 'admin'], function(){
         Route::get('/translation_management', [AdminController::class, 'translation_management'])->name('translation_management');
         Route::post('/update_translations', [AdminController::class, 'update_translations'])->name('update_translations');
         Route::get('/payment_transaction', [AdminController::class, 'payment_transaction'])->name('payment_transaction');
+        Route::get('/payment_transaction/{status}/{from_date}/{to_date}', 'App\Http\Controllers\AdminController@payment_transaction');
+        Route::get('/payment_transaction/{from_date}/{to_date}', 'App\Http\Controllers\AdminController@payment_transaction');
         Route::get('/change_payment_status', [AdminController::class, 'change_payment_status'])->name('change_payment_status');
+        Route::get('/payment_transaction/{status}', [AdminController::class, 'payment_transaction'])->name('payment_transaction');
+        Route::get('/search_date_filter', [AdminController::class, 'search_date_filter'])->name('search_date');
 
     });
 });

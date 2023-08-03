@@ -126,7 +126,7 @@
   					<div class="form row no-gutters"> 
   						<div class="form-group col-xl-3 col-lg-3 col-md-12 mb-2 location"> 
   							<div class="form-group mb-2"> 
-  								<label>Pickup Location</label>
+  								<label>{{ __('messages.pickup_location_text') }}</label>
   								<input class="form-control border pickup_location" name="pickup_location" placeholder="Choose Location" type="text" required="" autocomplete="off">
                   <div class="address_div" style="display: none">
                     
@@ -137,7 +137,7 @@
 						
 						<div class="form-group col-xl-3 col-lg-3 col-md-12 mb-2 location">
   							<div class="form-group mb-0"> 
-  								<label>Drop Off Location</label>
+  								<label>{{ __('messages.drop_off_location') }}</label>
   								<input class="form-control border drop_off_location" name="drop_off_location" autocomplete="off" placeholder="Choose Location" type="text" required="">
                   <div class="address_div_dropoff" style="display: none">
                     
@@ -148,7 +148,7 @@
   						
   						<div class="form-group col-xl-3 col-lg-3 col-md-12 mb-2 location">
   							<div class="form-group mb-2"> 
-  								<label>Pickup Date</label>
+  								<label>{{ __('messages.pickup_date') }}</label>
   								<input class="form-control border pickup_date" name="pickup_date" placeholder="Choose Pickup Date" type="text" id="pickup_date" required="" autocomplete="off"><div class="pickup_date_error search_box_error"></div> 
   							</div>
   						</div>
@@ -162,7 +162,7 @@
 						
   						<div class="form-group col-xl-3 col-lg-3 col-md-12 mb-2 location">
   							<div class="form-group mb-0"> 
-  								<label>Drop Off Date</label>
+  								<label>{{ __('messages.dropoff_date') }}</label>
   								<input class="form-control border drop_off_date" name="drop_off_date" placeholder="Choose Drop Off Date" type="text" id="drop_off_date" required="" autocomplete="off"><div class="dropoff_date_error search_box_error"></div> 
   							</div>
   						</div>
@@ -174,7 +174,7 @@
               </div> -->
   						
   						<div class="form-group col-xl-4 col-lg-4 col-md-12 mb-0 btn--book"> 
-                <button type="submit" name="search_btn" class="search_btn">BOOK<i class="bi bi-arrow-right"></i></button>
+                <button type="submit" name="search_btn" class="search_btn">{{ __('messages.book_btn') }}<i class="bi bi-arrow-right"></i></button>
   							<!-- <a class="btn btn-block btn-orange search_btn fs-14" href="javascript:void(0);"> BOOK <i class="bi bi-arrow-right"></i></a> --> 
   						</div> 
   					</div> 
@@ -201,7 +201,7 @@
             <div class="container px-4 px-lg-5">
                 <div class="row head_rgt">
                     <div class="col-lg-12">
-                        <h2 class="text-white mt-0">Connecting you to the biggest brands in car rental</h2>      
+                        <h2 class="text-white mt-0">{{ __('messages.brand_heading') }}</h2>      
                     </div>
         </div>
         <div class="row">
@@ -225,8 +225,8 @@
             <img src="{{ url('/public/uploads/landing') }}/{{ $landing->image_one }}">
           </div>
           <div class="desc--feat">
-            <h4>{{ $landing->heading_one }}</h4>
-            <p>{{ $landing->content_one }}</p>
+            <h4>{{ __('messages.heading_one') }}</h4>
+            <p>{{ __('messages.content_one') }}</p>
           </div>
         </div>
       </div>
@@ -236,8 +236,8 @@
             <img src="{{ url('/public/uploads/landing') }}/{{ $landing->image_two }}">
           </div>
           <div class="desc--feat">
-            <h4>{{ $landing->heading_two }}</h4>
-            <p>{{ $landing->content_two }}</p>
+            <h4>{{ __('messages.heading_two') }}</h4>
+            <p>{{ __('messages.content_two') }}</p>
           </div>
         </div>
       </div>
@@ -247,8 +247,8 @@
             <img src="{{ url('/public/uploads/landing') }}/{{ $landing->image_three }}">
           </div>
           <div class="desc--feat">
-            <h4>{{ $landing->heading_three }}</h4>
-            <p>{{ $landing->content_three }}</p>
+            <h4>{{ __('messages.heading_three') }}</h4>
+            <p>{{ __('messages.content_three') }}</p>
           </div>
         </div>
       </div>
@@ -259,8 +259,8 @@
         <!-- Listing-->
         <section class="page-section grid-lists" id="list-grid">
             <div class="container px-4 px-lg-5">
-                <h2 class="text-center mt-0">Find the <span class="acc-span">Best Deals</span> For You</h2>
-        <p class="text-center sub-txt">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <h2 class="text-center mt-0">{!! __('messages.best_deal_heading') !!}</h2>
+        <p class="text-center sub-txt">{{ __('messages.best_deal_content') }}</p>
                 <div class="row gx-4 gx-lg-5 grid-inner-list">
                     <div class="col-lg-4 col-sm-6 mb-4 single_list">
                         <div class="list-item">
@@ -273,7 +273,7 @@
                   <div class="list-caption-heading">BMW 3 Series</div>
                 </div>
                 <div class="col-lg-6 col-sm-6">                            
-                  <div class="list-subheading">64 <i class="fa fa-eur"></i> <span>/ Day</span></div>
+                  <div class="list-subheading">64 <i class="fa fa-eur"></i> <span>/ {{ __('messages.Day') }}</span></div>
                 </div>
               </div>
               <div class="row features_list">
@@ -281,25 +281,25 @@
                   <div class="icon-set">
                     <i class="bi bi-people"></i>
                   </div>
-                  <div class="feat-set">4 Seater</div>
+                  <div class="feat-set">4 {{ __('messages.Seater') }}</div>
                 </div>
                 <div class="col-lg-3 col-sm-3">
                   <div class="icon-set">
                     <i class="bi bi-gear"></i>
                   </div>
-                  <div class="feat-set">Manual</div>
+                  <div class="feat-set">{{ __('messages.Manual') }}</div>
                 </div>
                 <div class="col-lg-3 col-sm-3">
                   <div class="icon-set">
                     <i class="bi bi-speedometer2"></i>
                   </div>
-                  <div class="feat-set">Unlimited KM</div>
+                  <div class="feat-set">{{ __('messages.KM') }}</div>
                 </div>
                 <div class="col-lg-3 col-sm-3">
                   <div class="icon-set">
                     <i class="bi bi-three-dots"></i>
                   </div>
-                  <div class="feat-set">More</div>
+                  <div class="feat-set">{{ __('messages.More') }}</div>
                 </div>
               </div>
                             </div>
@@ -316,7 +316,7 @@
                   <div class="list-caption-heading">BMW 3 Series</div>
                 </div>
                 <div class="col-lg-6 col-sm-6">                            
-                  <div class="list-subheading">64 <i class="fa fa-eur"></i> <span>/ Day</span></div>
+                  <div class="list-subheading">64 <i class="fa fa-eur"></i> <span>/ {{ __('messages.Day') }}</span></div>
                 </div>
               </div>
               <div class="row features_list">
@@ -324,25 +324,25 @@
                   <div class="icon-set">
                     <i class="bi bi-people"></i>
                   </div>
-                  <div class="feat-set">4 Seater</div>
+                  <div class="feat-set">4 {{ __('messages.Seater') }}</div>
                 </div>
                 <div class="col-lg-3 col-sm-3">
                   <div class="icon-set">
                     <i class="bi bi-gear"></i>
                   </div>
-                  <div class="feat-set">Manual</div>
+                  <div class="feat-set">{{ __('messages.Manual') }}</div>
                 </div>
                 <div class="col-lg-3 col-sm-3">
                   <div class="icon-set">
                     <i class="bi bi-speedometer2"></i>
                   </div>
-                  <div class="feat-set">Unlimited KM</div>
+                  <div class="feat-set">{{ __('messages.KM') }}</div>
                 </div>
                 <div class="col-lg-3 col-sm-3">
                   <div class="icon-set">
                     <i class="bi bi-three-dots"></i>
                   </div>
-                  <div class="feat-set">More</div>
+                  <div class="feat-set">{{ __('messages.More') }}</div>
                 </div>
               </div>
                             </div>
@@ -359,7 +359,7 @@
                   <div class="list-caption-heading">BMW 3 Series</div>
                 </div>
                 <div class="col-lg-6 col-sm-6">                            
-                  <div class="list-subheading">64 <i class="fa fa-eur"></i> <span>/ Day</span></div>
+                  <div class="list-subheading">64 <i class="fa fa-eur"></i> <span>/ {{ __('messages.Day') }}</span></div>
                 </div>
               </div>
               <div class="row features_list">
@@ -367,25 +367,25 @@
                   <div class="icon-set">
                     <i class="bi bi-people"></i>
                   </div>
-                  <div class="feat-set">4 Seater</div>
+                  <div class="feat-set">4 {{ __('messages.Seater') }}</div>
                 </div>
                 <div class="col-lg-3 col-sm-3">
                   <div class="icon-set">
                     <i class="bi bi-gear"></i>
                   </div>
-                  <div class="feat-set">Manual</div>
+                  <div class="feat-set">{{ __('messages.Manual') }}</div>
                 </div>
                 <div class="col-lg-3 col-sm-3">
                   <div class="icon-set">
                     <i class="bi bi-speedometer2"></i>
                   </div>
-                  <div class="feat-set">Unlimited KM</div>
+                  <div class="feat-set">{{ __('messages.KM') }}</div>
                 </div>
                 <div class="col-lg-3 col-sm-3">
                   <div class="icon-set">
                     <i class="bi bi-three-dots"></i>
                   </div>
-                  <div class="feat-set">More</div>
+                  <div class="feat-set">{{ __('messages.More') }}</div>
                 </div>
               </div>
                             </div>
@@ -402,7 +402,7 @@
                   <div class="list-caption-heading">BMW 3 Series</div>
                 </div>
                 <div class="col-lg-6 col-sm-6">                            
-                  <div class="list-subheading">64 <i class="fa fa-eur"></i> <span>/ Day</span></div>
+                  <div class="list-subheading">64 <i class="fa fa-eur"></i> <span>/ {{ __('messages.Day') }}</span></div>
                 </div>
               </div>
               <div class="row features_list">
@@ -410,25 +410,25 @@
                   <div class="icon-set">
                     <i class="bi bi-people"></i>
                   </div>
-                  <div class="feat-set">4 Seater</div>
+                  <div class="feat-set">4 {{ __('messages.Seater') }}</div>
                 </div>
                 <div class="col-lg-3 col-sm-3">
                   <div class="icon-set">
                     <i class="bi bi-gear"></i>
                   </div>
-                  <div class="feat-set">Manual</div>
+                  <div class="feat-set">{{ __('messages.Manual') }}</div>
                 </div>
                 <div class="col-lg-3 col-sm-3">
                   <div class="icon-set">
                     <i class="bi bi-speedometer2"></i>
                   </div>
-                  <div class="feat-set">Unlimited KM</div>
+                  <div class="feat-set">{{ __('messages.KM') }}</div>
                 </div>
                 <div class="col-lg-3 col-sm-3">
                   <div class="icon-set">
                     <i class="bi bi-three-dots"></i>
                   </div>
-                  <div class="feat-set">More</div>
+                  <div class="feat-set">{{ __('messages.More') }}</div>
                 </div>
               </div>
                             </div>
@@ -445,7 +445,7 @@
                   <div class="list-caption-heading">BMW 3 Series</div>
                 </div>
                 <div class="col-lg-6 col-sm-6">                            
-                  <div class="list-subheading">64 <i class="fa fa-eur"></i> <span>/ Day</span></div>
+                  <div class="list-subheading">64 <i class="fa fa-eur"></i> <span>/ {{ __('messages.Day') }}</span></div>
                 </div>
               </div>
               <div class="row features_list">
@@ -453,25 +453,25 @@
                   <div class="icon-set">
                     <i class="bi bi-people"></i>
                   </div>
-                  <div class="feat-set">4 Seater</div>
+                  <div class="feat-set">4 {{ __('messages.Seater') }}</div>
                 </div>
                 <div class="col-lg-3 col-sm-3">
                   <div class="icon-set">
                     <i class="bi bi-gear"></i>
                   </div>
-                  <div class="feat-set">Manual</div>
+                  <div class="feat-set">{{ __('messages.Manual') }}</div>
                 </div>
                 <div class="col-lg-3 col-sm-3">
                   <div class="icon-set">
                     <i class="bi bi-speedometer2"></i>
                   </div>
-                  <div class="feat-set">Unlimited KM</div>
+                  <div class="feat-set">{{ __('messages.KM') }}</div>
                 </div>
                 <div class="col-lg-3 col-sm-3">
                   <div class="icon-set">
                     <i class="bi bi-three-dots"></i>
                   </div>
-                  <div class="feat-set">More</div>
+                  <div class="feat-set">{{ __('messages.More') }}</div>
                 </div>
               </div>
                             </div>
@@ -488,7 +488,7 @@
                   <div class="list-caption-heading">BMW 3 Series</div>
                 </div>
                 <div class="col-lg-6 col-sm-6">                            
-                  <div class="list-subheading">64<i class="fa fa-eur"></i> <span>/ Day</span></div>
+                  <div class="list-subheading">64 <i class="fa fa-eur"></i> <span>/ {{ __('messages.Day') }}</span></div>
                 </div>
               </div>
               <div class="row features_list">
@@ -496,25 +496,25 @@
                   <div class="icon-set">
                     <i class="bi bi-people"></i>
                   </div>
-                  <div class="feat-set">4 Seater</div>
+                  <div class="feat-set">4 {{ __('messages.Seater') }}</div>
                 </div>
                 <div class="col-lg-3 col-sm-3">
                   <div class="icon-set">
                     <i class="bi bi-gear"></i>
                   </div>
-                  <div class="feat-set">Manual</div>
+                  <div class="feat-set">{{ __('messages.Manual') }}</div>
                 </div>
                 <div class="col-lg-3 col-sm-3">
                   <div class="icon-set">
                     <i class="bi bi-speedometer2"></i>
                   </div>
-                  <div class="feat-set">Unlimited KM</div>
+                  <div class="feat-set">{{ __('messages.KM') }}</div>
                 </div>
                 <div class="col-lg-3 col-sm-3">
                   <div class="icon-set">
                     <i class="bi bi-three-dots"></i>
                   </div>
-                  <div class="feat-set">More</div>
+                  <div class="feat-set">{{ __('messages.More') }}</div>
                 </div>
               </div>
                             </div>
@@ -527,30 +527,13 @@
     <!-- Why Choose Us-->
         <section class="page-section wcu-block" id="wcu">
             <div class="container px-4 px-lg-5">
-                <h2 class="text-center mt-0">Why <span class="acc-span">Choose Us</span></h2> 
+                <h2 class="text-center mt-0">{!! __('messages.choose_us_heading') !!}</span></h2> 
                 <div class="row gx-4 gx-lg-5 row-wcu">
                     <div class="col-lg-7 col-sm-7 mb-4">
                         <img src="{{ url('public/assets/img/choose-us-img.png') }}">
                     </div>       
           <div class="col-lg-5 col-sm-5 mb-4">
-                        <h4>We make sure that your every trip is comfortable</h4>
-            <p>Proin gravida nibh around velit auctor aliquet . Aenean solicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. This is an audio site with a nibh vulputate cursus.</p>
-            <div class="d-flex">
-              <div class="iconleft">
-                <i class="bi bi-gear"></i>
-              </div>
-              <div class="cont-rgt">
-                <p class="fas fa-chess-rook">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-              </div>
-            </div>
-            <div class="d-flex">
-              <div class="iconleft">
-                <i class="bi bi-gear"></i>
-              </div>
-              <div class="cont-rgt">
-                <p class="fas fa-chess-rook">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-              </div>
-            </div>
+                   {!! __('messages.choose_us_content') !!}
                     </div> 
           
                 </div>
@@ -563,19 +546,19 @@
                 <div class="row g-2">
                     <div class="col-xs-12 col-md-6 img-box-loc">
                         <img src="{{ url('public/assets/img/milano.png') }}">
-            <div class="overlay">Milano</div>
+            <div class="overlay">{{ __('messages.location_one') }}</div>
                     </div>       
           <div class="col-xs-12 col-md-6 img-box-loc">
                         <img src="{{ url('public/assets/img/Firenze.png') }}">
-            <div class="overlay">Firenze</div>
+            <div class="overlay">{{ __('messages.location_two') }}</div>
                     </div>
           <div class="col-xs-12 col-md-6 img-box-loc">
                         <img src="{{ url('public/assets/img/torino.png') }}">
-            <div class="overlay">Torino</div>
+            <div class="overlay">{{ __('messages.location_three') }}</div>
                     </div>       
           <div class="col-xs-12 col-md-6 img-box-loc">
                         <img src="{{ url('public/assets/img/tirana.png') }}">
-            <div class="overlay">Tirana</div>
+            <div class="overlay">{{ __('messages.location_four') }}</div>
                     </div>          
                 </div>
             </div>
@@ -584,7 +567,7 @@
     <!-- Our Team-->
         <section class="page-section team-block" id="team">
             <div class="container px-4 px-lg-5">
-                <h2 class="text-center mt-0">Meet <span class="acc-span">The Team</span></h2> 
+                <h2 class="text-center mt-0">{!! __('messages.meet_team') !!}</h2> 
                 <div class="row gx-4 gx-lg-5 row-team">
                     <?php $i=1; foreach ($ourteams as $key => $value) { ?>
                     <div class="col-lg-3 col-sm-3 mb-4">
@@ -603,9 +586,9 @@
         <!-- Call to action-->
         <section class="page-section cta">
             <div class="container px-4 px-lg-5 text-center">
-                <h2 class="mb-4">Work With Us</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                <a class="cta-btn" href="https://wa.me/+355672002573">Contact Us <i class="bi bi-arrow-right"></i></a>
+                <h2 class="mb-4">{{ __('messages.work_heading') }}</h2>
+        <p>{{ __('messages.work_content') }}</p>
+                <a class="cta-btn" href="https://wa.me/+355672002573">{{ __('messages.contact') }} <i class="bi bi-arrow-right"></i></a>
             </div>
         </section>
         @endsection

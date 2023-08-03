@@ -225,7 +225,7 @@
 				</div>
 				@else
           <div class="no_data_found">
-            No Data Found
+            No Booking Found
           </div>
         @endif
 			</div>

@@ -16,9 +16,39 @@ class CustomerController extends Controller
       return view('admin/customer/customer_list')->with($data);
     }
 
-    public function business_management() 
+    public function business_management(Request $request) 
     {
-      $data['customerList'] = DB::table('users')->where('user_type','business_user')->orderby('created_at', 'DESC')->get();
+      $from_date = $request->from_date;
+      $to_date = $request->to_date;
+      if($from_date && $to_date){
+          if($request->status == 'Active'){
+            $data['customerList'] = DB::table('users')->whereBetween('created_at',[$from_date.'%', $to_date.'%'])->where('user_type','business_user')->where('status','1')->orderby('created_at', 'DESC')->get();
+          }else{
+            if($request->status == 'Inactive'){
+                $data['customerList'] = DB::table('users')->whereBetween('created_at',[$from_date.'%', $to_date.'%'])->where('user_type','business_user')->where('status','0')->orderby('created_at', 'DESC')->get();
+            }else{
+                
+                   
+                    $data['customerList'] = DB::table('users')->whereBetween('created_at',[$from_date.'%', $to_date.'%'])->where('user_type','business_user')->orderby('created_at', 'DESC')->get();
+            }
+                
+                
+        }
+        }else{
+            if($request->status == 'Active'){
+                $data['customerList'] = DB::table('users')->where('user_type','business_user')->where('status','1')->orderby('created_at', 'DESC')->get();
+              }else{
+                if($request->status == 'Inactive'){
+                    $data['customerList'] = DB::table('users')->where('user_type','business_user')->where('status','0')->orderby('created_at', 'DESC')->get();
+                }else{
+                    
+                       
+                        $data['customerList'] = DB::table('users')->where('user_type','business_user')->orderby('created_at', 'DESC')->get();
+                }
+                    
+                    
+            }
+        }
       return view('admin/customer/business_list')->with($data);
     }
 
