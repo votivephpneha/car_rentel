@@ -142,9 +142,20 @@ $("#editCategoryForm").validate({
 
                     <div class="form-group">
 
-                      <label>Category Name</label>
+                      <label>Category Name(English)</label>
                       <input type="hidden" name="cat_id" value="{{ $category_list->cat_id }}">
-                      <input type="text" class="form-control" name="cat_name" id="cat_name" placeholder="Enter Category Name" value="{{ $category_list->cat_name }}">
+                      <input type="text" class="form-control" name="cat_name" id="cat_name" placeholder="Enter Category Name(English)" value="{{ $category_list->cat_name }}">
+
+                    </div>
+
+                  </div>
+                  <div class="col-md-6">
+
+                    <div class="form-group">
+
+                      <label>Category Name(Italian)</label>
+
+                      <input type="text" class="form-control" name="cat_name_it" id="cat_name_it" placeholder="Enter Category Name(Italian)" value="{{ $category_list->cat_name_it }}">
 
                     </div>
 

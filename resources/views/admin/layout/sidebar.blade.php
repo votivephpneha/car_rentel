@@ -46,16 +46,16 @@
           </li>
 
           <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-circle"></i>
+            <a href="{{ url('/admin/business_management') }}" class="nav-link">
+              <i class="nav-icon fas fa-tasks"></i>
               <p>
-                User List
-                <i class="right fas fa-angle-left"></i>
+                Business List
+                <!-- <i class="right fas fa-angle-left"></i> -->
               </p>
             </a>
             
            
-            <ul class="nav nav-treeview">
+            <!-- <ul class="nav nav-treeview">
               <li class="nav-item">
                  <a href="{{ url('/admin/customer_management') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -63,16 +63,16 @@
                     Customer List
                   </p>
                 </a>
-              </li>
-              <li class="nav-item">
+              </li> -->
+              <!-- <li class="nav-item">
                  <a href="{{ url('/admin/business_management') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>
                     Business List
                   </p>
                 </a>
-              </li>
-            </ul>
+              </li> 
+            </ul>-->
           </li>
           
           <li class="nav-item">
@@ -122,6 +122,12 @@
               <p>
                 Translation Mangement
               </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ url('/admin/team') }}" class="nav-link">
+              <i class="nav-icon fas fa-tasks"></i>
+              <p>Our Team</p>
             </a>
           </li>
           <!-- <li class="nav-item">

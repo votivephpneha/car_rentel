@@ -56,7 +56,7 @@ $("#pageUpdateAdmin_form").validate({
        $('.ckeditor').ckeditor();
     });
 </script>
-	
+  
 @endsection
 
 @section('content')
@@ -152,7 +152,7 @@ $("#pageUpdateAdmin_form").validate({
 
                 <div class="row">
 
-                  <div class="col-md-12">
+                  <div class="col-md-6">
 
                     <div class="form-group">
 
@@ -163,7 +163,17 @@ $("#pageUpdateAdmin_form").validate({
                     </div>
 
                   </div>
+                  <div class="col-md-6">
 
+                    <div class="form-group">
+
+                      <label>Title(Italian)</label>
+
+                      <input type="text" class="form-control" name="pagetitle_it" id="pagetitle_it" placeholder="Enter Title" value="{{(!empty($page_info->page_title_it) ? $page_info->page_title_it : '')}}">
+
+                    </div>
+
+                  </div>
 
                   <div class="col-md-6">
 
@@ -176,7 +186,17 @@ $("#pageUpdateAdmin_form").validate({
                     </div>
 
                   </div>
+                  <div class="col-md-6">
 
+                    <div class="form-group">
+
+                      <label>SubTitle(Italian)</label>
+
+                      <input type="text" class="form-control" name="subtitle_it" id="subtitle" placeholder="Enter Sub Title" autocomplete="" value="{{(!empty($page_info->sub_title_it) ? $page_info->sub_title_it : '')}}">
+
+                    </div>
+
+                  </div>
                   <div class="col-md-6">
 
                     <div class="form-group">

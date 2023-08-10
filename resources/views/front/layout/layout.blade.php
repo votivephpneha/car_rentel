@@ -55,6 +55,9 @@
       .my-float {
           margin-top: 10px;
       }
+      .error{
+        color:red;
+      }
     </style>
     @yield('current_page_css')
     </head>
@@ -117,12 +120,102 @@
         }
 
       },
+
+      messages:{
+        email_address: {
+            email:"{{ __('messages.driver_valid_email') }}",
+            required: "{{ __('messages.driver_required_field') }}",
+        },
+        title: {
+            required: "{{ __('messages.driver_required_field') }}",
+        },
+        first_name: {
+            required: "{{ __('messages.driver_required_field') }}",
+        },
+        last_name: {
+            required: "{{ __('messages.driver_required_field') }}",
+        },
+        phone: {
+            required: "{{ __('messages.driver_required_field') }}",
+            number:"{{ __('messages.driver_valid_no') }}"
+        },
+        country: {
+            required: "{{ __('messages.driver_required_field') }}",
+        }
+      },
       submitHandler: function (form) {
         form.submit();
       }
     });
   });
-  
+  $(function() {
+  // Initialize form validation on the registration form.
+  // It has the name attribute "registration"
+  $("form[name='change_password']").validate({
+    // Specify validation rules
+    rules: {
+      // The key name on the left side is the name attribute
+      // of an input field. Validation rules are defined
+      // on the right side
+      old_password: "required",
+      new_password: {
+        required: true,
+        minlength: 5
+      },
+      confirm_password:{
+        required:true,
+        equalTo:'#new_password'
+      },
+    },
+    // Specify validation error messages
+    messages: {
+      old_password: "Please provide a old password",
+      
+      new_password: {
+        required: "Please provide a new password",
+        minlength: "Your password must be at least 5 characters long"
+      },
+      confirm_password: {
+        required: "Please provide a Confirm Password",
+        equalTo: "The new password and confirm password does not match"
+      }
+    },
+    // Make sure the form is submitted to the destination defined
+    // in the "action" attribute of the form when valid
+    submitHandler: function(form) {
+      form.submit();
+    }
+  });
+});
+  $(function() {
+  // Initialize form validation on the registration form.
+  // It has the name attribute "registration"
+  $("form[name='forget_password']").validate({
+    // Specify validation rules
+    rules: {
+      // The key name on the left side is the name attribute
+      // of an input field. Validation rules are defined
+      // on the right side
+      
+      email: {
+        required: true,
+        // Specify that email should be validated
+        // by the built-in "email" rule
+        email: true
+      }
+    },
+    // Specify validation error messages
+    messages: {
+      required: "Please provide the email address",
+      email: "Please enter a valid email address"
+    },
+    // Make sure the form is submitted to the destination defined
+    // in the "action" attribute of the form when valid
+    submitHandler: function(form) {
+      form.submit();
+    }
+  });
+ }); 
   $('#owl-carousel').owlCarousel({
     loop:true,
     margin:20,
@@ -306,12 +399,13 @@
 
     var numPages = rowsTotal/rowsShown;  
     //console.log("numPages",numPages);
-    $('#nav').append ('<li class="page-item"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span></a></li>');
+    $('#nav').append ('<li class="page-item active"><a class="page-link" href="#" aria-label="Previous" id="prevBtn"><span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span></a></li>');
     for (i = 0;i < numPages;i++) {  
         var pageNum = i + 1;  
+
         $('#nav').append ('<li class="page-item"><a href="#" rel="'+i+'" class="page-link">'+pageNum+'</a></li>');  
     }  
-    $('#nav').append ('<li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span></a></li>');
+    $('#nav').append ('<li class="page-item"><a class="page-link" href="#" aria-label="Next" id="nextBtn"><span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span></a></li>');
     $('.tab_con .tab_pan').css("display","none");  
 
     $('.tab_con .tab_pan').slice (0, rowsShown).show();  
@@ -325,18 +419,64 @@
         $('.tab_con .tab_pan').css('opacity','0.0').hide().slice(startItem, endItem).  
         css('display','block').animate({opacity:1}, 300);  
     });  
+    $("#nextBtn").click(function () {
+        
+       if ($(".pagination li").next().length != 0) {
+            $(".page-item.active").next().addClass("active").prev().removeClass("active");
+            $(".page-item.active a").trigger("click");
+        } else {
+            $(".pagination li").removeClass("active");
+            $(".pagination li:first").addClass("active");
+        }
+        return false;
+    });
+
+    $("#prevBtn").click(function () {
+        //alert($(".pagination li").prev().length);
+        if ($(".pagination li").prev().length != 0) {
+            $(".page-item.active").prev().addClass("active").next().removeClass("active");
+            $(".page-item.active a").trigger("click");
+        } else {
+            $(".pagination li").removeClass("active");
+            $(".pagination li:last").addClass("active");
+        }
+        return false;
+    });
 
     $(".change_content").on("change",function(){
       var lang_val = $(this).val();
 
-      if(lang_val == "en"){
-        window.location.href = "{{ url('/') }}";
-      }else{
-        window.location.href = "{{ url('/') }}?lang="+lang_val;
-      }
+      console.log("lang_val",lang_val);
+      $.ajax({
+        type: "GET",
+        url: "{{ url('/change_language') }}",
+        data: {lang_val:lang_val},
+        cache: false,
+        success: function(data){
+          console.log("data",data);
+          location.reload();
+          
+        }
+      });
+
 
       
     });
+    $.ajax({
+        type: "GET",
+        url: "{{ url('/check_locale') }}",
+        
+        cache: false,
+        success: function(data){
+          console.log("check_locale",data);
+          if(data == "it"){
+            $("#it").attr("selected","selected");
+          }else{
+            $("#en").attr("selected","selected");
+          }
+          
+        }
+      });
     var url_string = window.location.href; 
     var url = new URL(url_string);
     var c = url.searchParams.get("lang");
@@ -346,6 +486,112 @@
       $("#en").attr("selected","selected");
     }
 });  
+    $(".signin-form").validate({
+      rules: {
+        email_address: {
+            email:true,
+            required: true,
+        },
+        password: {
+            required: true,
+        }
+
+      },
+      messages:{
+        email_address: {
+            required: "Please enter the Email Address",
+        },
+        password: {
+            required: "Please enter the Password",
+        }
+      },
+      submitHandler: function (form) {
+        
+        // alert(site_url);
+        var formData = $(form).serialize();
+
+        $.ajax({
+          type: 'POST',
+          url: "{{ url('/submit_login') }}",
+          data: formData,
+          success: function (response) {
+            console.log(response.status);
+            if (response.status == 'error') {
+              // $("#register_form")[0].reset();
+              // success_noti(response.msg);
+              // setTimeout(function(){window.location.reload()},1000);
+              $(".email_password_error").html(response.msg);
+              
+            }else{
+              window.location.href = "{{ url('user/userProfile') }}";
+            } 
+
+          }
+        });
+       } 
+      });
+
+    $(".resetPassword").validate({
+      rules: {
+        email: {
+            email:true,
+            required: true,
+        },
+        new_password: {
+            required: true,
+        },
+        confirm_password: {
+            required: true,
+            equalTo : "#new_password"
+        }
+
+      },
+      messages:{
+        email: {
+            email:"Please enter the valid Email Address",
+            required: "Please enter the Email Address",
+        },
+        password: {
+            required: "Please enter the Password",
+        },
+        confirm_password: {
+            required: "Please enter the Confirm Password",
+            equalTo : "Please enter the same password again"
+        }
+      },
+      submitHandler: function (form) {
+        form.submit();
+      } 
+    });
+
+    $("#dropdownMenuButton1").click(function(){
+      var login_popup_class = $(".login--drp").hasClass("show");
+      var login_drp = $(".login--drp");
+      login_drp.show();
+      if(login_popup_class){
+        $(document).mouseup(function(e){
+          
+
+          // If the target of the click isn't the container
+          if(!login_drp.is(e.target) && login_drp.has(e.target).length === 0){
+              login_drp.hide();
+          }
+
+        });
+      }
+    });
+    
+
+    
 </script>
+
+<script type="text/javascript">
+$('#login-prevent').on('hide.bs.dropdown', function (e) {
+    if (e.clickEvent && e.clickEvent.target.className!="nav-link") {
+      e.preventDefault();
+    }
+});
+</script>
+
     </body>
 </html>

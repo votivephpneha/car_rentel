@@ -138,7 +138,7 @@ label#user_country-error {
 
                       <label>Contact Number</label>
 
-                      <input type="number" class="form-control" name="contact_number" id="contact_number" placeholder="Enter Customer Number">
+                      <input type="text" class="form-control" name="contact_number" id="contact_number" placeholder="Enter Customer Number" maxlength="10">
 
                     </div>
 

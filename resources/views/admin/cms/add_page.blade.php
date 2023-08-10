@@ -158,7 +158,7 @@ $("#pageAdmin_form").validate({
 
                     <div class="form-group">
 
-                      <label>Title</label>
+                      <label>Title(English)</label>
 
                       <input type="text" class="form-control" name="pagetitle" id="pagetitle" placeholder="Enter Title">
 
@@ -184,7 +184,7 @@ $("#pageAdmin_form").validate({
 
                     <div class="form-group">
 
-                      <label>SubTitle</label>
+                      <label>SubTitle(English)</label>
 
                       <input type="text" class="form-control" name="subtitle" id="subtitle" placeholder="Enter Sub Title" autocomplete="">
 
@@ -196,14 +196,62 @@ $("#pageAdmin_form").validate({
 
                     <div class="form-group">
 
-                      <label>Content</label>
+                      <label>Content(English)</label>
 					  
 					  <textarea id="summernote1" class=" ckeditor form-control" name="content"></textarea>
 
                     </div>
 
                   </div>
+                  <div class="col-md-6">
 
+                    <div class="form-group">
+
+                      <label>Title(Italian)</label>
+
+                      <input type="text" class="form-control" name="pagetitle_it" id="pagetitle" placeholder="Enter Title">
+
+                    </div>
+
+                  </div>
+
+                  <!-- <div class="col-md-6">
+
+                    <div class="form-group">
+
+                      <label>Customer Last Name</label>
+
+                      <input type="text" class="form-control" name="lname" id="lname" placeholder="Enter Customer Last Name">
+
+                    </div>
+
+                  </div> -->
+
+
+
+                  <div class="col-md-6">
+
+                    <div class="form-group">
+
+                      <label>SubTitle(Italian)</label>
+
+                      <input type="text" class="form-control" name="subtitle_it" id="subtitle" placeholder="Enter Sub Title" autocomplete="">
+
+                    </div>
+
+                  </div>
+
+                  <div class="col-md-12">
+
+                    <div class="form-group">
+
+                      <label>Content(Italian)</label>
+            
+            <textarea id="summernote1" class=" ckeditor form-control" name="content_it"></textarea>
+
+                    </div>
+
+                  </div>
                   <div class="col-12">
 
 

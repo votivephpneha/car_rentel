@@ -146,9 +146,9 @@ $("#addLanguageForm").validate({
 
                     <div class="form-group">
 
-                      <label>Title</label>
+                      <label>Language Name</label>
 
-                      <input type="text" class="form-control" name="title" id="title" placeholder="Enter Title">
+                      <input type="text" class="form-control" name="title" id="title" placeholder="Enter Language Name">
 
                     </div>
 

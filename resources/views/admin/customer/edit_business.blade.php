@@ -72,29 +72,7 @@
 
         <div class="card card-default">
 
-          <div class="card-header">
-
-            <h3 class="card-title">Business Form</h3>
-
-
-
-            <!-- <div class="card-tools">
-
-              <button type="button" class="btn btn-tool" data-card-widget="collapse">
-
-                <i class="fas fa-minus"></i>
-
-              </button>
-
-              <button type="button" class="btn btn-tool" data-card-widget="remove">
-
-                <i class="fas fa-times"></i>
-
-              </button>
-
-            </div> -->
-
-          </div>
+          
 
 
 
@@ -118,7 +96,7 @@
 
                     <div class="form-group">
 
-                      <label>Customer Full Name</label>
+                      <label>Name</label>
 
                       <input type="text" class="form-control" name="fname" id="fname" placeholder="Enter Customer First Name"  value="{{(!empty($user_info->first_name) ? $user_info->first_name : '')}}">
 
@@ -144,7 +122,7 @@
 
                     <div class="form-group">
 
-                      <label>Customer Email</label>
+                      <label>Email</label>
 
                       <input type="email" class="form-control" name="email" id="email" placeholder="Enter Customer Email" value="{{(!empty($user_info->email) ? $user_info->email : '')}}">
 
@@ -158,9 +136,9 @@
 
                     <div class="form-group">
 
-                      <label>Customer Number</label>
+                      <label>Contact Number</label>
 
-                      <input type="number" class="form-control" name="contact_number" id="contact_number" placeholder="Enter Customer Number" value="{{(!empty($user_info->contact_number) ? $user_info->contact_number : '')}}">
+                      <input type="text" class="form-control" name="contact_number" id="contact_number" placeholder="Enter Customer Number" value="{{(!empty($user_info->contact_number) ? $user_info->contact_number : '')}}" maxlength="10">
 
                     </div>
 

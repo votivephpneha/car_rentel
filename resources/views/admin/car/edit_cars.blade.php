@@ -163,14 +163,24 @@ $("#editCarsForm").validate({
 
                     <div class="form-group">
 
-                      <label>Title</label>
+                      <label>Vehicle Name(English)</label>
                       <input type="hidden" name="car_id" value="{{ $car_list->id }}">
                       <input type="text" class="form-control" name="title" id="title" placeholder="Enter Title" value="{{ $car_list->title }}">
 
                     </div>
 
                   </div>
+                  <div class="col-md-6">
 
+                    <div class="form-group">
+
+                      <label>Vehicle Name(Italian)</label>
+
+                      <input type="text" class="form-control" name="title_it" id="title" placeholder="Enter Title" value="{{ $car_list->title_it }}">
+
+                    </div>
+
+                  </div>
                   <div class="col-md-6">
 
                   <div class="form-group">
@@ -196,7 +206,7 @@ $("#editCarsForm").validate({
                   <select class="form-control" name="vehicle_category" id="vehicle_category">
                     <option value="">Select</option>
                     @foreach($category_list as $cat_list)
-                    <option value="{{ $cat_list->cat_name }}" @if($cat_list->cat_name == $car_list->vehicle_category) selected @endif>{{ $cat_list->cat_name }}</option>
+                    <option value="{{ $cat_list->cat_id }}" @if($cat_list->cat_id == $car_list->vehicle_category) selected @endif>{{ $cat_list->cat_name }}</option>
                     @endforeach
                   </select>
                  
@@ -208,7 +218,7 @@ $("#editCarsForm").validate({
 
                   <div class="form-group">
 
-                  <label>Image</label>
+                 <label>Vehicle Image</label>
             
                  <input type="file" class="form-control" name="image" id="image">
                  <div class="car_image"><br>
@@ -249,7 +259,7 @@ $("#editCarsForm").validate({
 
                   <div class="form-group">
 
-                  <label>Car Description</label>
+                  <label>Vehicle Description(English)</label>
                   <textarea class="form-control" name="car_description" id="car_description">{{ $car_list->car_description }}</textarea>
                  
 
@@ -257,7 +267,17 @@ $("#editCarsForm").validate({
 
                   </div>
                   
+                  <div class="col-md-6">
 
+                  <div class="form-group">
+
+                  <label>Vehicle Description(Italian)</label>
+                  <textarea class="form-control" name="car_description_it" id="car_description">{{ $car_list->car_description_it }}</textarea>
+                 
+
+                  </div>
+
+                  </div>
                   <div class="col-md-12">
                     <table class="table table-bordered">
                       <thead>
@@ -282,48 +302,7 @@ $("#editCarsForm").validate({
                             <input type="text" name="price[]" class="price form-control" value="<?php echo number_format((float)$price, 2, '.', ''); ?>">
                           </td>
                         </tr>
-                        <tr>
-                          <td>
-                            <span>3+ Day</span>
-                          </td>
-                          <td>
-                            <?php
-                              $price2 = DB::table('car_price_days')->where('car_id',$car_list->id)->where('no_of_day','3+ Day')->first();
-
-                              $price = $price2->price;
-                              
-                            ?>
-                            <input type="text" name="price[]" class="price form-control" value="<?php echo number_format((float)$price, 2, '.', ''); ?>">
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <span>7+ Day</span>
-                          </td>
-                          <td>
-                            <?php
-                              $price3 = DB::table('car_price_days')->where('car_id',$car_list->id)->where('no_of_day','7+ Day')->first();
-
-                              $price = $price3->price;
-                              
-                            ?>
-                            <input type="text" name="price[]" class="price form-control" value="<?php echo number_format((float)$price, 2, '.', ''); ?>">
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <span>30+ Day</span>
-                          </td>
-                          <td>
-                            <?php
-                              $price4 = DB::table('car_price_days')->where('car_id',$car_list->id)->where('no_of_day','30+ Day')->first();
-
-                              $price = $price4->price;
-                              
-                            ?>
-                            <input type="text" name="price[]" class="price form-control" value="<?php echo number_format((float)$price, 2, '.', ''); ?>">
-                          </td>
-                        </tr>
+                        
                       </tbody>
                       
                       

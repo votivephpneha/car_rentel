@@ -8,7 +8,72 @@
 
 
 @section('current_page_css')
-
+<style>
+ 
+.tabs-nav {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.tabs-nav li:first-child a {
+    border-right: 0;
+    -moz-border-radius-topleft: 6px;
+    -webkit-border-top-left-radius: 6px;
+    border-top-left-radius: 6px;
+}
+.tabs-nav .tab-active a {
+    background: hsl(0, 100%, 100%);
+    border-bottom-color: hsla(0, 0%, 0%, 0);
+    color: #ff5f00;
+    cursor: default;
+}
+.tabs-nav a {
+    background: hsl(120, 11%, 96%);
+    border: 1px solid hsl(210, 6%, 79%);
+    color: hsl(215, 6%, 57%);
+    display: block;
+    font-size: 11px;
+    font-weight: bold;
+    height: 46px;
+    line-height: 10px;
+    text-align: center;
+    text-transform: uppercase;
+  padding: 18px;
+    
+}
+.tabs-nav li:last-child a {
+    border-left: 0px;
+    border-top-right-radius: 6px;
+}
+.tabs-nav li {
+    float: left;
+}
+.tabs-stage {
+    border: 1px solid hsl(210, 6%, 79%);
+    -webkit-border-radius: 0 0 6px 6px;
+    -moz-border-radius: 0 0 6px 6px;
+    -ms-border-radius: 0 0 6px 6px;
+    -o-border-radius: 0 0 6px 6px;
+    border-radius: 0 0 6px 6px;
+    border-top: 0;
+    clear: both;
+    margin-bottom: 20px;
+    position: relative;
+    top: -1px;
+    
+}
+.tabs-stage p {
+    margin: 0;
+    padding: 20px;
+    color: hsl(0, 0%, 33%);
+}
+.mgmt_tabs {
+    padding-bottom: 15px;
+}
+.trans_lng_btn button.btn {
+    margin-right: 15px;
+}
+</style>
 @endsection
 
 
@@ -46,6 +111,242 @@ $("#updateTranslations").validate({
     // event.preventDefault();
   }
 });
+// From http://learn.shayhowe.com/advanced-html-css/jquery
+$("#updateTranslationsTwo").validate({
+  debug: false,
+  
+  submitHandler: function (form) {
+    var site_url = $("#baseUrl").val();
+    // alert(site_url);
+    var formData = $(form).serialize();
+    $(form).ajaxSubmit({
+      type: 'POST',
+      url: site_url + '/admin/update_translationsTwo',
+      data: formData,
+      success: function (response) {
+        console.log(response);
+        if (response.status == 'success') {
+          // $("#register_form")[0].reset();
+          // success_noti(response.msg);
+          // setTimeout(function(){window.location.reload()},1000);
+          success_noti(response.msg);
+          //setTimeout(function(){window.location.href=site_url+"/admin/car_management"},1000);
+        } else {
+          error_noti(response.msg);
+        }
+
+      }
+    });
+    // event.preventDefault();
+  }
+});
+$("#updateCarTranslations").validate({
+  debug: false,
+  
+  submitHandler: function (form) {
+    var site_url = $("#baseUrl").val();
+    // alert(site_url);
+    var formData = $(form).serialize();
+    $(form).ajaxSubmit({
+      type: 'POST',
+      url: site_url + '/admin/update_car_translations',
+      data: formData,
+      success: function (response) {
+        console.log(response);
+        if (response.status == 'success') {
+          // $("#register_form")[0].reset();
+          // success_noti(response.msg);
+          // setTimeout(function(){window.location.reload()},1000);
+          success_noti(response.msg);
+          //setTimeout(function(){window.location.href=site_url+"/admin/car_management"},1000);
+        } else {
+          error_noti(response.msg);
+        }
+
+      }
+    });
+    // event.preventDefault();
+  }
+});
+$("#updateCategoryTranslations").validate({
+  debug: false,
+  
+  submitHandler: function (form) {
+    var site_url = $("#baseUrl").val();
+    // alert(site_url);
+    var formData = $(form).serialize();
+    $(form).ajaxSubmit({
+      type: 'POST',
+      url: site_url + '/admin/update_category_translations',
+      data: formData,
+      success: function (response) {
+        console.log(response);
+        if (response.status == 'success') {
+          // $("#register_form")[0].reset();
+          // success_noti(response.msg);
+          // setTimeout(function(){window.location.reload()},1000);
+          success_noti(response.msg);
+          //setTimeout(function(){window.location.href=site_url+"/admin/car_management"},1000);
+        } else {
+          error_noti(response.msg);
+        }
+
+      }
+    });
+    // event.preventDefault();
+  }
+});
+$("#updateAddressTranslations").validate({
+  debug: false,
+  
+  submitHandler: function (form) {
+    var site_url = $("#baseUrl").val();
+    // alert(site_url);
+    var formData = $(form).serialize();
+    $(form).ajaxSubmit({
+      type: 'POST',
+      url: site_url + '/admin/update_address_translations',
+      data: formData,
+      success: function (response) {
+        console.log(response);
+        if (response.status == 'success') {
+          // $("#register_form")[0].reset();
+          // success_noti(response.msg);
+          // setTimeout(function(){window.location.reload()},1000);
+          success_noti(response.msg);
+          //setTimeout(function(){window.location.href=site_url+"/admin/car_management"},1000);
+        } else {
+          error_noti(response.msg);
+        }
+
+      }
+    });
+    // event.preventDefault();
+  }
+});
+$("#updateLoginTranslations").validate({
+  debug: false,
+  
+  submitHandler: function (form) {
+    var site_url = $("#baseUrl").val();
+    // alert(site_url);
+    var formData = $(form).serialize();
+    $(form).ajaxSubmit({
+      type: 'POST',
+      url: site_url + '/admin/update_login_translations',
+      data: formData,
+      success: function (response) {
+        console.log(response);
+        if (response.status == 'success') {
+          // $("#register_form")[0].reset();
+          // success_noti(response.msg);
+          // setTimeout(function(){window.location.reload()},1000);
+          success_noti(response.msg);
+          //setTimeout(function(){window.location.href=site_url+"/admin/car_management"},1000);
+        } else {
+          error_noti(response.msg);
+        }
+
+      }
+    });
+    // event.preventDefault();
+  }
+});
+$("#updateCountryTranslations").validate({
+  debug: false,
+  
+  submitHandler: function (form) {
+    var site_url = $("#baseUrl").val();
+    // alert(site_url);
+    var formData = $(form).serialize();
+    $(form).ajaxSubmit({
+      type: 'POST',
+      url: site_url + '/admin/update_country_translations',
+      data: formData,
+      success: function (response) {
+        console.log(response);
+        if (response.status == 'success') {
+          // $("#register_form")[0].reset();
+          // success_noti(response.msg);
+          // setTimeout(function(){window.location.reload()},1000);
+          success_noti(response.msg);
+          //setTimeout(function(){window.location.href=site_url+"/admin/car_management"},1000);
+        } else {
+          error_noti(response.msg);
+        }
+
+      }
+    });
+    // event.preventDefault();
+  }
+});
+$("#updateTeamTranslations").validate({
+  debug: false,
+  
+  submitHandler: function (form) {
+    var site_url = $("#baseUrl").val();
+    // alert(site_url);
+    var formData = $(form).serialize();
+    $(form).ajaxSubmit({
+      type: 'POST',
+      url: site_url + '/admin/update_team_translations',
+      data: formData,
+      success: function (response) {
+        console.log(response);
+        if (response.status == 'success') {
+          // $("#register_form")[0].reset();
+          // success_noti(response.msg);
+          // setTimeout(function(){window.location.reload()},1000);
+          success_noti(response.msg);
+          //setTimeout(function(){window.location.href=site_url+"/admin/car_management"},1000);
+        } else {
+          error_noti(response.msg);
+        }
+
+      }
+    });
+    // event.preventDefault();
+  }
+});
+$("#updatePageTranslations").validate({
+  debug: false,
+  
+  submitHandler: function (form) {
+    var site_url = $("#baseUrl").val();
+    // alert(site_url);
+    var formData = $(form).serialize();
+    $(form).ajaxSubmit({
+      type: 'POST',
+      url: site_url + '/admin/update_page_translations',
+      data: formData,
+      success: function (response) {
+        console.log(response);
+        if (response.status == 'success') {
+          // $("#register_form")[0].reset();
+          // success_noti(response.msg);
+          // setTimeout(function(){window.location.reload()},1000);
+          success_noti(response.msg);
+          //setTimeout(function(){window.location.href=site_url+"/admin/car_management"},1000);
+        } else {
+          error_noti(response.msg);
+        }
+
+      }
+    });
+    // event.preventDefault();
+  }
+});
+// Change tab class and display content
+$('.tabs-nav a').on('click', function (event) {
+    event.preventDefault();
+    
+    $('.tab-active').removeClass('tab-active');
+    $(this).parent().addClass('tab-active');
+    $('.tabs-stage .form_tab').hide();
+    $($(this).attr('href')).show();
+});
+
+$('.tabs-nav a:first').trigger('click'); // Default
 
 // End pages 
 </script>
@@ -127,7 +428,21 @@ $("#updateTranslations").validate({
           <!-- /.card-header -->
 
           <div class="card-body">
-
+              <ul class="tabs-nav">
+                  <li class=""><a href="#tab-1" rel="nofollow">Basic Texts</a>
+                  </li>
+                  <li class="tab-active"><a href="#tab-2" rel="nofollow">Booking Texts</a>
+                  </li>
+                  <li class="tab-active"><a href="#tab-3" rel="nofollow">Login Management Texts</a>
+                  </li>
+                  
+                  <li class="tab-active"><a href="#tab-5" rel="nofollow">Locations</a>  
+                  </li>
+                  
+                  </li>
+              </ul>
+              <div class="tabs-stage mgmt_tabs">
+               <div id="tab-1" class="form_tab" style="display: none;"> 
               <form  method="POST" enctype="multipart/form-data" id="updateTranslations">
 
                 @csrf
@@ -642,14 +957,14 @@ $("#updateTranslations").validate({
                       <td>
                         <div class="form-group">
 
-                          <input type="text" class="form-control" name="change_date_en" id="home" value="{{ $texts->manual_it }}">
+                          <input type="text" class="form-control" name="change_date_en" id="home" value="{{ $texts->change_date_en }}">
 
                         </div>
                       </td>
                       <td>
                         <div class="form-group">
 
-                          <input type="text" class="form-control" name="change_date_it" id="home" value="{{ $texts->manual_it }}">
+                          <input type="text" class="form-control" name="change_date_it" id="home" value="{{ $texts->change_date_it }}">
 
                         </div>
                       </td>
@@ -658,14 +973,14 @@ $("#updateTranslations").validate({
                       <td>
                         <div class="form-group">
 
-                          <input type="text" class="form-control" name="search_popup_en" id="home" value="{{ $texts->manual_it }}">
+                          <input type="text" class="form-control" name="search_popup_en" id="home" value="{{ $texts->search_popup_en }}">
 
                         </div>
                       </td>
                       <td>
                         <div class="form-group">
 
-                          <input type="text" class="form-control" name="search_popup_it" id="home" value="{{ $texts->manual_it }}">
+                          <input type="text" class="form-control" name="search_popup_it" id="home" value="{{ $texts->search_popup_it }}">
 
                         </div>
                       </td>
@@ -711,7 +1026,7 @@ $("#updateTranslations").validate({
                     </tr>
                   </tbody>
                 </table> 
-                <div class="card-header" style="width: 100%; margin-bottom: 20px;"><h3 class="card-title">Locations</h3></div>
+                <div class="card-header" style="width: 100%; margin-bottom: 20px;"><h3 class="card-title">	</h3></div>
                 <table class="table table-bordered table-striped">
                   
                   <tbody>
@@ -1122,6 +1437,1058 @@ $("#updateTranslations").validate({
                     </tr>
                   </tbody>
                 </table> 
+                
+                <div class="row">
+
+
+                  <div class="col-12 trans_lng_btn">
+
+                  <button class="btn btn-primary btn-dark float-right" name="submit" type="submit">Submit</button>
+
+                  </div>
+
+                </div>
+
+              </form>
+              </div>
+              <div id="tab-2" class="form_tab" style="display: block;">
+            <form enctype="multipart/form-data" id="updateTranslationsTwo">            
+                @csrf
+                <table class="table table-bordered table-striped">
+                  <tbody>
+                    <tr>
+                      <th>English Text</th>
+                      <th>Italian Text</th>
+                    </tr>
+                  </tbody>
+                </table>
+                <table class="table table-bordered table-striped">
+                  
+                  <tbody>
+                    
+                    <tr>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="driver_heading_en" id="home" value="{{ $texts_booking->driver_heading_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="driver_heading_it" id="home" value="{{ $texts_booking->driver_heading_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="driver_sub_heading_en" id="home" value="{{ $texts_booking->driver_sub_heading_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="driver_sub_heading_it" id="home" value="{{ $texts_booking->driver_sub_heading_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="driver_email_en" id="home" value="{{ $texts_booking->driver_email_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="driver_email_it" id="home" value="{{ $texts_booking->driver_email_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="driver_title_en" id="home" value="{{ $texts_booking->driver_title_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="driver_title_it" id="home" value="{{ $texts_booking->driver_title_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="driver_fname_en" id="home" value="{{ $texts_booking->driver_fname_en }}">
+
+                        </div>
+                      </td>
+                       
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="driver_fname_it" id="home" value="{{ $texts_booking->driver_fname_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="driver_lname_en" id="home" value="{{ $texts_booking->driver_lname_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="driver_lname_it" id="home" value="{{ $texts_booking->driver_lname_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="driver_contact_en" id="home" value="{{ $texts_booking->driver_contact_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="driver_contact_it" id="home" value="{{ $texts_booking->driver_contact_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="driver_country_en" id="home" value="{{ $texts_booking->driver_country_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="driver_country_it" id="home" value="{{ $texts_booking->driver_country_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="driver_flight_en" id="home" value="{{ $texts_booking->driver_flight_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="driver_flight_it" id="home" value="{{ $texts_booking->driver_flight_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="driver_notes_en" id="home" value="{{ $texts_booking->driver_notes_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="driver_notes_it" id="home" value="{{ $texts_booking->driver_notes_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="driver_submit_btn_en" id="home" value="{{ $texts_booking->driver_submit_btn_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="driver_submit_btn_it" id="home" value="{{ $texts_booking->driver_submit_btn_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="driver_email_field_en" id="home" value="{{ $texts_booking->driver_email_field_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="driver_email_field_it" id="home" value="{{ $texts_booking->driver_email_field_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="driver_contact_field_en" id="home" value="{{ $texts_booking->driver_contact_field_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="driver_contact_field_it" id="home" value="{{ $texts_booking->driver_contact_field_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="driver_flight_field_en" id="home" value="{{ $texts_booking->driver_flight_field_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="driver_flight_field_it" id="home" value="{{ $texts_booking->driver_flight_field_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="driver_title_one_en" id="home" value="{{ $texts_booking->driver_title_one_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="driver_title_one_it" id="home" value="{{ $texts_booking->driver_title_two_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="driver_title_two_en" id="home" value="{{ $texts_booking->driver_title_two_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="driver_title_two_it" id="home" value="{{ $texts_booking->driver_title_two_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="driver_select_option_en" id="home" value="{{ $texts_booking->driver_select_option_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="driver_select_option_it" id="home" value="{{ $texts_booking->driver_select_option_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="driver_required_field_en" id="home" value="{{ $texts_booking->driver_required_field_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="driver_required_field_it" id="home" value="{{ $texts_booking->driver_required_field_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="driver_valid_no_en" id="home" value="{{ $texts_booking->driver_valid_no_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="driver_valid_no_it" id="home" value="{{ $texts_booking->driver_valid_no_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="driver_valid_email_en" id="home" value="{{ $texts_booking->driver_valid_email_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="driver_valid_email_it" id="home" value="{{ $texts_booking->driver_valid_email_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="driver_image_text_en" id="home" value="{{ $texts_booking->driver_image_text_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="driver_image_text_it" id="home" value="{{ $texts_booking->driver_image_text_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          <textarea class="form-control" name="driver_image_text_en" id="home" rows="5">{{ $texts_booking->driver_image_text_en }}</textarea>
+                          
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+                          <textarea class="form-control" name="driver_image_text_it" id="home" rows="5">{{ $texts_booking->driver_image_text_it }}</textarea>
+                          
+
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table> 
+                <div class="card-header" style="width: 100%; margin-bottom: 20px;"><h3 class="card-title">Payment Page</h3></div>
+                <table class="table table-bordered table-striped">
+                  
+                  <tbody>
+                    
+                    <tr>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="payment_method_en" id="home" value="{{ $texts_booking->payment_method_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="payment_method_it" id="home" value="{{ $texts_booking->payment_method_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="paytext_en" id="home" value="{{ $texts_booking->paytext_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="paytext_it" id="home" value="{{ $texts_booking->paytext_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="payment_btn_en" id="home" value="{{ $texts_booking->payment_btn_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="payment_btn_it" id="home" value="{{ $texts_booking->payment_btn_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="rentel_days_en" id="home" value="{{ $texts_booking->rentel_days_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="rentel_days_it" id="home" value="{{ $texts_booking->rentel_days_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          <textarea class="form-control" name="payment_details_en" id="home" rows="5">{{ $texts_booking->payment_details_en }}</textarea>
+                          
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+                          <textarea class="form-control" name="payment_details_it" id="home" rows="5">{{ $texts_booking->payment_details_it }}</textarea>
+                          
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="price_detail_en" id="home" value="{{ $texts_booking->price_detail_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="price_detail_it" id="home" value="{{ $texts_booking->price_detail_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table> 
+                <div class="card-header" style="width: 100%; margin-bottom: 20px;"><h3 class="card-title">Thank You Page</h3></div>
+                <table class="table table-bordered table-striped">
+                  
+                  <tbody>
+                    
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          <textarea class="form-control" name="thankyoucontent_en" id="home" rows="5">{{ $texts_booking->payment_details_en }}</textarea>
+                          
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+                          <textarea class="form-control" name="thankyoucontent_it" id="home" rows="5">{{ $texts_booking->payment_details_it }}</textarea>
+                          
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="thankyoubtn_en" id="home" value="{{ $texts->best_deal_content_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="thankyoubtn_it" id="home" value="{{ $texts->best_deal_content_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table> 
+                <div class="row">
+
+
+                  <div class="col-12 trans_lng_btn">
+
+                  <button class="btn btn-primary btn-dark float-right" name="submit" type="submit">Submit</button>
+
+                  </div>
+
+                </div>
+            </form>
+            </div>
+            <div id="tab-3" class="form_tab" style="display: none;">
+              <form method="POST" enctype="multipart/form-data" id="updateLoginTranslations" novalidate="novalidate">
+                @csrf
+                <table class="table table-bordered table-striped">
+                  <tbody>
+                    <tr>
+                      <th>English Text</th>
+                      <th>Italian Text</th>
+                    </tr>
+                  </tbody>
+                </table>
+                
+                <table class="table table-bordered table-striped">
+                  
+                  <tbody>
+                    
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          
+                          <input type="text" class="form-control" name="login_text_en" id="home" value="{{ $login_texts->login_text_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="login_text_it" id="home" value="{{ $login_texts->login_text_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          
+                          <input type="text" class="form-control" name="login_heading_en" id="home" value="{{ $login_texts->login_heading_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="login_heading_it" id="home" value="{{ $login_texts->login_heading_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          
+                          <input type="text" class="form-control" name="login_email_en" id="home" value="{{ $login_texts->login_email_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="login_email_it" id="home" value="{{ $login_texts->login_email_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          
+                          <input type="text" class="form-control" name="login_password_en" id="home" value="{{ $login_texts->login_password_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="login_password_it" id="home" value="{{ $login_texts->login_password_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          
+                          <input type="text" class="form-control" name="login_submit_en" id="home" value="{{ $login_texts->login_submit_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="login_submit_it" id="home" value="{{ $login_texts->login_submit_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          
+                          <input type="text" class="form-control" name="login_remember_text_en" id="home" value="{{ $login_texts->login_remember_text_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="login_remember_text_it" id="home" value="{{ $login_texts->login_remember_text_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          
+                          <input type="text" class="form-control" name="login_forget_password_en" id="home" value="{{ $login_texts->login_forget_password_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="login_forget_password_it" id="home" value="{{ $login_texts->login_forget_password_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table> 
+                <div class="card-header" style="width: 100%; margin-bottom: 20px;"><h3 class="card-title">User Dashboard</h3></div>
+                <table class="table table-bordered table-striped">
+                  
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          
+                          <input type="text" class="form-control" name="dashboard_en" id="home" value="{{ $login_texts->dashboard_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="dashboard_it" id="home" value="{{ $login_texts->dashboard_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          
+                          <input type="text" class="form-control" name="date_range_en" id="home" value="{{ $login_texts->date_range_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="date_range_it" id="home" value="{{ $login_texts->date_range_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="total_customers_en" id="home" value="{{ $login_texts->total_customers_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="total_customers_it" id="home" value="{{ $login_texts->total_customers_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="accepted_customers_en" id="home" value="{{ $login_texts->accepted_customers_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="accepted_customers_it" id="home" value="{{ $login_texts->accepted_customers_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="rejected_customers_en" id="home" value="{{ $login_texts->rejected_customers_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="rejected_customers_it" id="home" value="{{ $login_texts->rejected_customers_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="total_customers_bill_en" id="home" value="{{ $login_texts->total_customers_bill_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="total_customers_bill_it" id="home" value="{{ $login_texts->total_customers_bill_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table> 
+                <div class="card-header" style="width: 100%; margin-bottom: 20px;"><h3 class="card-title">Profile</h3></div>
+                <table class="table table-bordered table-striped">
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          
+                          <input type="text" class="form-control" name="profile_text_en" id="home" value="{{ $login_texts->profile_text_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="profile_text_it" id="home" value="{{ $login_texts->profile_text_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          
+                          <input type="text" class="form-control" name="profile_heading_en" id="home" value="{{ $login_texts->profile_heading_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="profile_heading_it" id="home" value="{{ $login_texts->profile_heading_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          
+                          <input type="text" class="form-control" name="profile_name_en" id="home" value="{{ $login_texts->profile_name_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="profile_name_it" id="home" value="{{ $login_texts->profile_name_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          
+                          <input type="text" class="form-control" name="profile_email_en" id="home" value="{{ $login_texts->profile_email_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="profile_email_it" id="home" value="{{ $login_texts->profile_email_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          
+                          <input type="text" class="form-control" name="profile_phone_en" id="home" value="{{ $login_texts->profile_phone_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="profile_phone_it" id="home" value="{{ $login_texts->profile_phone_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          
+                          <input type="text" class="form-control" name="profile_address_en" id="home" value="{{ $login_texts->profile_address_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="profile_address_it" id="home" value="{{ $login_texts->profile_address_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          
+                          <input type="text" class="form-control" name="profile_city_en" id="home" value="{{ $login_texts->profile_city_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="profile_city_it" id="home" value="{{ $login_texts->profile_city_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          
+                          <input type="text" class="form-control" name="profile_country_en" id="home" value="{{ $login_texts->profile_country_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="profile_country_it" id="home" value="{{ $login_texts->profile_country_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          
+                          <input type="text" class="form-control" name="profile_image_en" id="home" value="{{ $login_texts->profile_image_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="profile_image_it" id="home" value="{{ $login_texts->profile_image_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          
+                          <input type="text" class="form-control" name="profile_btn_en" id="home" value="{{ $login_texts->profile_btn_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="profile_btn_it" id="home" value="{{ $login_texts->profile_btn_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="card-header" style="width: 100%; margin-bottom: 20px;"><h3 class="card-title">Profile</h3></div>
+                <table class="table table-bordered table-striped">
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          
+                          <input type="text" class="form-control" name="change_password_text_en" id="home" value="{{ $login_texts->change_password_text_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="change_password_text_it" id="home" value="{{ $login_texts->change_password_text_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          
+                          <input type="text" class="form-control" name="change_password_heading_en" id="home" value="{{ $login_texts->change_password_heading_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="change_password_heading_it" id="home" value="{{ $login_texts->change_password_heading_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          
+                          <input type="text" class="form-control" name="old_password_en" id="home" value="{{ $login_texts->old_password_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="old_password_it" id="home" value="{{ $login_texts->old_password_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          
+                          <input type="text" class="form-control" name="new_password_en" id="home" value="{{ $login_texts->new_password_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="new_password_it" id="home" value="{{ $login_texts->new_password_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          
+                          <input type="text" class="form-control" name="confirm_password_en" id="home" value="{{ $login_texts->confirm_password_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="confirm_password_it" id="home" value="{{ $login_texts->confirm_password_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          
+                          <input type="text" class="form-control" name="password_submit_en" id="home" value="{{ $login_texts->password_submit_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="password_submit_it" id="home" value="{{ $login_texts->password_submit_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          
+                          <input type="text" class="form-control" name="logout_btn_en" id="home" value="{{ $login_texts->logout_btn_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="logout_btn_it" id="home" value="{{ $login_texts->logout_btn_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
                 <div class="row">
 
 
@@ -1132,10 +2499,310 @@ $("#updateTranslations").validate({
                   </div>
 
                 </div>
-
               </form>
+            </div>
+            <div id="tab-4" class="form_tab" style="display: none;">
+              <form method="POST" enctype="multipart/form-data" id="updateCategoryTranslations" novalidate="novalidate">
+                @csrf
+                <table class="table table-bordered table-striped">
+                  <tbody>
+                    <tr>
+                      <th>English Text</th>
+                      <th>Italian Text</th>
+                    </tr>
+                  </tbody>
+                </table>
+                <?php $i = 1; ?>
+                @foreach($categories as $c_data)
+                <div class="card-header" style="width: 100%; margin-bottom: 20px;"><h3 class="card-title">{{ $i++ }}</h3></div>
+                <table class="table table-bordered table-striped">
+                  
+                  <tbody>
+                    
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          <input type="hidden" name="cat_id[]" value="{{ $c_data->cat_id }}">
+                          <input type="text" class="form-control" name="cat_name_en" id="home" value="{{ $c_data->cat_name }}" disabled="">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="cat_name_it[]" id="home" value="{{ $c_data->cat_name_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    
+                    
+                  </tbody>
+                </table> 
+                @endforeach
+                <div class="row">
 
 
+                  <div class="col-12">
+
+                  <button class="btn btn-primary btn-dark float-right" name="submit" type="submit">Submit</button>
+
+                  </div>
+
+                </div>
+              </form>  
+            </div>
+            <div id="tab-5" class="form_tab" style="display: none;">
+              <form method="POST" enctype="multipart/form-data" id="updateAddressTranslations" novalidate="novalidate">
+                @csrf
+                <table class="table table-bordered table-striped">
+                  <tbody>
+                    <tr>
+                      <th>English Text</th>
+                      <th>Italian Text</th>
+                    </tr>
+                  </tbody>
+                </table>
+                <?php $i = 1; ?>
+                @foreach($address_data as $c_data)
+                <div class="card-header" style="width: 100%; margin-bottom: 20px;"><h3 class="card-title">{{ $i++ }}</h3></div>
+                <table class="table table-bordered table-striped">
+                  
+                  <tbody>
+                    
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          <input type="hidden" name="address_id[]" value="{{ $c_data->id }}">
+                          <input type="text" class="form-control" name="address_name_en" id="home" value="{{ $c_data->address }}" disabled="">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="address_name_it[]" id="home" value="{{ $c_data->address_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    
+                    
+                  </tbody>
+                </table> 
+                @endforeach
+                <div class="row">
+
+
+                  <div class="col-12 trans_lng_btn">
+
+                  <button class="btn btn-primary btn-dark float-right" name="submit" type="submit">Submit</button>
+
+                  </div>
+
+                </div>
+              </form>  
+            </div>
+            <div id="tab-6" class="form_tab" style="display: none;">
+              <form method="POST" enctype="multipart/form-data" id="updateCountryTranslations" novalidate="novalidate">
+                @csrf
+                <table class="table table-bordered table-striped">
+                  <tbody>
+                    <tr>
+                      <th>English Text</th>
+                      <th>Italian Text</th>
+                    </tr>
+                  </tbody>
+                </table>
+                <?php $i = 1; ?>
+                @foreach($countries_data as $c_data)
+                <div class="card-header" style="width: 100%; margin-bottom: 20px;"><h3 class="card-title">{{ $i++ }}</h3></div>
+                <table class="table table-bordered table-striped">
+                  
+                  <tbody>
+                    
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          <input type="hidden" name="country_id[]" value="{{ $c_data->id }}">
+                          <input type="text" class="form-control" name="country_name_en" id="home" value="{{ $c_data->name }}" disabled="">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="country_name_it[]" id="home" value="{{ $c_data->name_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    
+                    
+                  </tbody>
+                </table> 
+                @endforeach
+                <div class="row">
+
+
+                  <div class="col-12">
+
+                  <button class="btn btn-primary btn-dark float-right" name="submit" type="submit">Submit</button>
+
+                  </div>
+
+                </div>
+              </form>  
+              </div>
+              <div id="tab-7" class="form_tab" style="display: none;">
+              <form method="POST" enctype="multipart/form-data" id="updateTeamTranslations" novalidate="novalidate">
+                @csrf
+                <table class="table table-bordered table-striped">
+                  <tbody>
+                    <tr>
+                      <th>English Text</th>
+                      <th>Italian Text</th>
+                    </tr>
+                  </tbody>
+                </table>
+                <?php $i = 1; ?>
+                @foreach($ourteams as $teams)
+                <div class="card-header" style="width: 100%; margin-bottom: 20px;"><h3 class="card-title">{{ $i++ }}</h3></div>
+                <table class="table table-bordered table-striped">
+                  
+                  <tbody>
+                    
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          <input type="hidden" name="team_id[]" value="{{ $teams->id }}">
+                          <input type="text" class="form-control" name="team_title_en" id="home" value="{{ $teams->page_title }}" disabled="">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="team_title_it[]" id="home" value="{{ $teams->page_title_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          
+                          <input type="text" class="form-control" name="team_subtitle_en" id="home" value="{{ $teams->sub_title }}" disabled="">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="team_subtitle_it[]" id="home" value="{{ $teams->sub_title_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    
+                  </tbody>
+                </table> 
+                @endforeach
+                <div class="row">
+
+
+                  <div class="col-12">
+
+                  <button class="btn btn-primary btn-dark float-right" name="submit" type="submit">Submit</button>
+
+                  </div>
+
+                </div>
+              </form>  
+            </div>
+            <div id="tab-8" class="form_tab" style="display: none;">
+              <form method="POST" enctype="multipart/form-data" id="updatePageTranslations" novalidate="novalidate">
+                @csrf
+                <table class="table table-bordered table-striped">
+                  <tbody>
+                    <tr>
+                      <th>English Text</th>
+                      <th>Italian Text</th>
+                    </tr>
+                  </tbody>
+                </table>
+                <?php $i = 1; ?>
+                @foreach($pages as $p_data)
+                <div class="card-header" style="width: 100%; margin-bottom: 20px;"><h3 class="card-title">{{ $i++ }}</h3></div>
+                <table class="table table-bordered table-striped">
+                  
+                  <tbody>
+                    
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          <input type="hidden" name="page_id[]" value="{{ $p_data->id }}">
+                          <input type="text" class="form-control" name="page_title_en" id="home" value="{{ $p_data->page_title }}" disabled="">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="page_title_it[]" id="home" value="{{ $p_data->page_title_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          
+                          <input type="text" class="form-control" name="page_subtitle_en" id="home" value="{{ $p_data->sub_title }}" disabled="">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="page_subtitle_it[]" id="home" value="{{ $p_data->sub_title_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          <textarea class="form-control" name="page_content_en[]" id="home" rows="5" disabled="">{{ $p_data->page_content }}</textarea>
+                          
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+                          <textarea class="form-control" name="page_content_it[]" id="home" rows="5">{{ $p_data->page_content_it }}</textarea>
+                          
+
+                        </div>
+                      </td>
+                    </tr>
+                    
+                  </tbody>
+                </table> 
+                @endforeach
+                <div class="row">
+
+
+                  <div class="col-12">
+
+                  <button class="btn btn-primary btn-dark float-right" name="submit" type="submit">Submit</button>
+
+                  </div>
+
+                </div>
+              </form>  
+            </div>
+          </div>
 
             <!-- /.row -->
 

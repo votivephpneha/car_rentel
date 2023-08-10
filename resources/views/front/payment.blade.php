@@ -24,7 +24,7 @@
                 <div class="row gx-4 gx-lg-5">                  
           <div class="col-md-6 info-card">  
                 
-                <h4>Payment Method</h4>
+                <h4>{{ __('messages.payment_method') }}</h4>
                 <div class="card">
                   <div class="" id="">
                     <div class="card">
@@ -33,7 +33,7 @@
                           <button class="btn btn-light btn-block text-left p-3 rounded-0" style="width: 100%;">
                             <div class="d-flex align-items-center justify-content-between">
 
-                              <span class="pay01">How would you like to pay?</span>
+                              <span class="pay01">{{ __('messages.paytext') }}</span>
                               <!-- <div class="icons">
                                 <img src="https://i.imgur.com/2ISgYja.png" width="30">
                                 <img src="https://i.imgur.com/W1vtnOV.png" width="30">
@@ -72,7 +72,7 @@
                             </div> -->
                             <div class="pay_btn">
                               <div class="input">
-                                <button type="submit" class="btn btn-primary btn-block paynow-btn">Cash On Delivery</button>    
+                                <button type="submit" class="btn btn-primary btn-block paynow-btn">{{ __('messages.payment_btn') }}</button>    
                               </div> 
                             </div>
                             </div>
@@ -170,7 +170,7 @@
                 </div>
                 <div class="summary-carname">
                   <h4>{{ $car_data->title }}</h4>
-                  <p><i class="bi bi-clock"></i> <?php echo $get_user_data['date_diff'] ?> rental day's</p>
+                  <p><i class="bi bi-clock"></i> <?php echo $get_user_data['date_diff'] ?> {{ __('messages.rentel_days') }}</p>
                 </div>
               </div>
               <div class="card col_01 border-0 mb-0"> 
@@ -187,10 +187,7 @@
                       </div>
                     </div>
                     <ul class="summary-feat">
-                      <li><i class="bi bi-check2"></i> Unlimited Kilometers</li>
-                      <li><i class="bi bi-check2"></i> Included loss damage waiver up to <i class="fa fa-eur" style="color:black"></i>500 financial responsibility</li>
-                      <li><i class="bi bi-check2"></i> Included third party insurance</li>
-                      <li><i class="bi bi-check2"></i> Driver must have held their driver's license for at least 2year(s)</li>
+                      {!! __('messages.payment_details') !!}
                     </ul>
                   </div>
                 </div>  
@@ -198,8 +195,8 @@
               <div class="card summary_btm"> 
                 <div class="card-body">
                   <div class="item-card-price">
-                    <h4>Total</h4>
-                    <p>Price Details</p>
+                    <h4>{{ __('messages.total') }}</h4>
+                    <p>{{ __('messages.price_detail') }}</p>
                   </div>
                   <div class="summary-tot-price">
                     <?php

@@ -56,6 +56,8 @@ Route::fallback(function () {
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/change_language', [App\Http\Controllers\HomeController::class, 'change_language'])->name('change_language');
+Route::get('/check_locale', [App\Http\Controllers\HomeController::class, 'check_locale'])->name('check_locale');
 Route::post('/car_list', [App\Http\Controllers\HomeController::class, 'car_list'])->name('car_list');
 Route::get('/get_car_list', [App\Http\Controllers\HomeController::class, 'get_cars'])->name('get_cars');
 Route::get('/get_address', [App\Http\Controllers\HomeController::class, 'get_address'])->name('get_address');
@@ -66,6 +68,7 @@ Route::post('/submit_booking', [App\Http\Controllers\HomeController::class, 'sub
 Route::get('/payment/{car_id}', [App\Http\Controllers\HomeController::class, 'payment_page'])->name('payment_page');
 Route::post('/submit_payment', [App\Http\Controllers\HomeController::class, 'submit_payment'])->name('submit_payment');
 Route::get('/thankyou', [App\Http\Controllers\HomeController::class, 'thankyou'])->name('thankyou');
+Route::post('/submit_login', [App\Http\Controllers\HomeController::class, 'submit_login'])->name('submit_login');
 Route::get('/baseForm', [App\Http\Controllers\HomeController::class, 'baseForm'])->name('baseForm');
 Route::post('/manage_booking', [App\Http\Controllers\HomeController::class, 'manage_booking'])->name('manage_booking');
 
@@ -86,13 +89,24 @@ Route::any('/add_help_action', 'App\Http\Controllers\HomeController@add_help_act
 
 Route::any('/page/{pageurl}', 'App\Http\Controllers\HomeController@cms_page');
 
+Route::get('/forget_password', [HomeController::class, 'forgetPassword'])->name('forgetPassword');
+Route::post('/postforget_password', [HomeController::class, 'postforget_password'])->name('postforget_password');
+Route::get('/reset_password/{token}/{email}', [HomeController::class, 'reset_password'])->name('reset_password');
+Route::post('/postreset_password', [HomeController::class, 'postreset_password'])->name('postreset_password');
+
 // user route start here
-Route::group(['middleware' => 'App\Http\Middleware\UserMiddleware'], function () {
-    Route::get('user/profile','App\Http\Controllers\HomeController@userProfile')->name('user.profile');
-    Route::any('user/changePassword', 'App\Http\Controllers\HomeController@change_password');
-    // Route::any('user/logout', 'App\Http\Controllers\HomeController@userLogout');	
-    Route::any('user/logout', 'App\Http\Controllers\HomeController@userLogout')->name('user.logout');
-});	
+Route::group(['prefix' => 'user','middleware' => 'auth:user'], function () {
+    Route::get('/dashboard', [HomeController::class, 'userDashboard'])->name('userDashboard');
+    Route::get('/userProfile', [HomeController::class, 'userProfile'])->name('userProfile');
+    //Route::get('profile','App\Http\Controllers\HomeController@userProfile')->name('profile');
+    Route::post('/postuserProfile', [HomeController::class, 'postuserProfile'])->name('postuserProfile');
+    Route::get('changePassword', 'App\Http\Controllers\HomeController@user_ChangePassword');
+    Route::post('/postuser_ChangePassword', [HomeController::class, 'postuser_ChangePassword'])->name('postuser_ChangePassword');
+    // Route::any('user/logout', 'App\Http\Controllers\HomeController@userLogout'); 
+    Route::any('logout', 'App\Http\Controllers\HomeController@front_logout')->name('front_logout');
+    Route::get('/forget_password', [HomeController::class, 'forget_password'])->name('forget_password');
+    Route::post('/postforget_password', [HomeController::class, 'postforget_password'])->name('postforget_password');
+}); 
 
 // vendor route start here
 Route::group(['middleware' => 'App\Http\Middleware\VendorMiddleware'], function () {
@@ -289,6 +303,14 @@ Route::group(['prefix' => 'admin'], function(){
         Route::any('/delete_category', [AdminController::class, 'delete_category'])->name('delete_category');
         Route::get('/translation_management', [AdminController::class, 'translation_management'])->name('translation_management');
         Route::post('/update_translations', [AdminController::class, 'update_translations'])->name('update_translations');
+        Route::post('/update_translationsTwo', [AdminController::class, 'update_translationsTwo'])->name('update_translationsTwo');
+        Route::post('/update_car_translations', [AdminController::class, 'update_car_translations'])->name('update_car_translations');
+        Route::post('/update_category_translations', [AdminController::class, 'update_category_translations'])->name('update_category_translations');
+        Route::post('/update_address_translations', [AdminController::class, 'update_address_translations'])->name('update_address_translations');
+        Route::post('/update_country_translations', [AdminController::class, 'update_country_translations'])->name('update_country_translations');
+        Route::post('/update_team_translations', [AdminController::class, 'update_team_translations'])->name('update_team_translations');
+        Route::post('/update_page_translations', [AdminController::class, 'update_page_translations'])->name('update_page_translations');
+        Route::post('/update_login_translations', [AdminController::class, 'update_login_translations'])->name('update_login_translations');
         Route::get('/payment_transaction', [AdminController::class, 'payment_transaction'])->name('payment_transaction');
         Route::get('/payment_transaction/{status}/{from_date}/{to_date}', 'App\Http\Controllers\AdminController@payment_transaction');
         Route::get('/payment_transaction/{from_date}/{to_date}', 'App\Http\Controllers\AdminController@payment_transaction');

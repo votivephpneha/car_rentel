@@ -6,34 +6,34 @@
 
 @section('current_page_js')
 <script type="text/javascript">
-  $(".search_btn").click(function(){
-    var pickup_location = $(".pickup_location").val();
-    var drop_off_location = $(".drop_off_location").val();
-    var pickup_date = $(".pickup_date").val();
-    var drop_off_date = $(".drop_off_date").val();
+  // $(".search_btn").click(function(){
+  //   var pickup_location = $(".pickup_location").val();
+  //   var drop_off_location = $(".drop_off_location").val();
+  //   var pickup_date = $(".pickup_date").val();
+  //   var drop_off_date = $(".drop_off_date").val();
 
-    if(pickup_location == ""){
+  //   if(pickup_location == ""){
       
-      $(".pickup_location_error").text("This field is required");
-    }else{
-      if(drop_off_location == ""){
+  //     $(".pickup_location_error").text("{{ __('messages.driver_required_field') }}");
+  //   }else{
+  //     if(drop_off_location == ""){
         
-        $(".dropoff_location_error").text("This field is required");
-      }else{
-        if(pickup_date == ""){
+  //       $(".dropoff_location_error").text("{{ __('messages.driver_required_field') }}");
+  //     }else{
+  //       if(pickup_date == ""){
           
-          $(".pickup_date_error").text("This field is required");
-        }else{
-          if(drop_off_date == ""){
-            $(".dropoff_date_error").text("This field is required");
-          }else{
-            window.location.href = "{{ url('car_list') }}";
-          }
-        }
-      }
-    }
+  //         $(".pickup_date_error").text("{{ __('messages.driver_required_field') }}");
+  //       }else{
+  //         if(drop_off_date == ""){
+  //           $(".dropoff_date_error").text("{{ __('messages.driver_required_field') }}");
+  //         }else{
+  //           window.location.href = "{{ url('car_list') }}";
+  //         }
+  //       }
+  //     }
+  //   }
     
-  });
+  // });
   $(".pickup_location").keyup(function(){
     var address_value = $(".pickup_location").val();
     $(".address_div").show();
@@ -126,8 +126,8 @@
   					<div class="form row no-gutters"> 
   						<div class="form-group col-xl-3 col-lg-3 col-md-12 mb-2 location"> 
   							<div class="form-group mb-2"> 
-  								<label>{{ __('messages.pickup_location_text') }}</label>
-  								<input class="form-control border pickup_location" name="pickup_location" placeholder="Choose Location" type="text" required="" autocomplete="off">
+  								<label>{{ __('messages.pickup_location') }}</label>
+  								<input class="form-control border pickup_location" name="pickup_location" placeholder="Choose {{ __('messages.pickup_location') }}" type="text" required="" autocomplete="off">
                   <div class="address_div" style="display: none">
                     
                   </div>
@@ -137,8 +137,8 @@
 						
 						<div class="form-group col-xl-3 col-lg-3 col-md-12 mb-2 location">
   							<div class="form-group mb-0"> 
-  								<label>{{ __('messages.drop_off_location') }}</label>
-  								<input class="form-control border drop_off_location" name="drop_off_location" autocomplete="off" placeholder="Choose Location" type="text" required="">
+  								<label>{{ __('messages.dropoff_location') }}</label>
+  								<input class="form-control border drop_off_location" name="drop_off_location" autocomplete="off" placeholder="Choose {{ __('messages.dropoff_location') }}" type="text" required="">
                   <div class="address_div_dropoff" style="display: none">
                     
                   </div>  
@@ -149,7 +149,7 @@
   						<div class="form-group col-xl-3 col-lg-3 col-md-12 mb-2 location">
   							<div class="form-group mb-2"> 
   								<label>{{ __('messages.pickup_date') }}</label>
-  								<input class="form-control border pickup_date" name="pickup_date" placeholder="Choose Pickup Date" type="text" id="pickup_date" required="" autocomplete="off"><div class="pickup_date_error search_box_error"></div> 
+  								<input class="form-control border pickup_date" name="pickup_date" placeholder="Choose {{ __('messages.pickup_date') }}" type="text" id="pickup_date" required="" autocomplete="off"><div class="pickup_date_error search_box_error"></div> 
   							</div>
   						</div>
 						
@@ -163,7 +163,7 @@
   						<div class="form-group col-xl-3 col-lg-3 col-md-12 mb-2 location">
   							<div class="form-group mb-0"> 
   								<label>{{ __('messages.dropoff_date') }}</label>
-  								<input class="form-control border drop_off_date" name="drop_off_date" placeholder="Choose Drop Off Date" type="text" id="drop_off_date" required="" autocomplete="off"><div class="dropoff_date_error search_box_error"></div> 
+  								<input class="form-control border drop_off_date" name="drop_off_date" placeholder="Choose {{ __('messages.dropoff_date') }}" type="text" id="drop_off_date" required="" autocomplete="off"><div class="dropoff_date_error search_box_error"></div> 
   							</div>
   						</div>
               <!-- <div class="form-group col-xl-4 col-lg-4 col-md-12 mb-0 location">
@@ -201,7 +201,7 @@
             <div class="container px-4 px-lg-5">
                 <div class="row head_rgt">
                     <div class="col-lg-12">
-                        <h2 class="text-white mt-0">{{ __('messages.brand_heading') }}</h2>      
+                        <h2 class="text-white mt-0">{{ __('messages.brand_section_heading') }}</h2>      
                     </div>
         </div>
         <div class="row">
@@ -225,8 +225,8 @@
             <img src="{{ url('/public/uploads/landing') }}/{{ $landing->image_one }}">
           </div>
           <div class="desc--feat">
-            <h4>{{ __('messages.heading_one') }}</h4>
-            <p>{{ __('messages.content_one') }}</p>
+            <h4>{{ __('messages.brand_heading_one') }}</h4>
+            <p>{{ __('messages.brand_content_one') }}</p>
           </div>
         </div>
       </div>
@@ -236,8 +236,8 @@
             <img src="{{ url('/public/uploads/landing') }}/{{ $landing->image_two }}">
           </div>
           <div class="desc--feat">
-            <h4>{{ __('messages.heading_two') }}</h4>
-            <p>{{ __('messages.content_two') }}</p>
+            <h4>{{ __('messages.brand_heading_two') }}</h4>
+            <p>{{ __('messages.brand_content_two') }}</p>
           </div>
         </div>
       </div>
@@ -247,8 +247,8 @@
             <img src="{{ url('/public/uploads/landing') }}/{{ $landing->image_three }}">
           </div>
           <div class="desc--feat">
-            <h4>{{ __('messages.heading_three') }}</h4>
-            <p>{{ __('messages.content_three') }}</p>
+            <h4>{{ __('messages.brand_heading_three') }}</h4>
+            <p>{{ __('messages.brand_content_three') }}</p>
           </div>
         </div>
       </div>
@@ -573,8 +573,16 @@
                     <div class="col-lg-3 col-sm-3 mb-4">
                         <img src="{{ asset('public/uploads/team')}}/{{$value->page_content}}">
             <div class="team-desc">
-              <h4>{{$value->page_title}}</h4>
+              @if($locale == 'it' and $value->page_title_it)
+              <h4>{{$value->page_title_it}}</h4>
+              @else
+              <h4>{{ $value->page_title }}</h4>
+              @endif
+              @if($locale == 'it' and $value->sub_title_it)
+              <p>{{$value->sub_title_it}}</p>
+              @else
               <p>{{$value->sub_title}}</p>
+              @endif
             </div>
                     </div>       
                     <?php $i++; } ?>       

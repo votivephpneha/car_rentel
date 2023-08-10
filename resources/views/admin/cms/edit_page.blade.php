@@ -61,7 +61,7 @@ $("#pageUpdateAdmin_form").validate({
        $('.ckeditor').ckeditor();
     });
 </script>
-	
+  
 @endsection
 
 @section('content')
@@ -161,7 +161,7 @@ $("#pageUpdateAdmin_form").validate({
 
                     <div class="form-group">
 
-                      <label>Title</label>
+                      <label>Title(English)</label>
 
                       <input type="text" class="form-control" name="pagetitle" id="pagetitle" placeholder="Enter Page Title"  value="{{(!empty($page_info->page_title) ? $page_info->page_title : '')}}">
 
@@ -174,7 +174,7 @@ $("#pageUpdateAdmin_form").validate({
 
                     <div class="form-group">
 
-                      <label>SubTitle</label>
+                      <label>SubTitle(English)</label>
 
                       <input type="text" class="form-control" name="subtitle" id="subtitle" placeholder="Enter Sub Title" value="{{(!empty($page_info->sub_title) ? $page_info->sub_title : '')}}">
 
@@ -187,14 +187,62 @@ $("#pageUpdateAdmin_form").validate({
 
                     <div class="form-group">
 
-                      <label>Content</label>
+                      <label>Content(English)</label>
 
                       <textarea id="summernote" class="ckeditor form-control" name="content">{{(!empty($page_info->page_content) ? $page_info->page_content : '')}}</textarea>
 
                     </div>
 
                   </div>
+                  <div class="col-md-6">
 
+                    <div class="form-group">
+
+                      <label>Title(Italian)</label>
+
+                      <input type="text" class="form-control" name="pagetitle_it" id="pagetitle" placeholder="Enter Title" value="{{(!empty($page_info->page_title_it) ? $page_info->page_title_it : '')}}">
+
+                    </div>
+
+                  </div>
+
+                  <!-- <div class="col-md-6">
+
+                    <div class="form-group">
+
+                      <label>Customer Last Name</label>
+
+                      <input type="text" class="form-control" name="lname" id="lname" placeholder="Enter Customer Last Name">
+
+                    </div>
+
+                  </div> -->
+
+
+
+                  <div class="col-md-6">
+
+                    <div class="form-group">
+
+                      <label>SubTitle(Italian)</label>
+
+                      <input type="text" class="form-control" name="subtitle_it" id="subtitle" placeholder="Enter Sub Title" autocomplete="" value="{{(!empty($page_info->sub_title_it) ? $page_info->sub_title_it : '')}}">
+
+                    </div>
+
+                  </div>
+
+                  <div class="col-md-12">
+
+                    <div class="form-group">
+
+                      <label>Content(Italian)</label>
+            
+            <textarea id="summernote1" class=" ckeditor form-control" name="content_it">{{(!empty($page_info->page_content_it) ? $page_info->page_content_it : '')}}</textarea>
+
+                    </div>
+
+                  </div>
                   <div class="col-12">
 
 

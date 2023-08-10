@@ -204,6 +204,74 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
+
+$(".pickup_location").keyup(function(){
+    var address_value = $(".pickup_location").val();
+    $(".address_div").show();
+    $.ajax({
+      type: "GET",
+      url: "{{ url('/get_address') }}",
+      data: {address_value:address_value},
+      cache: false,
+      success: function(data){
+        console.log("data",data);
+        if(data){
+         $(".address_div").html(data);
+        }else{
+          $(".address_div").text("No address found");
+        }
+      }
+    });
+  });
+
+  $(".drop_off_location").keyup(function(){
+    var address_value = $(".drop_off_location").val();
+    $(".address_div_dropoff").show();
+    $.ajax({
+      type: "GET",
+      url: "{{ url('/get_dropoff_address') }}",
+      data: {address_value:address_value},
+      cache: false,
+      success: function(data){
+        console.log("data",data);
+        if(data){
+          $(".address_div_dropoff").html(data);
+        }else{
+          $(".address_div_dropoff").text("No address found");
+        }
+        
+      }
+    });
+  });
+
+  function getAddress(address_id){
+    var address_value1 = $(".address-"+address_id).text();
+
+    $(".pickup_location").val(address_value1);
+    $(".address_div").hide();
+  }
+
+  function getDropoffAddress(address_id){
+    var address_value2 = $(".address_text-"+address_id).text();
+
+    $(".drop_off_location").val(address_value2);
+    $(".address_div_dropoff").hide();
+  }
+  $(document).mouseup(function(e){
+    var address_div = $(".address_div");
+
+    // If the target of the click isn't the container
+    if(!address_div.is(e.target) && address_div.has(e.target).length === 0){
+        address_div.hide();
+    }
+
+    var address_div_dropoff = $(".address_div_dropoff");
+
+    // If the target of the click isn't the container
+    if(!address_div_dropoff.is(e.target) && address_div_dropoff.has(e.target).length === 0){
+        address_div_dropoff.hide();
+    }
+  });
 </script>
 @endsection
 
@@ -255,7 +323,11 @@ window.onclick = function(event) {
 									<div class="form-inline border rounded p-sm-2 my-2">
 									   <div class="cate_inp">	
 										<input type="radio" name="category" id="cat-{{ $cat_list->cat_name }}" value="{{ $cat_list->cat_name }}" onclick="getCarsCategory(this.value)"> 
-										<label for="cat-{{ $cat_list->cat_name }}" class="pl-1 pt-sm-0 pt-1">{{ $cat_list->cat_name }}</label>
+										<label for="cat-{{ $cat_list->cat_name }}" class="pl-1 pt-sm-0 pt-1">@if($locale == 'it' and $cat_list->cat_name_it)
+                      {{ $cat_list->cat_name_it }}
+                      @else
+                      {{ $cat_list->cat_name }}
+                      @endif</label>
 									   </div>
 									  <div class="cate_image-des">									   
 										<img src="{{ url('public/assets/img/coupe-car.png') }}">
@@ -292,10 +364,28 @@ window.onclick = function(event) {
 															<div class="item-card9">
 															<div class="title_price">
 																<div class="title_name_info">
-																<a class="text-dark" href="#"> <h4 class="font-weight-bold mt-1 mb-2">{{ $c_list->title }}</h4> 
-																<h6 class="car_cat">{{ $c_list->vehicle_category }}</h6>
+																<a class="text-dark" href="#"> <h4 class="font-weight-bold mt-1 mb-2">@if($locale == 'it' and $c_list->title_it)
+                                  {{ $c_list->title_it }}
+                                  @else
+                                  {{ $c_list->title }}
+                                  @endif</h4> 
+																<h6 class="car_cat">
+                                  
+                                  <?php
+                                    $category_data = DB::table("categories")->where("cat_id",$c_list->vehicle_category)->get()->first();
+                                    
+                                  ?>
+                                  @if($locale == 'it' and $category_data->cat_name_it)
+                                  {{ $category_data->cat_name_it }}
+                                  @else
+                                  {{ $category_data->cat_name }}
+                                  @endif</h6>
 																	
-																<p>{{ $c_list->car_description }}</p>
+																<p>@if($locale == 'it' and $c_list->title_it)
+                                  {{ $c_list->car_description_it }}
+                                  @else
+                                  {{ $c_list->car_description }}
+                                  @endif</p>
 																</a>
 																<?php
 																$price_data = DB::table('car_price_days')->where('no_of_day','1 Day')->where('car_id',$c_list->id)->first();
@@ -452,19 +542,41 @@ window.onclick = function(event) {
 					<span class="close">&times;</span>
 				</div>
 			    <div class="row">
-			    	<form method="post" action="{{ url('car_list') }}">
+			    	<form class="cd_src_filter" method="post" action="{{ url('car_list') }}">
             @csrf
             <div class="form cd-form row g-2"> 
               <div class="form-group col-md-6 mb-0 cd-group wd-adj"> 
                 <div class="form-group mb-0"> 
-                  <label>{{ __('messages.pickup_location_text') }}</label>
-                  <input class="form-control border pickup_location" name="pickup_location" placeholder="Choose {{ __('messages.pickup_location_text') }}" type="text" required="" autocomplete="off"><div class="pickup_location_error search_box_error"></div> 
+                  <label>{{ __('messages.pickup_location') }}</label>
+                  <input class="form-control border pickup_location" name="pickup_location" placeholder="Choose {{ __('messages.pickup_location') }}" type="text" required="" autocomplete="off">
+				  <div class="address_div" style="display: none;">
+					<!-- <div style="cursor:pointer" class="address_dropdown address-1">Airport Tirana</div>
+					<div style="cursor:pointer" class="address_dropdown address-2">Tirana City</div>
+					<div style="cursor:pointer" class="address_dropdown address-3">Airport Malpensa Milan</div>
+					<div style="cursor:pointer" class="address_dropdown address-4">Milan City</div>
+					<div style="cursor:pointer" class="address_dropdown address-5">Turin Airport </div>
+					<div style="cursor:pointer" class="address_dropdown address-6">Turin City</div>
+					<div style="cursor:pointer" class="address_dropdown address-7">Florence Airport</div>
+					<div style="cursor:pointer" class="address_dropdown address-8">Florence City</div> -->
+				  </div>
+				  <div class="pickup_location_error search_box_error"></div> 
                 </div> 
               </div> 
               <div class="form-group col-md-6 mb-0 cd-group">
                 <div class="form-group mb-0"> 
-                  <label>{{ __('messages.drop_off_location') }}</label>
-                  <input class="form-control border drop_off_location" name="drop_off_location" placeholder="Choose {{ __('messages.drop_off_location') }}" type="text" required="" autocomplete="off"><div class="dropoff_location_error search_box_error"></div> 
+                  <label>{{ __('messages.dropoff_location') }}</label>
+                  <input class="form-control border drop_off_location" name="drop_off_location" placeholder="Choose {{ __('messages.dropoff_location') }}" type="text" required="" autocomplete="off">
+				  <div class="address_div_dropoff" style="">
+					<div style="cursor:pointer" class="address_dropdown address_text-1">Airport Tirana</div>
+					<div style="cursor:pointer" class="address_dropdown address_text-2">Tirana City</div>
+					<div style="cursor:pointer" class="address_dropdown address_text-3">Airport Malpensa Milan</div>
+					<div style="cursor:pointer" class="address_dropdown address_text-4">Milan City</div>
+					<div style="cursor:pointer" class="address_dropdown address_text-5">Turin Airport </div>
+					<div style="cursor:pointer" class="address_dropdown address_text-6">Turin City</div>
+					<div style="cursor:pointer" class="address_dropdown address_text-7">Florence Airport</div>
+					<div style="cursor:pointer" class="address_dropdown address_text-8">Florence City</div>
+				  </div>
+				  <div class="dropoff_location_error search_box_error"></div> 
                 </div> 
               </div>
               <div class="form-group col-md-6 mb-0 cd-group wd-adj">

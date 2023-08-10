@@ -13,6 +13,7 @@ use Mail;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
 use App;
+use Hash;
 
 class HomeController extends Controller
 {
@@ -41,9 +42,9 @@ class HomeController extends Controller
         $data['ourteams'] = DB::table('pages')->where('type','team')->get();
         $data['faqs'] = DB::table('pages')->where('type','faq')->get();
         $data['pages'] = DB::table('pages')->where('type','cms')->where('status','1')->get();
+        $data['locale'] = session::get("locale");
         $data['brands'] = DB::table('home_page_logos')->get();
-        App::setLocale($request->lang);
-        session()->put('locale', $request->lang);
+        
         return view('front/index')->with($data);
     }
 
@@ -197,15 +198,6 @@ class HomeController extends Controller
         }
     }
 
-    public function userProfile(Request $request)
-    {
-        return view('front.dashboard');
-    }
-
-    public function serviceProProfile(Request $request)
-    {
-        return view('front.dashboard');
-    }
 
     // public function create(array $data)
     // {
@@ -456,6 +448,7 @@ class HomeController extends Controller
         $data['pages'] = DB::table('pages')->where('type','cms')->where('status','1')->get();
         $pageurl = $request->pageurl;
         $data['page_content'] = DB::table('pages')->where('page_url',$pageurl)->first();
+        $data['locale'] = session::get("locale");
         return view('front/page')->with($data);
     }
 
@@ -482,9 +475,10 @@ class HomeController extends Controller
         session::put("pickup_location",$pickup_location);
         session::put("drop_off_location",$drop_off_location);
         session::put("date_diff",$data['date_diff']);
+        $data['locale'] = session::get("locale");
         $data['page_info'] = DB::table('home_page')->where('id',1)->first();
         $data['pages'] = DB::table('pages')->where('type','cms')->where('status','1')->get();
-        $data['car_list'] = DB::table('car_management')->where('status','1')->get();
+        $data['car_list'] = DB::table('car_management')->orderBy('created_at', 'DESC')->where('status','1')->get();
         $data['category_list'] = DB::table('categories')->get();
         return view("front/car_list")->with($data);
     }
@@ -531,6 +525,7 @@ class HomeController extends Controller
         $data['pages'] = DB::table('pages')->where('type','cms')->where('status','1')->get();
         $data['car_id'] = $request->car_id;
         $data['countries_list'] = DB::table('country')->get();
+        $data['locale'] = session::get("locale");
         return view("front/booking")->with($data);
     }
 
@@ -575,7 +570,7 @@ class HomeController extends Controller
         $drop_off_location = session::get("drop_off_location");
         $date_diff = session::get("date_diff");
         $customer_notes = session::get("customer_notes");
-
+        $data['locale'] = session::get("locale");
         $data['car_data'] = DB::table('car_management')->where('id',$request->car_id)->first();
 
         $data['get_user_data'] = array("email_address"=>$email_address,"title"=>$title,"first_name"=>$first_name,"last_name"=>$last_name,"contact_no"=>$contact_no,"country"=>$country,"flight_no"=>$flight_no,"pickup_date"=>$pickup_date,"drop_off_date"=>$drop_off_date,"pickup_location"=>$pickup_location,"drop_off_location"=>$drop_off_location,"date_diff"=>$date_diff,"customer_notes"=>$customer_notes);
@@ -625,6 +620,7 @@ class HomeController extends Controller
     public function thankyou(){
          $data['page_info'] = DB::table('home_page')->where('id',1)->first();
         $data['pages'] = DB::table('pages')->where('type','cms')->where('status','1')->get();
+        $data['locale'] = session::get("locale");
          return view("front/thankyou")->with($data);
     }
 
@@ -632,7 +628,12 @@ class HomeController extends Controller
 
         $address_data = DB::table('address_table')->orWhere('address', 'like', '%' . $request->address_value . '%')->get();
         foreach ($address_data as $address) {
-            echo "<div style='cursor:pointer' class='address_dropdown address-".$address->id."' onclick='getAddress(".$address->id.")'>".$address->address."</div>";
+            $locale = session::get("locale");
+            if($locale == "it" and $address->address_it){
+                echo "<div style='cursor:pointer' class='address_dropdown address-".$address->id."' onclick='getAddress(".$address->id.")'>".$address->address_it."</div>";
+            }else{
+                echo "<div style='cursor:pointer' class='address_dropdown address-".$address->id."' onclick='getAddress(".$address->id.")'>".$address->address."</div>";
+            }
         }
         
     }
@@ -641,7 +642,12 @@ class HomeController extends Controller
 
         $address_data = DB::table('address_table')->orWhere('address', 'like', '%' . $request->address_value . '%')->get();
         foreach ($address_data as $address) {
-            echo "<div style='cursor:pointer' class='address_dropdown address_text-".$address->id."' onclick='getDropoffAddress(".$address->id.")'>".$address->address."</div>";
+            $locale = session::get("locale");
+            if($locale == "it" and $address->address_it){
+                echo "<div style='cursor:pointer' class='address_dropdown address_text-".$address->id."' onclick='getDropoffAddress(".$address->id.")'>".$address->address_it."</div>";
+            }else{
+                echo "<div style='cursor:pointer' class='address_dropdown address_text-".$address->id."' onclick='getDropoffAddress(".$address->id.")'>".$address->address."</div>";
+            }
         }
         
     }
@@ -653,12 +659,232 @@ class HomeController extends Controller
         $data['page_info'] = DB::table('home_page')->where('id',1)->first();
         $data['pages'] = DB::table('pages')->where('type','cms')->where('status','1')->get();
         $data['booking_details'] = DB::table('booking_management')->where('booking_id',$booking_id)->where('driver_email_address',$email)->get()->first();
-        
+        $data['locale'] = session::get("locale");
         if(!empty($data['booking_details'])){
             $data['booking_data'] = DB::table('booking_details')->where("booking_id",$data['booking_details']->booking_id)->get();
         }
         return view("front/manage_booking")->with($data);
 
+    }
+
+    public function change_language(Request $request){
+        $lang_val = $request->lang_val;
+        App::setLocale($lang_val);
+        //session()->put('locale', $lang_val);
+        session::put("locale",$lang_val);
+    }
+
+    public function check_locale(){
+        echo $lang_val = session::get('locale');
+        
+    }
+
+    
+    public function userDashboard(Request $request)
+    {
+        $data['page_info'] = DB::table('home_page')->where('id',1)->first();
+        $data['landing'] = DB::table('home_page')->where('id',2)->first();
+        $data['pages'] = DB::table('pages')->where('type','cms')->where('status','1')->get();
+        $data['locale'] = session::get("locale");
+        return view('front.user_dashboard')->with($data);
+    }
+
+    public function userProfile(Request $request)
+    {
+        $data['page_info'] = DB::table('home_page')->where('id',1)->first();
+        $data['landing'] = DB::table('home_page')->where('id',2)->first();
+        $data['pages'] = DB::table('pages')->where('type','cms')->where('status','1')->get();
+        $data['locale'] = session::get("locale");
+
+        $user = array(
+            'fname'=>Auth::guard('user')->user()->first_name,
+            
+            'email'=>Auth::User()->email,
+            'phone'=>Auth::User()->contact_number,
+            'address'=>Auth::User()->address,
+            'user_city'=>Auth::User()->user_city,
+            'user_country'=>Auth::User()->user_country,
+            'user_image'=>Auth::User()->profile_pic
+        );
+
+        $data['user_data'] = $user;
+        $data['countries'] = DB::table('country')->orderby('name', 'ASC')->get();
+        return view('front.user_profile')->with($data);
+    }
+
+    public function postuserProfile(Request $request){
+        $file = $request->file('profile_image');
+
+        if($file){
+            $extension  = $file->getClientOriginalName();
+            $imgName = time().'_'.$extension;
+            $destinationPath = base_path() .'/public/upload/user';
+            $file->move($destinationPath,$imgName);
+        }else{
+            $imgName = $request->hidden_profile_image;
+        }
+        
+        $user_id = Auth::User()->id;
+        $user = User::find($user_id);
+        $user->first_name = $request->fname;
+        
+        $user->email = $request->email;
+        $user->contact_number = $request->phone_no;
+        $user->address = $request->address;
+        $user->profile_pic = $imgName;
+        $user->update();
+
+        session::flash('success', 'Profile updated successfully.');
+
+        return redirect()->route('userProfile');
+    }
+
+    public function submit_login(Request $request){
+
+        $request->validate([
+            'email_address' => 'required|email',
+            'password' => 'required'
+        ]);
+        $remember_me = $request->has('remember_me') ? true : false;
+        if(Auth::guard('user')->attempt(['email' => $request->input('email_address'), 'password' => $request->input('password')],$remember_me)){
+            
+            //return redirect("user/userProfile");
+            return response()->json(['status' => 'Success', 'msg' => 'Success']);
+        }else{
+            
+            return response()->json(['status' => 'error', 'msg' => 'Email or Password is Incorrect.']);
+        }
+    }
+
+    public function user_ChangePassword()
+    {
+        $data['pages'] = DB::table('pages')->where('type','cms')->where('status','1')->get();
+        $data['page_info'] = DB::table('home_page')->where('id',1)->first();
+        $data['landing'] = DB::table('home_page')->where('id',2)->first();
+        
+        $data['locale'] = session::get("locale");
+        return view('front/change_password')->with($data);
+    }
+
+    public function postuser_ChangePassword(Request $request)
+    {
+        $auth = Auth::guard('user')->user();
+        if (!Hash::check($request->get('old_password'), $auth->password)) 
+        {
+            session::flash('password_error', 'Current password is invalid');
+            return redirect('user/changePassword');
+        }else{
+            $user_id = Auth::guard('user')->User()->id;
+            $user = User::find($user_id);
+            $user->password = Hash::make($request->new_password);
+            $user->save();
+            session::flash('password_success', 'Password updated successfully');
+            return redirect('user/changePassword');
+        }
+    }
+
+    public function front_logout()
+    {
+        
+        Auth::guard("user")->logout();
+        return redirect("/");
+        
+    }
+
+    public function forgetPassword(Request $request){
+        $data['pages'] = DB::table('pages')->where('type','cms')->where('status','1')->get();
+        $data['page_info'] = DB::table('home_page')->where('id',1)->first();
+        $data['landing'] = DB::table('home_page')->where('id',2)->first();
+        
+        $data['locale'] = session::get("locale");
+        return view('front/forget_password')->with($data);
+    }
+
+    public function postforget_password(Request $request){
+        
+        $email_data = DB::table('users')->where(['email' => $request->email])->where(['user_type' => 'business_user'])->first();
+        
+        if($email_data && $email_data->email != 'admin@gmail.com'){
+            $token = Str::random(64);
+            $password_reset_data = DB::table('password_resets')->where(['email' => $request->email])->first();
+            if(!empty($password_reset_data)){
+                DB::table('password_resets')->where('email',$request->email)->update([
+                    'token' => $token,
+                    'created_at' => date('Y-m-d H:i:s')
+                ]);
+            }else{
+                DB::table('password_resets')->insert([
+                    'email' => $request->email,
+                    'token' => $token,
+                    'created_at' => date('Y-m-d H:i:s')
+                ]);
+            }
+            
+             Mail::send('front.forget-password-email', ['token' => $token,'email'=>$request->email], function($message) use($request){
+                $message->to($request->email);
+                $message->from('votivephp.neha@gmail.com','Royal Car Rentel');
+                $message->subject('Reset Password');
+            });
+
+             session::flash('password_success', 'We have sent the link on email for reset password');
+             return redirect('forget_password');
+         }else{
+            session::flash('error', 'Email not found');
+            return redirect('forget_password');
+         }
+        
+        
+    }
+
+    public function reset_password($token,Request $request){
+
+        $data['pages'] = DB::table('pages')->where('type','cms')->where('status','1')->get();
+        $data['page_info'] = DB::table('home_page')->where('id',1)->first();
+        $data['landing'] = DB::table('home_page')->where('id',2)->first();
+        
+        $data['locale'] = session::get("locale");
+        $data['token'] = $token;
+
+        $today_date = date('Y-m-d h:i:s');
+        
+        
+        $email_data = DB::table('password_resets')->where(['email' => $request->email])->first();
+        if(!empty($email_data)){
+            $created_at = $email_data->created_at;
+
+            $start = date_create($today_date);
+            $end = date_create($created_at);
+            $diff= date_diff($start,$end);
+            $time_diff = $diff->i;
+
+            if($time_diff>5){
+                echo "This link has been expired";
+            }else{
+                return view("front/reset_password")->with($data);   
+            }
+        }else{
+            echo "This link has been expired";
+        }
+        
+    }
+
+    public function postreset_password(Request $request)
+    {
+        
+        $update = DB::table('password_resets')->where(['email' => $request->email, 'token' => $request->token])->first();
+        
+        if(!$update){
+            return back()->withInput()->with('error', 'Invalid token!');
+        }else{
+            $user = User::where('email', $request->email)
+                      ->update(['password' => Hash::make($request->new_password)]);
+
+            DB::table('password_resets')->where(['email'=> $request->email])->delete();              
+            return redirect('/')->with('message', 'Your password has been changed!');
+        }
+        
+        
+        
     }
 
 

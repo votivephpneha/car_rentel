@@ -188,6 +188,9 @@ class AdminController extends Controller
         $pagetitle = $request->pagetitle;
         $subtitle = $request->subtitle;
         $content = $request->content;
+        $pagetitle_it = $request->pagetitle_it;
+        $subtitle_it = $request->subtitle_it;
+        $content_it = $request->content_it;
 
         $slug = str_replace('?','',strtolower(str_replace(" ","-",$pagetitle)));//$this->attributes['slug'] = str_slug($subtitle);
 
@@ -207,6 +210,9 @@ class AdminController extends Controller
             $obj->page_title = $pagetitle;
             $obj->page_content = $content;
             $obj->sub_title = $subtitle;
+            $obj->page_title_it = $pagetitle;
+            $obj->page_content_it = $content;
+            $obj->sub_title_it = $subtitle;
             $obj->type = $type;
             $obj->status = 1;
             $obj->created_at = date('Y-m-d H:i:s');
@@ -241,6 +247,9 @@ class AdminController extends Controller
         $pagetitle = $request->pagetitle;
         $subtitle = $request->subtitle;
         $content = $request->content;
+        $pagetitle_it = $request->pagetitle_it;
+        $subtitle_it = $request->subtitle_it;
+        $content_it = $request->content_it;
         $slug = str_replace('?','',strtolower(str_replace(" ","-",$pagetitle)));//$this->attributes['slug'] = str_slug($subtitle);
         $page_id = $request->input('user_id');
         $type = 'cms';
@@ -250,6 +259,9 @@ class AdminController extends Controller
         $userData->page_title = $pagetitle;
         $userData->sub_title = $subtitle;
         $userData->page_content = $content;
+        $userData->page_title_it = $pagetitle_it;
+        $userData->sub_title_it = $subtitle_it;
+        $userData->page_content_it = $content_it;
         $userData->type = $type;
         $userData->page_url = $slug;
 
@@ -765,6 +777,8 @@ class AdminController extends Controller
     {
         $pagetitle = $request->pagetitle;
         $subtitle = $request->subtitle;
+        $pagetitle_it = $request->pagetitle_it;
+        $subtitle_it = $request->subtitle_it;
         $content = $request->content; 
 
         $slug = $request->twitter;//$this->attributes['slug'] = str_slug($subtitle);
@@ -789,8 +803,10 @@ class AdminController extends Controller
             $obj = new Pages;
             $obj->page_url = $slug;
             $obj->page_title = $pagetitle;
+            $obj->page_title_it = $pagetitle_it;
             $obj->page_content = $team_img;
             $obj->sub_title = $subtitle;
+            $obj->sub_title_it = $subtitle_it;
             $obj->type = $type;
             $obj->status = 1;
             $obj->created_at = date('Y-m-d H:i:s');
@@ -823,6 +839,8 @@ class AdminController extends Controller
 
         $pagetitle = $request->pagetitle;
         $subtitle = $request->subtitle;
+        $pagetitle_it = $request->pagetitle_it;
+        $subtitle_it = $request->subtitle_it;
         $team_img = '';//$request->content;
         $slug = $request->twitter;//$this->attributes['slug'] = str_slug($subtitle);
         $page_id = $request->input('user_id');
@@ -837,6 +855,8 @@ class AdminController extends Controller
     
         $userData->page_title = $pagetitle;
         $userData->sub_title = $subtitle;
+        $userData->page_title_it = $pagetitle_it;
+        $userData->sub_title_it = $subtitle_it;
         $userData->page_content = $team_img;
         $userData->type = $type;
         $userData->page_url = $slug;
@@ -1091,7 +1111,7 @@ class AdminController extends Controller
 
     public function assign_ride(Request $request){
         //echo $request->ride_val;die;
-        $update_booking_status = DB::table('booking_management')->where("id",$request->booking_id)->update(['customer_id'=>$request->ride_val,"booking_status"=>"3"]);
+        $update_booking_status = DB::table('booking_management')->where("id",$request->booking_id)->update(['customer_id'=>$request->ride_val,"booking_status"=>"2"]);
         session::flash('success', 'Ride assign successfully');
         //return redirect('admin/view_booking/'.$request->booking_id);
     }
@@ -1108,22 +1128,24 @@ class AdminController extends Controller
 
     public function submit_cars(Request $request){
         $title = $request->title;
+        $title_it = $request->title_it;
         $vehicle_type = $request->vehicle_type;
         $vehicle_category = $request->vehicle_category;
         $car_description = $request->car_description;
+        $car_description_it = $request->car_description_it;
        
         $no_of_day1 = $request->days_1;
-        $no_of_day3 = $request->days_3;
-        $no_of_day7 = $request->days_7;
-        $no_of_day30 = $request->days_30;
+        // $no_of_day3 = $request->days_3;
+        // $no_of_day7 = $request->days_7;
+        // $no_of_day30 = $request->days_30;
 
         $no_of_seats = $request->no_of_seats;
         $no_of_km = $request->no_of_km;
 
         $price1 = $request->price_1;
-        $price3 = $request->price_3;
-        $price7 = $request->price_7;
-        $price30 = $request->price_30;
+        // $price3 = $request->price_3;
+        // $price7 = $request->price_7;
+        // $price30 = $request->price_30;
         
         $total_price = $request->total_price;
         $image = $request->file('image');
@@ -1134,16 +1156,16 @@ class AdminController extends Controller
             $image->move($destinationPath,$file_name);
         }
 
-        $insert_cars_id = DB::table('car_management')->insertGetId(['title'=>$title,'vehicle_type'=>$vehicle_type,'vehicle_category'=>$vehicle_category,'image'=>$file_name,'manual_text'=>'manual_text','no_of_seats'=>$no_of_seats,'no_of_km'=>$no_of_km,'car_description'=>$car_description,'created_at'=>date('Y-m-d H:i:s')]);
+        $insert_cars_id = DB::table('car_management')->insertGetId(['title'=>$title,'title_it'=>$title_it,'vehicle_type'=>$vehicle_type,'vehicle_category'=>$vehicle_category,'image'=>$file_name,'manual_text'=>'manual_text','no_of_seats'=>$no_of_seats,'no_of_km'=>$no_of_km,'car_description'=>$car_description,'car_description_it'=>$car_description_it,'created_at'=>date('Y-m-d H:i:s')]);
         $car_price = $request->price;
         
         
         $insert_cars1 = DB::table('car_price_days')->insert(['car_days_id'=>'1','car_id'=>$insert_cars_id,'no_of_day'=>'1 Day','price'=>$car_price[0],'created_at'=>date('Y-m-d H:i:s')]);
-        $insert_cars2 = DB::table('car_price_days')->insert(['car_days_id'=>'2','car_id'=>$insert_cars_id,'no_of_day'=>'3+ Day','price'=>$car_price[1],'created_at'=>date('Y-m-d H:i:s')]);
-        $insert_cars3 = DB::table('car_price_days')->insert(['car_days_id'=>'3','car_id'=>$insert_cars_id,'no_of_day'=>'7+ Day','price'=>$car_price[2],'created_at'=>date('Y-m-d H:i:s')]);
-        $insert_cars4 = DB::table('car_price_days')->insert(['car_days_id'=>'4','car_id'=>$insert_cars_id,'no_of_day'=>'30+ Day','price'=>$car_price[3],'created_at'=>date('Y-m-d H:i:s')]);
+        // $insert_cars2 = DB::table('car_price_days')->insert(['car_days_id'=>'2','car_id'=>$insert_cars_id,'no_of_day'=>'3+ Day','price'=>$car_price[1],'created_at'=>date('Y-m-d H:i:s')]);
+        // $insert_cars3 = DB::table('car_price_days')->insert(['car_days_id'=>'3','car_id'=>$insert_cars_id,'no_of_day'=>'7+ Day','price'=>$car_price[2],'created_at'=>date('Y-m-d H:i:s')]);
+        // $insert_cars4 = DB::table('car_price_days')->insert(['car_days_id'=>'4','car_id'=>$insert_cars_id,'no_of_day'=>'30+ Day','price'=>$car_price[3],'created_at'=>date('Y-m-d H:i:s')]);
         
-        if ($insert_cars1 && $insert_cars2 && $insert_cars3 && $insert_cars4) {
+        if ($insert_cars1) {
                 
             return response()->json(['status' => 'success', 'msg' => 'Car has been added successfully.']);
            
@@ -1173,9 +1195,11 @@ class AdminController extends Controller
     public function update_cars(Request $request){
 
         $title = $request->title;
+        $title_it = $request->title_it;
         $vehicle_type = $request->vehicle_type;
         $vehicle_category = $request->vehicle_category;
         $car_description = $request->car_description;
+        $car_description_it = $request->car_description_it;
        
         $no_of_day = $request->no_of_day;
         $no_of_seats = $request->no_of_seats;
@@ -1193,7 +1217,7 @@ class AdminController extends Controller
         }else{
             
 
-            $update_car = DB::table('car_management')->where("id",$request->car_id)->update(['title'=>$title,'vehicle_type'=>$vehicle_type,'vehicle_category'=>$vehicle_category,'manual_text'=>'manual_text','no_of_seats'=>$no_of_seats,'no_of_km'=>$no_of_km,'car_description'=>$car_description]);
+            $update_car = DB::table('car_management')->where("id",$request->car_id)->update(['title'=>$title,'title_it'=>$title_it,'vehicle_type'=>$vehicle_type,'vehicle_category'=>$vehicle_category,'manual_text'=>'manual_text','no_of_seats'=>$no_of_seats,'no_of_km'=>$no_of_km,'car_description'=>$car_description,'car_description_it'=>$car_description_it]);
             
         }
 
@@ -1201,11 +1225,11 @@ class AdminController extends Controller
         
              
         $insert_cars1 = DB::table('car_price_days')->where('car_days_id',"1")->where("car_id",$request->car_id)->update(['price'=>$car_price[0]]);
-        $insert_cars2 = DB::table('car_price_days')->where('car_days_id',"2")->where("car_id",$request->car_id)->update(['price'=>$car_price[1]]);
-        $insert_cars3 = DB::table('car_price_days')->where('car_days_id',"3")->where("car_id",$request->car_id)->update(['price'=>$car_price[2]]);
-        $insert_cars4 = DB::table('car_price_days')->where('car_days_id',"4")->where("car_id",$request->car_id)->update(['price'=>$car_price[3]]);
+        // $insert_cars2 = DB::table('car_price_days')->where('car_days_id',"2")->where("car_id",$request->car_id)->update(['price'=>$car_price[1]]);
+        // $insert_cars3 = DB::table('car_price_days')->where('car_days_id',"3")->where("car_id",$request->car_id)->update(['price'=>$car_price[2]]);
+        // $insert_cars4 = DB::table('car_price_days')->where('car_days_id',"4")->where("car_id",$request->car_id)->update(['price'=>$car_price[3]]);
 
-        if ($update_car || $insert_cars1 || $insert_cars2 || $insert_cars3 || $insert_cars4) {
+        if ($update_car || $insert_cars1) {
                 
             return response()->json(['status' => 'success', 'msg' => 'Car has been updated successfully.']);
            
@@ -1380,9 +1404,10 @@ class AdminController extends Controller
 
     public function submit_category(Request $request){
         $cat_name = $request->cat_name;
+        $cat_name_it = $request->cat_name_it;
         
 
-        $insert_category = DB::table('categories')->insert(['cat_name'=>$cat_name,'created_at'=>date('Y-m-d H:i:s')]);
+        $insert_category = DB::table('categories')->insert(['cat_name'=>$cat_name,'cat_name_it'=>$cat_name_it,'created_at'=>date('Y-m-d H:i:s')]);
         
         
         if ($insert_category) {
@@ -1419,9 +1444,9 @@ class AdminController extends Controller
 
     public function update_category(Request $request){
         $cat_name = $request->cat_name;
-        
+        $cat_name_it = $request->cat_name_it;
 
-        $insert_category = DB::table('categories')->where("cat_id",$request->cat_id)->update(['cat_name'=>$cat_name,'created_at'=>date('Y-m-d H:i:s')]);
+        $insert_category = DB::table('categories')->where("cat_id",$request->cat_id)->update(['cat_name'=>$cat_name,'cat_name_it'=>$cat_name_it,'created_at'=>date('Y-m-d H:i:s')]);
         
         
         if ($insert_category) {
@@ -1450,20 +1475,124 @@ class AdminController extends Controller
         // $data['translations_it'] = DB::table('translation_mgmt')->where("id","2")->get()->first();
         $data['translations_en'] = DB::table('translation')->where("id","1")->get()->first();
         $data['texts'] = json_decode($data['translations_en']->translation_text);
+        $data['texts_booking'] = json_decode($data['translations_en']->booking_texts);
+        $data['login_texts'] = json_decode($data['translations_en']->login_texts);
+        $data['car_data'] = DB::table('car_management')->get();
+        $data['categories'] = DB::table('categories')->get();
+        $data['address_data'] = DB::table('address_table')->get();
+        $data['countries_data'] = DB::table('country')->get();
+        $data['ourteams'] = DB::table('pages')->where('type','team')->get();
+        $data['pages'] = DB::table('pages')->where('type','cms')->where('status','1')->get();
+        // $data['texts_booking'] = json_decode($data['translations_en']->booking_texts);
         return view("admin/Translations/translation_management")->with($data);
     }
 
     public function update_translations(Request $request){
         $data = $request->all();
-        //print_r($request->data);die;
-        //var_dump($request->all());die;
-        //echo json_encode($request->input());die;
+        
         $update_translations_en = DB::table('translation')->where("id","1")->update(['translation_text'=>$data]);
-        // $update_translations_en = DB::table('translation_mgmt')->where("id","1")->update(['Menu1'=>$request->Menu1_en,'Menu2'=>$request->Menu2_en,'pickup_location_text'=>$request->pickup_location_en,'drop_off_location'=>$request->dropoff_location_en,'pickup_date'=>$request->pickup_date_en,'dropoff_date'=>$request->dropoff_date_en,'book_btn'=>$request->book_btn_en,'brand_section_heading'=>$request->brand_section_heading_en,'best_deal_heading'=>$request->best_deal_heading_en,'best_deal_content'=>$request->best_deal_content_en,'Day'=>$request->Day_en,'Seater'=>$request->Seater_en,'Manual'=>$request->Manual_en,'KM'=>$request->KM_en,'More'=>$request->More_en,'created_at'=>date('Y-m-d H:i:s')]);
-
-        // $update_translations_it = DB::table('translation_mgmt')->where("id","2")->update(['Menu1'=>$request->Menu1_it,'Menu2'=>$request->Menu2_it,'pickup_location_text'=>$request->pickup_location_it,'drop_off_location'=>$request->dropoff_location_it,'pickup_date'=>$request->pickup_date_it,'book_btn'=>$request->dropoff_date_it,'brand_section_heading'=>$request->brand_section_heading_it,'best_deal_heading'=>$request->best_deal_heading_it,'best_deal_content'=>$request->best_deal_content_it,'Day'=>$request->Day_it,'Seater'=>$request->Seater_it,'Manual'=>$request->Manual_it,'KM'=>$request->KM_it,'More'=>$request->More_it,'created_at'=>date('Y-m-d H:i:s')]);
+        
 
        return response()->json(['status' => 'success', 'msg' => 'Content updated successfully']);
+    }
+
+    public function update_translationsTwo(Request $request){
+        $data = $request->all();
+        
+        $update_translations_en = DB::table('translation')->where("id","1")->update(['booking_texts'=>$data]);
+        
+
+       return response()->json(['status' => 'success', 'msg' => 'Content updated successfully']);
+    }
+
+    public function update_login_translations(Request $request){
+        $data = $request->all();
+        
+        $update_translations_en = DB::table('translation')->where("id","1")->update(['login_texts'=>$data]);
+        
+
+       return response()->json(['status' => 'success', 'msg' => 'Content updated successfully']);
+    }
+
+    public function update_car_translations(Request $request){
+        //print_r($request->car_name_it);
+        $car_ids = $request->car_id;
+        $car_name = $request->car_name_it;
+        $car_description = $request->car_description_it;
+        $i = 0;
+        foreach ($car_ids as $c_id) {
+            $update_translations_en = DB::table('car_management')->where("id",$c_id)->update(['title_it'=>$car_name[$i],'car_description_it'=>$car_description[$i]]);
+            $i++;
+        }
+        return response()->json(['status' => 'success', 'msg' => 'Content updated successfully']);
+    }
+
+    public function update_category_translations(Request $request){
+        //print_r($request->car_name_it);
+        $cat_ids = $request->cat_id;
+        $cat_name = $request->cat_name_it;
+        
+        $i = 0;
+        foreach ($cat_ids as $c_id) {
+            $update_translations_en = DB::table('categories')->where("cat_id",$c_id)->update(['cat_name_it'=>$cat_name[$i]]);
+            $i++;
+        }
+        return response()->json(['status' => 'success', 'msg' => 'Content updated successfully']);
+    }
+
+    public function update_address_translations(Request $request){
+        //print_r($request->car_name_it);
+        $address_ids = $request->address_id;
+        $address_name = $request->address_name_it;
+        
+        $i = 0;
+        foreach ($address_ids as $c_id) {
+            $update_translations_en = DB::table('address_table')->where("id",$c_id)->update(['address_it'=>$address_name[$i]]);
+            $i++;
+        }
+        return response()->json(['status' => 'success', 'msg' => 'Content updated successfully']);
+    }
+
+    public function update_country_translations(Request $request){
+        //print_r($request->car_name_it);
+        $country_ids = $request->country_id;
+        $country_name = $request->country_name_it;
+        
+        $i = 0;
+        foreach ($country_ids as $c_id) {
+            $update_translations_en = DB::table('country')->where("id",$c_id)->update(['name_it'=>$country_name[$i]]);
+            $i++;
+        }
+        return response()->json(['status' => 'success', 'msg' => 'Content updated successfully']);
+    }
+
+    public function update_team_translations(Request $request){
+        //print_r($request->car_name_it);
+        $team_ids = $request->team_id;
+        $team_title = $request->team_title_it;
+        $team_subtitle = $request->team_subtitle_it;
+        
+        $i = 0;
+        foreach ($team_ids as $t_id) {
+            $update_translations_en = DB::table('pages')->where("id",$t_id)->update(['page_title_it'=>$team_title[$i],'sub_title_it'=>$team_subtitle[$i]]);
+            $i++;
+        }
+        return response()->json(['status' => 'success', 'msg' => 'Content updated successfully']);
+    }
+
+    public function update_page_translations(Request $request){
+        //print_r($request->car_name_it);
+        $page_ids = $request->page_id;
+        $page_title = $request->page_title_it;
+        $page_subtitle = $request->page_subtitle_it;
+        $page_content = $request->page_content_it;
+        
+        $i = 0;
+        foreach ($page_ids as $p_id) {
+            $update_translations_en = DB::table('pages')->where("id",$p_id)->update(['page_title_it'=>$page_title[$i],'sub_title_it'=>$page_subtitle[$i],'page_content_it'=>$page_content[$i]]);
+            $i++;
+        }
+        return response()->json(['status' => 'success', 'msg' => 'Content updated successfully']);
     }
 
     public function payment_transaction(Request $request){
@@ -1505,7 +1634,7 @@ class AdminController extends Controller
         
         $update_payment_status = DB::table('payment_transaction')->where("payment_id",$request->payment_id )->update(['payment_status'=>$request->payment_status]);
         
-        return response()->json(['success'=>'Payment status completed successfully.']);
+        return response()->json(['success'=>'Payment status has been changed successfully.']);
         
         
     }

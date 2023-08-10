@@ -22,8 +22,19 @@ $("#addCategoryForm").validate({
   rules: {
     cat_name: {
         required: true,
+    },
+    cat_name_it: {
+        required: true,
     }
 
+  },
+  messages:{
+    cat_name: {
+        required: "Please enter the category name in English",
+    },
+    cat_name_it: {
+        required: "Please enter the category name in Italian",
+    }
   },
   submitHandler: function (form) {
     var site_url = $("#baseUrl").val();
@@ -142,9 +153,20 @@ $("#addCategoryForm").validate({
 
                     <div class="form-group">
 
-                      <label>Category Name</label>
+                      <label>Category Name(English)</label>
 
-                      <input type="text" class="form-control" name="cat_name" id="cat_name" placeholder="Enter Category Name">
+                      <input type="text" class="form-control" name="cat_name" id="cat_name" placeholder="Enter Category Name(English)">
+
+                    </div>
+
+                  </div>
+                  <div class="col-md-6">
+
+                    <div class="form-group">
+
+                      <label>Category Name(Italian)</label>
+
+                      <input type="text" class="form-control" name="cat_name_it" id="cat_name_it" placeholder="Enter Category Name(Italian)">
 
                     </div>
 

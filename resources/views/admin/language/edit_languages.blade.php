@@ -146,16 +146,16 @@ $("#editLanguageForm").validate({
 
                     <div class="form-group">
 
-                      <label>Title</label>
+                      <label>Language Name</label>
                       <input type="hidden" name="language_id" value="{{ $language_list->id }}">
-                      <input type="text" class="form-control" name="title" id="title" placeholder="Enter Title" value="{{ $language_list->name }}">
+                      <input type="text" class="form-control" name="title" id="title" placeholder="Enter Language Name" value="{{ $language_list->name }}">
 
                     </div>
 
                   </div>
                   <div class="col-md-6">
                       
-                      <button class="submit_btn btn btn-primary btn-dark float-left" name="submit" type="submit">Update</button>
+                      <button class="submit_btn btn btn-primary btn-dark float-left" name="submit" type="submit">Submit</button>
                     
                     
                   </div>

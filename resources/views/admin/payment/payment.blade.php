@@ -18,6 +18,9 @@
     border: 1px solid #dee2e6;
     vertical-align: middle;
   }
+  td.project-state .toggle.btn {
+    width: 110px !important;
+}
 </style>
 
 @endsection
@@ -314,7 +317,7 @@
 
                                                     <td class="project-state">
 
-                                                        <input  type="checkbox" class="toggle-class" data-id="{{$arr->payment_id}}" data-toggle="toggle" data-style="slow" data-onstyle="success" data-size="small" data-on="Active" data-off="InActive" {{ $arr->payment_status ? 'checked' : '' }}>
+                                                        <input  type="checkbox" class="toggle-class" data-id="{{$arr->payment_id}}" data-toggle="toggle" data-style="slow" data-onstyle="success" data-size="small" data-on="Completed" data-off="Pending" {{ $arr->payment_status ? 'checked' : '' }}>
 
                                                     </td>
 

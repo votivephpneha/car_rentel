@@ -128,7 +128,7 @@
                         <select name="booking_status" class="form-control">
                           <option>Change Status</option>
                           <option value="1" @if($booking_details->booking_status == '1') Selected @endif>Pending</option>
-                          <!-- <option value="2" @if($booking_details->booking_status == '2') Selected @endif>Assigned</option> -->
+                          <option value="2" @if($booking_details->booking_status == '2') Selected @endif>Assigned</option>
                           <option value="3" @if($booking_details->booking_status == '3') Selected @endif>Accepted</option>
                           <option value="4" @if($booking_details->booking_status == '4') Selected @endif>Rejected</option>
                         </select>
@@ -239,7 +239,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md-6">
+              <!-- <div class="col-md-6">
                 <div class="customer_content">
                   <h5>Customer Details</h5>
                   <table class="table table-bordered caption-top">
@@ -268,8 +268,8 @@
                     </thead>
                   </table>
                 </div> 
-              </div>
-              <div class="col-md-6">
+              </div> -->
+              <div class="col-md-12">
                 <div class="customer_content">
                   <h5>Driver Details</h5>
                   <table class="table table-bordered caption-top">
@@ -306,12 +306,12 @@
                   <thead>
                     <tr>
                       <th>Sno</th>
-                      <th>Image</th>
-                      <th>Title</th>
+                      <th>Vehicle Image</th>
+                      <th>Vehicle Name</th>
                       <th>Vehicle Type</th>
-                      <th>From Date</th>
-                      <th>To Date</th>
-                      <th>Price</th>
+                      <th>Pickup Date</th>
+                      <th>Drop Off Date</th>
+                      <th>Vehicle Price</th>
                     </tr>
                   </thead>
                   <tbody>

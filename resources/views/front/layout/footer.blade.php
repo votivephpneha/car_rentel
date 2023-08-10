@@ -16,9 +16,13 @@
             <div class="ftr-info">
               <h4>{{ __('messages.footer_heading_two') }}</h4>
               <ul class="list-menu-ftr">
-                <li><a href="#"><span>></span> {{ __('messages.Home') }}</a></li>
+                <li><a href="#"><span>></span> {{ __('messages.Menu1') }}</a></li>
                 @foreach($pages as $page)
-                <li><a href="{{ url('page') }}/{{ $page->page_url }}"><span>></span> {{ $page->page_title }}</a></li>
+                <li><a href="@if($page->page_url == 'contact-us') https://wa.me/+355672002573 @else{{ url('page') }}/{{ $page->page_url }}@endif"><span>></span> @if($locale == 'it' and $page->page_title_it)
+                    {{ $page->page_title_it }}
+                    @else
+                    {{ $page->page_title }}
+                    @endif</a></li>
                 
                 @endforeach
               </ul>

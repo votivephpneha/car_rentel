@@ -151,10 +151,15 @@
                           <?php
 
                             $payment_data = DB::table("payment_transaction")->where("booking_id",$booking_details->booking_id)->get()->first();
-                            if($payment_data->payment_status == 0){
-                              echo "Pending";
+                            
+                            if(!empty($payment_data)){
+                              if($payment_data->payment_status == 0){
+                                echo "Pending";
+                              }else{
+                                echo "Completed";
+                              }
                             }else{
-                              echo "Completed";
+                              echo "Pending";
                             }
                             
                           ?>
@@ -177,19 +182,19 @@
                   <thead>
                     <tr>
                       <th>Sno</th>
-                      <th>Image</th>
-                      <th>Title</th>
+                      <th>Vehicle Image</th>
+                      <th>Vehicle Name</th>
                       <th>Vehicle Type</th>
-                      <th>From Date</th>
-                      <th>To Date</th>
-                      <th>Price</th>
+                      <th>Pickup Date</th>
+                      <th>Drop Off Date</th>
+                      <th>Vehicle Price</th>
                     </tr>
                   </thead>
                   <tbody>
                     <?php $i = 1; ?>
                     @foreach($booking_data as $b_data)
                     <?php
-                      //print_r($b_data);
+                      //print_r($b_data);die;
                       
                       $car_details = DB::table('car_management')->where("id",$b_data->vehicle_id)->get()->first();
                     ?>
@@ -222,6 +227,13 @@
                 </table>
               </div>
 			  </div>
+			  
+			  <!-- <div class="cancel-req-book">
+				<div class="col-md-12">
+					<a href="#" class="can--btn">Cancel Booking</a>
+				</div>
+			  </div> -->
+			  
 				</div>
 				@else
           <div class="no_data_found">

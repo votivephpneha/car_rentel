@@ -40,8 +40,18 @@
 
     <div class="container" style="padding-top: 150px;height:auto;">
 <div class="logo-center" style="padding-left:22px;padding-right:22px;text-align: justify;">
-  <h2 class="text-center">{{ $page_content->page_title }}</h2>
-{!! $page_content->page_content !!}
+  <h2 class="text-center">
+  	@if($locale == 'it' and $page_content->page_title_it)
+    {{ $page_content->page_title_it }}
+    @else
+    {{ $page_content->page_title }}
+    @endif
+  	</h2>
+  	@if($locale == 'it' and $page_content->page_content_it)
+    {!! $page_content->page_content_it !!}
+    @else
+    {!! $page_content->page_content !!}
+    @endif
 
 </div>
  </div>

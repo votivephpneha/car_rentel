@@ -3,66 +3,44 @@
 //$trans_data = DB::table("translation_mgmt")->where('id','1')->get()->first();
 $trans_data1 = DB::table("translation")->where('id','1')->get()->first();
 $brand_data = DB::table("home_page")->where('id','2')->get()->first();
-$trans_data = json_decode($trans_data1->translation_text);  
-//$trans_data = (array)$trans_array_data;
+$car_data1 = DB::table("car_management")->get();
+$trans_data = json_decode($trans_data1->translation_text);
+$trans_data_booking = json_decode($trans_data1->booking_texts);
+$trans_data_login = json_decode($trans_data1->login_texts);  
+$trans_data2 = (array)$trans_data;
+$trans_data_two_booking = (array)$trans_data_booking;
+$login_trans = (array)$trans_data_login;
 //print_r($trans_data);die;
-return [
-  
-    'Home' => $trans_data->Menu1_en,
-    'Rent' => $trans_data->Menu2_en,
-    'Menu3' => $trans_data->Menu3_en,
-    'call_now' => $trans_data->call_now_en,
-    'pickup_location_text' => $trans_data->pickup_location_en,
-    'drop_off_location' => $trans_data->dropoff_location_en,
-    'pickup_date' => $trans_data->pickup_date_en,
-    'dropoff_date' => $trans_data->dropoff_date_en,
-    'book_btn' => $trans_data->book_btn_en,
-    'brand_heading' => $trans_data->brand_section_heading_en,
-    'heading_one' => $trans_data->brand_heading_one_en,
-    'heading_two' => $trans_data->brand_heading_two_en,
-    'heading_three' => $trans_data->brand_heading_three_en,
-    'content_one' => $trans_data->brand_content_one_en,
-    'content_two' => $trans_data->brand_content_two_en,
-    'content_three' => $trans_data->brand_content_three_en,
-    'best_deal_heading' => $trans_data->best_deal_heading_en,
-    'best_deal_content' => $trans_data->best_deal_content_en,
-    'Day' => $trans_data->Day_en,
-    'Seater' => $trans_data->Seater_en,
-    'Manual' => $trans_data->Manual_en,
-    'KM' => $trans_data->KM_en,
-    'More' => $trans_data->More_en,
-    'location_one' => $trans_data->location_one_en,
-    'location_two' => $trans_data->location_two_en,
-    'location_three' => $trans_data->location_three_en,
-    'location_four' => $trans_data->location_four_en,
-    'work_heading' => $trans_data->work_heading_en,
-    'work_content' => $trans_data->work_content_en,
-    'contact' => $trans_data->contact_en,
-    'cat_one' => $trans_data->cat_one_en,
-    'cat_two' => $trans_data->cat_two_en,
-    'cat_three' => $trans_data->cat_three_en,
-    'cat_four' => $trans_data->cat_four_en,
-    'footer_heading_one' => $trans_data->footer_heading_one_en,
-    'footer_content' => $trans_data->footer_content_en,
-    'footer_heading_two' => $trans_data->footer_heading_two_en,
-    'footer_heading_three' => $trans_data->footer_heading_three_en,
-    'footer_heading_four' => $trans_data->footer_heading_four_en,
-    'copyright' => $trans_data->copyright_en,
-    'choose_us_content' => $trans_data->choose_us_content_en,
-    'choose_us_heading' => $trans_data->choose_us_heading_en,
-    'meet_team' => $trans_data->meet_team_en,
-    'popup_heading' => $trans_data->popup_heading_en,
-    'popup_content' => $trans_data->popup_content_en,
-    'booking_no' => $trans_data->booking_no_en,
-    'email' => $trans_data->email_en,
-    'submit_btn' => $trans_data->submit_btn_en,
-    'book_now' => $trans_data->book_now_en,
-    'book_now' => $trans_data->book_now_en,
-    'vehicle_type_head' => $trans_data->vehicle_type_head_en,
-    'vehicle_category_head' => $trans_data->vehicle_category_head_en,
-    'total' => $trans_data->total_en,
-    'automatic' => $trans_data->automatic_en,
-    'manual' => $trans_data->manual_en,
-    'change_date' => $trans_data->change_date_en,
-    'search_popup' => $trans_data->search_popup_en,
-];
+$tranlated_data = array();
+foreach ($trans_data2 as $key => $value) {
+    $key1 = str_replace('_en', '', $key);
+    if(strpos($key, "_en")){
+        //array_push($tranlated_data,"'".$key1."'=>".$value.",");
+        $tranlated_data[$key1] = $value;
+    }
+}
+
+$tranlated_data_booking = array();
+foreach ($trans_data_two_booking as $key => $value) {
+    $key1 = str_replace('_en', '', $key);
+    if(strpos($key, "_en")){
+        //array_push($tranlated_data,"'".$key1."'=>".$value.",");
+        $tranlated_data_booking[$key1] = $value;
+    }
+}
+
+$tranlated_data_login = array();
+foreach ($login_trans as $key => $value) {
+    $key1 = str_replace('_en', '', $key);
+    if(strpos($key, "_en")){
+        //array_push($tranlated_data,"'".$key1."'=>".$value.",");
+        $tranlated_data_login[$key1] = $value;
+    }
+}
+
+
+//print_r($car_data);die;
+
+$new_translated_data = array_merge($tranlated_data,$tranlated_data_booking,$tranlated_data_login);
+//print_r($new_translated_data);die;
+return $new_translated_data;

@@ -11074,7 +11074,6 @@ header.masthead .filter {
     border-radius: 50px;
     font-size: 12px;
     width: 100%;
-    margin-top: 10px;
     padding: 10px;
 	background: #ff5f00;
 }
@@ -12413,6 +12412,7 @@ h6.text-divider {
     display: block;
 }
 
+/*My Responsive Css*/
 @media screen and (max-width: 767px) {
     nav#mainNav {
     background-color: #000;
@@ -12551,6 +12551,9 @@ li.nav-item.call-now {
 .manage_det .table-responsive {
     display: block !important;
 }
+.form_manage ul.dropdown-menu {
+	width: 100% !important;
+}
 }
 
 
@@ -12575,7 +12578,6 @@ li.nav-item.call-now {
 .form.cd-form {
     padding: 15px;
     background: #fbfbfb;
-    padding-top: 5px;
     padding-bottom: 20px;
 }
 .dc_popup .modal-close {
@@ -12607,7 +12609,7 @@ li.nav-item.call-now {
     font-weight: 700;
     font-size: 18px;
     border: 1px solid #ff5f00;
-    line-height: 27px;
+    line-height: 22px;
     display: flex;
     justify-content: center;
     width: 30px;
@@ -12616,6 +12618,7 @@ li.nav-item.call-now {
 	margin-right: 0px;
     margin-top: 0px;
 	cursor: pointer;
+	opacity: 1;
 }
 .dc_popup .modal-close .close:hover {
     background: #222222;
@@ -12824,6 +12827,14 @@ li.nav-item.call-now {
     padding: 5px;
     font-size: 14px;
 }
+.address_div_dropoff .address_dropdown {
+    padding: 5px;
+    font-size: 14px;
+}
+.address_div_dropoff .address_dropdown:hover {
+    background: #FF5F00;
+    color: #ffffff;
+}
 .cate_inp {
     display: flex;
     justify-content: center;
@@ -12837,7 +12848,7 @@ li.nav-item.call-now {
 
 li.call-now a {
     background: #ff5f00;
-    padding: 7px 15px !important;
+    padding: 7px 20px !important;
     border: 2px solid #ff5f00;
     font-size: 14px !important;
     font-weight: 400 !important;
@@ -12888,9 +12899,9 @@ label#user_country-error {
   background-color: lightsalmon;
   color: #fff;
 }
-.form_manage .dropdown .dropdown-menu {
+/*.form_manage .dropdown .dropdown-menu {
   display: none;
-}
+}*/
 .form_manage .dropdown:hover > .dropdown-menu,
 .form_manage .dropend:hover > .dropdown-menu {
   display: block;
@@ -12899,7 +12910,7 @@ label#user_country-error {
 }
 
 .form_manage ul.dropdown-menu {
-    width: 450px;
+    width: 350px;
     padding: 20px;
     border: 1px solid #fff;
     -webkit-box-shadow: 0 0 8px rgb(100 100 100 / 30%);
@@ -13116,4 +13127,314 @@ a.whats-app:hover {
 }
 .form_col .booking-form select:focus {
     border: 1px solid #ff5f00;
+}
+
+.no_data_found {
+    text-align: center;
+    font-size: 18px;
+}
+.cancel-req-book {
+    margin-top: 35px;
+    text-align: center;
+}
+.cancel-req-book a.can--btn {
+    background: #ff5f00;
+    padding: 10px 15px !important;
+    border: 2px solid #ff5f00;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    border-radius: 50px;
+    font-family: "Merriweather Sans" !important;
+    color: #ffffff;
+}
+
+ul.dropdown-menu.login--drp {
+    width: 350px;
+    margin-top: 0px;
+    padding-top: 0px;
+    padding: 20px;
+    border: 1px solid #fff;
+    -webkit-box-shadow: 0 0 8px rgb(100 100 100 / 30%);
+    box-shadow: 0 0 8px rgb(100 100 100 / 30%);
+    background: url(../assets/img/list-bg.png);
+    background-size: cover;
+    background-position: center;
+    background-color: #ffffff;
+}
+.login-wrap h3 {
+    font-size: 18px;
+    font-weight: 600;
+	margin-bottom: 0px !important;
+}
+form.signin-form label.label {
+    margin-bottom: 0px;
+	    font-size: 14px;
+}
+.signin-form a.forg_pwd {
+    color: #212529;
+}
+.grp-btm-for {
+	margin-left: 20px;
+	display: flex;
+    justify-content: space-between;
+}
+.grp-btm-for .text-left {
+    font-size: 14px;
+}
+.mb-3.emailfield {
+    margin-bottom: 8px !important;
+}
+.sign_btn_01 button.submit:hover {
+    background: #ff5f00;
+}
+.sign_btn_01 button.submit {
+    color: #ffffff;
+    font-size: 14px;
+    padding: 7px 20px;
+    border-radius: 4px !important;
+	    background-color: #ff5f00;
+    border-color: #ff5f00;
+}
+.login_field button:focus {
+    box-shadow: none !important;
+    background: none;
+}
+.signin-form input.form-control:focus {
+    box-shadow: none;
+    border-color: #ff5f00;
+}
+.cd_src_filter .address_div {
+    background: #ebebeb;
+    height: 150px;
+    overflow: auto;
+}
+.cd_src_filter .address_div_dropoff {
+    background: #ebebeb;
+    height: 150px;
+    overflow: auto;
+}
+.cd_src_filter .form-group.btn--book {
+    margin-top: 20px;
+}
+ul.dropdown-menu.dropdown-menu-right.login--drp.show {
+    right: 0;
+    left: auto !important;
+}
+
+.forget_password {
+    padding: 4rem 0;
+}
+.fgt-div {
+    width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #fff;
+    -webkit-box-shadow: 0 0 8px rgb(100 100 100 / 30%);
+    box-shadow: 0 0 8px rgb(100 100 100 / 30%);
+    background: url(../assets/img/list-bg.png);
+    background-size: cover;
+    background-position: center;
+    background-color: #ffffff;
+}
+button.recover {
+    background: #ff5f00;
+    border: 1px solid #ff5f00;
+    color: #ffffff;
+    font-size: 14px;
+    padding: 7px 20px;
+    border-radius: 4px;
+    margin-top: 15px;
+}
+button.recover:hover {
+    background: #ff5f00;
+    border: 1px solid #ff5f00;
+    color: #ffffff;
+}
+.fgt-div input#email:focus {
+    border: 1px solid #ff5f00;
+    box-shadow: none;
+}
+.fgt-div input:focus {
+    border: 1px solid #ff5f00;
+	box-shadow: none;
+}
+.note-div {
+    margin-top: 35px;
+}
+.note-div {
+    margin-top: 35px;
+}
+.note-div a {
+    color: #ffffff;
+    background: #000000;
+    font-size: 14px;
+    padding: 10px 20px;
+    border-radius: 4px;
+}
+
+/*User Dashboard*/
+
+ul.user_header {
+    background: #f2f2f3;
+    padding: 25px 25px;
+    border-radius: 5px;
+    list-style-type: none;
+}
+ul.user_header li {
+    margin: 2px -1px 0;
+    background: #fff;
+    padding: 10px;
+    border-radius: 4px;
+	-webkit-transition: all .3s cubic-bezier(.645,.045,.355,1);
+    transition: all .3s cubic-bezier(.645,.045,.355,1);
+}
+ul.user_header li a {
+    padding: 17px 0px 17px 0px;
+    font-size: 16px;
+    color: #212529;
+    font-weight: 600;
+}
+.user_profile {
+    padding: 4rem 0;
+}
+ul.user_header li:hover {
+    background-color: #ff5f00;
+}
+ul.user_header li:hover a {
+    color: #ffffff;
+}
+.profile_heading {
+    margin-bottom: 35px;
+}
+.profile_heading h4 {
+    font-weight: 600;
+}
+.profile .form-group label {
+    font-weight: 600;
+}
+.profile .form-group input:focus {
+    box-shadow: none;
+    border: 1px solid #ff5f00;
+}
+.user_img {
+    margin-top: 15px;
+}
+button.profile_upd {
+    background: #ff5f00;
+    padding: 7px 15px !important;
+    border: 2px solid #ff5f00;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    border-radius: 50px;
+    font-family: "Merriweather Sans" !important;
+    color: #ffffff;
+}
+.profile .form-group select:focus {
+    box-shadow: none;
+    border: 1px solid #ff5f00;
+}
+.login_field {
+    margin-left: 10px;
+}
+.login_field button {
+    background: transparent;
+    color: #ffffff;
+    border: none;
+    padding: 4px;
+    font-size: 14px;
+    font-family: "Merriweather Sans";
+    font-weight: 400;
+    cursor: pointer;
+}
+.login_field button:hover {
+    background: transparent;
+}
+.field_manage_form {
+    width: 350px;
+    padding: 20px !important;
+    border: 1px solid #fff !important;
+    -webkit-box-shadow: 0 0 8px rgb(100 100 100 / 30%) !important;
+    box-shadow: 0 0 8px rgb(100 100 100 / 30%) !important;
+    background: url(../assets/img/list-bg.png);
+    background-size: cover;
+    background-position: center;
+}
+.manage_bk_field button {
+    background: transparent;
+    color: #ffffff;
+    border: none;
+    padding: 4px;
+    font-size: 14px;
+    font-family: "Merriweather Sans";
+    font-weight: 400;
+    cursor: pointer;
+}
+.manage_bk_field button:hover {
+    background: transparent;
+}
+.manage_bk_field button:active {
+    background: transparent !important;
+}
+.manage_bk_field button:focus {
+    box-shadow: none !important;
+}
+.login_field button:active {
+    background: transparent !important;
+}
+.login_field button:focus {
+    background: #ff5f00 !important;
+}
+#login-prevent button:focus {
+    background: transparent !important;
+}
+.manage_bk_field .btn.show {
+    background: transparent;
+}
+.login_field .btn.show {
+    background: transparent;
+}
+#login-prevent .login--drp .signin-form .sign_btn_01 button.submit:focus {
+    background: #ff5f00 !important;
+}
+.sign_btn_01 button.submit:active {
+    background-color: #ff5f00 !important;
+    border-color: #ff5f00 !important;
+}
+
+.info-se-msg {
+    width: 600px;
+    margin: 0px auto 15px;
+}
+button#accountButton {
+    background: transparent;
+    color: #ffffff;
+    border: none;
+    padding: 4px;
+    font-size: 14px;
+    font-family: "Merriweather Sans";
+    font-weight: 400;
+    cursor: pointer;
+}
+.account-show {
+    margin-left: 15px;
+}
+.items-account a.dropdown-item {
+    color: #000000;
+    padding-left: 15px;
+    font-size: 14px;
+    font-family: "Merriweather Sans";
+    font-weight: 400;
+}
+.items-account a.dropdown-item:hover {
+    background: #ff5f00;
+    color: #ffffff;
+}
+.account-show button:hover {
+    background: transparent;
+}
+.account-show button:active {
+    background: transparent !important;
+}
+.account-show button:focus {
+    box-shadow: none !important;
 }

@@ -154,31 +154,51 @@ $("#pageAdmin_form").validate({
 
                 <div class="row">
 
-                  <div class="col-md-12">
+                  <div class="col-md-6">
 
                     <div class="form-group">
 
-                      <label>Title</label>
+                      <label>Title(English)</label>
 
                       <input type="text" class="form-control" name="pagetitle" id="pagetitle" placeholder="Enter Title">
 
                     </div>
 
                   </div>
-
-
                   <div class="col-md-6">
 
                     <div class="form-group">
 
-                      <label>SubTitle</label>
+                      <label>Title(Italian)</label>
 
-                      <input type="text" class="form-control" name="subtitle" id="subtitle" placeholder="Enter Sub Title" autocomplete="">
+                      <input type="text" class="form-control" name="pagetitle_it" id="pagetitle_it" placeholder="Enter Title">
 
                     </div>
 
                   </div>
 
+                  <div class="col-md-6">
+
+                    <div class="form-group">
+
+                      <label>SubTitle(English)</label>
+
+                      <input type="text" class="form-control" name="subtitle_it" id="subtitle" placeholder="Enter Sub Title" autocomplete="">
+
+                    </div>
+
+                  </div>
+                  <div class="col-md-6">
+
+                    <div class="form-group">
+
+                      <label>SubTitle(Italian)</label>
+
+                      <input type="text" class="form-control" name="subtitle_it" id="subtitle" placeholder="Enter Sub Title" autocomplete="">
+
+                    </div>
+
+                  </div>
                  
                   <div class="col-md-6">
 
@@ -198,7 +218,7 @@ $("#pageAdmin_form").validate({
                   <div class="form-group">
 
                   <label>Team Profile Image</label>
-					  
+            
                  <input type="file" class="form-control" name="content" id="content" accept="image/*" value="">
 
                   </div>

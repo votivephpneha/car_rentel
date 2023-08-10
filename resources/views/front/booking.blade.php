@@ -27,8 +27,8 @@
             <div class="container">
                 <div class="row info-det gx-4 gx-lg-5"> 
 					<div class="row">
-					<h4>Mens Driving Detail's</h4>
-					<p>As they appear on driving licence</p>
+					<h4>{{ __('messages.driver_heading') }}</h4>
+					<p>{{ __('messages.driver_sub_heading') }}</p>
 					</div>
 					<div class="row alt_box_form">
 					<div class="col-lg-6 col-sm-6 form_col mx-auto">
@@ -36,37 +36,37 @@
 						@csrf	
 						<div class="booking-form">
 							<div class="form-outline mb-3">
-								<label class="form-label">Email address</label>
+								<label class="form-label">{{ __('messages.driver_email') }}</label>
 								<input type="hidden" name="car_id" value="{{ $car_id }}"/>
 								<input type="email" name="email_address" class="form-control" />
-								<span>So we can send the confirmation email and voucher</span>
+								<span>{{ __('messages.driver_email_field') }}</span>
 							</div>
 						<div class="form-outline mb-3">
-							<label class="form-label">Title</label>
+							<label class="form-label">{{ __('messages.driver_title') }}</label>
 								<select class="select" name="title">
-								<option value="">Select your option</option>
-									<option value="1">Mr</option>
-									<option value="2">Ms</option>
+								<option value="">{{ __('messages.driver_select_option') }}</option>
+									<option value="1">{{ __('messages.driver_title_one') }}</option>
+									<option value="2">{{ __('messages.driver_title_two') }}</option>
 								</select>
 						</div>
 						<div class="form-outline mb-3">
-							<label class="form-label">First Name</label>
+							<label class="form-label">{{ __('messages.driver_fname') }}</label>
 							<input type="text" class="form-control" name="first_name">
 						</div>
 						<div class="form-outline mb-3">
-							<label class="form-label">Last Name</label>
+							<label class="form-label">{{ __('messages.driver_lname') }}</label>
 							<input type="text" class="form-control" name="last_name">
 						</div>
 						<div class="form-outline mb-3">
-							<label class="form-label">Contact Number</label>							
-							<input id="phone" name="phone" type="tel" placeholder="Phone Number" class="form-control" maxlength="10" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"/>
-							<span>So we can call if any problems come up</span>
+							<label class="form-label">{{ __('messages.driver_contact') }}</label>							
+							<input id="phone" name="phone" type="tel" placeholder="Phone Number" class="form-control" maxlength="10" />
+							<span>{{ __('messages.driver_contact_field') }}</span>
 						</div>
 						<div class="form-outline mb-3">
-							<label class="form-label">Country of Residence</label>		
+							<label class="form-label">{{ __('messages.driver_country') }}</label>		
 							
 							<select id='country_select' name='country'> 
-								<option value="">Select</option>
+								<option value="">{{ __('messages.driver_select_option') }}</option>
 								<?php
 									foreach ($countries_list as $country) {
 										?>
@@ -79,17 +79,17 @@
 							</select>
 						</div>
 						<div class="form-outline mb-3">
-							<label class="form-label">Flight Number (Optional)</label>							
-							<input type="text" class="form-control" name="flight_no">
-							<span>Just in case the flight is delayed</span>
+							<label class="form-label">{{ __('messages.driver_flight') }}</label>							
+							<input type="text" class="form-control" maxlength="15" name="flight_no">
+							<span>{{ __('messages.driver_flight_field') }}</span>
 						</div>
 						<div class="form-outline mb-3">
-							<label class="form-label">Notes</label>					
+							<label class="form-label">{{ __('messages.driver_notes') }}</label>					
 							<textarea class="form-control" name="customer_notes"></textarea>
 							
 						</div>
 						<div class="form-outline btn-submit">
-						<button type="submit" class="btn btn-primary">Submit</button>
+						<button type="submit" class="btn btn-primary">{{ __('messages.driver_submit_btn') }}</button>
 						</div>
                 </div>
                 </form>	
@@ -97,8 +97,7 @@
 				
 				<div class="col-lg-6 col-sm-6 rgt_col_form">
 					<div class="drive_details_cont">
-						<h3>Class of its own</h3>
-						<h2>Rent Verified Luxury Cars Directly From <span>Royal Car Rental</span></h2>
+						{!! __('messages.driver_image_text') !!}
 						<!-- <div class="auth-btn-links">
 							<a class="btn btn-one" href="{{ url('page/contact-us') }}">Contact Us Now</a>
 							<a class="btn btn-two" href="{{ url('/') }}">Search Cars</a>

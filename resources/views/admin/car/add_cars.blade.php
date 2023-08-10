@@ -23,7 +23,13 @@ $("#addCarsForm").validate({
     title: {
         required: true,
     },
-    sub_title: {
+    title_it: {
+      required: true,
+    },
+    vehicle_type: {
+      required: true,
+    },
+    vehicle_category: {
       required: true,
     },
     image: {
@@ -38,8 +44,49 @@ $("#addCarsForm").validate({
     no_of_km: {
       required: true,
     },
-    price: {
+    "price[]": {
       required: true,
+    },
+    car_description:{
+      required: true
+    },
+    car_description_it:{
+      required: true
+    }
+  },
+  messages:{
+    title: {
+      required: "Please enter the vehicle name in English",
+    },
+    title_it: {
+      required: "Please enter the vehicle name in Italian",
+    },
+    vehicle_type: {
+      required: "Please enter the Vehicle Type",
+    },
+    vehicle_category: {
+      required: "Please enter the Vehicle Category",
+    },
+    image: {
+      required: "Please enter the Vehicle Image",
+    },
+    no_of_day: {
+      required: "Please enter the No of Day",
+    },
+    no_of_seats: {
+      required: "Please enter the No of Seats",
+    },
+    no_of_km: {
+      required: "Please enter the No of Kilometer",
+    },
+    "price[]": {
+      required: "Please enter the Vehicle Price",
+    },
+    car_description:{
+      required: "Please enter the Vehicle Description in English"
+    },
+    car_description_it:{
+      required: "Please enter the Vehicle Description in Italian"
     }
 
   },
@@ -101,7 +148,7 @@ $("#addCarsForm").validate({
 
           <div class="col-sm-6">
 
-            <h1>Add Cars</h1>
+            <h1>Add Car</h1>
 
           </div>
 
@@ -111,7 +158,7 @@ $("#addCarsForm").validate({
 
               <li class="breadcrumb-item"><a href="#">Home</a></li>
 
-              <li class="breadcrumb-item active">Add Cars</li>
+              <li class="breadcrumb-item active">Add Car</li>
 
             </ol>
 
@@ -160,14 +207,24 @@ $("#addCarsForm").validate({
 
                     <div class="form-group">
 
-                      <label>Title</label>
+                      <label>Vehicle Name(English)</label>
 
-                      <input type="text" class="form-control" name="title" id="title" placeholder="Enter Title">
+                      <input type="text" class="form-control" name="title" id="title" placeholder="Enter Vehicle Name">
 
                     </div>
 
                   </div>
+                  <div class="col-md-6">
 
+                    <div class="form-group">
+
+                      <label>Vehicle Name(Italian)</label>
+
+                      <input type="text" class="form-control" name="title_it" id="title_it" placeholder="Enter Vehicle Name">
+
+                    </div>
+
+                  </div>
                   <div class="col-md-6">
 
                   <div class="form-group">
@@ -192,7 +249,7 @@ $("#addCarsForm").validate({
                   <select class="form-control" name="vehicle_category" id="vehicle_category">
                     <option value="">Select</option>
                     @foreach($category_list as $cat_list)
-                    <option value="{{ $cat_list->cat_name }}">{{ $cat_list->cat_name }}</option>
+                    <option value="{{ $cat_list->cat_id }}">{{ $cat_list->cat_name }}</option>
                     @endforeach
                   </select>
                  
@@ -205,7 +262,7 @@ $("#addCarsForm").validate({
 
                   <div class="form-group">
 
-                  <label>Image</label>
+                  <label>Vehicle Image</label>
             
                  <input type="file" class="form-control" name="image" id="image">
 
@@ -262,13 +319,25 @@ $("#addCarsForm").validate({
 
                   <div class="form-group">
 
-                  <label>Car Description</label>
+                  <label>Vehicle Description(English)</label>
                   <textarea class="form-control" name="car_description" id="car_description"></textarea>
                  
 
                   </div>
 
                   </div>
+                  <div class="col-md-6">
+
+                  <div class="form-group">
+
+                  <label>Vehicle Description(Italian)</label>
+                  <textarea class="form-control" name="car_description_it" id="car_description_it"></textarea>
+                 
+
+                  </div>
+
+                  </div>
+
                   <!-- <div class="col-md-6">
 
                   <div class="form-group">
@@ -300,7 +369,7 @@ $("#addCarsForm").validate({
                       <thead>
                         <tr>
                           <th>No of day</th>
-                          <th>Price</th>
+                          <th>Price(in <i class="fa fa-eur"></i>)</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -312,7 +381,7 @@ $("#addCarsForm").validate({
                             <input type="text" name="price[]" class="price form-control">
                           </td>
                         </tr>
-                        <tr>
+                        <!-- <tr>
                           <td>
                             <span>3+ Day</span>
                           </td>
@@ -335,7 +404,7 @@ $("#addCarsForm").validate({
                           <td>
                             <input type="text" name="price[]" class="price form-control">
                           </td>
-                        </tr>
+                        </tr> -->
                       </tbody>
                       
                       
