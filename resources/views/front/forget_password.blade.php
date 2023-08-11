@@ -26,7 +26,7 @@
 	<div class="container">
 		<div class="row info-det gx-4 gx-lg-5">
 			<div class="row">
-				<h4>Forget Password</h4>
+				<h4>{{ __('messages.forget_password_heading') }}</h4>
 			</div>
 			<div class="row alt_box_form">
 				<div class="col-md-12">
@@ -47,14 +47,14 @@
 					  	@csrf
 					    
 					    <div class="form-group">
-					      <label for="email">Email</label>
+					      <label for="email">{{ __('messages.forget_password_email') }}</label>
 					      <input type="email" class="form-control" id="email" placeholder="" name="email">
-						  <button type="submit" class="btn btn-default recover">Recover</button>
+						  <button type="submit" class="btn btn-default recover">{{ __('messages.forget_password_recover') }}</button>
 					    </div>
 					  </form>
 					  </div>
 				    <div class="note-div">
-				      <p><a href="{{ url('/') }}" data-action="show-popover-panel" aria-controls="header-login-panel" class="link link--accented">Back to login</a></p>
+				      <p><a href="{{ url('/') }}" data-action="show-popover-panel" aria-controls="header-login-panel" class="link link--accented">{{ __('messages.back_login') }}</a></p>
 				    </div>
 				</div>
 			</div>

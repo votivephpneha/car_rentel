@@ -12,8 +12,8 @@
 			  
             </div>
                     </div>
-          <div class="col-lg-3 col-sm-3 mb-4">
-            <div class="ftr-info">
+          <div class="col-lg-9 col-sm-9 mb-4">
+            <div class="ftr-info-link">
               <h4>{{ __('messages.footer_heading_two') }}</h4>
               <ul class="list-menu-ftr">
                 <li><a href="#"><span>></span> {{ __('messages.Menu1') }}</a></li>
@@ -28,28 +28,7 @@
               </ul>
             </div>
                     </div>
-          <div class="col-lg-3 col-sm-3 mb-4">
-            <div class="ftr-info">
-              <h4>{{ __('messages.footer_heading_three') }}</h4>
-              <ul class="list-menu-ftr">
-                <li><a href="#"><span>></span> {{ __('messages.location_one') }}</a></li>
-                <li><a href="#"><span>></span> {{ __('messages.location_two') }}</a></li>
-                <li><a href="#"><span>></span> {{ __('messages.location_three') }}</a></li>
-                <li><a href="#"><span>></span> {{ __('messages.location_four') }}</a></li>
-              </ul>
-            </div>
-                    </div>
-          <div class="col-lg-3 col-sm-3 mb-4">
-            <div class="ftr-info">
-              <h4>{{ __('messages.footer_heading_four') }}</h4>
-              <ul class="list-menu-ftr">
-                <li><a href="#"><span>></span> {{ __('messages.cat_one') }}</a></li>
-                <li><a href="#"><span>></span> {{ __('messages.cat_two') }}</a></li>
-                <li><a href="#"><span>></span> {{ __('messages.cat_three') }}</a></li>
-                <li><a href="#"><span>></span> {{ __('messages.cat_four') }}</a></li>
-              </ul>
-            </div>
-                    </div>
+
         </div>
       </div>
             <div class="container px-4 px-lg-5 ftr-btm"><div class="small text-center">{{ __('messages.copyright') }}</div></div>

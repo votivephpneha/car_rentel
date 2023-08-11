@@ -11415,12 +11415,14 @@ ul.list-menu-ftr li::marker {
 .ftr-info ul.list-menu-ftr span {
     color: #ff5f00;
 }
-.ftr-btm {
+/*.ftr-btm {
     border-top: 1px solid #B9B2B2;
     padding-top: 35px;
-}
+}*/
 .ftr-btm .small {
     color: #ffffff;
+	border-top: 1px solid #B9B2B2;
+    padding-top: 35px;
 }
 .social-info {
     display: flex;
@@ -11475,6 +11477,34 @@ ul.list-menu-ftr li::marker {
     color: #ffffff;
     padding: 5px 0px !important;
     font-size: 12px;
+}
+.ftr-info-link h4 {
+    color: #ffffff;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+.ftr-info-link {
+    float: right;
+}
+.ftr-info-link ul.list-menu-ftr {
+    display: flex;
+    justify-content: inherit;
+}
+.ftr-info-link ul.list-menu-ftr li {
+    color: #ffffff;
+    font-size: 14px;
+    line-height: 34px;
+    list-style-type: none;
+    margin-right: 25px;
+}
+.ftr-info-link ul.list-menu-ftr a {
+    color: #ffffff;
+}
+.ftr-info-link ul.list-menu-ftr span {
+    color: #ff5f00;
+}
+.ftr-info-link ul.list-menu-ftr li:last-child {
+    margin-right: 0px;
 }
 
 /*Listing page*/
@@ -13244,6 +13274,7 @@ button.recover {
     padding: 7px 20px;
     border-radius: 4px;
     margin-top: 15px;
+	display: block;
 }
 button.recover:hover {
     background: #ff5f00;
@@ -13297,6 +13328,36 @@ ul.user_header li a {
 .user_profile {
     padding: 4rem 0;
 }
+.profile {
+    border-radius: 5px;
+    padding: 25px;
+    border: 1px solid #e7e7e7;
+}
+.des-rgt-profile {
+    padding-left: 0px !important;
+}
+.info--stats p {
+    font-weight: 700;
+	font-size: 18px;
+    margin-bottom: 0px;
+}
+.icn-stats i.bi {
+    font-size: 28px;
+    color: #ff5f00;
+}
+.statist_card .card-body {
+    padding: 0px;
+}
+.l-pd-0 {
+    padding-left: 0px !important;
+}
+.m--tp {
+    margin-top: 15px;
+}
+.user-sub_btn input.search_btn:hover {
+    border: 1px solid #ff5f00;
+    background: #ff5f00;
+}
 ul.user_header li:hover {
     background-color: #ff5f00;
 }
@@ -13329,10 +13390,21 @@ button.profile_upd {
     font-family: "Merriweather Sans" !important;
     color: #ffffff;
 }
+.label_prof {
+	font-size: 14px;
+    background: #ff5f00;
+    color: #ffffff;
+    padding: 10px;
+    border-radius: 4px;
+}
 .profile .form-group select:focus {
     box-shadow: none;
     border: 1px solid #ff5f00;
 }
+.user-sub_btn .search_btn:active {
+    color: #ffffff !important;
+}
+
 .login_field {
     margin-left: 10px;
 }

@@ -97,6 +97,8 @@ Route::post('/postreset_password', [HomeController::class, 'postreset_password']
 // user route start here
 Route::group(['prefix' => 'user','middleware' => 'auth:user'], function () {
     Route::get('/dashboard', [HomeController::class, 'userDashboard'])->name('userDashboard');
+    Route::get('/search_date_filter', [App\Http\Controllers\HomeController::class, 'search_date_filter'])->name('search_date_filter');
+    Route::get('/dashboard', [HomeController::class, 'userDashboard'])->name('userDashboard');
     Route::get('/userProfile', [HomeController::class, 'userProfile'])->name('userProfile');
     //Route::get('profile','App\Http\Controllers\HomeController@userProfile')->name('profile');
     Route::post('/postuserProfile', [HomeController::class, 'postuserProfile'])->name('postuserProfile');
@@ -311,6 +313,7 @@ Route::group(['prefix' => 'admin'], function(){
         Route::post('/update_team_translations', [AdminController::class, 'update_team_translations'])->name('update_team_translations');
         Route::post('/update_page_translations', [AdminController::class, 'update_page_translations'])->name('update_page_translations');
         Route::post('/update_login_translations', [AdminController::class, 'update_login_translations'])->name('update_login_translations');
+        Route::post('/update_validation_translations', [AdminController::class, 'update_validation_translations'])->name('update_validation_translations');
         Route::get('/payment_transaction', [AdminController::class, 'payment_transaction'])->name('payment_transaction');
         Route::get('/payment_transaction/{status}/{from_date}/{to_date}', 'App\Http\Controllers\AdminController@payment_transaction');
         Route::get('/payment_transaction/{from_date}/{to_date}', 'App\Http\Controllers\AdminController@payment_transaction');

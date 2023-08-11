@@ -6,20 +6,20 @@
 			
 		?>
 		<p><b>Hello <span style="color: #FF5F00;">{{ $booking_mgmt->driver_first_name }} {{ $booking_mgmt->driver_last_name }}</span></b></p>
-		<div class="info-invoice" style="display: flex;background: #f2f2f2;padding: 25px;border-radius: 12px;">
-		<p style="display: grid;font-size: 12px;margin-right: 2em;text-transform: uppercase;line-height: 1.4;border-right: 1px dashed #d3ced2;    padding-right: 2em;margin-left: 0;padding-left: 0;margin-bottom: 0px;margin-top: 0px;">Booking ID: <b>{{ $booking_mgmt->booking_id }}</b></p>
-		<p style="display: grid;font-size: 12px;margin-right: 2em;text-transform: uppercase;line-height: 1.4;border-right: 1px dashed #d3ced2;    padding-right: 2em;margin-left: 0;padding-left: 0;margin-bottom: 0px;margin-top: 0px;">To: <b>{{ $booking_mgmt->driver_first_name }} {{ $booking_mgmt->driver_last_name }}</b></p>
-		<p style="display: grid;font-size: 12px;margin-right: 2em;text-transform: uppercase;line-height: 1.4;border-right: 1px dashed #d3ced2;    padding-right: 2em;margin-left: 0;padding-left: 0;margin-bottom: 0px;margin-top: 0px;">Country of Residence: <b>{{ $booking_mgmt->driver_country }}</b></p>
-		<p style="display: grid;font-size: 12px;margin-right: 2em;text-transform: uppercase;line-height: 1.4;padding-right: 2em;margin-left: 0;padding-left: 0;margin-bottom: 0px;margin-top: 0px;">Phone No: <b>{{ $booking_mgmt->driver_contact_no }}</b></p >
+		<div class="info-invoice" style="display: flex;background: #f2f2f2;padding: 25px;border-radius: 12px;border-bottom-left-radius: 0;border-bottom-right-radius: 0px;border-bottom: 1px solid #c9c9c9;">
+		<p style="display: grid;font-size: 12px;margin-right: 2em;text-transform: uppercase;line-height: 1.6;border-right: 1px dashed #d3ced2;    padding-right: 2em;margin-left: 0;padding-left: 0;margin-bottom: 0px;margin-top: 0px;">Booking ID: <b>{{ $booking_mgmt->booking_id }}</b></p>
+		<p style="display: grid;font-size: 12px;margin-right: 2em;text-transform: uppercase;line-height: 1.6;border-right: 1px dashed #d3ced2;    padding-right: 2em;margin-left: 0;padding-left: 0;margin-bottom: 0px;margin-top: 0px;">To: <b>{{ $booking_mgmt->driver_first_name }} {{ $booking_mgmt->driver_last_name }}</b></p>
+		<p style="display: grid;font-size: 12px;margin-right: 2em;text-transform: uppercase;line-height: 1.6;border-right: 1px dashed #d3ced2;    padding-right: 2em;margin-left: 0;padding-left: 0;margin-bottom: 0px;margin-top: 0px;">Country of Residence: <b>{{ $booking_mgmt->driver_country }}</b></p>
+		<p style="display: grid;font-size: 12px;margin-right: 2em;text-transform: uppercase;line-height: 1.6;padding-right: 2em;margin-left: 0;padding-left: 0;margin-bottom: 0px;margin-top: 0px;">Phone No: <b>{{ $booking_mgmt->driver_contact_no }}</b></p >
 		</div>	
-		<div class="info-invoice" style="display: flex;background: rgb(248, 248, 249);padding: 25px;border-radius: 12px;">
-		<p style="display: grid;font-size: 12px;margin-right: 2em;text-transform: uppercase;line-height: 1.4;border-right: 1px dashed #d3ced2;    padding-right: 2em;margin-left: 0;padding-left: 0;margin-bottom: 0px;margin-top: 0px;">Pickup Location: <b>{{ $pickup_location }}</b></p>
-		<p style="display: grid;font-size: 12px;margin-right: 2em;text-transform: uppercase;line-height: 1.4;border-right: 1px dashed #d3ced2;    padding-right: 2em;margin-left: 0;padding-left: 0;margin-bottom: 0px;margin-top: 0px;">Drop Off Location: <b>{{ $drop_off_location }}</b></p>
-		<p style="display: grid;font-size: 12px;margin-right: 2em;text-transform: uppercase;line-height: 1.4;border-right: 1px dashed #d3ced2;    padding-right: 2em;margin-left: 0;padding-left: 0;margin-bottom: 0px;margin-top: 0px;">Pickup Date: <b>{{ $pickup_date }}</b></p>
-		<p style="display: grid;font-size: 12px;margin-right: 2em;text-transform: uppercase;line-height: 1.4;padding-right: 2em;margin-left: 0;padding-left: 0;margin-bottom: 0px;margin-top: 0px;">Drop Off Date: <b>{{ $drop_off_date }}</b></p >
+		<div class="info-invoice" style="display: flex;background: #f2f2f2;;padding: 25px;border-radius: 12px;border-top-left-radius: 0px;border-top-right-radius: 0px;">
+		<p style="display: grid;font-size: 12px;margin-right: 2em;text-transform: uppercase;line-height: 1.6;border-right: 1px dashed #d3ced2;    padding-right: 2em;margin-left: 0;padding-left: 0;margin-bottom: 0px;margin-top: 0px;">Pickup Location: <b>{{ $pickup_location }}</b></p>
+		<p style="display: grid;font-size: 12px;margin-right: 2em;text-transform: uppercase;line-height: 1.6;border-right: 1px dashed #d3ced2;    padding-right: 2em;margin-left: 0;padding-left: 0;margin-bottom: 0px;margin-top: 0px;">Drop Off Location: <b>{{ $drop_off_location }}</b></p>
+		<p style="display: grid;font-size: 12px;margin-right: 2em;text-transform: uppercase;line-height: 1.6;border-right: 1px dashed #d3ced2;    padding-right: 2em;margin-left: 0;padding-left: 0;margin-bottom: 0px;margin-top: 0px;">Pickup Date: <b>{{ $pickup_date }}</b></p>
+		<p style="display: grid;font-size: 12px;margin-right: 2em;text-transform: uppercase;line-height: 1.6;padding-right: 2em;margin-left: 0;padding-left: 0;margin-bottom: 0px;margin-top: 0px;">Drop Off Date: <b>{{ $drop_off_date }}</b></p >
 		</div>	
 	</div>
-	<h2 style="font-size: 18px;color: #FF5F00;margin-bottom: 5px;">Booking Details</h2>
+	<h2 style="font-size: 18px;color: #FF5F00;margin-bottom: 5px;margin-top: 20px;">Booking Details</h2>
 	<table style="width:100%;">
 		<thead>
 			<tr>

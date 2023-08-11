@@ -22,8 +22,8 @@
     sum = sum + parseInt(new_price);
     
   });
-  console.log("car_price",sum.toFixed(2));
-  $(".total_price").html("<i class='fa fa-eur'></i>"+sum.toFixed(2));
+  console.log("car_price",sum);
+  $(".total_price").html("<i class='fa fa-eur'></i>"+sum);
 
   $(".assign_ride_btn").click(function(){
     $(".assign_ride_dropdown").show();
@@ -128,7 +128,7 @@
                         <select name="booking_status" class="form-control">
                           <option>Change Status</option>
                           <option value="1" @if($booking_details->booking_status == '1') Selected @endif>Pending</option>
-                          <option value="2" @if($booking_details->booking_status == '2') Selected @endif>Assigned</option>
+                          <!-- <option value="2" @if($booking_details->booking_status == '2') Selected @endif>Assigned</option> -->
                           <option value="3" @if($booking_details->booking_status == '3') Selected @endif>Accepted</option>
                           <option value="4" @if($booking_details->booking_status == '4') Selected @endif>Rejected</option>
                         </select>
@@ -334,7 +334,7 @@
                         <?php
                               $price_data = DB::table('car_price_days')->where('no_of_day','1 Day')->where('car_id',$b_data->vehicle_id)->first();
                               $price = $price_data->price;
-                              echo "<i class='fa fa-eur'></i>".number_format((float)$price, 2, '.', '');
+                              echo "<i class='fa fa-eur'></i>".$price;
                             ?>
                       </td>
                     </tr>

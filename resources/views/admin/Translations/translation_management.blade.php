@@ -336,6 +336,34 @@ $("#updatePageTranslations").validate({
     // event.preventDefault();
   }
 });
+$("#updateValidationTranslations").validate({
+  debug: false,
+  
+  submitHandler: function (form) {
+    var site_url = $("#baseUrl").val();
+    // alert(site_url);
+    var formData = $(form).serialize();
+    $(form).ajaxSubmit({
+      type: 'POST',
+      url: site_url + '/admin/update_validation_translations',
+      data: formData,
+      success: function (response) {
+        console.log(response);
+        if (response.status == 'success') {
+          // $("#register_form")[0].reset();
+          // success_noti(response.msg);
+          // setTimeout(function(){window.location.reload()},1000);
+          success_noti(response.msg);
+          //setTimeout(function(){window.location.href=site_url+"/admin/car_management"},1000);
+        } else {
+          error_noti(response.msg);
+        }
+
+      }
+    });
+    // event.preventDefault();
+  }
+});
 // Change tab class and display content
 $('.tabs-nav a').on('click', function (event) {
     event.preventDefault();
@@ -435,7 +463,8 @@ $('.tabs-nav a:first').trigger('click'); // Default
                   </li>
                   <li class="tab-active"><a href="#tab-3" rel="nofollow">Login Management Texts</a>
                   </li>
-                  
+                  <li class="tab-active"><a href="#tab-4" rel="nofollow">Form Validations and Success Messages</a>
+                  </li>
                   <li class="tab-active"><a href="#tab-5" rel="nofollow">Locations</a>  
                   </li>
                   
@@ -2342,6 +2371,22 @@ $('.tabs-nav a:first').trigger('click'); // Default
                       <td>
                         <div class="form-group">
                           
+                          <input type="text" class="form-control" name="select_country_en" id="home" value="{{ $login_texts->select_country_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="select_country_it" id="home" value="{{ $login_texts->select_country_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          
                           <input type="text" class="form-control" name="profile_image_en" id="home" value="{{ $login_texts->profile_image_en }}">
 
                         </div>
@@ -2372,7 +2417,7 @@ $('.tabs-nav a:first').trigger('click'); // Default
                     </tr>
                   </tbody>
                 </table>
-                <div class="card-header" style="width: 100%; margin-bottom: 20px;"><h3 class="card-title">Profile</h3></div>
+                <div class="card-header" style="width: 100%; margin-bottom: 20px;"><h3 class="card-title">Change Password</h3></div>
                 <table class="table table-bordered table-striped">
                   <tbody>
                     <tr>
@@ -2391,22 +2436,7 @@ $('.tabs-nav a:first').trigger('click'); // Default
                         </div>
                       </td>
                     </tr>
-                    <tr>
-                      <td>
-                        <div class="form-group">
-                          
-                          <input type="text" class="form-control" name="change_password_heading_en" id="home" value="{{ $login_texts->change_password_heading_en }}">
-
-                        </div>
-                      </td>
-                      <td>
-                        <div class="form-group">
-
-                          <input type="text" class="form-control" name="change_password_heading_it" id="home" value="{{ $login_texts->change_password_heading_it }}">
-
-                        </div>
-                      </td>
-                    </tr>
+                    
                     <tr>
                       <td>
                         <div class="form-group">
@@ -2489,6 +2519,161 @@ $('.tabs-nav a:first').trigger('click'); // Default
                     </tr>
                   </tbody>
                 </table>
+                <div class="card-header" style="width: 100%; margin-bottom: 20px;"><h3 class="card-title">Forget Password</h3></div>
+                <table class="table table-bordered table-striped">
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          
+                          <input type="text" class="form-control" name="forget_password_heading_en" id="home" value="{{ $login_texts->forget_password_heading_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="forget_password_heading_it" id="home" value="{{ $login_texts->forget_password_heading_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          
+                          <input type="text" class="form-control" name="forget_password_email_en" id="home" value="{{ $login_texts->forget_password_email_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="forget_password_email_it" id="home" value="{{ $login_texts->forget_password_email_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          
+                          <input type="text" class="form-control" name="forget_password_recover_en" id="home" value="{{ $login_texts->forget_password_recover_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="forget_password_recover_it" id="home" value="{{ $login_texts->forget_password_recover_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          
+                          <input type="text" class="form-control" name="back_login_en" id="home" value="{{ $login_texts->back_login_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="back_login_it" id="home" value="{{ $login_texts->back_login_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="card-header" style="width: 100%; margin-bottom: 20px;"><h3 class="card-title">Reset Password</h3></div>
+                <table class="table table-bordered table-striped">
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          
+                          <input type="text" class="form-control" name="reset_password_heading_en" id="home" value="{{ $login_texts->reset_password_heading_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="reset_password_heading_it" id="home" value="{{ $login_texts->reset_password_heading_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          
+                          <input type="text" class="form-control" name="reset_password_email_en" id="home" value="{{ $login_texts->reset_password_email_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="reset_password_email_it" id="home" value="{{ $login_texts->reset_password_email_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          
+                          <input type="text" class="form-control" name="reset_new_password_en" id="home" value="{{ $login_texts->reset_new_password_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="reset_new_password_it" id="home" value="{{ $login_texts->reset_new_password_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          
+                          <input type="text" class="form-control" name="reset_confirm_password_en" id="home" value="{{ $login_texts->reset_confirm_password_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="reset_confirm_password_it" id="home" value="{{ $login_texts->reset_confirm_password_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          
+                          <input type="text" class="form-control" name="reset_submit_en" id="home" value="{{ $login_texts->reset_submit_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="reset_submit_it" id="home" value="{{ $login_texts->reset_submit_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
                 <div class="row">
 
 
@@ -2502,7 +2687,7 @@ $('.tabs-nav a:first').trigger('click'); // Default
               </form>
             </div>
             <div id="tab-4" class="form_tab" style="display: none;">
-              <form method="POST" enctype="multipart/form-data" id="updateCategoryTranslations" novalidate="novalidate">
+              <form method="POST" enctype="multipart/form-data" id="updateValidationTranslations" novalidate="novalidate">
                 @csrf
                 <table class="table table-bordered table-striped">
                   <tbody>
@@ -2512,9 +2697,7 @@ $('.tabs-nav a:first').trigger('click'); // Default
                     </tr>
                   </tbody>
                 </table>
-                <?php $i = 1; ?>
-                @foreach($categories as $c_data)
-                <div class="card-header" style="width: 100%; margin-bottom: 20px;"><h3 class="card-title">{{ $i++ }}</h3></div>
+                
                 <table class="table table-bordered table-striped">
                   
                   <tbody>
@@ -2522,24 +2705,166 @@ $('.tabs-nav a:first').trigger('click'); // Default
                     <tr>
                       <td>
                         <div class="form-group">
-                          <input type="hidden" name="cat_id[]" value="{{ $c_data->cat_id }}">
-                          <input type="text" class="form-control" name="cat_name_en" id="home" value="{{ $c_data->cat_name }}" disabled="">
+                          
+                          <input type="text" class="form-control" name="enter_email_en" id="home" value="{{ $validation_translation->enter_email_en }}">
 
                         </div>
                       </td>
                       <td>
                         <div class="form-group">
 
-                          <input type="text" class="form-control" name="cat_name_it[]" id="home" value="{{ $c_data->cat_name_it }}">
+                          <input type="text" class="form-control" name="enter_email_it" id="home" value="{{ $validation_translation->enter_email_it }}">
 
                         </div>
                       </td>
                     </tr>
-                    
-                    
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          
+                          <input type="text" class="form-control" name="valid_email_en" id="home" value="{{ $validation_translation->valid_email_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="valid_email_it" id="home" value="{{ $validation_translation->valid_email_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          
+                          <input type="text" class="form-control" name="enter_password_en" id="home" value="{{ $validation_translation->enter_password_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="enter_password_it" id="home" value="{{ $validation_translation->enter_password_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          
+                          <input type="text" class="form-control" name="incorrect_email_password_en" id="home" value="{{ $validation_translation->incorrect_email_password_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="incorrect_email_password_it" id="home" value="{{ $validation_translation->incorrect_email_password_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          
+                          <input type="text" class="form-control" name="profile_successful_en" id="home" value="{{ $validation_translation->profile_successful_en }}">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="profile_successful_it" id="home" value="{{ $validation_translation->profile_successful_it }}">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          
+                          <input type="text" class="form-control" name="old_password_en" id="home" value="">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="old_password_it" id="home" value="">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          
+                          <input type="text" class="form-control" name="new_password_en" id="home" value="">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="new_password_it" id="home" value="">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          
+                          <input type="text" class="form-control" name="new_password_length_en" id="home" value="">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="new_password_length_it" id="home" value="">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          
+                          <input type="text" class="form-control" name="confirm_password_en" id="home" value="">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="confirm_password_it" id="home" value="">
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-group">
+                          
+                          <input type="text" class="form-control" name="match_confirm_password_en" id="home" value="">
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="match_confirm_password_it" id="home" value="">
+
+                        </div>
+                      </td>
+                    </tr>
                   </tbody>
                 </table> 
-                @endforeach
+                
                 <div class="row">
 
 

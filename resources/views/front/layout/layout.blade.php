@@ -160,7 +160,7 @@
       old_password: "required",
       new_password: {
         required: true,
-        minlength: 5
+        minlength: 8
       },
       confirm_password:{
         required:true,
@@ -173,7 +173,7 @@
       
       new_password: {
         required: "Please provide a new password",
-        minlength: "Your password must be at least 5 characters long"
+        minlength: "Your password must be at least 8 characters long"
       },
       confirm_password: {
         required: "Please provide a Confirm Password",
@@ -499,10 +499,11 @@
       },
       messages:{
         email_address: {
-            required: "Please enter the Email Address",
+            email:"Please enter a valid email address.",
+            required: "Please enter the Email Address.",
         },
         password: {
-            required: "Please enter the Password",
+            required: "Please enter the Password.",
         }
       },
       submitHandler: function (form) {
@@ -523,7 +524,7 @@
               $(".email_password_error").html(response.msg);
               
             }else{
-              window.location.href = "{{ url('user/userProfile') }}";
+              window.location.href = "{{ url('user/dashboard') }}";
             } 
 
           }

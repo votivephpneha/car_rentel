@@ -1111,7 +1111,7 @@ class AdminController extends Controller
 
     public function assign_ride(Request $request){
         //echo $request->ride_val;die;
-        $update_booking_status = DB::table('booking_management')->where("id",$request->booking_id)->update(['customer_id'=>$request->ride_val,"booking_status"=>"2"]);
+        $update_booking_status = DB::table('booking_management')->where("id",$request->booking_id)->update(['customer_id'=>$request->ride_val]);
         session::flash('success', 'Ride assign successfully');
         //return redirect('admin/view_booking/'.$request->booking_id);
     }
@@ -1474,9 +1474,11 @@ class AdminController extends Controller
         // $data['translations_en'] = DB::table('translation_mgmt')->where("id","1")->get()->first();
         // $data['translations_it'] = DB::table('translation_mgmt')->where("id","2")->get()->first();
         $data['translations_en'] = DB::table('translation')->where("id","1")->get()->first();
+
         $data['texts'] = json_decode($data['translations_en']->translation_text);
         $data['texts_booking'] = json_decode($data['translations_en']->booking_texts);
         $data['login_texts'] = json_decode($data['translations_en']->login_texts);
+        $data['validation_translation'] = json_decode($data['translations_en']->validation_translation);
         $data['car_data'] = DB::table('car_management')->get();
         $data['categories'] = DB::table('categories')->get();
         $data['address_data'] = DB::table('address_table')->get();
@@ -1509,6 +1511,15 @@ class AdminController extends Controller
         $data = $request->all();
         
         $update_translations_en = DB::table('translation')->where("id","1")->update(['login_texts'=>$data]);
+        
+
+       return response()->json(['status' => 'success', 'msg' => 'Content updated successfully']);
+    }
+
+    public function update_validation_translations(Request $request){
+        $data = $request->all();
+        
+        $update_translations_en = DB::table('translation')->where("id","1")->update(['validation_translation'=>$data]);
         
 
        return response()->json(['status' => 'success', 'msg' => 'Content updated successfully']);

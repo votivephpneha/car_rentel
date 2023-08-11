@@ -598,6 +598,8 @@ class HomeController extends Controller
         $insert_booking = DB::table('booking_details')->insert(["booking_id"=>$booking_id,"vehicle_id"=>$vehicle_id,"from_date"=>$pickup_date,"to_date"=>$drop_off_date,"price"=>$total_price,'created_at'=>date('Y-m-d H:i:s')]);
         $insert_payment = DB::table('payment_transaction')->insert(["booking_id"=>$booking_id,"total"=>$total_price,"payment_status"=>"0",'created_at'=>date('Y-m-d H:i:s')]);
 
+        //return view("front/booking_invoice",['email'=>$email_address,'booking_id'=>$booking_id,'pickup_location'=>$pickup_location,'drop_off_location'=>$drop_off_location,'pickup_date'=>$pickup_date,'drop_off_date'=>$drop_off_date]);
+
        
 
         $token = Str::random(64);
@@ -752,7 +754,7 @@ class HomeController extends Controller
             return response()->json(['status' => 'Success', 'msg' => 'Success']);
         }else{
             
-            return response()->json(['status' => 'error', 'msg' => 'Email or Password is Incorrect.']);
+            return response()->json(['status' => 'error', 'msg' =>'Email or Password is Incorrect']);
         }
     }
 
@@ -803,6 +805,7 @@ class HomeController extends Controller
     public function postforget_password(Request $request){
         
         $email_data = DB::table('users')->where(['email' => $request->email])->where(['user_type' => 'business_user'])->first();
+        $page_info = DB::table('home_page')->where('id',1)->first();
         
         if($email_data && $email_data->email != 'admin@gmail.com'){
             $token = Str::random(64);
@@ -819,8 +822,8 @@ class HomeController extends Controller
                     'created_at' => date('Y-m-d H:i:s')
                 ]);
             }
-            
-             Mail::send('front.forget-password-email', ['token' => $token,'email'=>$request->email], function($message) use($request){
+            //return view("front/forget-password-email",['token' => $token,'email'=>$request->email,'page_info'=>$page_info]);
+             Mail::send('front.forget-password-email', ['token' => $token,'email'=>$request->email,'page_info'=>$page_info], function($message) use($request){
                 $message->to($request->email);
                 $message->from('votivephp.neha@gmail.com','Royal Car Rentel');
                 $message->subject('Reset Password');
@@ -885,6 +888,16 @@ class HomeController extends Controller
         
         
         
+    }
+
+    public function search_date_filter(Request $request){
+        $from_date = date("Y-m-d",strtotime($request->from_date));
+        $to_date = date("Y-m-d",strtotime($request->to_date));
+
+        $data['from_date'] = $from_date;
+        $data['to_date'] = $to_date;
+        
+        return view("front/user_dashboard_search")->with($data);
     }
 
 

@@ -27,7 +27,7 @@
 	<div class="container">
 		<div class="row info-det gx-4 gx-lg-5">
 			<div class="row">
-				<h4>Reset Password</h4>
+				<h4>{{ __('messages.reset_password_heading') }}</h4>
 			</div>
 			<div class="row alt_box_form">
 				<div class="col-md-12">
@@ -47,20 +47,20 @@
 				  <form name="resetPassword" method="post" action="{{ url('postreset_password') }}" class="resetPassword">
 				  	@csrf
 				    <div class="form-group">
-				        <label for="Email">Email</label>
+				        <label for="Email">{{ __('messages.reset_password_email') }}</label>
 				        <input type="hidden" name="token" value="{{ $token }}">
-				        <input type="email" class="form-control" id="email" placeholder="Enter Your Email" name="email">
+				        <input type="email" class="form-control" id="email" placeholder="{{ __('messages.reset_password_email') }}" name="email">
 				    </div>
 				    <div class="form-group">
-				        <label for="new_password">New Password</label>
-				        <input type="password" class="form-control" id="new_password" placeholder="Enter New Password" name="new_password">
+				        <label for="new_password">{{ __('messages.reset_new_password') }}</label>
+				        <input type="password" class="form-control" id="new_password" placeholder="{{ __('messages.reset_new_password') }}" name="new_password">
 				    </div>
 					<div class="form-group">
-						<label for="confirm_password">Confirm Password</label>
-						<input type="password" class="form-control" id="confirm_password" placeholder="Enter Confirm Password" name="confirm_password">
+						<label for="confirm_password">{{ __('messages.reset_confirm_password') }}</label>
+						<input type="password" class="form-control" id="confirm_password" placeholder="{{ __('messages.reset_confirm_password') }}" name="confirm_password">
 					</div>
 			      
-			      <button type="submit" class="btn btn-default recover">Submit</button>
+			      <button type="submit" class="btn btn-default recover">{{ __('messages.reset_submit') }}</button>
 				  </form>
 				  </div>
 				</div>

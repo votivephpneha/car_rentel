@@ -59,6 +59,41 @@
   <input type="hidden" value="{{url('/')}}" id="baseUrl" name="baseUrl">
 
   <input type="hidden" value="{{ csrf_token() }}" id="csrfToken" name="csrfToken">
+  
+  <style>
+	.admin--adj {
+    display: flex;
+}
+.admin--adj .input-group-text {
+   height: 38px;
+   border-left: 1px solid #ced4da !important;
+   width: 44px;
+   display: flex;
+   justify-content: center;
+}
+.admin--adj .input-group-append {
+     position: absolute;
+     right: 0;
+     top: 0px;
+}
+.admin--adj input#email_address {
+   width: 100%;
+}
+.admin--adj label {
+    margin-bottom: 0px;
+    color: red;
+    font-size: 14px;
+}
+.login-card-body .input-group.admin--adj .form-control {
+    border-right: 1px solid #ced4da;
+}
+.admin--adj input#email_address:focus {
+    border-color: #ced4da;
+}
+.admin--adj input#password:focus {
+    border-color: #ced4da;
+}
+  </style>
 
 </head>
 
@@ -88,7 +123,7 @@
 
         @csrf
 
-        <div class="input-group mb-3">
+        <div class="input-group mb-3 admin--adj">
 
           <input type="email" class="form-control" placeholder="Email" name="email" id="email_address">
 
@@ -104,7 +139,7 @@
 
         </div>
 
-        <div class="input-group mb-3">
+        <div class="input-group mb-3 admin--adj">
 
           <input type="password" class="form-control" placeholder="Password" name="password" id="password">
 
