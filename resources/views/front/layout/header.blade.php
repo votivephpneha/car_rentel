@@ -46,28 +46,28 @@
 						
 						<div class="dropdown manage_bk_field form_manage">
 							<button class="btn btn-secondary dropdown-toggle" type="button" id="mngbookbutton" data-bs-toggle="dropdown" aria-expanded="false">
-							Manage Booking
+							{{ __('messages.Menu3') }}
 							</button>
 								<ul class="dropdown-menu field_manage_form" aria-labelledby="mngbookbutton">
 									<li>
 										<div class="my-form">
 											<div class="form-title">
-												<h4>Manage your booking</h4>
-												<p>View or change your booking easily.</p>
+												<h4>{{ __('messages.popup_heading') }}</h4>
+												<p>{{ __('messages.popup_content') }}</p>
 											</div>
 										<!-- main form -->
 									<form method="post" action="{{ url('/manage_booking') }}">
 										@csrf										<div class="single-input">
 											<span><i class="bi bi-person"></i></span>
-											<input type="text" name="booking_id" placeholder="Booking Number" required="">
+											<input type="text" name="booking_id" placeholder="{{ __('messages.booking_no') }}" required="">
 										</div>
 										<div class="single-input">
 											<span><i class="bi bi-envelope"></i></span>
-											<input type="email" name="email" placeholder="Email Address">
+											<input type="email" name="email" placeholder="{{ __('messages.email') }}">
 										</div>
 										<div class="single-input submit-btn">
 											<!-- <h6>No data found</h6> -->
-											<input type="submit" value="Submit" required="">
+											<input type="submit" value="{{ __('messages.submit_btn') }}" required="">
 										</div>
 									</form>
 										</div>

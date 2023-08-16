@@ -11270,10 +11270,13 @@ span.acc-span {
     text-align: right;
 }
 .list-subheading span {
-    font-size: 12px;
+    font-size: 14px;
 }
 .features_list {
     margin-top: 15px;
+}
+.list-subheading i.fa-eur {
+    font-size: 12px;
 }
 .features_list .col-lg-3.col-sm-3 {
     padding-left: 0px;
@@ -11427,6 +11430,7 @@ ul.list-menu-ftr li::marker {
 .social-info {
     display: flex;
     color: #ff5f00;
+	padding-top: 15px;
 }
 .social-info i {
     margin-right: 20px;
@@ -11797,6 +11801,7 @@ ul.list-menu-ftr li::marker {
     background: #ff5f00;
     color: #ffffff;
 	z-index: 0;
+	border-color: #ff5f00;
 }
 .pagination-navs {
     text-align: center;
@@ -12254,7 +12259,7 @@ ul.summary-feat {
     font-size: 13px;
 }
 .day_price i.fa.fa-eur {
-    font-size: 17px;
+    font-size: 16px;
 }
 .summary-body {
     flex: 1 1 auto;  
@@ -12446,21 +12451,38 @@ h6.text-divider {
 @media screen and (max-width: 767px) {
     nav#mainNav {
     background-color: #000;
+	padding: 0;
+	border-bottom: 1px solid #ffffff3d;
 }
 #mainNav .navbar-nav .nav-item .nav-link {
     color: #ffffff;
 	padding: 5px 0px;
+	border-bottom: 1px solid #ff5f00;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+.login_field {
+    margin-left: 5px !important;
+}
+.form_manage {
+    padding: 5px 0px;
+    border-bottom: 1px solid #ff5f00;
+    margin-bottom: 10px;
 }
 li.call-now a {
     background: #ff5f00;
     padding: 7px 15px !important;
 }
 .header-info {
-    display: flex;
+    display: block;
     justify-content: inherit;
     align-items: center;
     padding-left: 0px;
 	margin-bottom: 15px;
+}
+.login_field ul.dropdown-menu.dropdown-menu-right.login--drp {
+    float: none;
+    width: 100%;
 }
 button.navbar-toggler {
     padding: 0px;
@@ -12554,9 +12576,27 @@ section#list-grid {
 .cat-type .form-inline {
     padding-left: 5px;
 }
-.row.info-det {
+/*.row.info-det {
     display: flex;
     flex-direction: column-reverse;
+}*/
+.car-lists-block .row.info-det {
+    display: flex;
+    flex-direction: column-reverse;
+}
+.drive_details_cont h2 {
+    margin-bottom: 0px;
+	font-size: 34px;
+    line-height: 42px;
+}
+.book-form {
+    padding-bottom: 0px;
+}
+.alt_box_form {
+    margin: 10px 0px !important;
+}
+.alt_box_form {
+    margin-bottom: 0px !important;
 }
 .sidebar-cust {
     margin-top: 35px;
@@ -12577,12 +12617,168 @@ div#navbarResponsive .navbar-nav {
 li.nav-item.call-now {
     margin-left: 0px !important;
 	display: inline-block;
+	margin: 5px 0px;
 }
 .manage_det .table-responsive {
     display: block !important;
 }
 .form_manage ul.dropdown-menu {
 	width: 100% !important;
+}
+.ftr-info-link ul.list-menu-ftr {
+    display: block;
+}
+.ftr-info-link {
+    float: left;
+}
+.drive_details_cont {
+    padding: 0 15px;
+}
+.cd-group {
+    padding: 0px !important;
+}
+.cd_src_filter .wd-adj {
+    padding-left: 0px !important;
+}
+.user_profile .des-rgt-profile {
+    padding-left: 15px !important;
+}
+.user_profile .l-pd-0 {
+    padding-left: 15px !important;
+}
+.user_profile .info--stats {
+    align-items: center;
+    padding: 15px !important;
+}
+.info--stats .pr-2 {
+    padding-right: 35px !important;
+}
+.account-show {
+    margin-left: 5px !important;
+}
+.payment_details h5 {
+    padding-top: 0px !important;
+}
+.billing-table_info h5 {
+    padding-top: 0px !important;
+}
+.social-info {
+    padding-top: 0px;
+}
+.rgt_col_form {
+    min-height: 70vh;
+}
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) { 
+.logo-new img {
+    width: 100px;
+}
+    nav#mainNav {
+    background-color: #000;
+    padding: 0;
+}
+.logo-new button.navbar-toggler {
+    padding: 0px;
+}
+.navbar-toggler-icon {
+    background: url(../assets/img/navbar-icon.svg) !important;
+}
+div#navbarResponsive .navbar-nav {
+    display: block !important;
+}
+#mainNav .navbar-nav .nav-item .nav-link {
+    color: #ffffff;
+    padding: 5px 0px;
+    border-bottom: 1px solid #ff5f00;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+.form_manage {
+    padding: 5px 0px;
+    border-bottom: 1px solid #ff5f00;
+    margin-bottom: 10px;
+}
+.form_manage ul.dropdown-menu {
+    width: 100% !important;
+}
+li.nav-item.call-now {
+    margin-left: 0px !important;
+    display: inline-block;
+    margin: 5px 0px;
+}
+.header-info {
+    display: block;
+    justify-content: inherit;
+    align-items: center;
+    padding-left: 0px;
+    margin-bottom: 15px;
+}
+.login_field {
+    margin-left: 5px !important;
+}
+.login_field ul.dropdown-menu.dropdown-menu-right.login--drp {
+    float: none;
+    width: 100%;
+}
+header.masthead {
+    padding-top: 15rem;
+    background-position: center;
+}
+header.masthead .filter {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+}
+.ftr-info-link ul.list-menu-ftr li {
+    margin-right: 15px;
+}
+.payment_details h5 {
+    padding-top: 0px !important;
+}
+.billing-table_info h5 {
+    padding-top: 0px !important;
+}
+.submit_btn.user-sub_btn {
+    -ms-flex: 0 0 33.333333%;
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+}
+.customer_content .table thead th {
+    width: 100% !important;
+}
+.booking_details .table thead th {
+    width: 50% !important;
+}
+.payment_details .table thead th {
+    width: 50% !important;
+}
+.sidebar-cust {
+    margin-top: 50px;
+}
+.car-lists-block .row.info-det {
+    display: flex;
+    flex-direction: column-reverse;
+}
+.form-group.btn--book {
+    width: 35%;
+    max-width: 35%;
+}
+.dc_popup .modal-content {
+    width: 100%;
+}
+.drive_details_cont {
+    padding: 0 0px;
+}
+.rgt_col_form {
+    min-height: auto;
+}
+.alt_box_form {
+    margin: 15px 0px !important;
+}
+.info-card .payment-card-body {
+    padding: 24px 0rem !important;
 }
 }
 
@@ -13510,3 +13706,5 @@ button#accountButton {
 .account-show button:focus {
     box-shadow: none !important;
 }
+
+

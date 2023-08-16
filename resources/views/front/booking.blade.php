@@ -70,7 +70,11 @@
 								<?php
 									foreach ($countries_list as $country) {
 										?>
-										<option value="<?php echo $country->name; ?>"><?php echo $country->name; ?></option>
+										@if($locale == "it" and $country->name_it)
+											<option value="<?php echo $country->name_it; ?>"><?php echo $country->name_it; ?></option>
+										@else
+											<option value="<?php echo $country->name; ?>"><?php echo $country->name; ?></option>
+										@endif
 										<?php
 										
 									}

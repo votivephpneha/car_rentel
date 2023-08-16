@@ -309,6 +309,7 @@ Route::group(['prefix' => 'admin'], function(){
         Route::post('/update_car_translations', [AdminController::class, 'update_car_translations'])->name('update_car_translations');
         Route::post('/update_category_translations', [AdminController::class, 'update_category_translations'])->name('update_category_translations');
         Route::post('/update_address_translations', [AdminController::class, 'update_address_translations'])->name('update_address_translations');
+        Route::get('/edit_country_translations/{id}', [AdminController::class, 'edit_country_translations'])->name('edit_country_translations');
         Route::post('/update_country_translations', [AdminController::class, 'update_country_translations'])->name('update_country_translations');
         Route::post('/update_team_translations', [AdminController::class, 'update_team_translations'])->name('update_team_translations');
         Route::post('/update_page_translations', [AdminController::class, 'update_page_translations'])->name('update_page_translations');

@@ -219,7 +219,7 @@
           </div>
         </div>
         <div class="row icon_box">
-      <div class="col-lg-4 col-sm-6 icon-left">
+      <div class="col-lg-4 col-sm-4 icon-left">
         <div class="feat_icon">
           <div class="img-feat">
             <img src="{{ url('/public/uploads/landing') }}/{{ $landing->image_one }}">
@@ -230,7 +230,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-4 col-sm-6 icon-left">
+      <div class="col-lg-4 col-sm-4 icon-left">
         <div class="feat_icon">
           <div class="img-feat">
             <img src="{{ url('/public/uploads/landing') }}/{{ $landing->image_two }}">
@@ -241,7 +241,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-4 col-sm-6 icon-left">
+      <div class="col-lg-4 col-sm-4 icon-left">
         <div class="feat_icon">
           <div class="img-feat">
             <img src="{{ url('/public/uploads/landing') }}/{{ $landing->image_three }}">

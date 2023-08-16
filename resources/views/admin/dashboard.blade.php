@@ -17,6 +17,26 @@
 .small-box.bg-warning {
 	z-index: 1;
 }
+.bg-warning {
+    background-color: #1ab394!important;
+}
+.data_details_info {
+    color: #ffffff !important;
+}
+.data_details_info .inner {
+    padding: 35px 15px 35px 15px;
+}
+.data_details_info a.small-box-footer {
+    color: #ffffff !important;
+    padding: 10px;
+}
+.data_details_info a.small-box-footer {
+    color: #ffffff !important;
+    padding: 10px;
+}
+.data_details_info .icon>i {
+    top: 35px !important;
+}
    </style>
 @endsection
 
@@ -113,7 +133,7 @@
 
             <!-- small box -->
 
-            <div class="small-box bg-warning">
+            <div class="small-box bg-warning data_details_info">
               <?php
                   $business_data = DB::table("users")->where("user_type","business_user")->get();
 
@@ -145,7 +165,7 @@
 
             <!-- small box -->
 
-            <div class="small-box bg-warning">
+            <div class="small-box bg-warning data_details_info">
 
               <div class="inner">
                 <?php
@@ -179,7 +199,7 @@
 
             <!-- small box -->
 
-            <div class="small-box bg-warning">
+            <div class="small-box bg-warning data_details_info">
 
               <div class="inner">
                 <?php
@@ -207,11 +227,11 @@
 
           </div>
           <!-- ./col -->
-          <div class="col-lg-4 col-6">
+          <div class="col-lg-3 col-6">
 
             <!-- small box -->
 
-            <div class="small-box bg-warning">
+            <div class="small-box bg-warning data_details_info">
 
               <div class="inner">
                 <?php
@@ -238,11 +258,11 @@
             </div>
 
           </div>
-          <div class="col-lg-4 col-6">
+          <div class="col-lg-3 col-6">
 
             <!-- small box -->
 
-            <div class="small-box bg-warning">
+            <div class="small-box bg-warning data_details_info">
 
               <div class="inner">
                 <?php
@@ -269,11 +289,11 @@
             </div>
 
           </div>
-          <div class="col-lg-4 col-6">
+          <div class="col-lg-3 col-6">
 
             <!-- small box -->
 
-            <div class="small-box bg-warning">
+            <div class="small-box bg-warning data_details_info">
 
               <div class="inner">
                 <?php
@@ -300,11 +320,11 @@
             </div>
 
           </div>
-          <div class="col-lg-4 col-6">
+          <div class="col-lg-3 col-6">
 
             <!-- small box -->
 
-            <div class="small-box bg-warning">
+            <div class="small-box bg-warning data_details_info">
 
               <div class="inner">
                 <?php
@@ -335,7 +355,7 @@
 
             <!-- small box -->
 
-            <div class="small-box bg-warning">
+            <div class="small-box bg-warning data_details_info">
 
               <div class="inner">
                 <?php
@@ -366,7 +386,7 @@
 
             <!-- small box -->
 
-            <div class="small-box bg-warning">
+            <div class="small-box bg-warning data_details_info">
 
               <div class="inner">
                 <?php
@@ -397,7 +417,7 @@
 
             <!-- small box -->
 
-            <div class="small-box bg-warning">
+            <div class="small-box bg-warning data_details_info">
 
               <div class="inner">
                 <?php

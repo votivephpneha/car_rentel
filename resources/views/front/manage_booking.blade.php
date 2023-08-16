@@ -119,7 +119,7 @@
                             $business_user = DB::table('users')->where("id",$booking_details->customer_id)->get()->first();
                             
                           ?>
-                           @if(!empty($arr->customer_id))
+                           @if(!empty($booking_details->customer_id))
                           <tr>
                             <th>Business Name</th>
                             <td>

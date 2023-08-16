@@ -1564,17 +1564,21 @@ class AdminController extends Controller
         return response()->json(['status' => 'success', 'msg' => 'Content updated successfully']);
     }
 
+    public function edit_country_translations(Request $request){
+        $data['country_data'] = DB::table("country")->where('id',$request->id)->get()->first();
+        return view("admin/Translations/country_translation")->with($data);
+    }
+
     public function update_country_translations(Request $request){
         //print_r($request->car_name_it);
-        $country_ids = $request->country_id;
-        $country_name = $request->country_name_it;
+        $country_id = $request->country_id;
+        $country_name = $request->country_name;
+        $country_name_it = $request->country_name_it;
         
-        $i = 0;
-        foreach ($country_ids as $c_id) {
-            $update_translations_en = DB::table('country')->where("id",$c_id)->update(['name_it'=>$country_name[$i]]);
-            $i++;
-        }
-        return response()->json(['status' => 'success', 'msg' => 'Content updated successfully']);
+        $update_translations_en = DB::table('country')->where("id",$country_id)->update(['name'=>$country_name,'name_it'=>$country_name_it]);
+        
+        
+        return response()->json(['status' => 'success', 'msg' => 'Country updated successfully']);
     }
 
     public function update_team_translations(Request $request){

@@ -282,13 +282,13 @@ class HomeController extends Controller
                 // die; 
                 $user_id =  $user_obj->id;
                 if(!\Hash::check($data['old_password'], $user_obj->password)){
-                    return response()->json(['status' => 'error', 'msg' => 'You have entered wrong password']);
+                    return response()->json(['status' => 'error', 'msg' => __('messages.wrong_password')]);
                 }else{
                     $user_id = $user_obj->id;
                     $password = bcrypt($request->input('new_password'));
                     // echo "<pre>";print_r($request->input('new_password'));die; 
                     $checkda = DB::update('update users set password = ? where id = 1',[$password]);
-                    return response()->json(['status' => 'success', 'msg' => 'Password Updated Successfully']);
+                    return response()->json(['status' => 'success', 'msg' => __('messages.password_updated_successful')]);
                 }
             }
         }    
@@ -605,7 +605,7 @@ class HomeController extends Controller
         $token = Str::random(64);
         $users = DB::table('users')->where('id',1)->first();
          
-         Mail::send('front.booking_invoice', ['token' => $token,'email'=>$email_address,'booking_id'=>$booking_id,'pickup_location'=>$pickup_location,'drop_off_location'=>$drop_off_location,'pickup_date'=>$pickup_date,'drop_off_date'=>$drop_off_date], function($message) use($request,$users){
+        Mail::send('front.booking_invoice', ['token' => $token,'email'=>$email_address,'booking_id'=>$booking_id,'pickup_location'=>$pickup_location,'drop_off_location'=>$drop_off_location,'pickup_date'=>$pickup_date,'drop_off_date'=>$drop_off_date], function($message) use($request,$users){
                     $message->to($request->email_address);
                     $message->cc("info@royal-car-rental.com",'Royal Car Rentel');
                     $message->from('votivephp.neha@gmail.com','Royal Car Rentel');
@@ -736,7 +736,7 @@ class HomeController extends Controller
         $user->profile_pic = $imgName;
         $user->update();
 
-        session::flash('success', 'Profile updated successfully.');
+        session::flash('success', __('messages.profile_successful'));
 
         return redirect()->route('userProfile');
     }
@@ -754,7 +754,7 @@ class HomeController extends Controller
             return response()->json(['status' => 'Success', 'msg' => 'Success']);
         }else{
             
-            return response()->json(['status' => 'error', 'msg' =>'Email or Password is Incorrect']);
+            return response()->json(['status' => 'error', 'msg' =>__('messages.incorrect_email_password') ]);
         }
     }
 
@@ -829,10 +829,10 @@ class HomeController extends Controller
                 $message->subject('Reset Password');
             });
 
-             session::flash('password_success', 'We have sent the link on email for reset password');
+             session::flash('password_success',  __('messages.forget_password_successful'));
              return redirect('forget_password');
          }else{
-            session::flash('error', 'Email not found');
+            session::flash('error', __('messages.forget_email_not_found'));
             return redirect('forget_password');
          }
         
@@ -861,13 +861,14 @@ class HomeController extends Controller
             $time_diff = $diff->i;
 
             if($time_diff>5){
-                echo "This link has been expired";
+                echo __('messages.link_expired');
             }else{
                 return view("front/reset_password")->with($data);   
             }
         }else{
-            echo "This link has been expired";
+            echo __('messages.link_expired');
         }
+
         
     }
 
@@ -877,13 +878,13 @@ class HomeController extends Controller
         $update = DB::table('password_resets')->where(['email' => $request->email, 'token' => $request->token])->first();
         
         if(!$update){
-            return back()->withInput()->with('error', 'Invalid token!');
+            return back()->withInput()->with('error', __('messages.invalid_token'));
         }else{
             $user = User::where('email', $request->email)
                       ->update(['password' => Hash::make($request->new_password)]);
 
             DB::table('password_resets')->where(['email'=> $request->email])->delete();              
-            return redirect('/')->with('message', 'Your password has been changed!');
+            return redirect('/')->with('message', __('messages.password_changed'));
         }
         
         

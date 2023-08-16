@@ -86,8 +86,12 @@
 	                          <option value="">{{ __('messages.select_country') }}</option>
 
 	                          @foreach ($countries as $cont)
-
-	                            <option value="{{ $cont->id }}" @if($cont->id == $user_data['user_country'] ) selected @endif>{{ $cont->name }}</option>
+	                          	@if($locale == "it" and $cont->name_it)
+									<option value="{{ $cont->id }}" @if($cont->id == $user_data['user_country'] ) selected @endif>{{ $cont->name_it }}</option>
+								@else
+									<option value="{{ $cont->id }}" @if($cont->id == $user_data['user_country'] ) selected @endif>{{ $cont->name }}</option>
+								@endif
+	                            
 
 	                          @endforeach
 

@@ -41,7 +41,7 @@ foreach ($login_trans as $key => $value) {
 }
 
 $tranlated_data_validation = array();
-foreach ($login_trans as $key => $value) {
+foreach ($login_trans_validation as $key => $value) {
     $key1 = str_replace('_en', '', $key);
     if(strpos($key, "_en")){
         //array_push($tranlated_data,"'".$key1."'=>".$value.",");
@@ -50,7 +50,7 @@ foreach ($login_trans as $key => $value) {
 }
 
 
-//print_r($car_data);die;
+//print_r($tranlated_data_login);die;
 
 $new_translated_data = array_merge($tranlated_data,$tranlated_data_booking,$tranlated_data_login,$tranlated_data_validation);
 //print_r($new_translated_data);die;

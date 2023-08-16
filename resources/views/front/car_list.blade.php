@@ -290,7 +290,7 @@ $(".pickup_location").keyup(function(){
         <section class="page-section car-lists-block">
             <div class="container px-4 px-lg-5">
                 <div class="row info-det gx-4 gx-lg-5">
-                    <div class="col-lg-3 col-sm-3 mb-4">	
+                    <div class="col-lg-3 col-sm-6 mb-4">	
 						<div class="sidebar-cust">
 						<div class="sbar-type">
 							<div class="cat-title-sb">
@@ -342,7 +342,7 @@ $(".pickup_location").keyup(function(){
 							</div>
 						</div>
 					</div>
-					<div class="col-xl-9 col-lg-8 col-md-12 listing_infos">
+					<div class="col-xl-9 col-lg-8 col-sm-12 listing_infos">
 						<div class="mb-lg-0">
 							<div class="">
 								<div class="item2-gl carlist-style">
@@ -395,7 +395,7 @@ $(".pickup_location").keyup(function(){
 																</div>
 																
 																<div class="price_div">
-																	<div class="day_price">{{ $price_data->price }} <i class="fa fa-eur" aria-hidden="true"></i> /{{ __('messages.Day') }}</div>
+																	<div class="day_price">{{ $price_data->price }} <i class="fa fa-eur" aria-hidden="true"></i> / {{ __('messages.Day') }}</div>
 																	<div class="tot_price">{{ $price }} <i class="fa fa-eur" aria-hidden="true"></i> {{ __('messages.total') }}</div>
 																</div>
 																

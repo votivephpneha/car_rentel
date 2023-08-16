@@ -5,8 +5,8 @@
 			//echo $booking->total;
 			
 		?>
-		<p><b>Hello <span style="color: #FF5F00;">{{ $booking_mgmt->driver_first_name }} {{ $booking_mgmt->driver_last_name }}</span></b></p>
-		<div class="info-invoice" style="display: flex;background: #f2f2f2;padding: 25px;border-radius: 12px;border-bottom-left-radius: 0;border-bottom-right-radius: 0px;border-bottom: 1px solid #c9c9c9;">
+		<p style="margin-top:0px;"><b>Hello <span style="color: #FF5F00;">{{ $booking_mgmt->driver_first_name }} {{ $booking_mgmt->driver_last_name }}</span></b></p>
+		<div class="info-invoice" style="display: flex;background: #f2f2f2;padding: 25px;border-radius: 12px;border-bottom-left-radius: 0;border-bottom-right-radius: 0px;border-bottom: 1px solid #e3e3e3;">
 		<p style="display: grid;font-size: 12px;margin-right: 2em;text-transform: uppercase;line-height: 1.6;border-right: 1px dashed #d3ced2;    padding-right: 2em;margin-left: 0;padding-left: 0;margin-bottom: 0px;margin-top: 0px;">Booking ID: <b>{{ $booking_mgmt->booking_id }}</b></p>
 		<p style="display: grid;font-size: 12px;margin-right: 2em;text-transform: uppercase;line-height: 1.6;border-right: 1px dashed #d3ced2;    padding-right: 2em;margin-left: 0;padding-left: 0;margin-bottom: 0px;margin-top: 0px;">To: <b>{{ $booking_mgmt->driver_first_name }} {{ $booking_mgmt->driver_last_name }}</b></p>
 		<p style="display: grid;font-size: 12px;margin-right: 2em;text-transform: uppercase;line-height: 1.6;border-right: 1px dashed #d3ced2;    padding-right: 2em;margin-left: 0;padding-left: 0;margin-bottom: 0px;margin-top: 0px;">Country of Residence: <b>{{ $booking_mgmt->driver_country }}</b></p>
@@ -81,4 +81,17 @@
 		</tbody>
 		
 	</table>
+	
+	<div class="container footer_logo" style="background: #000000;margin-top: 35px;padding: 0px 25px;border-radius: 7px;">
+		 <div class="row invoice__ftr" style="display: flex;justify-content: space-between;align-items: center;">
+			 <div class="col-lg-6 col-sm-6" style="width: 50%;">
+				<div class="web_logo">
+					<img src="{{ url('/public/uploads/1688968836logo-new.jpg') }}" style="width: 100px;">
+				</div>
+			 </div>
+			 <div class="col-lg-6 col-sm-6" style="text-align: right;width: 50%;padding-top: 45px;">
+				<div class="inv--copyright" style="color: #ffffff;font-size: 14px;">© 2023 Royal Car Rental</div>
+			 </div>
+		 </div>
+	</div>
 </div>

@@ -169,15 +169,15 @@
     },
     // Specify validation error messages
     messages: {
-      old_password: "Please provide a old password",
+      old_password: "{{ __('messages.old_password_val') }}",
       
       new_password: {
-        required: "Please provide a new password",
-        minlength: "Your password must be at least 8 characters long"
+        required: "{{ __('messages.new_password_val') }}",
+        minlength: "{{ __('messages.new_password_val_length') }}"
       },
       confirm_password: {
-        required: "Please provide a Confirm Password",
-        equalTo: "The new password and confirm password does not match"
+        required: "{{ __('messages.confirm_password_val') }}",
+        equalTo: "{{ __('messages.confirm_password_val') }}"
       }
     },
     // Make sure the form is submitted to the destination defined
@@ -206,8 +206,8 @@
     },
     // Specify validation error messages
     messages: {
-      required: "Please provide the email address",
-      email: "Please enter a valid email address"
+      email:"{{ __('messages.enter_email') }}",
+      required: "{{ __('messages.valid_email') }}",
     },
     // Make sure the form is submitted to the destination defined
     // in the "action" attribute of the form when valid
@@ -499,16 +499,16 @@
       },
       messages:{
         email_address: {
-            email:"Please enter a valid email address.",
-            required: "Please enter the Email Address.",
+            email:"{{ __('messages.valid_email') }}",
+            required: "{{ __('messages.enter_email') }}",
         },
         password: {
-            required: "Please enter the Password.",
+            required: "{{ __('messages.enter_password') }}",
         }
       },
       submitHandler: function (form) {
         
-        // alert(site_url);
+        
         var formData = $(form).serialize();
 
         $.ajax({
@@ -540,6 +540,7 @@
         },
         new_password: {
             required: true,
+            minlength: 8
         },
         confirm_password: {
             required: true,
@@ -549,40 +550,42 @@
       },
       messages:{
         email: {
-            email:"Please enter the valid Email Address",
-            required: "Please enter the Email Address",
+            email:"{{ __('messages.valid_email') }}",
+            required: "{{ __('messages.enter_email') }}",
         },
-        password: {
-            required: "Please enter the Password",
+        new_password: {
+            required: "{{ __('messages.new_password_val') }}",
+            minlength: "{{ __('messages.new_password_val_length') }}"
         },
         confirm_password: {
-            required: "Please enter the Confirm Password",
-            equalTo : "Please enter the same password again"
+            required: "{{ __('messages.confirm_password_val') }}",
+            equalTo : "{{ __('messages.match_confirm_password') }}"
         }
       },
       submitHandler: function (form) {
         form.submit();
       } 
     });
+    $("#dropdownMenuButton1").click(function(e){
+    
+     e.stopPropagation();
+});
 
-    $("#dropdownMenuButton1").click(function(){
-      var login_popup_class = $(".login--drp").hasClass("show");
-      var login_drp = $(".login--drp");
-      login_drp.show();
-      if(login_popup_class){
-        $(document).mouseup(function(e){
-          
+$(".login--drp").click(function(e){
+    e.stopPropagation();
+});
+$(document).click(function(){
+    //$(".login--drp").hide();
+    $(".login--drp").removeClass("show");
+    
+});
 
-          // If the target of the click isn't the container
-          if(!login_drp.is(e.target) && login_drp.has(e.target).length === 0){
-              login_drp.hide();
-          }
 
-        });
-      }
-    });
+
     
 
+      
+        
     
 </script>
 
@@ -590,6 +593,8 @@
 $('#login-prevent').on('hide.bs.dropdown', function (e) {
     if (e.clickEvent && e.clickEvent.target.className!="nav-link") {
       e.preventDefault();
+
+      
     }
 });
 </script>
